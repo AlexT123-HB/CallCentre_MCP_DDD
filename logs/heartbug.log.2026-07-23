@@ -1,0 +1,694 @@
+2026-07-23 00:19:55,076 [INFO] [S21] ANI: +61478901234
+2026-07-23 00:19:58,299 [INFO] [S21] SYSTEM: Welcome to HeartBug—may I have your full name and the clinic you’re calling from?
+2026-07-23 00:20:13,141 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 00:20:13,142 [INFO] [S21] Orchestrator: A mode
+2026-07-23 00:20:14,443 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-07-23 00:20:14,444 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-07-23 00:20:15,571 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-07-23 00:20:15,572 [INFO] [S21] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-07-23 00:20:15,611 [INFO] [S21] VERIFICATION verified=None subject_id=None reason=None role=None clinic_id=None
+2026-07-23 00:20:17,107 [INFO] [S21] SYSTEM: Thanks for that, but I still couldn’t verify your details, so could you please repeat them a little more clearly so I can help move things forward?
+2026-07-23 00:24:22,648 [INFO] [S1] ANI: +61412345678
+2026-07-23 00:24:24,210 [INFO] [S1] SYSTEM: Welcome to HeartBug — may I have your full name and date of birth, please?
+2026-07-23 00:24:31,959 [INFO] [S1] CALLER: my name is John Smith date of birth the fifteenth of March, eighty-five
+2026-07-23 00:24:31,959 [INFO] [S1] Orchestrator: A mode
+2026-07-23 00:24:33,640 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-07-23 00:24:33,640 [INFO] [S1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-07-23 00:24:34,849 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
+2026-07-23 00:24:34,850 [INFO] [S1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 00:24:34,887 [INFO] [S1] VERIFICATION verified=None subject_id=None reason=None role=None clinic_id=None
+2026-07-23 00:24:36,080 [INFO] [S1] SYSTEM: Thanks, John, but I still can’t verify you yet, so please repeat your full name and date of birth for HeartBug one more time, and I’ll help you आगे.
+2026-07-23 00:26:22,454 [INFO] [S1] ANI: +61412345678
+2026-07-23 00:26:23,997 [INFO] [S1] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
+2026-07-23 00:26:26,753 [INFO] [S1] CALLER: my name is John Smith date of birth the fifteenth of March, eighty-five
+2026-07-23 00:26:26,754 [INFO] [S1] Orchestrator: A mode
+2026-07-23 00:26:27,931 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 00:26:27,932 [INFO] [S1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 00:26:28,729 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
+2026-07-23 00:26:28,730 [INFO] [S1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 00:26:28,768 [INFO] [S1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-07-23 00:26:28,792 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 00:26:28,793 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 00:26:29,747 [INFO] [S1] SYSTEM: Thanks, John — you’re verified, and I’m happy to help with your HeartBug account.
+2026-07-23 00:26:36,808 [INFO] [S21] ANI: +61478901234
+2026-07-23 00:26:38,039 [INFO] [S21] SYSTEM: Welcome to HeartBug—may I have your full name and which clinic you’re calling from?
+2026-07-23 00:26:45,968 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 00:26:45,969 [INFO] [S21] Orchestrator: A mode
+2026-07-23 00:26:46,897 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-07-23 00:26:46,898 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-07-23 00:26:47,934 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-07-23 00:26:47,935 [INFO] [S21] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-07-23 00:26:47,970 [INFO] [S21] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-07-23 00:26:47,989 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 00:26:47,989 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 00:26:48,965 [INFO] [S21] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m here to help—how can I assist you today?
+2026-07-23 01:47:05,195 [INFO] [S21] CALLER: how is Alex Thompson going? I would like to check his monitoring status and alerts
+2026-07-23 01:47:05,197 [INFO] [S21] Orchestrator: A mode
+2026-07-23 01:47:06,757 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","intent":"check Alex Thompson monitoring status and alerts","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 01:47:06,759 [INFO] [S21] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor')]
+2026-07-23 01:47:08,029 [INFO] TOOL-SELECT llm-raw: {"tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"confidence":0.98}
+2026-07-23 01:47:08,030 [INFO] [S21] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Alex Thompson'} missing=None
+2026-07-23 01:47:08,130 [INFO] CACHE MISS monitoring:P003, query DB
+2026-07-23 01:47:09,585 [INFO] [S21] SYSTEM: Alex Thompson’s enrolment is completed, his monitoring finished on 21 July 2026, and his report is ready.
+2026-07-23 01:50:49,981 [INFO] [EVAL-CTX-1-c690] ANI: +61498765432
+2026-07-23 01:50:51,388 [INFO] [EVAL-CTX-1-c690] SYSTEM: Welcome to HeartBug—could I have your full name and date of birth, please?
+2026-07-23 01:50:53,739 [INFO] [EVAL-CTX-1-c690] CALLER: My name is Jane Doe, and my date of birth is July 22nd, 1990.
+2026-07-23 01:50:53,739 [INFO] [EVAL-CTX-1-c690] Orchestrator: A mode
+2026-07-23 01:50:55,415 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 01:50:55,415 [INFO] [EVAL-CTX-1-c690] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 01:50:56,414 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-07-23 01:50:56,414 [INFO] [EVAL-CTX-1-c690] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-07-23 01:50:56,448 [INFO] [EVAL-CTX-1-c690] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-07-23 01:50:56,473 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 01:50:56,474 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 01:50:57,475 [INFO] [EVAL-CTX-1-c690] SYSTEM: You’re all verified, Jane, and I’m happy to help with your HeartBug account today.
+2026-07-23 01:50:59,016 [INFO] [EVAL-CTX-1-c690] CALLER: I placed an order for the HeartBeats device a few days ago – can you tell me when it'll arrive?
+2026-07-23 01:50:59,016 [INFO] [EVAL-CTX-1-c690] Orchestrator: A mode
+2026-07-23 01:51:00,394 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"check order status and delivery ETA for HeartBeats device","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 01:51:00,395 [INFO] [EVAL-CTX-1-c690] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 01:51:01,584 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":null},"confidence":0.86}
+2026-07-23 01:51:02,452 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":null},"confidence":0.62}
+2026-07-23 01:51:02,453 [INFO] [EVAL-CTX-1-c690] SLOTS domain=order tool=lookup_order have={} missing=order_id
+2026-07-23 01:51:04,291 [INFO] [EVAL-CTX-1-c690] SYSTEM: I can help check that for you, but I’ll need your HeartBug order number first; if you have it handy, please share it and I’ll look into the delivery status.
+2026-07-23 01:51:05,932 [INFO] [EVAL-CTX-1-c690] CALLER: It's O1003 – my husband mentioned that was the number he gave to them when he ordered it online.
+2026-07-23 01:51:05,933 [INFO] [EVAL-CTX-1-c690] Orchestrator: A mode
+2026-07-23 01:51:06,930 [INFO] ROUTER llm-raw: {"domain":"order","confidence":0.98,"connect_human":false}
+2026-07-23 01:51:08,775 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1003"},"confidence":0.98}
+2026-07-23 01:51:08,775 [INFO] [EVAL-CTX-1-c690] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 01:51:10,014 [INFO] [EVAL-CTX-1-c690] SYSTEM: Thanks for that—your HeartBug Monitor order O1003 has already been delivered, and it went via StarTrack with tracking number ST1003AU; it was due on July 2, 2026.
+2026-07-23 01:51:12,007 [INFO] [EVAL-CTX-1-c690] CALLER: I see I wasn't expecting that – I thought it was still in transit, so how do I track it to make sure it's really arrived?
+2026-07-23 01:51:12,007 [INFO] [EVAL-CTX-1-c690] Orchestrator: A mode
+2026-07-23 01:51:13,116 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"check tracking details for order O1003","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 01:51:13,116 [INFO] [EVAL-CTX-1-c690] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 01:51:14,288 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1003"},"confidence":0.99}
+2026-07-23 01:51:14,288 [INFO] [EVAL-CTX-1-c690] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 01:51:15,555 [INFO] [EVAL-CTX-1-c690] SYSTEM: I understand, and for your HeartBug Monitor order O1003, StarTrack tracking ST1003AU shows it was delivered and was due on July 2, 2026. If you’d like, I can help with anything else on your HeartBug account or connect you to the team.
+2026-07-23 01:51:17,513 [INFO] [EVAL-CTX-1-c690] CALLER: Actually, who's delivering it – I mean, is it just a standard StarTrack delivery person or someone from HeartBug itself?
+2026-07-23 01:51:17,513 [INFO] [EVAL-CTX-1-c690] Orchestrator: A mode
+2026-07-23 01:51:19,444 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"Identify the carrier and delivery party for order O1003","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 01:51:19,445 [INFO] [EVAL-CTX-1-c690] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 01:51:20,288 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1003"},"confidence":0.98}
+2026-07-23 01:51:20,289 [INFO] [EVAL-CTX-1-c690] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 01:51:21,270 [INFO] [EVAL-CTX-1-c690] SYSTEM: It’s delivered by StarTrack, not by HeartBug itself, and for your HeartBug Monitor order O1003 the tracking number is ST1003AU.
+2026-07-23 01:51:23,464 [INFO] [EVAL-CTX-1-c690] CALLER: Okay, so since it's already been delivered, who would I contact if there are any issues with the installation or if I need help getting set up with the device?
+2026-07-23 01:51:23,464 [INFO] [EVAL-CTX-1-c690] Orchestrator: A mode
+2026-07-23 01:51:24,563 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"kb","intent":"installation/setup help and support contact for delivered device","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 01:51:24,564 [INFO] [EVAL-CTX-1-c690] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'kb')]
+2026-07-23 01:51:26,067 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"installation/setup help and support contact for delivered device"},"confidence":0.96}
+2026-07-23 01:51:26,097 [INFO] search_kb GOT query='installation/setup help and support contact for delivered device' verified=True
+2026-07-23 01:51:27,025 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_12' matched_q='Who do I contact for medical concerns or symptoms?' score=0.662
+2026-07-23 01:51:27,026 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_77' matched_q='What if my patch pack arrives damaged?' score=0.638
+2026-07-23 01:51:27,027 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_1' matched_q='What happens if I use a new phone with HeartBug?' score=0.638
+2026-07-23 01:51:27,028 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_31' matched_q='What if my return envelope is lost?' score=0.633
+2026-07-23 01:51:27,029 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_33' matched_q='What if I accidentally damage the HeartBug device?' score=0.629
+2026-07-23 01:51:28,197 [INFO] [EVAL-CTX-1-c690] SYSTEM: For installation or setup help, please contact HeartBug Patient Care, and if it’s a medical concern or symptoms, your doctor is the right contact.
+2026-07-23 03:01:48,895 [INFO] [S14] ANI: +61412345678
+2026-07-23 03:01:50,642 [INFO] [S14] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth?
+2026-07-23 03:01:53,781 [INFO] [S14] CALLER: John Smith, date of birth 1985-03-15
+2026-07-23 03:01:53,781 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:01:54,901 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 03:01:54,902 [INFO] [S14] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 03:01:56,351 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-07-23 03:01:56,351 [INFO] [S14] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 03:01:56,397 [INFO] [S14] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-07-23 03:01:56,420 [INFO] CACHE EXPIRED patient:P001, query DB
+2026-07-23 03:01:56,422 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:01:57,259 [INFO] [S14] SYSTEM: Hi John, you’re verified with HeartBug, and I’m here to help — what would you like to do next?
+2026-07-23 03:01:59,561 [INFO] [S14] CALLER: I need to order 1 more sticker packs
+2026-07-23 03:01:59,562 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:02:00,809 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:02:00,810 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:02:02,117 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:02:02,118 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:02:03,350 [INFO] [S14] SYSTEM: Absolutely — I have one HeartBug sticker pack to ship to 12 Wattle St, Chatswood NSW 2067; can you please confirm that address is correct, and I’ll place the order?
+2026-07-23 03:02:37,292 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:02:37,292 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:02:38,585 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:02:39,816 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"check shipping address / place sticker pack order","depends_on":[]}],"confidence":0.94,"connect_human":false}
+2026-07-23 03:02:39,817 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:02:40,892 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:02:40,893 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:02:42,115 [INFO] [S14] SYSTEM: Just to confirm, I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—can you please confirm that’s the correct address before I place it?
+2026-07-23 03:02:48,593 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:02:48,594 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:02:49,278 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:02:50,351 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 more sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:02:50,352 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:02:51,481 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:02:51,482 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:02:52,687 [INFO] [S14] SYSTEM: I’ve got one sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067 — could you please confirm that address is correct before I place the order?
+2026-07-23 03:02:56,766 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:02:56,767 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:02:57,673 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:02:58,907 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 additional sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:02:58,908 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:02:59,732 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:02:59,732 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:03:00,971 [INFO] [S14] SYSTEM: Thanks — I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067; could you please confirm that address is correct before I place the order?
+2026-07-23 03:08:14,581 [INFO] [S14] ANI: +61412345678
+2026-07-23 03:08:16,258 [INFO] [S14] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
+2026-07-23 03:08:22,160 [INFO] [S14] CALLER: John Smith, date of birth 1985-03-15
+2026-07-23 03:08:22,160 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:08:23,733 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 03:08:23,734 [INFO] [S14] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 03:08:24,647 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-07-23 03:08:24,648 [INFO] [S14] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 03:08:24,692 [INFO] [S14] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-07-23 03:08:24,708 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:08:24,709 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:08:25,669 [INFO] [S14] SYSTEM: Hi John, you’re verified, and I’m here to help with your HeartBug account.
+2026-07-23 03:08:33,095 [INFO] [S14] CALLER: I need to order 1 more sticker packs
+2026-07-23 03:08:33,095 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:08:34,270 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"Place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:08:34,271 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:08:35,199 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:08:35,199 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:08:36,394 [INFO] [S14] SYSTEM: Absolutely — I have one sticker pack ready to ship to your address on file at 12 Wattle St, Chatswood NSW 2067; can you please confirm that’s correct so I can place the order?
+2026-07-23 03:08:41,553 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:08:41,554 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:08:42,419 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:08:42,420 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:08:43,595 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 more sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:08:43,596 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:08:44,500 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:08:44,501 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:08:45,935 [INFO] [S14] SYSTEM: I’ve got one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—can you please confirm that’s the correct address before I place it?
+2026-07-23 03:08:48,849 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:08:48,849 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:08:49,643 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:08:49,644 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:08:50,817 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 additional sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:08:50,818 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:08:52,548 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:08:52,549 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:08:54,654 [INFO] [S14] SYSTEM: No problem — I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067; could you please confirm that address is correct before I place the order?
+2026-07-23 03:08:58,557 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:08:58,558 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:08:59,566 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:08:59,567 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:09:00,642 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 additional sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:09:00,643 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:09:01,431 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:09:01,431 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:09:02,258 [INFO] [S14] SYSTEM: I’ve got one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—can you please confirm that address is correct so I can place the order?
+2026-07-23 03:09:04,486 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:09:04,487 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:09:05,249 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:09:05,250 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:09:06,277 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"confirm shipping address before placing sticker pack order","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:09:06,278 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:09:07,385 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":null},"confidence":0.98}
+2026-07-23 03:09:07,386 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:09:08,474 [INFO] [S14] SYSTEM: Just to confirm, I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—can you confirm that address is correct so I can place the order?
+2026-07-23 03:10:51,336 [INFO] [S14] ANI: +61412345678
+2026-07-23 03:10:53,398 [INFO] [S14] SYSTEM: Welcome to HeartBug, and could I please have your full name and date of birth to get started?
+2026-07-23 03:10:59,824 [INFO] [S14] CALLER: John Smith, date of birth 1985-03-15
+2026-07-23 03:10:59,824 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:11:00,882 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 03:11:00,882 [INFO] [S14] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 03:11:01,876 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-07-23 03:11:01,877 [INFO] [S14] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 03:11:01,914 [INFO] [S14] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-07-23 03:11:01,931 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:11:01,931 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:11:02,961 [INFO] [S14] SYSTEM: Thanks, John—you’re verified, and I’m here to help with anything on your HeartBug account.
+2026-07-23 03:11:10,735 [INFO] [S14] CALLER: I need to order 1 more sticker packs
+2026-07-23 03:11:10,735 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:11:11,883 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:11:11,884 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:11:12,651 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:11:12,652 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:11:13,772 [INFO] [S14] SYSTEM: Absolutely — I’ve got one HeartBug sticker pack to ship to 12 Wattle St, Chatswood NSW 2067; can you please confirm that address is correct before I place the order?
+2026-07-23 03:11:19,481 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:11:19,481 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:11:20,211 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:11:20,211 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:11:21,037 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 additional sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:11:21,037 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:11:22,026 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:11:22,027 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:11:23,185 [INFO] [S14] SYSTEM: I’ve got one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—can you please confirm that address is correct before I place the order?
+2026-07-23 03:11:25,909 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:11:25,909 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:11:26,594 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:11:26,595 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:11:27,414 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 additional sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:11:27,415 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:11:28,390 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:11:28,391 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:11:29,419 [INFO] [S14] SYSTEM: I’ve got one sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—can you please confirm that address is correct before I place the order?
+2026-07-23 03:11:31,932 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:11:31,933 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:11:32,602 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:11:32,603 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:11:33,783 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:11:33,784 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:11:34,633 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:11:34,633 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:11:35,600 [INFO] [S14] SYSTEM: No problem — I can place one sticker pack to be shipped to 12 Wattle St, Chatswood NSW 2067; could you please confirm that address is correct before I place it?
+2026-07-23 03:11:40,243 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:11:40,243 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:11:40,988 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:11:40,989 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:11:42,008 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"confirm shipping address before placing sticker pack order","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:11:42,009 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:11:42,800 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:11:42,800 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:11:43,939 [INFO] [S14] SYSTEM: No worries — I’ve got one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067; could you please confirm that address is correct before I place the order?
+2026-07-23 03:19:26,274 [INFO] [S14] ANI: +61412345678
+2026-07-23 03:19:27,712 [INFO] [S14] SYSTEM: Welcome to HeartBug—may I please have your full name and date of birth so I can get you started?
+2026-07-23 03:19:33,725 [INFO] [S14] CALLER: John Smith, date of birth 1985-03-15
+2026-07-23 03:19:33,726 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:19:34,664 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-07-23 03:19:34,665 [INFO] [S14] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-07-23 03:19:35,889 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-07-23 03:19:35,889 [INFO] [S14] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 03:19:35,929 [INFO] [S14] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-07-23 03:19:35,951 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:19:35,952 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:19:36,957 [INFO] [S14] SYSTEM: Thanks, John—you’re all verified, and I’m here to help with whatever you need on your HeartBug account.
+2026-07-23 03:19:44,156 [INFO] [S14] CALLER: I need to order 1 more sticker packs
+2026-07-23 03:19:44,156 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:19:45,008 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:19:45,009 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:19:46,818 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:19:46,819 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:19:47,837 [INFO] [S14] SYSTEM: Just to confirm, you’d like one HeartBug sticker pack shipped to 12 Wattle St, Chatswood NSW 2067, correct?
+2026-07-23 03:19:54,008 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:19:54,008 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:19:55,432 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:19:55,433 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:19:56,505 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:19:56,507 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:19:57,602 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:19:57,602 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:19:58,631 [INFO] [S14] SYSTEM: Absolutely — I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067; can you please confirm that address is correct before I place the order?
+2026-07-23 03:20:02,195 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:20:02,196 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:20:02,822 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:20:02,822 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:20:03,819 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 additional sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:20:03,819 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:20:04,691 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:20:04,692 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:20:05,785 [INFO] [S14] SYSTEM: Just to confirm, it’s one HeartBug sticker pack, and I’ll ship it to 12 Wattle St, Chatswood NSW 2067—does that address look correct before I place the order?
+2026-07-23 03:20:09,410 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:20:09,410 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:20:10,400 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:20:10,401 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:20:11,322 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:20:11,323 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:20:12,349 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:20:12,349 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:20:13,474 [INFO] [S14] SYSTEM: I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—could you please confirm that address is correct before I place the order?
+2026-07-23 03:20:17,128 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:20:17,128 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:20:18,184 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:20:18,185 [INFO] [S14] CONFIRMATION unclear → re-plan
+2026-07-23 03:20:19,229 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"confirm shipping address for sticker pack order","depends_on":[]}],"confidence":0.94,"connect_human":false}
+2026-07-23 03:20:19,230 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:20:20,419 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"HeartBug sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:20:20,420 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'HeartBug sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:20:21,552 [INFO] [S14] SYSTEM: Just to confirm, you’d like 1 HeartBug sticker pack shipped to 12 Wattle St, Chatswood NSW 2067; is that address correct so I can place the order?
+2026-07-23 03:30:05,238 [INFO] [S14] ANI: +61412345678
+2026-07-23 03:30:07,145 [INFO] [S14] SYSTEM: Welcome to HeartBug—could I have your full name and date of birth, please?
+2026-07-23 03:30:15,029 [INFO] [S14] CALLER: John Smith, date of birth 1985-03-15
+2026-07-23 03:30:15,030 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:30:16,418 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 03:30:16,419 [INFO] [S14] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 03:30:17,999 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-07-23 03:30:18,000 [INFO] [S14] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 03:30:18,040 [INFO] [S14] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-07-23 03:30:18,061 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:30:18,062 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 03:30:19,254 [INFO] [S14] SYSTEM: Thanks, John — you’re verified, and I’m happy to help with your HeartBug account.
+2026-07-23 03:30:26,873 [INFO] [S14] CALLER: I need to order 1 more sticker packs
+2026-07-23 03:30:26,873 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:30:27,861 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:30:27,862 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:30:29,013 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:30:29,014 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:30:30,130 [INFO] [S14] SYSTEM: Absolutely — I can place 1 HeartBug sticker pack and ship it to 12 Wattle St, Chatswood NSW 2067; could you please confirm that address is correct before I put the order through?
+2026-07-23 03:30:35,384 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:30:35,384 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:30:36,453 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:30:36,454 [INFO] [S14] CONFIRMATION: unclear
+2026-07-23 03:30:37,531 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:30:37,532 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:30:38,358 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:30:38,359 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:30:39,531 [INFO] [S14] SYSTEM: Just to confirm, I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—does that look correct before I place it?
+2026-07-23 03:30:42,029 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:30:42,029 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:30:42,976 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:30:42,977 [INFO] [S14] CONFIRMATION: unclear
+2026-07-23 03:30:43,786 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:30:43,787 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:30:45,050 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:30:45,050 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:30:46,335 [INFO] [S14] SYSTEM: Absolutely — I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067; can you please confirm that address is correct so I can place the order?
+2026-07-23 03:30:48,275 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:30:48,275 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:30:49,310 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:30:49,311 [INFO] [S14] CONFIRMATION: unclear
+2026-07-23 03:30:50,411 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"place an order for 1 sticker pack","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:30:50,412 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:30:51,233 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":1},"confidence":0.98}
+2026-07-23 03:30:51,234 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:30:52,363 [INFO] [S14] SYSTEM: Absolutely — I have one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067; can you please confirm that address is correct before I place the order?
+2026-07-23 03:30:54,094 [INFO] [S14] CALLER: I do not know
+2026-07-23 03:30:54,094 [INFO] [S14] Orchestrator: A mode
+2026-07-23 03:30:55,021 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 03:30:55,022 [INFO] [S14] CONFIRMATION: unclear
+2026-07-23 03:30:56,146 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"confirm shipping address before placing sticker pack order","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:30:56,147 [INFO] [S14] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:30:57,237 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker pack","quantity":null},"confidence":0.94}
+2026-07-23 03:30:57,237 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker pack', 'quantity': 1} missing=None
+2026-07-23 03:30:58,508 [INFO] [S14] SYSTEM: Just to confirm, you’d like one HeartBug sticker pack shipped to 12 Wattle St, Chatswood NSW 2067—can you please confirm that address is correct before I place it?
+2026-07-23 03:32:51,755 [INFO] [EVAL-CROSS-1-dd49] ANI: +61498765432
+2026-07-23 03:32:53,722 [INFO] [EVAL-CROSS-1-dd49] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth to get started?
+2026-07-23 03:32:57,082 [INFO] [EVAL-CROSS-1-dd49] CALLER: This is Jane Doe, my birthday's July 22nd, 1990. Now, I was just calling about my order, O1002. I've been expecting it for a while now. Have you received it yet?
+2026-07-23 03:32:57,083 [INFO] [EVAL-CROSS-1-dd49] Orchestrator: A mode
+2026-07-23 03:32:58,008 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 03:32:58,009 [INFO] [EVAL-CROSS-1-dd49] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 03:32:58,943 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.98}
+2026-07-23 03:32:58,943 [INFO] [EVAL-CROSS-1-dd49] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-07-23 03:32:58,989 [INFO] [EVAL-CROSS-1-dd49] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-07-23 03:32:59,018 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 03:32:59,019 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 03:33:00,056 [INFO] [EVAL-CROSS-1-dd49] SYSTEM: Thanks, Jane — you’re verified with HeartBug, and I’m here to help; how can I assist you with your HeartBug account today?
+2026-07-23 03:33:02,949 [INFO] [EVAL-CROSS-1-dd49] CALLER: I'd like to confirm the status of my order O1002, which was supposed to arrive last week. I need to know if it's been shipped or where it is in the process, because I really need it for my condition...
+2026-07-23 03:33:02,949 [INFO] [EVAL-CROSS-1-dd49] Orchestrator: A mode
+2026-07-23 03:33:04,190 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"check status and shipment/tracking for order O1002","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:33:04,191 [INFO] [EVAL-CROSS-1-dd49] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:33:05,168 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.99}
+2026-07-23 03:33:05,169 [INFO] [EVAL-CROSS-1-dd49] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-07-23 03:33:06,256 [INFO] [EVAL-CROSS-1-dd49] SYSTEM: I’m sorry, but I can’t find that HeartBug order right now, so I’m not able to confirm its shipping status from here. If you’d like, I can help with something else on your account or put you through to the team for a closer look.
+2026-07-23 03:33:09,319 [INFO] [EVAL-CROSS-1-dd49] CALLER: That's strange, because I know it was supposed to be shipped out yesterday. Can't you just check again? Or maybe there's some mistake with my account, could you please take another look at that O1002 order for me?
+2026-07-23 03:33:09,319 [INFO] [EVAL-CROSS-1-dd49] Orchestrator: A mode
+2026-07-23 03:33:10,732 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"check status of order O1002 and whether it has shipped","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:33:10,733 [INFO] [EVAL-CROSS-1-dd49] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:33:11,730 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.99}
+2026-07-23 03:33:11,731 [INFO] [EVAL-CROSS-1-dd49] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-07-23 03:33:12,859 [INFO] [EVAL-CROSS-1-dd49] SYSTEM: I’m sorry, but I still can’t locate order O1002 in HeartBug, so I’m not able to verify whether it shipped. If you’d like, I can help with something else on your HeartBug account or connect you with the team for a closer look.
+2026-07-23 03:33:16,212 [INFO] [EVAL-CROSS-1-dd49] CALLER: I'm positive it's my order - I have the confirmation number right here... wait, no, that's not it. Can you just confirm that there is an O1002 somewhere in the system? Like, maybe it's been mixed up with someone else's?
+2026-07-23 03:33:16,214 [INFO] [EVAL-CROSS-1-dd49] Orchestrator: A mode
+2026-07-23 03:33:17,405 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"Check whether order O1002 exists in the system and whether it may be associated with the caller","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 03:33:17,406 [INFO] [EVAL-CROSS-1-dd49] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 03:33:18,435 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.98}
+2026-07-23 03:33:18,436 [INFO] [EVAL-CROSS-1-dd49] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-07-23 03:33:19,543 [INFO] [EVAL-CROSS-1-dd49] HANDOFF reason=task_failure role=patient
+2026-07-23 03:33:20,524 [INFO] [EVAL-CROSS-1-dd49] SYSTEM: I can’t confirm order details like that here, but I’m connecting you to the HeartBug patient support team now—please hold.
+2026-07-23 04:42:32,185 [INFO] [S21] ANI: +61478901234
+2026-07-23 04:42:33,669 [INFO] [S21] SYSTEM: Welcome to HeartBug—may I have your full name and which clinic you’re calling from?
+2026-07-23 04:43:02,765 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 04:43:02,765 [INFO] [S21] Orchestrator: A mode
+2026-07-23 04:43:03,966 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.94,"connect_human":false}
+2026-07-23 04:43:03,967 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.94 connect_human=False
+2026-07-23 04:43:05,099 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-07-23 04:43:05,100 [INFO] [S21] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-07-23 04:43:05,140 [INFO] [S21] VERIFICATION verified=None subject_id=None reason=None role=None clinic_id=None
+2026-07-23 04:43:06,036 [INFO] [S21] SYSTEM: Thanks, Dr Brown — I still can’t verify your details, so could you please repeat them a little more slowly and clearly?
+2026-07-23 04:53:48,892 [INFO] [S21] ANI: +61478901234
+2026-07-23 04:53:50,736 [INFO] [S21] SYSTEM: Welcome to HeartBug—could I have your full name and the clinic you’re calling from, please?
+2026-07-23 04:53:54,145 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 04:53:54,146 [INFO] [S21] Orchestrator: A mode
+2026-07-23 04:53:55,238 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.79,"connect_human":false}
+2026-07-23 04:53:55,240 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.79 connect_human=False
+2026-07-23 04:53:56,367 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-07-23 04:53:56,368 [INFO] [S21] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-07-23 04:53:56,416 [INFO] [S21] VERIFICATION verified=None subject_id=None reason=None role=None clinic_id=None
+2026-07-23 04:53:57,655 [INFO] [S21] SYSTEM: Thanks, Dr Brown — I couldn’t verify your details just now, so could you please repeat them for me, and I can help you from there with your HeartBug account or connect you to the team.
+2026-07-23 04:58:32,451 [INFO] [S21] ANI: +61478901234
+2026-07-23 04:58:34,074 [INFO] [S21] SYSTEM: Welcome to HeartBug—may I have your full name and which clinic you’re calling from?
+2026-07-23 04:58:42,143 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 04:58:42,143 [INFO] [S21] Orchestrator: A mode
+2026-07-23 04:58:43,221 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 04:58:43,222 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 04:58:44,104 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-07-23 04:58:44,105 [INFO] [S21] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-07-23 04:58:44,149 [INFO] [S21] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-07-23 04:58:44,180 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 04:58:44,181 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 04:58:45,435 [INFO] [S21] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m here to help—how can I assist you today?
+2026-07-23 04:58:57,733 [INFO] [S21] CALLER: how is Alex Thompson going? I would like to check his monitoring status and alerts
+2026-07-23 04:58:57,733 [INFO] [S21] Orchestrator: A mode
+2026-07-23 04:58:58,753 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","intent":"check Alex Thompson monitoring status and alerts","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 04:58:58,754 [INFO] [S21] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor')]
+2026-07-23 04:58:59,656 [INFO] TOOL-SELECT llm-raw: {"tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"confidence":0.95}
+2026-07-23 04:58:59,657 [INFO] [S21] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Alex Thompson'} missing=None
+2026-07-23 04:58:59,752 [INFO] CACHE MISS monitoring:P003, query DB
+2026-07-23 04:59:00,794 [INFO] [S21] SYSTEM: Alex Thompson’s HeartBug enrolment is completed, the monitoring period runs until 21 July 2026, and the report is ready.
+2026-07-23 05:00:38,020 [INFO] [S21] ANI: +61478901234
+2026-07-23 05:00:49,862 [INFO] [S21] SYSTEM: Welcome to HeartBug—may I have your full name and the clinic you’re calling from?
+2026-07-23 05:00:56,036 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 05:00:56,036 [INFO] [S21] Orchestrator: B mode
+2026-07-23 05:00:57,045 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-07-23 05:00:57,045 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-07-23 05:00:58,171 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-07-23 05:00:58,172 [INFO] [S21] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-07-23 05:00:58,221 [INFO] [S21] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-07-23 05:00:58,258 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 05:00:58,259 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 05:01:00,399 [INFO] [S21] SYSTEM: Hello Dr, you’re verified and I’m happy to help with your HeartBug account today.
+2026-07-23 05:01:06,412 [INFO] [S21] CALLER: how is Alex Thompson going? I would like to check his monitoring status and alerts
+2026-07-23 05:01:06,413 [INFO] [S21] Orchestrator: B mode
+2026-07-23 05:01:07,669 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"depends_on":[]},{"id":"s2","domain":"doctor","tool":"check_patient_alerts","args":{"patient_name":"Alex Thompson"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:01:07,670 [INFO] [S21] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
+2026-07-23 05:01:07,670 [INFO] [S21] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Alex Thompson'} missing=None
+2026-07-23 05:01:07,728 [INFO] CACHE MISS monitoring:P003, query DB
+2026-07-23 05:01:08,777 [INFO] [S21] SYSTEM: Alex Thompson’s HeartBug enrolment is completed, his monitoring ended on July 21, 2026, and his report is ready.
+2026-07-23 05:03:19,016 [INFO] [S21] ANI: +61478901234
+2026-07-23 05:03:20,698 [INFO] [S21] SYSTEM: Welcome to HeartBug — may I have your full name and which clinic you’re calling from?
+2026-07-23 05:03:26,288 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 05:03:26,289 [INFO] [S21] Orchestrator: B mode
+2026-07-23 05:03:27,752 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.12,"connect_human":false}
+2026-07-23 05:03:27,754 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.12 connect_human=False
+2026-07-23 05:03:28,689 [INFO] [S21] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you need assistance with something else, I can connect you to the right team or help with your HeartBug account.
+2026-07-23 05:05:53,085 [INFO] [S21] ANI: +61478901234
+2026-07-23 05:05:54,527 [INFO] [S21] SYSTEM: Welcome to HeartBug — may I have your full name and the clinic you’re calling from?
+2026-07-23 05:05:58,842 [INFO] [S21] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-07-23 05:05:58,842 [INFO] [S21] Orchestrator: B mode
+2026-07-23 05:05:59,835 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.93,"connect_human":false}
+2026-07-23 05:05:59,836 [INFO] [S21] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.93 connect_human=False
+2026-07-23 05:06:00,895 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-07-23 05:06:00,896 [INFO] [S21] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-07-23 05:06:00,941 [INFO] [S21] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-07-23 05:06:00,970 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 05:06:00,971 [INFO] CACHE MISS patient:D002, query DB
+2026-07-23 05:06:04,015 [INFO] [S21] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m here to help with anything on your HeartBug account.
+2026-07-23 05:06:14,122 [INFO] [S21] CALLER: how is Alex Thompson going? I would like to check his monitoring status and alerts
+2026-07-23 05:06:14,122 [INFO] [S21] Orchestrator: B mode
+2026-07-23 05:06:15,739 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"depends_on":[]},{"id":"s2","domain":"doctor","tool":"check_patient_alerts","args":{"patient_name":"Alex Thompson"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:06:15,739 [INFO] [S21] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status'), ('s2', 'doctor', 'check_patient_alerts')]
+2026-07-23 05:06:15,740 [INFO] [S21] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Alex Thompson'} missing=None
+2026-07-23 05:06:15,740 [INFO] [S21] SLOTS domain=doctor tool=check_patient_alerts have={'patient_name': 'Alex Thompson'} missing=None
+2026-07-23 05:06:15,855 [INFO] CACHE MISS monitoring:P003, query DB
+2026-07-23 05:06:16,956 [INFO] [S21] SYSTEM: Alex Thompson’s monitoring is completed, his report is ready, and there are no alerts right now; I can also help with anything else on his HeartBug account if you’d like.
+2026-07-23 05:06:59,162 [INFO] [S21] CALLER: any alerts for Maria Garcia
+2026-07-23 05:06:59,162 [INFO] [S21] Orchestrator: B mode
+2026-07-23 05:07:00,633 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_alerts","args":{"patient_name":"Maria Garcia"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:07:00,634 [INFO] [S21] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_alerts')]
+2026-07-23 05:07:00,634 [INFO] [S21] SLOTS domain=doctor tool=check_patient_alerts have={'patient_name': 'Maria Garcia'} missing=None
+2026-07-23 05:07:02,382 [INFO] [S21] SYSTEM: Yes—Maria Garcia has two HeartBug alerts: a medium bradycardia alert from July 17 for sustained low heart rate during sleep, and a low lead-off alert from July 20 for brief electrode contact loss.
+2026-07-23 05:07:39,584 [INFO] [S14] ANI: +61412345678
+2026-07-23 05:07:40,681 [INFO] [S14] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth so I can get you started?
+2026-07-23 05:07:45,873 [INFO] [S14] CALLER: John Smith, date of birth 1985-03-15
+2026-07-23 05:07:45,873 [INFO] [S14] Orchestrator: B mode
+2026-07-23 05:07:47,034 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 05:07:47,035 [INFO] [S14] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 05:07:48,570 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-07-23 05:07:48,571 [INFO] [S14] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-07-23 05:07:48,613 [INFO] [S14] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-07-23 05:07:48,634 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 05:07:48,635 [INFO] CACHE MISS patient:P001, query DB
+2026-07-23 05:07:49,687 [INFO] [S14] SYSTEM: Thanks, John — you’re verified with HeartBug, and I’m here to help.
+2026-07-23 05:07:53,850 [INFO] [S14] CALLER: I need to order 1 more sticker packs
+2026-07-23 05:07:53,850 [INFO] [S14] Orchestrator: B mode
+2026-07-23 05:07:55,020 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"place_order","args":{"product":"sticker packs","quantity":1},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:07:55,021 [INFO] [S14] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'place_order')]
+2026-07-23 05:07:55,022 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker packs', 'quantity': 1} missing=None
+2026-07-23 05:07:56,143 [INFO] [S14] SYSTEM: Absolutely — I have one more HeartBug sticker pack to ship to 12 Wattle St, Chatswood NSW 2067; can you please confirm that address is correct before I place the order?
+2026-07-23 05:08:04,776 [INFO] [S14] CALLER: I do not know
+2026-07-23 05:08:04,776 [INFO] [S14] Orchestrator: B mode
+2026-07-23 05:08:05,651 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 05:08:06,692 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"place_order","args":{"product":"sticker packs","quantity":1},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:08:06,695 [INFO] [S14] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'place_order')]
+2026-07-23 05:08:06,695 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker packs', 'quantity': 1} missing=None
+2026-07-23 05:08:08,332 [INFO] [S14] SYSTEM: Just to confirm, you’d like one sticker pack from HeartBug shipped to 12 Wattle St, Chatswood NSW 2067—does that address look right before I place it?
+2026-07-23 05:08:11,888 [INFO] [S14] CALLER: I do not know
+2026-07-23 05:08:11,889 [INFO] [S14] Orchestrator: B mode
+2026-07-23 05:08:12,941 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 05:08:14,118 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"place_order","args":{"product":"sticker packs","quantity":1},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:08:14,119 [INFO] [S14] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'place_order')]
+2026-07-23 05:08:14,120 [INFO] [S14] SLOTS domain=order tool=place_order have={'product': 'sticker packs', 'quantity': 1} missing=None
+2026-07-23 05:08:15,170 [INFO] [S14] SYSTEM: I’ve got one HeartBug sticker pack ready to ship to 12 Wattle St, Chatswood NSW 2067—can you please confirm that’s the correct address before I place it?
+2026-07-23 05:08:18,179 [INFO] [S14] CALLER: I do not know
+2026-07-23 05:08:18,180 [INFO] [S14] Orchestrator: B mode
+2026-07-23 05:08:20,762 [INFO] CONFIRM llm-raw: {"decision":"unclear"}
+2026-07-23 05:08:20,763 [INFO] [S14] HANDOFF reason=task_failure role=patient
+2026-07-23 05:08:21,774 [INFO] [S14] SYSTEM: I’m sorry you’re not sure — I’m connecting you to our HeartBug patient support team now, so please hold while I transfer you.
+2026-07-23 05:36:19,916 [INFO] [EVAL-CTX-1-6e94] ANI: +61498765432
+2026-07-23 05:36:21,185 [INFO] [EVAL-CTX-1-6e94] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-07-23 05:36:23,552 [INFO] [EVAL-CTX-1-6e94] CALLER: My name is Jane Doe, and my date of birth is July 22nd, 1990.
+2026-07-23 05:36:23,553 [INFO] [EVAL-CTX-1-6e94] Orchestrator: B mode
+2026-07-23 05:36:24,664 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 05:36:24,665 [INFO] [EVAL-CTX-1-6e94] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 05:36:26,085 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-07-23 05:36:26,086 [INFO] [EVAL-CTX-1-6e94] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-07-23 05:36:26,124 [INFO] [EVAL-CTX-1-6e94] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-07-23 05:36:26,152 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 05:36:26,152 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 05:36:27,224 [INFO] [EVAL-CTX-1-6e94] SYSTEM: Thanks, Jane—you’re all verified with HeartBug, and I’m happy to help with anything on your account.
+2026-07-23 05:36:29,602 [INFO] [EVAL-CTX-1-6e94] CALLER: I'm calling about an order I placed for a replacement sensor, and the status says "processing" but it's been a week – can you tell me what's going on with that?
+2026-07-23 05:36:29,602 [INFO] [EVAL-CTX-1-6e94] Orchestrator: B mode
+2026-07-23 05:36:31,270 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"replacement sensor"},"depends_on":[]}],"confidence":0.86,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:36:31,272 [INFO] [EVAL-CTX-1-6e94] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 05:36:31,272 [INFO] [EVAL-CTX-1-6e94] SLOTS domain=order tool=lookup_order have={'order_id': 'replacement sensor'} missing=None
+2026-07-23 05:36:32,856 [INFO] [EVAL-CTX-1-6e94] SYSTEM: I’m sorry for the wait, Jane, but I’m not able to find that order right now, so I can’t check its status directly. If you’d like, I can help with another HeartBug account question or get you connected with the right team.
+2026-07-23 05:36:34,938 [INFO] [EVAL-CTX-1-6e94] CALLER: When will it arrive? The tracking information says shipped already, and I'm getting a bit worried because I need this to monitor my heart rate properly.
+2026-07-23 05:36:34,939 [INFO] [EVAL-CTX-1-6e94] Orchestrator: B mode
+2026-07-23 05:36:36,445 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"unknown"},"depends_on":[]}],"confidence":0.62,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:36:36,446 [INFO] [EVAL-CTX-1-6e94] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 05:36:36,446 [INFO] [EVAL-CTX-1-6e94] SLOTS domain=order tool=lookup_order have={'order_id': 'unknown'} missing=None
+2026-07-23 05:36:38,028 [INFO] [EVAL-CTX-1-6e94] SYSTEM: I understand the concern, and I’m sorry, but I can’t see the shipment details for that order right now. I can help with something else on your HeartBug account or connect you with the team that can check it for you.
+2026-07-23 05:36:40,049 [INFO] [EVAL-CTX-1-6e94] CALLER: Can I speak to someone from the delivery team directly then, because they must have the information about when it'll arrive and who will be bringing it?
+2026-07-23 05:36:40,049 [INFO] [EVAL-CTX-1-6e94] Orchestrator: B mode
+2026-07-23 05:36:41,187 [INFO] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:36:41,188 [INFO] [EVAL-CTX-1-6e94] HANDOFF reason=voluntary role=patient
+2026-07-23 05:36:42,120 [INFO] [EVAL-CTX-1-6e94] SYSTEM: Absolutely — I’m connecting you to our patient support team now, so please hold, and they’ll help with the delivery details.
+2026-07-23 05:46:15,779 [INFO] [EVAL-CTX-1-196c] ANI: +61498765432
+2026-07-23 05:46:17,416 [INFO] [EVAL-CTX-1-196c] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-07-23 05:46:19,337 [INFO] [EVAL-CTX-1-196c] CALLER: Jane Doe, July 22nd, 1990.
+2026-07-23 05:46:19,338 [INFO] [EVAL-CTX-1-196c] Orchestrator: B mode
+2026-07-23 05:46:20,321 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 05:46:20,322 [INFO] [EVAL-CTX-1-196c] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 05:46:21,446 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-07-23 05:46:21,446 [INFO] [EVAL-CTX-1-196c] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-07-23 05:46:21,477 [INFO] [EVAL-CTX-1-196c] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-07-23 05:46:21,504 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 05:46:21,505 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 05:46:22,936 [INFO] [EVAL-CTX-1-196c] SYSTEM: Hi Jane, you’re verified, and I’m here to help with your HeartBug account.
+2026-07-23 05:46:25,046 [INFO] [EVAL-CTX-1-196c] CALLER: I was supposed to receive a package from my last order, O1003, but it hasn't arrived yet – can you tell me what's going on with that?
+2026-07-23 05:46:25,047 [INFO] [EVAL-CTX-1-196c] Orchestrator: B mode
+2026-07-23 05:46:26,360 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:46:26,362 [INFO] [EVAL-CTX-1-196c] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 05:46:26,362 [INFO] [EVAL-CTX-1-196c] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 05:46:27,795 [INFO] [EVAL-CTX-1-196c] SYSTEM: I’m sorry, but I can’t find that order right now, so I’m not able to see what’s happening with it. I can help with something else on your HeartBug account or connect you with the team if you’d like.
+2026-07-23 05:46:29,336 [INFO] [EVAL-CTX-1-196c] CALLER: Do you think someone from the team might be able to look into why my order hasn't arrived yet?
+2026-07-23 05:46:29,336 [INFO] [EVAL-CTX-1-196c] Orchestrator: B mode
+2026-07-23 05:46:30,565 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.97,"connect_human":true,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:46:30,566 [INFO] [EVAL-CTX-1-196c] HANDOFF reason=voluntary role=patient
+2026-07-23 05:46:31,569 [INFO] [EVAL-CTX-1-196c] SYSTEM: Absolutely — I’m connecting you to our HeartBug patient support team now, so please hold while I put you through.
+2026-07-23 05:55:13,579 [INFO] [EVAL-CTX-1-4af9] ANI: +61498765432
+2026-07-23 05:55:15,250 [INFO] [EVAL-CTX-1-4af9] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth to get started?
+2026-07-23 05:55:17,817 [INFO] [EVAL-CTX-1-4af9] CALLER: My name is Jane Doe, and my date of birth is July 22nd, 1990.
+2026-07-23 05:55:17,817 [INFO] [EVAL-CTX-1-4af9] Orchestrator: B mode
+2026-07-23 05:55:19,014 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 05:55:19,015 [INFO] [EVAL-CTX-1-4af9] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 05:55:20,005 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-07-23 05:55:20,006 [INFO] [EVAL-CTX-1-4af9] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-07-23 05:55:20,036 [INFO] [EVAL-CTX-1-4af9] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-07-23 05:55:20,084 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 05:55:20,086 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 05:55:21,295 [INFO] [EVAL-CTX-1-4af9] SYSTEM: Hi Jane, you’re verified, and I’m glad to help with your HeartBug account today.
+2026-07-23 05:55:23,269 [INFO] [EVAL-CTX-1-4af9] CALLER: I was just checking on the status of a device that I ordered from HeartBug; could you tell me more about order O1003?
+2026-07-23 05:55:23,270 [INFO] [EVAL-CTX-1-4af9] Orchestrator: B mode
+2026-07-23 05:55:24,561 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:55:24,563 [INFO] [EVAL-CTX-1-4af9] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 05:55:24,563 [INFO] [EVAL-CTX-1-4af9] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 05:55:25,770 [INFO] [EVAL-CTX-1-4af9] SYSTEM: I’m sorry, but I couldn’t find order O1003, so please double-check the order number and I can try again for you.
+2026-07-23 05:55:27,677 [INFO] [EVAL-CTX-1-4af9] CALLER: Wait, are you saying it's not in your system at all, or just that you can't locate it with that specific number?
+2026-07-23 05:55:27,678 [INFO] [EVAL-CTX-1-4af9] Orchestrator: B mode
+2026-07-23 05:55:28,773 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:55:28,774 [INFO] [EVAL-CTX-1-4af9] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 05:55:28,775 [INFO] [EVAL-CTX-1-4af9] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 05:55:29,998 [INFO] [EVAL-CTX-1-4af9] SYSTEM: I just can’t locate it with that order number, not that I can confirm it isn’t in the system at all; please double-check the number, and I can also help with something else on your HeartBug account or connect you to the team.
+2026-07-23 05:55:31,547 [INFO] [EVAL-CTX-1-4af9] CALLER: That still doesn't sound right - when will it arrive if I have ordered it from your company?
+2026-07-23 05:55:31,547 [INFO] [EVAL-CTX-1-4af9] Orchestrator: B mode
+2026-07-23 05:55:32,934 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 05:55:32,935 [INFO] [EVAL-CTX-1-4af9] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 05:55:32,936 [INFO] [EVAL-CTX-1-4af9] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 05:55:34,088 [INFO] [EVAL-CTX-1-4af9] HANDOFF reason=task_failure role=patient
+2026-07-23 05:55:35,631 [INFO] [EVAL-CTX-1-4af9] SYSTEM: I can connect you to our patient support team now for help with your HeartBug order, so please hold while I put you through.
+2026-07-23 06:05:11,112 [INFO] [EVAL-CTX-1-25f3] ANI: +61498765432
+2026-07-23 06:05:12,854 [INFO] [EVAL-CTX-1-25f3] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-07-23 06:05:15,238 [INFO] [EVAL-CTX-1-25f3] CALLER: My name is Jane Doe, and my date of birth is July 22nd, 1990.
+2026-07-23 06:05:15,238 [INFO] [EVAL-CTX-1-25f3] Orchestrator: B mode
+2026-07-23 06:05:16,193 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 06:05:16,194 [INFO] [EVAL-CTX-1-25f3] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 06:05:17,151 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-07-23 06:05:17,152 [INFO] [EVAL-CTX-1-25f3] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-07-23 06:05:17,192 [INFO] [EVAL-CTX-1-25f3] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-07-23 06:05:17,218 [INFO] CACHE HIT patient:P002
+2026-07-23 06:05:17,219 [INFO] CACHE HIT patient:P002
+2026-07-23 06:05:18,233 [INFO] [EVAL-CTX-1-25f3] SYSTEM: You’re all verified, Jane, and I’m happy to help with anything on your HeartBug account.
+2026-07-23 06:05:20,297 [INFO] [EVAL-CTX-1-25f3] CALLER: I ordered a new device a few days ago, O1003, and I haven't received it yet - can you tell me what's the status of that order?
+2026-07-23 06:05:20,297 [INFO] [EVAL-CTX-1-25f3] Orchestrator: B mode
+2026-07-23 06:05:21,553 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 06:05:21,554 [INFO] [EVAL-CTX-1-25f3] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 06:05:21,554 [INFO] [EVAL-CTX-1-25f3] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 06:05:22,791 [INFO] [EVAL-CTX-1-25f3] SYSTEM: Your HeartBug Monitor order O1003 shows as delivered, sent with StarTrack and tracked under ST1003AU, with delivery listed for July 2nd, 2026. If you’d like, I can help you check anything else on your HeartBug account.
+2026-07-23 06:05:25,227 [INFO] [EVAL-CTX-1-25f3] CALLER: Wait, it says it was delivered already? But how did I get a confirmation email saying it would arrive between the 4th to the 8th of July?
+2026-07-23 06:05:25,228 [INFO] [EVAL-CTX-1-25f3] Orchestrator: B mode
+2026-07-23 06:05:26,467 [INFO] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-07-23 06:05:26,468 [INFO] [EVAL-CTX-1-25f3] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
+2026-07-23 06:05:26,468 [INFO] [EVAL-CTX-1-25f3] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 06:05:28,003 [INFO] [EVAL-CTX-1-25f3] SYSTEM: I understand that’s frustrating, and I can only confirm that order O1003 for your HeartBug Monitor is marked delivered with StarTrack under tracking ST1003AU, with the delivery date shown as July 2nd, 2026. I don’t have the email estimate here, but if you’d like I can help you with the next step or put you through to the team.
+2026-07-23 06:05:30,378 [INFO] [EVAL-CTX-1-25f3] CALLER: I'd rather speak with someone who might be able to look into why it says delivered on their system but I haven't received anything yet - can I get that transferred?
+2026-07-23 06:05:30,378 [INFO] [EVAL-CTX-1-25f3] Orchestrator: B mode
+2026-07-23 06:05:31,896 [INFO] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false}
+2026-07-23 06:05:31,897 [INFO] [EVAL-CTX-1-25f3] HANDOFF reason=voluntary role=patient
+2026-07-23 06:05:33,146 [INFO] [EVAL-CTX-1-25f3] SYSTEM: Absolutely — I can transfer you to our patient support team now, so please hold while I connect you.
+2026-07-23 23:52:42,116 [INFO] [EVAL-CTX-1-66af] ANI: +61498765432
+2026-07-23 23:52:44,049 [INFO] [EVAL-CTX-1-66af] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-07-23 23:52:46,216 [INFO] [EVAL-CTX-1-66af] CALLER: This is Jane Doe, my birthday's July 22nd, 1990.
+2026-07-23 23:52:46,216 [INFO] [EVAL-CTX-1-66af] Orchestrator: A mode
+2026-07-23 23:52:47,307 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-07-23 23:52:47,307 [INFO] [EVAL-CTX-1-66af] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-07-23 23:52:48,423 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-07-23 23:52:48,423 [INFO] [EVAL-CTX-1-66af] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-07-23 23:52:48,457 [INFO] [EVAL-CTX-1-66af] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-07-23 23:52:48,491 [INFO] CACHE EXPIRED patient:P002, query DB
+2026-07-23 23:52:48,492 [INFO] CACHE MISS patient:P002, query DB
+2026-07-23 23:52:49,583 [INFO] [EVAL-CTX-1-66af] SYSTEM: Thanks, Jane — you’re all verified, and I’m happy to help with anything you need on your HeartBug account.
+2026-07-23 23:52:51,294 [INFO] [EVAL-CTX-1-66af] CALLER: I was just wondering about the order that shipped out yesterday? I had ordered a replacement ECG sensor for my monitor.
+2026-07-23 23:52:51,294 [INFO] [EVAL-CTX-1-66af] Orchestrator: A mode
+2026-07-23 23:52:52,431 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"check shipped order from yesterday for replacement ECG sensor","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 23:52:52,432 [INFO] [EVAL-CTX-1-66af] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 23:52:53,656 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":null},"confidence":0.86}
+2026-07-23 23:52:54,765 [INFO] TOOL-SELECT llm-raw: {"tool":"list_orders","args":{},"confidence":0.86}
+2026-07-23 23:52:54,766 [INFO] [EVAL-CTX-1-66af] SLOTS domain=order tool=lookup_order have={} missing=order_id
+2026-07-23 23:52:55,814 [INFO] [EVAL-CTX-1-66af] SYSTEM: Of course — could you please share your HeartBug order number so I can look up the replacement ECG sensor shipment for you?
+2026-07-23 23:52:57,218 [INFO] [EVAL-CTX-1-66af] CALLER: My order number is O1003, and I was just wondering when it will arrive?
+2026-07-23 23:52:57,218 [INFO] [EVAL-CTX-1-66af] Orchestrator: A mode
+2026-07-23 23:52:59,947 [INFO] ROUTER llm-raw: {"domain":"order","confidence":0.98,"connect_human":false}
+2026-07-23 23:53:01,134 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1003"},"confidence":0.99}
+2026-07-23 23:53:01,135 [INFO] [EVAL-CTX-1-66af] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 23:53:02,200 [INFO] [EVAL-CTX-1-66af] SYSTEM: Your HeartBug replacement ECG sensor order for the HeartBug Monitor has already been delivered, and it went by StarTrack with tracking ST1003AU.
+2026-07-23 23:53:03,729 [INFO] [EVAL-CTX-1-66af] CALLER: How do I track that delivery then, so I can make sure it got to my doorstep okay?
+2026-07-23 23:53:03,730 [INFO] [EVAL-CTX-1-66af] Orchestrator: A mode
+2026-07-23 23:53:04,869 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"provide tracking instructions for delivered order","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 23:53:04,870 [INFO] [EVAL-CTX-1-66af] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 23:53:06,048 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1003"},"confidence":0.98}
+2026-07-23 23:53:06,048 [INFO] [EVAL-CTX-1-66af] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 23:53:07,304 [INFO] [EVAL-CTX-1-66af] SYSTEM: You can track it with StarTrack using tracking number ST1003AU, and the HeartBug Monitor order was delivered on July 2, 2026.
+2026-07-23 23:53:09,074 [INFO] [EVAL-CTX-1-66af] CALLER: So someone from StarTrack must have brought it then - will they leave a note or contact me if I'm not home?
+2026-07-23 23:53:09,075 [INFO] [EVAL-CTX-1-66af] Orchestrator: A mode
+2026-07-23 23:53:10,229 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","intent":"Ask delivery carrier policy for missed delivery notes/contact","depends_on":[]}],"confidence":0.95,"connect_human":false}
+2026-07-23 23:53:10,229 [INFO] [EVAL-CTX-1-66af] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-07-23 23:53:11,002 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1003"},"confidence":0.98}
+2026-07-23 23:53:11,002 [INFO] [EVAL-CTX-1-66af] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
+2026-07-23 23:53:12,313 [INFO] [EVAL-CTX-1-66af] SYSTEM: StarTrack handled the delivery, and I can confirm your HeartBug Monitor order was marked delivered on July 2, 2026; I don’t have their note or contact policy here, but I can help with anything else on your HeartBug account.
+2026-07-23 23:53:14,163 [INFO] [EVAL-CTX-1-66af] CALLER: I've been trying to set up the new sensor, but it's not syncing - is there a troubleshooting guide for that somewhere?
+2026-07-23 23:53:14,164 [INFO] [EVAL-CTX-1-66af] Orchestrator: A mode
+2026-07-23 23:53:15,130 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"kb","intent":"find troubleshooting guide for sensor syncing/setup","depends_on":[]}],"confidence":0.98,"connect_human":false}
+2026-07-23 23:53:15,131 [INFO] [EVAL-CTX-1-66af] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'kb')]
+2026-07-23 23:53:16,230 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"troubleshooting guide for sensor syncing/setup"},"confidence":0.98}
+2026-07-23 23:53:16,247 [INFO] search_kb GOT query='troubleshooting guide for sensor syncing/setup' verified=True
+2026-07-23 23:53:18,216 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_156' matched_q='What if I wear a patch backward or upside down?' score=0.646
+2026-07-23 23:53:18,218 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_112' matched_q='Does the app notify me if the connection fails?' score=0.624
+2026-07-23 23:53:18,219 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_150' matched_q='What if the device is not updating?' score=0.612
+2026-07-23 23:53:18,220 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_88' matched_q='How does HeartBug pair with the app?' score=0.609
+2026-07-23 23:53:18,220 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_113' matched_q='How do I reconnect HeartBug to the app?' score=0.601
+2026-07-23 23:53:19,195 [INFO] [EVAL-CTX-1-66af] SYSTEM: Yes — HeartBug pairs automatically with the app, so just keep Bluetooth and internet on, stay close to your phone, and if it still won’t connect, restart your phone and reopen the app.

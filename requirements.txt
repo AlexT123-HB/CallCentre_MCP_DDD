@@ -1,0 +1,10 @@
+mcp==1.28.1
+fastapi==0.139.0
+uvicorn==0.50.2
+openai>=1.40.0
+sentence-transformers==5.6.0
+numpy==2.4.4
+pydantic==2.13.4
+mlflow>=3.10          # tracing/eval — only needed when HEARTBUG_TRACING=1
+redis>=5        # for Redis-based session storage
+tiktoken>=0.7.0  # for token counting

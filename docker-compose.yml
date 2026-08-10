@@ -1,0 +1,121 @@
+# HeartBug — dev Docker setup.
+#
+#   docker compose up --build          # start everything (build first time)
+#   docker compose up -d               # detached
+#   docker compose restart doctor      # after editing doctor code (src/ is live)
+#   docker compose down                # stop everything
+#   docker compose logs -f host        # follow the host logs
+#
+# Why this fixes the recurring pain:
+#   • ONE env_file feeds every service → the service token is identical everywhere
+#     (the doctor↔patient token-mismatch bug becomes impossible).
+#   • src/ is bind-mounted → edits are live; just `restart` the one service
+#     instead of hunting stale processes.
+#   • Services reach each other by CONTAINER NAME (patient:3002), set via the
+#     *_URL env vars your manifests already read — no code change.
+
+x-common: &common
+  build: .
+  env_file: .env                 # OPENAI_API_KEY, HEARTBUG_SERVICE_TOKEN, etc.
+  environment: &common-env
+    TZ: "Australia/Sydney"
+    HEARTBUG_SERVICE_TOKEN: ${HEARTBUG_SERVICE_TOKEN:-internal-service-secret}
+    MCP_BIND_HOST: "0.0.0.0"
+    HEARTBUG_IN_DOCKER: "1"          # for src/shared/logging_config.py
+    MCP_ALLOWED_HOSTS: "localhost:*,127.0.0.1:*,verification:*,patient:*,order:*,kb:*,doctor:*,host:*"
+    # inter-service URLs by container name (what server_urls() reads)
+    VERIFICATION_URL: "http://verification:3001/mcp"
+    PATIENT_URL:      "http://patient:3002/mcp"
+    ORDER_URL:        "http://order:3003/mcp"
+    KB_URL:           "http://kb:3004/mcp"
+    DOCTOR_URL:       "http://doctor:3005/mcp"
+    # ── tracing (off by default; flip HEARTBUG_TRACING=1 in .env to enable) ──
+    # Traces are generated INSIDE the container, so they must be shipped OUT to a
+    # tracking server on the host, or they're trapped (same lesson as heartbug.log).
+    # On your Mac:  mlflow server --host 0.0.0.0 --port 5000 \
+    #                 --backend-store-uri sqlite:///mlflow.db
+    HEARTBUG_TRACING: ${HEARTBUG_TRACING:-0}
+    MLFLOW_TRACKING_URI: ${MLFLOW_TRACKING_URI:-http://host.docker.internal:5001}
+    MLFLOW_EXPERIMENT: ${MLFLOW_EXPERIMENT:-heartbug-callcentre}
+  volumes:
+    - ./src:/app/src             # live code (dev). Remove for immutable prod images.
+    - ./logs:/app/logs
+  networks:
+    - heartbug
+
+services:
+  redis:
+    image: redis:7-alpine          # plain Redis: sessions need a Hash + TTL, no
+    restart: unless-stopped        # Search/JSON modules required
+    command: ["redis-server", "--appendonly", "yes", "--aclfile", "/etc/redis/users.acl"]
+    ports:
+      - "6379:6379"                # only so YOU can inspect from the Mac
+    volumes:
+      - ./redisdata:/data          # without this a redis restart wipes live calls
+      - ./redis_config/users.acl:/etc/redis/users.acl:ro   # per-domain ACL users
+    networks:
+      - heartbug
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  verification:
+    <<: *common
+    command: python -m src.servers.verification.run
+    environment:
+      <<: *common-env
+      VERIFICATION_PORT: "3001"
+      REDIS_URL: redis://verifysvc:verify-secret@redis:6379/0
+    ports: ["3001:3001"]
+
+  patient:
+    <<: *common
+    command: python -m src.servers.patient.run
+    environment:
+      <<: *common-env
+      PATIENT_PORT: "3002"
+      REDIS_URL: redis://patientsvc:patient-secret@redis:6379/0
+    ports: ["3002:3002"]
+
+  order:
+    <<: *common
+    command: python -m src.servers.order.run
+    environment:
+      <<: *common-env
+      ORDER_PORT: "3003"
+      REDIS_URL: redis://ordersvc:order-secret@redis:6379/0
+    ports: ["3003:3003"]
+
+  kb:
+    <<: *common
+    command: python -m src.servers.kb.run
+    environment:
+      <<: *common-env
+      KB_PORT: "3004"
+      REDIS_URL: redis://kbsvc:kb-secret@redis:6379/0
+    ports: ["3004:3004"]
+
+  doctor:
+    <<: *common
+    command: python -m src.servers.doctor.run
+    environment:
+      <<: *common-env
+      DOCTOR_PORT: "3005"
+      REDIS_URL: redis://doctorsvc:doctor-secret@redis:6379/0
+    ports: ["3005:3005"]
+    depends_on: [patient]        # doctor calls patient (OHS/ACL)
+
+  host:
+    <<: *common
+    command: uvicorn src.client.app:app --host 0.0.0.0 --port 8000
+    environment:
+      <<: *common-env
+      REDIS_URL: redis://hostsvc:host-secret@redis:6379/0
+    ports: ["8000:8000"]
+    depends_on: [verification, patient, order, kb, doctor]
+
+networks:
+  heartbug:
+    driver: bridge

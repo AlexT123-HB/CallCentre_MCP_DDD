@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "call-center-mcp"
+version = "0.1.0"
+description = "MCP server for healthcare call center — phone lookup and identity verification"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.102.0",
+    "deepeval>=4.1.0",
+    "fastapi>=0.136.1",
+    "fastmcp>=2.0.0",
+    "mcp>=1.27.0",
+    "mlflow>=3.14.0",
+    "ollama>=0.6.2",
+    "openai>=2.36.0",
+    "redis>=8.0.1",
+    "sentence-transformers>=5.5.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "build",
+    "twine",
+]
+
+[project.scripts]
+call-center-mcp = "call_center_mcp.server:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
