@@ -1,56 +1,44 @@
-2026-08-10 00:00:21,590 [INFO] CACHE MISS patient:P001, query DB
-2026-08-10 00:00:21,597 [INFO] CACHE MISS patient:P001, query DB
-2026-08-10 00:00:42,144 [INFO] search_kb GOT query='HeartBug device questions' verified=True
-2026-08-10 00:00:45,637 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_2' matched_q='What does the HeartBug device do?' score=0.895
-2026-08-10 00:00:45,638 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_1' matched_q='What is HeartBug?' score=0.876
-2026-08-10 00:00:45,639 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_14' matched_q='How does the HeartBug system work?' score=0.873
-2026-08-10 00:00:45,639 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_33' matched_q='What if I accidentally damage the HeartBug device?' score=0.872
-2026-08-10 00:00:45,640 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_45' matched_q='Can HeartBug interfere with my pacemaker or ICD?' score=0.863
-2026-08-10 03:04:50,304 [INFO] CACHE MISS patient:P001, query DB
-2026-08-10 03:04:50,305 [INFO] CACHE MISS patient:P001, query DB
-2026-08-10 15:16:09,834 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-08-10 15:16:09,852 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-10 15:16:41,230 [INFO] TRACING on → http://host.docker.internal:5001
-2026-08-10 15:18:05,278 [INFO] [EVAL-CROSS-1-cdc1] ANI: +61498765432
-2026-08-10 15:18:07,074 [INFO] [EVAL-CROSS-1-cdc1] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-10 15:18:09,907 [INFO] [EVAL-CROSS-1-cdc1] CALLER: I'm Jane Doe, born July 22nd, 1990. Now, may I speak with someone about a concern regarding an order that's been placed under my account?
-2026-08-10 15:18:09,907 [INFO] [EVAL-CROSS-1-cdc1] Orchestrator: A mode
-2026-08-10 15:18:12,491 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":true}
-2026-08-10 15:18:12,492 [INFO] [EVAL-CROSS-1-cdc1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=True
-2026-08-10 15:18:12,492 [INFO] [EVAL-CROSS-1-cdc1] HANDOFF reason=voluntary role=patient
-2026-08-10 15:18:13,469 [INFO] [EVAL-CROSS-1-cdc1] SYSTEM: Absolutely — I’m connecting you to our patient support team now, so please hold for just a moment.
-2026-08-10 15:18:17,056 [INFO] [EVAL-DSTAT-2-cdc1] ANI: +61478901234
-2026-08-10 15:18:18,124 [INFO] [EVAL-DSTAT-2-cdc1] SYSTEM: Welcome to HeartBug—may I have your full name and which clinic you’re calling from?
-2026-08-10 15:18:20,895 [INFO] [EVAL-DSTAT-2-cdc1] CALLER: This is Dr Robert Brown from the Melbourne Cardiac Clinic, C02. Can you check if John Smith's monitoring system is functioning correctly? I need a quick update on his status.
-2026-08-10 15:18:20,895 [INFO] [EVAL-DSTAT-2-cdc1] Orchestrator: A mode
-2026-08-10 15:18:21,887 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-08-10 15:18:21,889 [INFO] [EVAL-DSTAT-2-cdc1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-08-10 15:18:24,567 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic, C02"},"confidence":0.93}
-2026-08-10 15:18:24,568 [INFO] [EVAL-DSTAT-2-cdc1] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic, C02'} missing=None
-2026-08-10 15:18:24,601 [INFO] [EVAL-DSTAT-2-cdc1] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
-2026-08-10 15:18:24,772 [INFO] CACHE MISS patient:D002, query DB
-2026-08-10 15:18:24,773 [INFO] CACHE MISS patient:D002, query DB
-2026-08-10 15:18:24,909 [INFO] CACHE HIT order_by_patient:D002
-2026-08-10 15:18:25,901 [INFO] [EVAL-DSTAT-2-cdc1] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m here to help—what would you like me to do next?
-2026-08-10 15:18:28,376 [INFO] [EVAL-DSTAT-2-cdc1] CALLER: I'm just checking in on one of my patients - John Smith's data should be syncing correctly from your end, right? Can you confirm if his readings are being received without any errors?
-2026-08-10 15:18:28,377 [INFO] [EVAL-DSTAT-2-cdc1] Orchestrator: A mode
-2026-08-10 15:18:29,591 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"get_patient_monitoring_status","args":{"patient_name":"John Smith"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-10 15:18:29,593 [INFO] [EVAL-DSTAT-2-cdc1] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor')]
-2026-08-10 15:18:30,793 [INFO] TOOL-SELECT llm-raw: {"tool":"check_patient_status","args":{"patient_name":"John Smith"},"confidence":0.86}
-2026-08-10 15:18:30,794 [INFO] [EVAL-DSTAT-2-cdc1] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'John Smith'} missing=None
-2026-08-10 15:18:31,940 [INFO] [EVAL-DSTAT-2-cdc1] SYSTEM: I couldn’t find a patient named John Smith under your care in HeartBug, so could you please confirm his full name?
-2026-08-10 15:18:34,542 [INFO] [EVAL-DSTAT-2-cdc1] CALLER: That must be a mistake - I'm certain he's the one. His records should be linked to C02 - can we just run a quick search on him to update me on his current status, please?
-2026-08-10 15:18:34,543 [INFO] [EVAL-DSTAT-2-cdc1] Orchestrator: A mode
-2026-08-10 15:18:35,802 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"search_patient","args":{"query":"John Smith","clinic_code":"C02"},"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-10 15:18:35,803 [INFO] [EVAL-DSTAT-2-cdc1] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor')]
-2026-08-10 15:18:36,855 [INFO] TOOL-SELECT llm-raw: {"tool":"check_patient_status","args":{"patient_name":"John Smith"},"confidence":0.96}
-2026-08-10 15:18:36,855 [INFO] [EVAL-DSTAT-2-cdc1] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'John Smith'} missing=None
-2026-08-10 15:18:38,084 [INFO] [EVAL-DSTAT-2-cdc1] SYSTEM: I still can’t find a patient named John Smith under your care in HeartBug, so please confirm his full name and I’ll help from there.
-2026-08-10 15:18:40,112 [INFO] [EVAL-DSTAT-2-cdc1] CALLER: His full name is John Alexander Smith - it's definitely linked to C02, I've double-checked my records; can you just check again for me?
-2026-08-10 15:18:40,112 [INFO] [EVAL-DSTAT-2-cdc1] Orchestrator: A mode
-2026-08-10 15:18:41,669 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"get_patient_monitoring_status","args":{"patient_name":"John Alexander Smith","clinic_code":"C02"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-10 15:18:41,670 [INFO] [EVAL-DSTAT-2-cdc1] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor')]
-2026-08-10 15:18:42,696 [INFO] TOOL-SELECT llm-raw: {"tool":"check_patient_status","args":{"patient_name":"John Alexander Smith"},"confidence":0.98}
-2026-08-10 15:18:42,697 [INFO] [EVAL-DSTAT-2-cdc1] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'John Alexander Smith'} missing=None
-2026-08-10 15:18:43,921 [INFO] [EVAL-DSTAT-2-cdc1] HANDOFF reason=task_failure role=doctor
-2026-08-10 15:18:45,311 [INFO] [EVAL-DSTAT-2-cdc1] SYSTEM: I’m sorry, but I can’t recheck that here; I’m connecting you to our clinical desk team now, so please hold.
+2026-08-11 12:00:01,641 [INFO] [EVAL-CTX-1-5d52] ANI: +61000000
+2026-08-11 12:00:03,149 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-08-11 12:00:06,458 [INFO] [EVAL-CTX-1-5d52] CALLER: Hi, my name is Jane Doe and my date of birth is 22 July 1990. I'm with Sydney Heart Centre. I was calling about an order I placed recently.
+2026-08-11 12:00:06,458 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
+2026-08-11 12:00:07,297 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-08-11 12:00:07,301 [INFO] [EVAL-CTX-1-5d52] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-08-11 12:00:08,387 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":"Sydney Heart Centre"},"confidence":0.99}
+2026-08-11 12:00:08,389 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22', 'clinic': 'Sydney Heart Centre'} missing=None
+2026-08-11 12:00:08,426 [INFO] [EVAL-CTX-1-5d52] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-08-11 12:00:09,745 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Hi Jane, thanks for confirming — you’re verified, and I’m here to help with your HeartBug account.
+2026-08-11 12:00:11,713 [INFO] [EVAL-CTX-1-5d52] CALLER: I think it's been a week since I ordered it, but the system still says "processing". Can you tell me when it'll actually arrive?
+2026-08-11 12:00:11,713 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
+2026-08-11 12:00:12,864 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"status_query":"processing","timeframe":"about a week ago","delivery_eta":true},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-11 12:00:12,865 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-11 12:00:13,670 [INFO] TOOL-SELECT llm-raw: {"tool":"list_orders","args":{},"confidence":0.86}
+2026-08-11 12:00:14,785 [INFO] [EVAL-CTX-1-5d52] SYSTEM: I can see your Replacement Device is still processing and is due on 2 August, while your Electrode Stickers have shipped and your HeartBug Monitor was already delivered.
+2026-08-11 12:00:16,891 [INFO] [EVAL-CTX-1-5d52] CALLER: So the stickers have arrived then - who's delivering my replacement device on the 2nd of August? Is it a courier or someone from HeartBug directly?
+2026-08-11 12:00:16,891 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
+2026-08-11 12:00:17,896 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_delivery","args":{"order_item":"Replacement Device","date":"2026-08-02"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-11 12:00:17,897 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-11 12:00:18,707 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
+2026-08-11 12:00:18,708 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
+2026-08-11 12:00:19,478 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Your Replacement Device is still processing, and I don’t have a carrier or tracking yet — it’s currently due on 2 August.
+2026-08-11 12:00:21,299 [INFO] [EVAL-CTX-1-5d52] CALLER: But you said the stickers had shipped... does that mean there's some delay with getting the shipping information for my replacement device, too?
+2026-08-11 12:00:21,299 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
+2026-08-11 12:00:22,196 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_item":"Replacement Device"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-11 12:00:22,197 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-11 12:00:23,220 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
+2026-08-11 12:00:23,220 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
+2026-08-11 12:00:24,158 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Your replacement device is still processing, so there isn’t any shipping information or carrier yet, and the current delivery date is 2 August.
+2026-08-11 12:00:26,130 [INFO] [EVAL-CTX-1-5d52] CALLER: I'd like to track it once I have a tracking number - will I be able to do that online, or should I call back here again?
+2026-08-11 12:00:26,130 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
+2026-08-11 12:00:27,214 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"track_order_info","args":{"question":"Can the caller track their order online once they have a tracking number, or do they need to call back?","order_id":"O1005"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-11 12:00:27,214 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-11 12:00:28,136 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
+2026-08-11 12:00:28,137 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
+2026-08-11 12:00:29,108 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Once your Replacement Device has a tracking number, you’ll be able to track it online, and if you’d like, you can call HeartBug back here anytime for an update.
+2026-08-11 12:00:31,543 [INFO] [EVAL-CTX-1-5d52] CALLER: So it sounds like there's no update on my order beyond the 2nd of August - what happens if that delivery date passes without me hearing anything else from you or seeing any tracking info?
+2026-08-11 12:00:31,543 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
+2026-08-11 12:00:32,436 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1005"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-11 12:00:32,437 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-11 12:00:33,153 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
+2026-08-11 12:00:33,154 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
+2026-08-11 12:00:34,073 [INFO] [EVAL-CTX-1-5d52] SYSTEM: If the 2 August date passes without any update, please call HeartBug back and we can check again for you or put you through to the team.

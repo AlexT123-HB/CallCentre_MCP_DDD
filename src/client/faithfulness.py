@@ -165,23 +165,23 @@ def _keywords(text: str) -> set[str]:
     return {t for t in toks if t not in _STOPWORDS and len(t) > 1}
 
 
-def request_unaddressed(request: str, narration: str) -> float:
-    """Regularization term: did the narration ADDRESS the request? — via embedding
-    cosine similarity, which (unlike lexical keyword overlap) handles synonyms and
-    paraphrase. Live testing on labeled pairs showed a clean gap: relevant answers
-    scored ≥0.55 cosine, irrelevant ≤0.44, so ~0.50 separates them. Lexical failed
-    here (synonym 'arrive'→'delivered' scored 0 coverage); cosine scores it 0.60.
+# def request_unaddressed(request: str, narration: str) -> float:
+#     """Regularization term: did the narration ADDRESS the request? — via embedding
+#     cosine similarity, which (unlike lexical keyword overlap) handles synonyms and
+#     paraphrase. Live testing on labeled pairs showed a clean gap: relevant answers
+#     scored ≥0.55 cosine, irrelevant ≤0.44, so ~0.50 separates them. Lexical failed
+#     here (synonym 'arrive'→'delivered' scored 0 coverage); cosine scores it 0.60.
 
-    Returns a mismatch in [0,1]: how far BELOW the relevance floor the similarity is,
-    rescaled. sim≥FLOOR → 0 (addressed); sim→0 → 1 (fully unaddressed). Falls back to
-    the lexical keyword measure when no embedding model is available."""
-    sim = _cos(request, narration)
-    if sim is None:                          # no embedding model → lexical fallback
-        return request_uncovered(request, narration)
-    # rescale: at/above the floor = addressed (0); below scales up to 1 at sim=0
-    if sim >= _REL_FLOOR:
-        return 0.0
-    return round((_REL_FLOOR - sim) / _REL_FLOOR, 3)
+#     Returns a mismatch in [0,1]: how far BELOW the relevance floor the similarity is,
+#     rescaled. sim≥FLOOR → 0 (addressed); sim→0 → 1 (fully unaddressed). Falls back to
+#     the lexical keyword measure when no embedding model is available."""
+#     sim = _cos(request, narration)
+#     if sim is None:                          # no embedding model → lexical fallback
+#         return request_uncovered(request, narration)
+#     # rescale: at/above the floor = addressed (0); below scales up to 1 at sim=0
+#     if sim >= _REL_FLOOR:
+#         return 0.0
+#     return round((_REL_FLOOR - sim) / _REL_FLOOR, 3)
 
 
 # cosine floors — the similarity at/above which the pair is "aligned with request".
@@ -203,33 +203,33 @@ def rel_diff(a: str, b: str, floor: float) -> float | None:
     return round((floor - sim) / floor, 3)
 
 
-def request_uncovered(request: str, narration: str) -> float:
-    """Regularization term: did the narration ADDRESS the request's key entities?
+# def request_uncovered(request: str, narration: str) -> float:
+#     """Regularization term: did the narration ADDRESS the request's key entities?
 
-    Not semantic similarity (noisy on short factual text), not label comparison
-    (intent-mapping missed narrations that followed the plan but answered the wrong
-    thing). Instead: extract the request's content words (the entities/fields the
-    caller asked about) and measure the fraction the narration FAILS to mention.
+#     Not semantic similarity (noisy on short factual text), not label comparison
+#     (intent-mapping missed narrations that followed the plan but answered the wrong
+#     thing). Instead: extract the request's content words (the entities/fields the
+#     caller asked about) and measure the fraction the narration FAILS to mention.
 
-    request:   "when will my order O1001 arrive?"  → key: {order, o1001, arrive}
-    narration: "your order O1001 shipped on Aug 4" → covers order, o1001; NOT arrive
-    → uncovered = 1/3 ≈ 0.33  (the 'arrive' the caller asked about went unaddressed)
+#     request:   "when will my order O1001 arrive?"  → key: {order, o1001, arrive}
+#     narration: "your order O1001 shipped on Aug 4" → covers order, o1001; NOT arrive
+#     → uncovered = 1/3 ≈ 0.33  (the 'arrive' the caller asked about went unaddressed)
 
-    This catches the case intent-mapping missed: the plan was right and executed,
-    but the spoken answer didn't address what was actually asked. Deterministic,
-    full-sentence, no embedding noise. Returns fraction uncovered in [0,1]."""
-    req_kw = _keywords(request)
-    if not req_kw:
-        return 0.0                                  # nothing to cover → no signal
-    narr_kw = _keywords(narration)
-    # a request keyword is "covered" if it appears in the narration, OR a near
-    # form does (prefix match handles arrive/arrives/arrival, ship/shipped, etc.)
-    covered = 0
-    for k in req_kw:
-        if k in narr_kw or any(n.startswith(k[:4]) or k.startswith(n[:4])
-                               for n in narr_kw):
-            covered += 1
-    return 1.0 - (covered / len(req_kw))
+#     This catches the case intent-mapping missed: the plan was right and executed,
+#     but the spoken answer didn't address what was actually asked. Deterministic,
+#     full-sentence, no embedding noise. Returns fraction uncovered in [0,1]."""
+#     req_kw = _keywords(request)
+#     if not req_kw:
+#         return 0.0                                  # nothing to cover → no signal
+#     narr_kw = _keywords(narration)
+#     # a request keyword is "covered" if it appears in the narration, OR a near
+#     # form does (prefix match handles arrive/arrives/arrival, ship/shipped, etc.)
+#     covered = 0
+#     for k in req_kw:
+#         if k in narr_kw or any(n.startswith(k[:4]) or k.startswith(n[:4])
+#                                for n in narr_kw):
+#             covered += 1
+#     return 1.0 - (covered / len(req_kw))
 # weights: the DETERMINISTIC terms (value, intent) carry the signal; the semantic
 # term is a small tiebreaker only. Rationale from live testing: on short factual
 # voice narrations grounded in structured tool results, embedding similarity is

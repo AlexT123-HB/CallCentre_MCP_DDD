@@ -205,6 +205,12 @@ TURNS = [
     "You’re very welcome — I’m glad I could help, and I can see your HeartBug Monitor is processing "
     "for 7 August while your Replacement Device was shipped with StarTrack and is due on 3 August.",
     "rot"),
+
+    ("CO1", "check_order: follow-up question on order, system can solve with order data (grounded, clean)",
+    "So it sounds like there's no update on my order beyond the 2nd of August - what happens if that delivery date passes without me hearing anything else from you or seeing any tracking info?",
+    {"order_id": "O1005", "product": "Replacement Device", "status": "processing", "eta": "August 2"},
+    "If the 2 August date passes without any update, please call HeartBug back and we can check again for you or put you through to the team.",
+    "clean"),
 ]
  
 def run():

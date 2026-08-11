@@ -318,16 +318,7 @@ class Host:
 
     async def _candidate_tools(self, domain: str) -> dict:
         """Discover a domain's tools and shape them for the selector, with the
-        host-injected identity params filtered out (LLM only sees business args).
-
-        Only tools the domain's MANIFEST declares selectable are offered. The MCP
-        server exposes EVERY @mcp.tool() via list_tools — including confirmation-only
-        writes like submit_order and webhook-only tools like lookup_by_phone — so
-        without this filter the selector could pick a tool the manifest deliberately
-        withheld (and hallucinate its args). This is what let a mis-planned "thank
-        you" turn select submit_order with invented args."""
-        m = manifests.get(domain)
-        selectable = set(m.tools or []) if m else None
+        host-injected identity params filtered out (LLM only sees business args)."""
         discovered = await self.client.discover_tools(domain)
         out: dict = {}
         for t in discovered:
