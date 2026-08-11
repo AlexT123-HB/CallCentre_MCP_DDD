@@ -8,3 +8,11 @@ wheels/
 
 # Virtual environments
 .venv
+.env
+mlflow.db
+mlruns/
+logs/
+*.log
+__pycache__/
+*.pyc
+.venv/
