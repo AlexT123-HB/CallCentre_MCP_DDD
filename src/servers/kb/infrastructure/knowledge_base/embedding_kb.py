@@ -128,6 +128,17 @@ def _tokenize(text: str) -> set:
                    .replace("/", " ").replace(".", " ").split())
 
 
+def embed_query(query: str):
+    """Return the normalized embedding for a query (or None if no model). Shared so
+    the semantic cache reuses the SAME loaded model — no second model load."""
+    if not _embed_model:
+        return None
+    try:
+        return _embed_model.encode([query], normalize_embeddings=True)[0]
+    except Exception as e:
+        print(f"[mcp] Error embedding query: {e}")
+        return None
+
 def _semantic_score(query: str):
     """
     Cosine similarity of query vs every entry. Returns a 1D array aligned to

@@ -38,7 +38,7 @@ class Host:
         # orchestration mode: "A" = plan → select_tool per domain (default),
         # "B" = one merged plan_and_select call. Env HEARTBUG_ORCH overrides.
         self.orchestration_mode = (orchestration_mode
-                                   or os.getenv("HEARTBUG_ORCH", "A")).upper()
+                                   or os.getenv("HEARTBUG_ORCH", "B")).upper()
         # Real MCP: the host is a pure client. It does NOT import or build the
         # domain servers — they run as separate processes reached over the wire.
         self.client = MCPClient()                        # uses DOMAIN_SERVERS map
@@ -96,7 +96,7 @@ class Host:
                     domain_hint: str | None = None) -> dict:
         # group every turn of this call into one viewable conversation
         ctx0 = session["ctx"]
-        tracing.set_session(call_id, role=ctx0.role, verified=ctx0.verified,
+        tracing.set_session(call_id, role=ctx0.role, verified=ctx0.verified,  
                             subject_id=ctx0.subject_id, clinic_id=ctx0.clinic_id)
         tracing.record(transcript=transcript, domain_hint=domain_hint,
                        orchestration_mode=self.orchestration_mode)
@@ -321,7 +321,7 @@ class Host:
         host-injected identity params filtered out (LLM only sees business args)."""
         discovered = await self.client.discover_tools(domain)
         out: dict = {}
-        for t in discovered:
+        for t in sorted(discovered, key=lambda x: getattr(x, "name", "") or ""):
             name = getattr(t, "name", None)
             if not name or name == "prewarm":
                 continue

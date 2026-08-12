@@ -1,44 +1,196 @@
-2026-08-11 12:00:01,641 [INFO] [EVAL-CTX-1-5d52] ANI: +61000000
-2026-08-11 12:00:03,149 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-11 12:00:06,458 [INFO] [EVAL-CTX-1-5d52] CALLER: Hi, my name is Jane Doe and my date of birth is 22 July 1990. I'm with Sydney Heart Centre. I was calling about an order I placed recently.
-2026-08-11 12:00:06,458 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
-2026-08-11 12:00:07,297 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-11 12:00:07,301 [INFO] [EVAL-CTX-1-5d52] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-11 12:00:08,387 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":"Sydney Heart Centre"},"confidence":0.99}
-2026-08-11 12:00:08,389 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22', 'clinic': 'Sydney Heart Centre'} missing=None
-2026-08-11 12:00:08,426 [INFO] [EVAL-CTX-1-5d52] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
-2026-08-11 12:00:09,745 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Hi Jane, thanks for confirming — you’re verified, and I’m here to help with your HeartBug account.
-2026-08-11 12:00:11,713 [INFO] [EVAL-CTX-1-5d52] CALLER: I think it's been a week since I ordered it, but the system still says "processing". Can you tell me when it'll actually arrive?
-2026-08-11 12:00:11,713 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
-2026-08-11 12:00:12,864 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"status_query":"processing","timeframe":"about a week ago","delivery_eta":true},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-11 12:00:12,865 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-11 12:00:13,670 [INFO] TOOL-SELECT llm-raw: {"tool":"list_orders","args":{},"confidence":0.86}
-2026-08-11 12:00:14,785 [INFO] [EVAL-CTX-1-5d52] SYSTEM: I can see your Replacement Device is still processing and is due on 2 August, while your Electrode Stickers have shipped and your HeartBug Monitor was already delivered.
-2026-08-11 12:00:16,891 [INFO] [EVAL-CTX-1-5d52] CALLER: So the stickers have arrived then - who's delivering my replacement device on the 2nd of August? Is it a courier or someone from HeartBug directly?
-2026-08-11 12:00:16,891 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
-2026-08-11 12:00:17,896 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_delivery","args":{"order_item":"Replacement Device","date":"2026-08-02"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-11 12:00:17,897 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-11 12:00:18,707 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
-2026-08-11 12:00:18,708 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
-2026-08-11 12:00:19,478 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Your Replacement Device is still processing, and I don’t have a carrier or tracking yet — it’s currently due on 2 August.
-2026-08-11 12:00:21,299 [INFO] [EVAL-CTX-1-5d52] CALLER: But you said the stickers had shipped... does that mean there's some delay with getting the shipping information for my replacement device, too?
-2026-08-11 12:00:21,299 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
-2026-08-11 12:00:22,196 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_item":"Replacement Device"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-11 12:00:22,197 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-11 12:00:23,220 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
-2026-08-11 12:00:23,220 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
-2026-08-11 12:00:24,158 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Your replacement device is still processing, so there isn’t any shipping information or carrier yet, and the current delivery date is 2 August.
-2026-08-11 12:00:26,130 [INFO] [EVAL-CTX-1-5d52] CALLER: I'd like to track it once I have a tracking number - will I be able to do that online, or should I call back here again?
-2026-08-11 12:00:26,130 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
-2026-08-11 12:00:27,214 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"track_order_info","args":{"question":"Can the caller track their order online once they have a tracking number, or do they need to call back?","order_id":"O1005"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-11 12:00:27,214 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-11 12:00:28,136 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
-2026-08-11 12:00:28,137 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
-2026-08-11 12:00:29,108 [INFO] [EVAL-CTX-1-5d52] SYSTEM: Once your Replacement Device has a tracking number, you’ll be able to track it online, and if you’d like, you can call HeartBug back here anytime for an update.
-2026-08-11 12:00:31,543 [INFO] [EVAL-CTX-1-5d52] CALLER: So it sounds like there's no update on my order beyond the 2nd of August - what happens if that delivery date passes without me hearing anything else from you or seeing any tracking info?
-2026-08-11 12:00:31,543 [INFO] [EVAL-CTX-1-5d52] Orchestrator: A mode
-2026-08-11 12:00:32,436 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1005"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-11 12:00:32,437 [INFO] [EVAL-CTX-1-5d52] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-11 12:00:33,153 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1005"},"confidence":0.98}
-2026-08-11 12:00:33,154 [INFO] [EVAL-CTX-1-5d52] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
-2026-08-11 12:00:34,073 [INFO] [EVAL-CTX-1-5d52] SYSTEM: If the 2 August date passes without any update, please call HeartBug back and we can check again for you or put you through to the team.
+2026-08-12 10:55:41,440 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-08-12 10:55:41,572 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-08-12 10:55:43,328 [INFO] TRACING on → http://host.docker.internal:5001
+2026-08-12 10:56:59,188 [INFO] [EVAL-CTX-1-67c9] ANI: +61000000
+2026-08-12 10:57:00,706 [INFO] [EVAL-CTX-1-67c9] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-08-12 10:57:03,689 [INFO] [EVAL-CTX-1-67c9] CALLER: Hi, my name is Jane Doe and my date of birth is July 22nd, 1990. I'm a patient at the Sydney Heart Centre.
+2026-08-12 10:57:03,690 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
+2026-08-12 10:57:04,532 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-08-12 10:57:04,532 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-08-12 10:57:05,429 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-08-12 10:57:05,430 [INFO] [EVAL-CTX-1-67c9] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-08-12 10:57:05,463 [INFO] [EVAL-CTX-1-67c9] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
+2026-08-12 10:57:06,362 [INFO] [EVAL-CTX-1-67c9] SYSTEM: Thanks, Jane — could you please confirm which HeartBug clinic is on your record so I can help you further?
+2026-08-12 10:57:08,215 [INFO] [EVAL-CTX-1-67c9] CALLER: It's the Sydney Heart Centre, they've been monitoring my condition and ordered some equipment for me; I think it's with you now.
+2026-08-12 10:57:08,216 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
+2026-08-12 10:57:09,078 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.93,"connect_human":false}
+2026-08-12 10:57:09,079 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.93 connect_human=False
+2026-08-12 10:57:10,433 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.98}
+2026-08-12 10:57:10,433 [INFO] [EVAL-CTX-1-67c9] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-08-12 10:57:10,449 [INFO] [EVAL-CTX-1-67c9] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
+2026-08-12 10:57:12,519 [INFO] [EVAL-CTX-1-67c9] SYSTEM: Thanks, and just to confirm, which HeartBug clinic is on your record—your registered clinic if you’re a patient, or the clinic you work at if you’re a doctor?
+2026-08-12 10:57:14,473 [INFO] [EVAL-CTX-1-67c9] CALLER: I'm definitely a patient there, so the Sydney Heart Centre is my registered clinic – they've been keeping an eye on me for my irregular heartbeat.
+2026-08-12 10:57:14,474 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
+2026-08-12 10:57:15,386 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.37,"connect_human":false}
+2026-08-12 10:57:15,387 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.37 connect_human=False
+2026-08-12 10:57:16,414 [INFO] [EVAL-CTX-1-67c9] SYSTEM: I understand, and I’m sorry, but I can only help with HeartBug account matters, not clinic or medical details. If you’d like, I can help with your HeartBug account or connect you with the right team.
+2026-08-12 10:57:18,648 [INFO] [EVAL-CTX-1-67c9] CALLER: Okay... that makes sense, I guess. So, can you tell me what's going on with my order? I think it was O1003 that they ordered for me?
+2026-08-12 10:57:18,649 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
+2026-08-12 10:57:19,686 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-08-12 10:57:19,687 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-08-12 10:57:20,708 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.98}
+2026-08-12 10:57:20,708 [INFO] [EVAL-CTX-1-67c9] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-08-12 10:57:20,723 [INFO] [EVAL-CTX-1-67c9] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
+2026-08-12 10:57:21,735 [INFO] [EVAL-CTX-1-67c9] HANDOFF reason=task_failure role=patient
+2026-08-12 10:57:22,573 [INFO] [EVAL-CTX-1-67c9] SYSTEM: I’m going to connect you to our patient support team now because I can’t see the order details here, so please hold for a moment.
+2026-08-12 10:58:00,737 [INFO] [EVAL-PADDR-1-7ca5] ANI: +61412345678
+2026-08-12 10:58:01,679 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Welcome to HeartBug; may I have your full name and date of birth, please?
+2026-08-12 10:58:03,677 [INFO] [EVAL-PADDR-1-7ca5] CALLER: John Smith, my birthday is 15th of March 1985.
+2026-08-12 10:58:03,677 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
+2026-08-12 10:58:04,540 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-08-12 10:58:04,541 [INFO] [EVAL-PADDR-1-7ca5] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-08-12 10:58:05,462 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-08-12 10:58:05,463 [INFO] [EVAL-PADDR-1-7ca5] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-08-12 10:58:05,495 [INFO] [EVAL-PADDR-1-7ca5] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-08-12 10:58:05,529 [INFO] CACHE MISS patient:P001, query DB
+2026-08-12 10:58:05,530 [INFO] CACHE MISS patient:P001, query DB
+2026-08-12 10:58:05,561 [INFO] CACHE MISS order_by_patient:P001, query DB
+2026-08-12 10:58:06,488 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account; what can I do for you today?
+2026-08-12 10:58:07,496 [INFO] [EVAL-PADDR-1-7ca5] CALLER: I'd like to order two sticker packs, please.
+2026-08-12 10:58:07,497 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
+2026-08-12 10:58:08,846 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"create_order","args":{"item":"sticker packs","quantity":2},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 10:58:08,847 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-12 10:58:09,682 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker packs","quantity":2},"confidence":0.98}
+2026-08-12 10:58:09,683 [INFO] [EVAL-PADDR-1-7ca5] SLOTS domain=order tool=place_order have={'product': 'sticker packs', 'quantity': 2} missing=None
+2026-08-12 10:58:09,705 [INFO] CACHE MISS pending:P001, query DB
+2026-08-12 10:58:10,599 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Absolutely — I can place two sticker packs for you and ship them to 12 Wattle St, Chatswood NSW 2067; please confirm that address is correct, and I’ll put the order through.
+2026-08-12 10:58:11,376 [INFO] [EVAL-PADDR-1-7ca5] CALLER: Yes, that's correct.
+2026-08-12 10:58:11,377 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
+2026-08-12 10:58:12,435 [INFO] CONFIRM llm-raw: {"decision":"yes"}
+2026-08-12 10:58:12,464 [INFO] ORDER PLACE type=patient_order for=patient:P001 by=P001 items=[2x sticker packs] → PO-20260812-0001 (pending)
+2026-08-12 10:58:13,655 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Thanks, your HeartBug order for 2 sticker packs has been submitted for processing under reference PO-20260812-0001, and you’ll receive a confirmation soon.
+2026-08-12 10:58:14,866 [INFO] [EVAL-PADDR-1-7ca5] CALLER: What's my tracking number so I can keep an eye on the delivery?
+2026-08-12 10:58:14,867 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
+2026-08-12 10:58:15,943 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"get_tracking","args":{"order_reference":"PO-20260812-0001"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 10:58:15,945 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-12 10:58:16,759 [INFO] TOOL-SELECT llm-raw: {"tool":"list_orders","args":{},"confidence":0.95}
+2026-08-12 10:58:16,789 [INFO] CACHE MISS order_by_patient:P001, query DB
+2026-08-12 10:58:17,853 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Your HeartBug HeartBug Monitor was delivered with Australia Post under tracking AP1001AU, and your Replacement Leads are currently in transit with tracking AP1002AU.
+2026-08-12 10:58:19,452 [INFO] [EVAL-PADDR-1-7ca5] CALLER: No, I didn't order leads, I just ordered sticker packs; can you check that for me, please?
+2026-08-12 10:58:19,453 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
+2026-08-12 10:58:20,513 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_history","args":{"query":"sticker packs","limit":10},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 10:58:20,514 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-12 10:58:21,430 [INFO] TOOL-SELECT llm-raw: {"tool":"list_orders","args":{},"confidence":0.98}
+2026-08-12 10:58:21,458 [INFO] CACHE HIT order_by_patient:P001
+2026-08-12 10:58:21,460 [INFO] CACHE HIT order:O1001
+2026-08-12 10:58:21,460 [INFO] CACHE HIT order:O1002
+2026-08-12 10:58:22,665 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: I’m sorry, but I only see a HeartBug Monitor that was delivered and Replacement Leads that are in transit, and I don’t see any sticker pack order on your account. If you’d like, I can help you check with the team or look into placing the sticker pack order again.
+2026-08-12 10:58:24,459 [INFO] [EVAL-PADDR-1-7ca5] CALLER: No need to look further, I'll just place the order again please; I'd like two sticker packs this time.
+2026-08-12 10:58:24,460 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
+2026-08-12 10:58:26,146 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"place_order","args":{"item":"sticker packs","quantity":2},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 10:58:26,147 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-12 10:58:27,925 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker packs","quantity":2},"confidence":0.98}
+2026-08-12 10:58:27,926 [INFO] [EVAL-PADDR-1-7ca5] SLOTS domain=order tool=place_order have={'product': 'sticker packs', 'quantity': 2} missing=None
+2026-08-12 10:58:27,958 [INFO] CACHE HIT pending:P001
+2026-08-12 10:58:29,114 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: You already have a HeartBug order for 2 sticker packs awaiting approval under reference PO-20260812-0001, so I can’t submit a new one until that’s approved; if you’d like, I can help with anything else on your HeartBug account or put you through to the team.
+2026-08-12 10:58:43,086 [INFO] [EVAL-CROSS-1-38e2] ANI: +61498765432
+2026-08-12 10:58:43,986 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-08-12 10:58:47,349 [INFO] [EVAL-CROSS-1-38e2] CALLER: Yes, it's me, Jane Doe, born July 22, 1990. Now, can you tell me about my order, O1002? I'm trying to get a status update on the device that was supposed to arrive last week.
+2026-08-12 10:58:47,349 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
+2026-08-12 10:58:48,262 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-08-12 10:58:48,263 [INFO] [EVAL-CROSS-1-38e2] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-08-12 10:58:49,288 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-08-12 10:58:49,289 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-08-12 10:58:49,324 [INFO] [EVAL-CROSS-1-38e2] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-08-12 10:58:49,356 [INFO] CACHE MISS patient:P002, query DB
+2026-08-12 10:58:49,357 [INFO] CACHE MISS patient:P002, query DB
+2026-08-12 10:58:49,386 [INFO] CACHE HIT order_by_patient:P002
+2026-08-12 10:58:49,387 [INFO] CACHE HIT order:O1003
+2026-08-12 10:58:49,387 [INFO] CACHE HIT order:O1004
+2026-08-12 10:58:49,388 [INFO] CACHE HIT order:O1005
+2026-08-12 10:58:50,310 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: Thanks, Jane — you’re verified, and I’m here to help with your HeartBug account.
+2026-08-12 10:58:53,521 [INFO] [EVAL-CROSS-1-38e2] CALLER: Great, thank you! Now, can we please discuss order O1002? My husband called me at work this morning, and he said it had been shipped out already... but our home address says "not delivered" on the tracking info online. What's going on with that order?
+2026-08-12 10:58:53,521 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
+2026-08-12 10:58:54,610 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 10:58:54,611 [INFO] [EVAL-CROSS-1-38e2] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-12 10:58:55,720 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.98}
+2026-08-12 10:58:55,721 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-08-12 10:58:55,762 [INFO] CACHE HIT order:O1002
+2026-08-12 10:58:56,732 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: I’m sorry, but I can’t find order O1002 in HeartBug right now, so could you please double-check the order number for me? If you’d like, I can also help with something else on your account or connect you with the team.
+2026-08-12 10:58:59,581 [INFO] [EVAL-CROSS-1-38e2] CALLER: That's ridiculous! I'm positive it was O1002. Can't you just check again? It's a very important device... and I need to get it as soon as possible, so please, just double-check for me.
+2026-08-12 10:58:59,582 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
+2026-08-12 10:59:00,571 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 10:59:00,572 [INFO] [EVAL-CROSS-1-38e2] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-12 10:59:01,473 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.98}
+2026-08-12 10:59:01,474 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-08-12 10:59:01,505 [INFO] CACHE HIT order:O1002
+2026-08-12 10:59:02,323 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: I understand this is frustrating, but I still can’t find order O1002 in HeartBug, so could you please double-check the order number? If you’d like, I can help with something else on your HeartBug account or connect you with the team.
+2026-08-12 10:59:05,078 [INFO] [EVAL-CROSS-1-38e2] CALLER: That's not what my husband told me! He definitely said it was O1002... Can't you guys just check the shipping records or something? It has to be in there somewhere. Why wouldn't it be delivered yet?
+2026-08-12 10:59:05,078 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
+2026-08-12 10:59:06,184 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 10:59:06,186 [INFO] [EVAL-CROSS-1-38e2] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
+2026-08-12 10:59:07,207 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.98}
+2026-08-12 10:59:07,207 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-08-12 10:59:07,235 [INFO] CACHE HIT order:O1002
+2026-08-12 10:59:08,164 [INFO] [EVAL-CROSS-1-38e2] HANDOFF reason=task_failure role=patient
+2026-08-12 10:59:09,051 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: I’m sorry for the frustration, and I can’t check shipping records from here, but I’m connecting you now to our patient support team, so please hold.
+2026-08-12 16:06:36,734 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-08-12 16:06:36,850 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-08-12 16:08:44,798 [INFO] TRACING on → http://host.docker.internal:5001
+2026-08-12 16:10:18,196 [INFO] [EVAL-KB-1-1a3a] ANI: +61498765432
+2026-08-12 16:10:20,639 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Welcome to HeartBug, and may I please have your full name and date of birth?
+2026-08-12 16:10:23,241 [INFO] [EVAL-KB-1-1a3a] CALLER: I'm just calling for some general information on how the app works, can you help me with a question about recording while my screen is off?
+2026-08-12 16:10:23,242 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
+2026-08-12 16:10:24,310 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-12 16:10:24,311 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-12 16:10:25,155 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"general information on how the app works recording while my screen is off"},"confidence":0.96}
+2026-08-12 16:10:25,177 [INFO] search_kb GOT query='general information on how the app works recording while my screen is off' verified=False
+2026-08-12 16:10:25,769 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.843
+2026-08-12 16:10:25,771 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_142' matched_q='How do I know a recording has started?' score=0.758
+2026-08-12 16:10:25,771 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.752
+2026-08-12 16:10:25,772 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.723
+2026-08-12 16:10:25,773 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_4' matched_q='Does HeartBug record my voice or conversations?' score=0.684
+2026-08-12 16:10:26,868 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — manual recordings in HeartBug keep running even if your screen is off or the app is in the background, and they’ll also work without Wi‑Fi, in airplane mode, or while charging.
+2026-08-12 16:10:29,072 [INFO] [EVAL-KB-1-1a3a] CALLER: That's helpful to know, but what about if I'm using it on my smartwatch - will the manual recording still keep going when I'm not actively looking at it?
+2026-08-12 16:10:29,073 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
+2026-08-12 16:10:30,044 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-12 16:10:30,045 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-12 16:10:31,376 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Will manual recording keep going on a smartwatch when I'm not actively looking at it?"},"confidence":0.95}
+2026-08-12 16:10:31,408 [INFO] search_kb GOT query="Will manual recording keep going on a smartwatch when I'm not actively looking at it?" verified=False
+2026-08-12 16:10:31,532 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.784
+2026-08-12 16:10:31,533 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.746
+2026-08-12 16:10:31,534 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.737
+2026-08-12 16:10:31,534 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.712
+2026-08-12 16:10:31,535 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.699
+2026-08-12 16:10:32,460 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — HeartBug can keep recording even when you’re not actively looking at it, as long as it’s still attached, and if you’d like I can help with anything else about how it works.
+2026-08-12 16:10:33,497 [INFO] [EVAL-KB-1-1a3a] CALLER: Can I record while my phone is in airplane mode?
+2026-08-12 16:10:33,498 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
+2026-08-12 16:10:34,241 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.99,"connect_human":false}
+2026-08-12 16:10:34,242 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.99 connect_human=False
+2026-08-12 16:10:35,073 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my phone is in airplane mode?"},"confidence":0.98}
+2026-08-12 16:10:35,102 [INFO] search_kb GOT query='Can I record while my phone is in airplane mode?' verified=False
+2026-08-12 16:10:35,198 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.901
+2026-08-12 16:10:35,199 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.764
+2026-08-12 16:10:35,200 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.744
+2026-08-12 16:10:35,200 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.718
+2026-08-12 16:10:35,201 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_4' matched_q='Does HeartBug record my voice or conversations?' score=0.713
+2026-08-12 16:10:37,118 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — manual recordings in HeartBug work in airplane mode, and they’ll keep running even with no Wi‑Fi or internet.
+2026-08-12 16:10:38,128 [INFO] [EVAL-KB-1-1a3a] CALLER: What's the price of ten kilos of mango?
+2026-08-12 16:10:38,129 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
+2026-08-12 16:10:40,258 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-12 16:10:40,260 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-12 16:10:41,144 [INFO] [EVAL-KB-1-1a3a] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-12 16:10:43,529 [INFO] [EVAL-KB-1-1a3a] CALLER: That's not really what I'm looking for, so I'll just ask another app-related question - do you have a user guide or tutorial on setting up the ECG feature in HeartBug?
+2026-08-12 16:10:43,530 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
+2026-08-12 16:10:45,143 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-12 16:10:45,144 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-12 16:10:46,078 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"user guide or tutorial on setting up the ECG feature in HeartBug"},"confidence":0.98}
+2026-08-12 16:10:46,117 [INFO] search_kb GOT query='user guide or tutorial on setting up the ECG feature in HeartBug' verified=False
+2026-08-12 16:10:46,294 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_93' matched_q='How does HeartBug record when I have symptoms?' score=0.763
+2026-08-12 16:10:46,295 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_94' matched_q='What is a manual recording?' score=0.760
+2026-08-12 16:10:46,296 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_82' matched_q='How does HeartBug detect irregular beats?' score=0.752
+2026-08-12 16:10:46,296 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_95' matched_q='What happens when I make a recording?' score=0.750
+2026-08-12 16:10:46,297 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_106' matched_q='What ECG technology does HeartBug use?' score=0.747
+2026-08-12 16:10:47,206 [INFO] [EVAL-KB-1-1a3a] SYSTEM: I don’t have a setup guide or tutorial here, but I can help with HeartBug questions about how the ECG works, or connect you with the right team if you’d like.
+2026-08-12 16:10:48,468 [INFO] [EVAL-KB-1-1a3a] CALLER: Does it still work if my phone is completely dead and not charging at all?
+2026-08-12 16:10:48,468 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
+2026-08-12 16:10:49,329 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":false}
+2026-08-12 16:10:49,330 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=False
+2026-08-12 16:10:50,279 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work if my phone is completely dead and not charging at all?"},"confidence":0.96}
+2026-08-12 16:10:50,305 [INFO] search_kb GOT query='Does HeartBug still work if my phone is completely dead and not charging at all?' verified=False
+2026-08-12 16:10:50,450 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_113' matched_q='How do I reconnect HeartBug to the app?' score=0.788
+2026-08-12 16:10:50,450 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.772
+2026-08-12 16:10:50,451 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_27' matched_q='What happens if the HeartBug battery runs out?' score=0.771
+2026-08-12 16:10:50,452 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.765
+2026-08-12 16:10:50,452 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_91' matched_q='Why isn’t HeartBug connecting to Bluetooth?' score=0.761
+2026-08-12 16:10:52,672 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — HeartBug can keep recording even if your phone is dead or not with you, and it will sync once the phone is back on and in Bluetooth range.
