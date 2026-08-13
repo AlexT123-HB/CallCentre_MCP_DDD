@@ -58,15 +58,16 @@ def _fresh(e: _Entry, now: float) -> bool:
     return (now - e.ts) < _TTL
 
 
-def get(query: str):
+def get(query: str, call_id: str = ""):
     """Return a cached answer dict for a semantically-matching query, or None.
 
     None means "not a hit" — the caller runs the normal KB path."""
     if not _ENABLED:
         return None
+    tag = f"[{call_id}] " if call_id else ""
     qv = embed_query(query)
     if qv is None:
-        _log.info("KB-CACHE skip: embed_query returned None (no embedder?)")
+        _log.info(f"{tag}KB-CACHE skip: embed_query returned None (no embedder?)")
         return None
     now = time.time()
     best_score, best = 0.0, None
@@ -77,9 +78,9 @@ def get(query: str):
         if score > best_score:
             best_score, best = score, e
     if best is not None and best_score >= _THRESHOLD:
-        _log.info(f"KB-CACHE HIT score={best_score:.3f} q={query!r}")
+        _log.info(f"{tag}KB-CACHE HIT score={best_score:.3f} q={query!r}")
         return best.answer
-    _log.info(f"KB-CACHE MISS best={best_score:.3f} q={query!r}")
+    _log.info(f"{tag}KB-CACHE MISS best={best_score:.3f} q={query!r}")
     return None
 
 

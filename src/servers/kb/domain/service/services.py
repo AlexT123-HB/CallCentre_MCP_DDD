@@ -26,26 +26,30 @@ class DefaultKBService(KBService):
     def __init__(self, repository: KBRepository) -> None:
         self._repo = repository
 
-    def answer(self, query: str, verified: bool) -> KBResult:
+    def answer(self, query: str, verified: bool, call_id: str = "") -> KBResult:
+        tag = f"[{call_id}] " if call_id else ""
         matches = self._repo.search(query, top_k=5)
         if not matches:
             _log.info(f"KB MISS (no match) for q={query!r}")
             return KBResult(found=False)
-        # Check the best match is high enough to trust
-        if matches[0][1] < _MIN_SCORE:
-            _log.info(f"KB → MISS (score {matches[0][1]:.3f} < {_MIN_SCORE}) q={query!r}")
-            return KBResult(found=False, score=matches[0][1])          # weak match → miss
-        
-        # Keep only the matches above threshold, then sensitivity-filter for this caller
+
+        best_score = matches[0][1]                     # ranked → [0] is the best
+        if best_score < _MIN_SCORE:
+            _log.info(f"{tag}KB → MISS (best {best_score:.3f} < {_MIN_SCORE}) q={query!r}")
+            return KBResult(found=False, score=best_score)
+
+        # Keep only matches above threshold, then sensitivity-filter for this caller
         strong_matches = [(entry, score) for entry, score in matches if score >= _MIN_SCORE]
-        visible_matches = [(entry, score) for entry, score in strong_matches if entry.visible_to(verified)]
+        visible_matches = [(entry, score) for entry, score in strong_matches
+                           if entry.visible_to(verified)]
+
         if not visible_matches:
-            # a real answer exists but it's sensitive and caller isn't verified
-            _log.info(f"KB → NEEDS VERIFICATION (sensitive entry) q={query!r}")
-            return KBResult(found=False, score=strong_matches[0][1], needs_verification=True)
+            # strong matches exist but ALL are sensitive and the caller isn't verified
+            _log.info(f"{tag}KB → NEEDS_VERIFY (all strong matches sensitive) q={query!r}")
+            return KBResult(found=False, score=best_score, needs_verification=True)
+
         for entry, score in visible_matches:
-            _log.info(f"KB RETRIEVE (DB) entry={entry.id!r} matched_q={entry.question!r} "
+            _log.info(f"{tag}KB RETRIEVE entry={entry.id!r} matched_q={entry.question!r} "
                       f"score={score:.3f}")
-        return KBResult(found=True, entries=[entry for entry, _ in visible_matches],
-                        score=visible_matches[0][1])
-        
+        _log.info(f"{tag}KB → ANSWER {len(visible_matches)} entries best={best_score:.3f}")
+        return KBResult(found=True, entries=[e for e, _ in visible_matches], score=best_score)

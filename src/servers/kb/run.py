@@ -18,14 +18,14 @@ Run:
 
 from __future__ import annotations
 
-import logging
 import os
+import logging
 
 from mcp.server.fastmcp import FastMCP
 
 from src.servers.kb.infrastructure.application import build_kb_service
-from src.shared.logging_config import setup_logging
 from src.servers.kb import semantic_cache
+from src.shared.logging_config import setup_logging
 
 setup_logging()                      # so KB logs reach the shared log file
 mcp = FastMCP("heartbug-kb")
@@ -36,13 +36,13 @@ log = logging.getLogger("heartbug")
 @mcp.tool()
 def search_kb(call_id: str, query: str = "", verified: bool = False) -> dict:
     """Answer a general HeartBug product/how-to question from the knowledge base."""
-    log.info(f"search_kb GOT query={query!r} verified={verified}")
-
-    cached = semantic_cache.get(query)  # Check cache first
-    if cached:
+    # semantic cache: a repeat/rephrased question returns the prior answer with no
+    # retrieval. Cache all answers (no gating). No-op unless HEARTBUG_KB_CACHE=1.
+    cached = semantic_cache.get(query, call_id)
+    if cached is not None:
         return cached
-    
-    result = _service.answer(query, verified)
+
+    result = _service.answer(query, verified, call_id)
     if result.found and result.entries:
         answer = {"found": True, "event": "kb_answers",
                   "answers": [{"question": e.question, "short_answer": e.short_answer}
