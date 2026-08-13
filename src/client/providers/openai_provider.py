@@ -48,7 +48,7 @@ class OpenAIProvider(LLMProvider):
 
     # ── classification: LLM picks the domain + extracts identity slots ────────
     @tracing.traced("llm.classify_confirmation", tracing.LLM)
-    def classify_confirmation(self, transcript: str, prompt: str, history: list,
+    def classify_confirmation(self, call_id: str, transcript: str, prompt: str, history: list,
                               answers: dict) -> str:
         """Map a caller's confirmation reply to one of the DECLARED answer labels
         (or 'unclear'). Labels and meanings come from the tool's manifest
@@ -75,7 +75,7 @@ class OpenAIProvider(LLMProvider):
         resp = self._complete(messages=msgs,
             response_format={"type": "json_object"}, temperature=0, max_completion_tokens=40)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"CONFIRM llm-raw: {raw}")
+        logging.getLogger("heartbug").info(f"[{call_id}] CONFIRM llm-raw: {raw}")
         try:
             decision = json.loads(raw).get("decision", "unclear")
         except json.JSONDecodeError:
@@ -84,7 +84,7 @@ class OpenAIProvider(LLMProvider):
 
    # ── classification: LLM picks the domain + extracts identity slots ────────
     @tracing.traced("llm.route", tracing.LLM)
-    def classify(self, transcript: str, candidate_domains, history: list = None, gated_domains=None) -> dict:
+    def classify(self, call_id: str, transcript: str, candidate_domains, history: list = None, gated_domains=None) -> dict:
         domain_block = "".join(f"  - {n}: {d}\n" for n, d in _domain_items(candidate_domains))
         gated_list = "".join(f"  - {n}: {d}\n" for n, d in _domain_items(gated_domains or {}))
 
@@ -127,7 +127,7 @@ class OpenAIProvider(LLMProvider):
             max_completion_tokens=200,
         )
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"ROUTER llm-raw: {raw}")
+        logging.getLogger("heartbug").info(f"[{call_id}] ROUTER llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:
@@ -141,7 +141,7 @@ class OpenAIProvider(LLMProvider):
         }
     
     # ── tool selection: within a domain, pick the tool + extract its args ──────
-    def select_tool(self, transcript: str, candidate_tools: dict, history: list) -> dict:
+    def select_tool(self, call_id: str, transcript: str, candidate_tools: dict, history: list) -> dict:
         tool_block = ""
         for name, spec in candidate_tools.items():
             desc = spec.get("description", "")
@@ -171,7 +171,7 @@ class OpenAIProvider(LLMProvider):
             messages=msgs,
             response_format={"type": "json_object"}, temperature=0)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"TOOL-SELECT llm-raw: {raw}")
+        logging.getLogger("heartbug").info(f"[{call_id}] TOOL-SELECT llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:
@@ -184,7 +184,7 @@ class OpenAIProvider(LLMProvider):
 
     # ── planning: decompose a verified request into subtasks (may depend) ─────
     @tracing.traced("llm.plan", tracing.LLM)
-    def plan(self, transcript: str, candidate_domains, history: list) -> dict:
+    def plan(self, call_id: str, transcript: str, candidate_domains, history: list) -> dict:
         domain_block = "".join(f"  - {n}: {d}\n" for n, d in _domain_items(candidate_domains))
         system = (
             "You break a verified caller's request into subtasks, each handled by ONE "
@@ -219,7 +219,7 @@ class OpenAIProvider(LLMProvider):
             messages=msgs,
             response_format={"type": "json_object"}, temperature=0)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"PLANNER llm-raw: {raw}")
+        logging.getLogger("heartbug").info(f"[{call_id}] PLANNER llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:
@@ -232,7 +232,7 @@ class OpenAIProvider(LLMProvider):
 
     # ── Version B: ONE call — decompose + pick tool + extract args per subtask ──
     @tracing.traced("llm.plan_and_select", tracing.LLM)
-    def plan_and_select(self, transcript: str, domain_tools: dict, history: list) -> dict:
+    def plan_and_select(self, call_id: str, transcript: str, domain_tools: dict, history: list) -> dict:
         """
         Merged planner + tool-selection in a single call. domain_tools maps each
         allowed domain to its tools:
@@ -286,7 +286,7 @@ class OpenAIProvider(LLMProvider):
             messages=msgs,
             response_format={"type": "json_object"}, temperature=0)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"PLAN+SELECT llm-raw: {raw}")
+        logging.getLogger("heartbug").info(f"[{call_id}] PLAN+SELECT llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:

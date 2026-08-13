@@ -48,7 +48,7 @@ def search_kb(call_id: str, query: str = "", verified: bool = False) -> dict:
                   "answers": [{"question": e.question, "short_answer": e.short_answer}
                               for e in result.entries],         # ← list of up to 5
                   "score": round(result.score, 3)}
-        semantic_cache.put(query, answer)  # Store in cache
+        semantic_cache.put(query, answer, call_id)  # Store in cache
         return answer
     if result.needs_verification:
         return {"found": False, "event": "kb_needs_verify", "score": round(result.score, 3)}

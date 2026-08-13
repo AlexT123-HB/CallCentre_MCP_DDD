@@ -18,7 +18,7 @@ Context that matters when picking these up:
 
 ## HIGH PRIORITY
 
-### 1. Semantic cache (query -> response)   [Layer 6]
+### 1. Semantic cache (query -> response) (done)   [Layer 6]
 **What:** A cache in FRONT of the whole turn pipeline. Embed the caller's query,
 compare (cosine) against recent answered queries; on a hit above ~0.92, return the
 cached narration directly — no LLM call, no plan, no tool dispatch.

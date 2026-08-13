@@ -122,7 +122,7 @@ class Host:
             if confirm:
                 answers = confirm.get("answers", {})
                 decision = self._provider.classify_confirmation(
-                    transcript, confirm.get("prompt", ""), session["history"], answers)
+                    call_id, transcript, confirm.get("prompt", ""), session["history"], answers)
                 session.pop("_pending_confirm", None)
                 if decision in answers:
                     self.handoff.record_task_outcome(session, "confirmation", True)
@@ -162,7 +162,7 @@ class Host:
                 from_context = False
                 if self.orchestration_mode == "B":
                     domain_tools = await self._domain_tools_map(allowed)
-                    ps = self._provider.plan_and_select(transcript, domain_tools, self._with_note(session))
+                    ps = self._provider.plan_and_select(call_id, transcript, domain_tools, self._with_note(session))
                     if ps.get("connect_human"):
                         action = self.handoff.check(session, voluntary=True)
                         return self._handoff_response(call_id, session, action, transcript)
@@ -173,7 +173,7 @@ class Host:
                                   f"{[(s['id'], s['domain'], s.get('tool')) for s in subtasks]}")
                 else:
                     # Version A: plan → select_tool per domain 
-                    plan = self._provider.plan(transcript, candidates, self._with_note(session))
+                    plan = self._provider.plan(call_id, transcript, candidates, self._with_note(session))
                     if plan.get("connect_human"):
                         action = self.handoff.check(session, voluntary=True)
                         return self._handoff_response(call_id, session, action, transcript)
@@ -214,7 +214,7 @@ class Host:
                 tts = await self._run_plan(session, pending, transcript)
                 domain = pending[0]["domain"]
             else:
-                routed = self.router.classify_turn(transcript, candidates, session["history"], gated_domains=gated)
+                routed = self.router.classify_turn(call_id, transcript, candidates, session["history"], gated_domains=gated)
                 domain = routed["domain"]
                 self.log.info(
                     f"[{call_id}] ROUTER allowed={allowed} → domain={domain} "
@@ -313,7 +313,7 @@ class Host:
         candidates = await self._candidate_tools(domain)
         if not candidates.get(tool, {}).get("args"):
             return {}                                           # tool takes no business args
-        sel = self._provider.select_tool(transcript, candidates, self._with_note(session))
+        sel = self._provider.select_tool(session.get("call_id", ""), transcript, candidates, self._with_note(session))
         return sel.get("args", {}) or {}
 
     async def _candidate_tools(self, domain: str) -> dict:
@@ -545,7 +545,7 @@ class Host:
                                                       st.get("intent", transcript))
             elif tools:
                 cands = await self._candidate_tools(domain)
-                sel = self._provider.select_tool(st.get("intent", transcript), cands, self._with_note(session))
+                sel = self._provider.select_tool(session.get("call_id", ""), st.get("intent", transcript), cands, self._with_note(session))
                 st["tool"] = sel.get("tool") if sel.get("tool") in tools else m.primary_tool
                 st["args"] = sel.get("args", {}) or {}
         return subtasks
@@ -559,7 +559,7 @@ class Host:
         domain, so it correctly continues)."""
         pending_domains = {s["domain"] for s in pending}
         candidates = {n: manifests.get(n).description for n in allowed if manifests.get(n)}
-        routed = self.router.classify_turn(transcript, candidates, session["history"], gated_domains=verification_gated_domains(session))
+        routed = self.router.classify_turn(session.get("call_id", ""), transcript, candidates, session["history"], gated_domains=verification_gated_domains(session))
         picked = routed.get("domain")
         # a confident pick of a DIFFERENT real domain → redirect
         if (picked and picked != "unknown" and picked not in pending_domains
@@ -620,7 +620,7 @@ class Host:
         else:
             # Mode A: dependent subtask carries only an intent, so select now.
             cands = await self._candidate_tools(domain)
-            sel = self._provider.select_tool(context, cands, self._with_note(session))
+            sel = self._provider.select_tool(session.get("call_id", ""), context, cands, self._with_note(session))
             tool = sel.get("tool") if sel.get("tool") in tools else m.primary_tool
             args = sel.get("args", {}) or {}
         return DomainCall(domain, tool, args)

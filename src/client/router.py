@@ -13,9 +13,9 @@ class Router:
     def __init__(self, provider: LLMProvider) -> None:
         self._provider = provider
 
-    def classify_turn(self, transcript: str, candidate_domains, history: list, gated_domains: None) -> dict:
+    def classify_turn(self, call_id: str, transcript: str, candidate_domains, history: list, gated_domains: None) -> dict:
         """candidate_domains: {name: description}. gated_domains: {name: description}
         of domains that require verification the caller doesn't have yet — used to
         steer an unverified caller to verify first instead of mis-routing their
         intent to a public domain. Returns {domain, confidence, entities}."""
-        return self._provider.classify(transcript, candidate_domains, history, gated_domains=gated_domains)
+        return self._provider.classify(call_id, transcript, candidate_domains, history, gated_domains=gated_domains)

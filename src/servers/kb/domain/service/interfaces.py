@@ -9,5 +9,5 @@ from src.servers.kb.domain.models import KBResult
 
 class KBService(ABC):
     @abstractmethod
-    def answer(self, query: str, verified: bool) -> KBResult:
+    def answer(self, query: str, verified: bool, call_id: str = "") -> KBResult:
         ...

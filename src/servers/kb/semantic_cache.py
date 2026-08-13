@@ -32,7 +32,7 @@ _log = logging.getLogger("heartbug")
 _ENABLED   = os.getenv("HEARTBUG_KB_CACHE", "0") == "1"
 # a hit needs NEAR-identical intent — higher than the KB retrieval floor (0.35),
 # because serving the wrong FAQ is worse than a miss. 0.92 per semantic-cache norms.
-_THRESHOLD = float(os.getenv("HEARTBUG_KB_CACHE_THRESHOLD", "0.92"))
+_THRESHOLD = float(os.getenv("HEARTBUG_KB_CACHE_THRESHOLD", "0.95"))
 _TTL       = float(os.getenv("HEARTBUG_KB_CACHE_TTL", str(24 * 3600)))   # 24h
 _MAX       = int(os.getenv("HEARTBUG_KB_CACHE_MAX", "500"))              # cap entries
 
@@ -84,12 +84,13 @@ def get(query: str, call_id: str = ""):
     return None
 
 
-def put(query: str, answer: dict) -> None:
+def put(query: str, answer: dict, call_id: str = "") -> None:
     """Store an answer for future semantic matches. Caller decides what's cacheable
     (we cache all real answers; misses/needs-verify are not passed here)."""
     if not _ENABLED:
         return
     qv = embed_query(query)
+    tag = f"[{call_id}] " if call_id else ""
     if qv is None:
         return
     now = time.time()
@@ -103,8 +104,8 @@ def put(query: str, answer: dict) -> None:
     # bound the store: drop oldest when over cap (cheap LRU-by-age)
     if len(_STORE) > _MAX:
         _STORE.sort(key=lambda e: e.ts)
-        del _STORE[: len(_STORE) - _MAX]
-    _log.info(f"KB-CACHE PUT q={query!r} store={len(_STORE)}")
+        del _STORE[: len(_STORE) - _MAX]    
+    _log.info(f"{tag}KB-CACHE PUT q={query!r} store={len(_STORE)}")
 
 
 def clear() -> None:
