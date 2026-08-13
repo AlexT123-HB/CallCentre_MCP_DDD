@@ -20,6 +20,7 @@ x-common: &common
   environment: &common-env
     TZ: "Australia/Sydney"
     HEARTBUG_SERVICE_TOKEN: ${HEARTBUG_SERVICE_TOKEN:-internal-service-secret}
+    HEARTBUG_KB_CACHE: "1"
     MCP_BIND_HOST: "0.0.0.0"
     HEARTBUG_IN_DOCKER: "1"          # for src/shared/logging_config.py
     MCP_ALLOWED_HOSTS: "localhost:*,127.0.0.1:*,verification:*,patient:*,order:*,kb:*,doctor:*,host:*"

@@ -25,6 +25,7 @@ from mcp.server.fastmcp import FastMCP
 
 from src.servers.kb.infrastructure.application import build_kb_service
 from src.shared.logging_config import setup_logging
+from src.servers.kb import semantic_cache
 
 setup_logging()                      # so KB logs reach the shared log file
 mcp = FastMCP("heartbug-kb")
@@ -36,12 +37,19 @@ log = logging.getLogger("heartbug")
 def search_kb(call_id: str, query: str = "", verified: bool = False) -> dict:
     """Answer a general HeartBug product/how-to question from the knowledge base."""
     log.info(f"search_kb GOT query={query!r} verified={verified}")
+
+    cached = semantic_cache.get(query)  # Check cache first
+    if cached:
+        return cached
+    
     result = _service.answer(query, verified)
     if result.found and result.entries:
-        return {"found": True, "event": "kb_answers",
-                "answers": [{"question": e.question, "short_answer": e.short_answer}
-                            for e in result.entries],         # ← list of up to 5
-                "score": round(result.score, 3)}
+        answer = {"found": True, "event": "kb_answers",
+                  "answers": [{"question": e.question, "short_answer": e.short_answer}
+                              for e in result.entries],         # ← list of up to 5
+                  "score": round(result.score, 3)}
+        semantic_cache.put(query, answer)  # Store in cache
+        return answer
     if result.needs_verification:
         return {"found": False, "event": "kb_needs_verify", "score": round(result.score, 3)}
     return {"found": False, "event": "kb_miss", "score": round(result.score, 3)}

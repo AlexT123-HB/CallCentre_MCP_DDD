@@ -1,196 +1,621 @@
-2026-08-12 10:55:41,440 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-08-12 10:55:41,572 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-12 10:55:43,328 [INFO] TRACING on → http://host.docker.internal:5001
-2026-08-12 10:56:59,188 [INFO] [EVAL-CTX-1-67c9] ANI: +61000000
-2026-08-12 10:57:00,706 [INFO] [EVAL-CTX-1-67c9] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-12 10:57:03,689 [INFO] [EVAL-CTX-1-67c9] CALLER: Hi, my name is Jane Doe and my date of birth is July 22nd, 1990. I'm a patient at the Sydney Heart Centre.
-2026-08-12 10:57:03,690 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
-2026-08-12 10:57:04,532 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-08-12 10:57:04,532 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-08-12 10:57:05,429 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
-2026-08-12 10:57:05,430 [INFO] [EVAL-CTX-1-67c9] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
-2026-08-12 10:57:05,463 [INFO] [EVAL-CTX-1-67c9] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
-2026-08-12 10:57:06,362 [INFO] [EVAL-CTX-1-67c9] SYSTEM: Thanks, Jane — could you please confirm which HeartBug clinic is on your record so I can help you further?
-2026-08-12 10:57:08,215 [INFO] [EVAL-CTX-1-67c9] CALLER: It's the Sydney Heart Centre, they've been monitoring my condition and ordered some equipment for me; I think it's with you now.
-2026-08-12 10:57:08,216 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
-2026-08-12 10:57:09,078 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.93,"connect_human":false}
-2026-08-12 10:57:09,079 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.93 connect_human=False
-2026-08-12 10:57:10,433 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.98}
-2026-08-12 10:57:10,433 [INFO] [EVAL-CTX-1-67c9] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
-2026-08-12 10:57:10,449 [INFO] [EVAL-CTX-1-67c9] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
-2026-08-12 10:57:12,519 [INFO] [EVAL-CTX-1-67c9] SYSTEM: Thanks, and just to confirm, which HeartBug clinic is on your record—your registered clinic if you’re a patient, or the clinic you work at if you’re a doctor?
-2026-08-12 10:57:14,473 [INFO] [EVAL-CTX-1-67c9] CALLER: I'm definitely a patient there, so the Sydney Heart Centre is my registered clinic – they've been keeping an eye on me for my irregular heartbeat.
-2026-08-12 10:57:14,474 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
-2026-08-12 10:57:15,386 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.37,"connect_human":false}
-2026-08-12 10:57:15,387 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.37 connect_human=False
-2026-08-12 10:57:16,414 [INFO] [EVAL-CTX-1-67c9] SYSTEM: I understand, and I’m sorry, but I can only help with HeartBug account matters, not clinic or medical details. If you’d like, I can help with your HeartBug account or connect you with the right team.
-2026-08-12 10:57:18,648 [INFO] [EVAL-CTX-1-67c9] CALLER: Okay... that makes sense, I guess. So, can you tell me what's going on with my order? I think it was O1003 that they ordered for me?
-2026-08-12 10:57:18,649 [INFO] [EVAL-CTX-1-67c9] Orchestrator: A mode
-2026-08-12 10:57:19,686 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-12 10:57:19,687 [INFO] [EVAL-CTX-1-67c9] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-12 10:57:20,708 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.98}
-2026-08-12 10:57:20,708 [INFO] [EVAL-CTX-1-67c9] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
-2026-08-12 10:57:20,723 [INFO] [EVAL-CTX-1-67c9] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
-2026-08-12 10:57:21,735 [INFO] [EVAL-CTX-1-67c9] HANDOFF reason=task_failure role=patient
-2026-08-12 10:57:22,573 [INFO] [EVAL-CTX-1-67c9] SYSTEM: I’m going to connect you to our patient support team now because I can’t see the order details here, so please hold for a moment.
-2026-08-12 10:58:00,737 [INFO] [EVAL-PADDR-1-7ca5] ANI: +61412345678
-2026-08-12 10:58:01,679 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Welcome to HeartBug; may I have your full name and date of birth, please?
-2026-08-12 10:58:03,677 [INFO] [EVAL-PADDR-1-7ca5] CALLER: John Smith, my birthday is 15th of March 1985.
-2026-08-12 10:58:03,677 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
-2026-08-12 10:58:04,540 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-08-12 10:58:04,541 [INFO] [EVAL-PADDR-1-7ca5] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-08-12 10:58:05,462 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
-2026-08-12 10:58:05,463 [INFO] [EVAL-PADDR-1-7ca5] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-08-12 10:58:05,495 [INFO] [EVAL-PADDR-1-7ca5] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-08-12 10:58:05,529 [INFO] CACHE MISS patient:P001, query DB
-2026-08-12 10:58:05,530 [INFO] CACHE MISS patient:P001, query DB
-2026-08-12 10:58:05,561 [INFO] CACHE MISS order_by_patient:P001, query DB
-2026-08-12 10:58:06,488 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account; what can I do for you today?
-2026-08-12 10:58:07,496 [INFO] [EVAL-PADDR-1-7ca5] CALLER: I'd like to order two sticker packs, please.
-2026-08-12 10:58:07,497 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
-2026-08-12 10:58:08,846 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"create_order","args":{"item":"sticker packs","quantity":2},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 10:58:08,847 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-12 10:58:09,682 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker packs","quantity":2},"confidence":0.98}
-2026-08-12 10:58:09,683 [INFO] [EVAL-PADDR-1-7ca5] SLOTS domain=order tool=place_order have={'product': 'sticker packs', 'quantity': 2} missing=None
-2026-08-12 10:58:09,705 [INFO] CACHE MISS pending:P001, query DB
-2026-08-12 10:58:10,599 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Absolutely — I can place two sticker packs for you and ship them to 12 Wattle St, Chatswood NSW 2067; please confirm that address is correct, and I’ll put the order through.
-2026-08-12 10:58:11,376 [INFO] [EVAL-PADDR-1-7ca5] CALLER: Yes, that's correct.
-2026-08-12 10:58:11,377 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
-2026-08-12 10:58:12,435 [INFO] CONFIRM llm-raw: {"decision":"yes"}
-2026-08-12 10:58:12,464 [INFO] ORDER PLACE type=patient_order for=patient:P001 by=P001 items=[2x sticker packs] → PO-20260812-0001 (pending)
-2026-08-12 10:58:13,655 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Thanks, your HeartBug order for 2 sticker packs has been submitted for processing under reference PO-20260812-0001, and you’ll receive a confirmation soon.
-2026-08-12 10:58:14,866 [INFO] [EVAL-PADDR-1-7ca5] CALLER: What's my tracking number so I can keep an eye on the delivery?
-2026-08-12 10:58:14,867 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
-2026-08-12 10:58:15,943 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"get_tracking","args":{"order_reference":"PO-20260812-0001"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 10:58:15,945 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-12 10:58:16,759 [INFO] TOOL-SELECT llm-raw: {"tool":"list_orders","args":{},"confidence":0.95}
-2026-08-12 10:58:16,789 [INFO] CACHE MISS order_by_patient:P001, query DB
-2026-08-12 10:58:17,853 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: Your HeartBug HeartBug Monitor was delivered with Australia Post under tracking AP1001AU, and your Replacement Leads are currently in transit with tracking AP1002AU.
-2026-08-12 10:58:19,452 [INFO] [EVAL-PADDR-1-7ca5] CALLER: No, I didn't order leads, I just ordered sticker packs; can you check that for me, please?
-2026-08-12 10:58:19,453 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
-2026-08-12 10:58:20,513 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_history","args":{"query":"sticker packs","limit":10},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 10:58:20,514 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-12 10:58:21,430 [INFO] TOOL-SELECT llm-raw: {"tool":"list_orders","args":{},"confidence":0.98}
-2026-08-12 10:58:21,458 [INFO] CACHE HIT order_by_patient:P001
-2026-08-12 10:58:21,460 [INFO] CACHE HIT order:O1001
-2026-08-12 10:58:21,460 [INFO] CACHE HIT order:O1002
-2026-08-12 10:58:22,665 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: I’m sorry, but I only see a HeartBug Monitor that was delivered and Replacement Leads that are in transit, and I don’t see any sticker pack order on your account. If you’d like, I can help you check with the team or look into placing the sticker pack order again.
-2026-08-12 10:58:24,459 [INFO] [EVAL-PADDR-1-7ca5] CALLER: No need to look further, I'll just place the order again please; I'd like two sticker packs this time.
-2026-08-12 10:58:24,460 [INFO] [EVAL-PADDR-1-7ca5] Orchestrator: A mode
-2026-08-12 10:58:26,146 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"place_order","args":{"item":"sticker packs","quantity":2},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 10:58:26,147 [INFO] [EVAL-PADDR-1-7ca5] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-12 10:58:27,925 [INFO] TOOL-SELECT llm-raw: {"tool":"place_order","args":{"product":"sticker packs","quantity":2},"confidence":0.98}
-2026-08-12 10:58:27,926 [INFO] [EVAL-PADDR-1-7ca5] SLOTS domain=order tool=place_order have={'product': 'sticker packs', 'quantity': 2} missing=None
-2026-08-12 10:58:27,958 [INFO] CACHE HIT pending:P001
-2026-08-12 10:58:29,114 [INFO] [EVAL-PADDR-1-7ca5] SYSTEM: You already have a HeartBug order for 2 sticker packs awaiting approval under reference PO-20260812-0001, so I can’t submit a new one until that’s approved; if you’d like, I can help with anything else on your HeartBug account or put you through to the team.
-2026-08-12 10:58:43,086 [INFO] [EVAL-CROSS-1-38e2] ANI: +61498765432
-2026-08-12 10:58:43,986 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-12 10:58:47,349 [INFO] [EVAL-CROSS-1-38e2] CALLER: Yes, it's me, Jane Doe, born July 22, 1990. Now, can you tell me about my order, O1002? I'm trying to get a status update on the device that was supposed to arrive last week.
-2026-08-12 10:58:47,349 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
-2026-08-12 10:58:48,262 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-12 10:58:48,263 [INFO] [EVAL-CROSS-1-38e2] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-12 10:58:49,288 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
-2026-08-12 10:58:49,289 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
-2026-08-12 10:58:49,324 [INFO] [EVAL-CROSS-1-38e2] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
-2026-08-12 10:58:49,356 [INFO] CACHE MISS patient:P002, query DB
-2026-08-12 10:58:49,357 [INFO] CACHE MISS patient:P002, query DB
-2026-08-12 10:58:49,386 [INFO] CACHE HIT order_by_patient:P002
-2026-08-12 10:58:49,387 [INFO] CACHE HIT order:O1003
-2026-08-12 10:58:49,387 [INFO] CACHE HIT order:O1004
-2026-08-12 10:58:49,388 [INFO] CACHE HIT order:O1005
-2026-08-12 10:58:50,310 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: Thanks, Jane — you’re verified, and I’m here to help with your HeartBug account.
-2026-08-12 10:58:53,521 [INFO] [EVAL-CROSS-1-38e2] CALLER: Great, thank you! Now, can we please discuss order O1002? My husband called me at work this morning, and he said it had been shipped out already... but our home address says "not delivered" on the tracking info online. What's going on with that order?
-2026-08-12 10:58:53,521 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
-2026-08-12 10:58:54,610 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 10:58:54,611 [INFO] [EVAL-CROSS-1-38e2] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-12 10:58:55,720 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.98}
-2026-08-12 10:58:55,721 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
-2026-08-12 10:58:55,762 [INFO] CACHE HIT order:O1002
-2026-08-12 10:58:56,732 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: I’m sorry, but I can’t find order O1002 in HeartBug right now, so could you please double-check the order number for me? If you’d like, I can also help with something else on your account or connect you with the team.
-2026-08-12 10:58:59,581 [INFO] [EVAL-CROSS-1-38e2] CALLER: That's ridiculous! I'm positive it was O1002. Can't you just check again? It's a very important device... and I need to get it as soon as possible, so please, just double-check for me.
-2026-08-12 10:58:59,582 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
-2026-08-12 10:59:00,571 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 10:59:00,572 [INFO] [EVAL-CROSS-1-38e2] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-12 10:59:01,473 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.98}
-2026-08-12 10:59:01,474 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
-2026-08-12 10:59:01,505 [INFO] CACHE HIT order:O1002
-2026-08-12 10:59:02,323 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: I understand this is frustrating, but I still can’t find order O1002 in HeartBug, so could you please double-check the order number? If you’d like, I can help with something else on your HeartBug account or connect you with the team.
-2026-08-12 10:59:05,078 [INFO] [EVAL-CROSS-1-38e2] CALLER: That's not what my husband told me! He definitely said it was O1002... Can't you guys just check the shipping records or something? It has to be in there somewhere. Why wouldn't it be delivered yet?
-2026-08-12 10:59:05,078 [INFO] [EVAL-CROSS-1-38e2] Orchestrator: A mode
-2026-08-12 10:59:06,184 [INFO] PLANNER llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order_status","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 10:59:06,186 [INFO] [EVAL-CROSS-1-38e2] PLAN allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order')]
-2026-08-12 10:59:07,207 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_order","args":{"order_id":"O1002"},"confidence":0.98}
-2026-08-12 10:59:07,207 [INFO] [EVAL-CROSS-1-38e2] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
-2026-08-12 10:59:07,235 [INFO] CACHE HIT order:O1002
-2026-08-12 10:59:08,164 [INFO] [EVAL-CROSS-1-38e2] HANDOFF reason=task_failure role=patient
-2026-08-12 10:59:09,051 [INFO] [EVAL-CROSS-1-38e2] SYSTEM: I’m sorry for the frustration, and I can’t check shipping records from here, but I’m connecting you now to our patient support team, so please hold.
-2026-08-12 16:06:36,734 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-08-12 16:06:36,850 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-12 16:08:44,798 [INFO] TRACING on → http://host.docker.internal:5001
-2026-08-12 16:10:18,196 [INFO] [EVAL-KB-1-1a3a] ANI: +61498765432
-2026-08-12 16:10:20,639 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Welcome to HeartBug, and may I please have your full name and date of birth?
-2026-08-12 16:10:23,241 [INFO] [EVAL-KB-1-1a3a] CALLER: I'm just calling for some general information on how the app works, can you help me with a question about recording while my screen is off?
-2026-08-12 16:10:23,242 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
-2026-08-12 16:10:24,310 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
-2026-08-12 16:10:24,311 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
-2026-08-12 16:10:25,155 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"general information on how the app works recording while my screen is off"},"confidence":0.96}
-2026-08-12 16:10:25,177 [INFO] search_kb GOT query='general information on how the app works recording while my screen is off' verified=False
-2026-08-12 16:10:25,769 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.843
-2026-08-12 16:10:25,771 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_142' matched_q='How do I know a recording has started?' score=0.758
-2026-08-12 16:10:25,771 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.752
-2026-08-12 16:10:25,772 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.723
-2026-08-12 16:10:25,773 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_4' matched_q='Does HeartBug record my voice or conversations?' score=0.684
-2026-08-12 16:10:26,868 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — manual recordings in HeartBug keep running even if your screen is off or the app is in the background, and they’ll also work without Wi‑Fi, in airplane mode, or while charging.
-2026-08-12 16:10:29,072 [INFO] [EVAL-KB-1-1a3a] CALLER: That's helpful to know, but what about if I'm using it on my smartwatch - will the manual recording still keep going when I'm not actively looking at it?
-2026-08-12 16:10:29,073 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
-2026-08-12 16:10:30,044 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-12 16:10:30,045 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
-2026-08-12 16:10:31,376 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Will manual recording keep going on a smartwatch when I'm not actively looking at it?"},"confidence":0.95}
-2026-08-12 16:10:31,408 [INFO] search_kb GOT query="Will manual recording keep going on a smartwatch when I'm not actively looking at it?" verified=False
-2026-08-12 16:10:31,532 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.784
-2026-08-12 16:10:31,533 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.746
-2026-08-12 16:10:31,534 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.737
-2026-08-12 16:10:31,534 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.712
-2026-08-12 16:10:31,535 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.699
-2026-08-12 16:10:32,460 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — HeartBug can keep recording even when you’re not actively looking at it, as long as it’s still attached, and if you’d like I can help with anything else about how it works.
-2026-08-12 16:10:33,497 [INFO] [EVAL-KB-1-1a3a] CALLER: Can I record while my phone is in airplane mode?
-2026-08-12 16:10:33,498 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
-2026-08-12 16:10:34,241 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.99,"connect_human":false}
-2026-08-12 16:10:34,242 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.99 connect_human=False
-2026-08-12 16:10:35,073 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my phone is in airplane mode?"},"confidence":0.98}
-2026-08-12 16:10:35,102 [INFO] search_kb GOT query='Can I record while my phone is in airplane mode?' verified=False
-2026-08-12 16:10:35,198 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.901
-2026-08-12 16:10:35,199 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.764
-2026-08-12 16:10:35,200 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.744
-2026-08-12 16:10:35,200 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.718
-2026-08-12 16:10:35,201 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_4' matched_q='Does HeartBug record my voice or conversations?' score=0.713
-2026-08-12 16:10:37,118 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — manual recordings in HeartBug work in airplane mode, and they’ll keep running even with no Wi‑Fi or internet.
-2026-08-12 16:10:38,128 [INFO] [EVAL-KB-1-1a3a] CALLER: What's the price of ten kilos of mango?
-2026-08-12 16:10:38,129 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
-2026-08-12 16:10:40,258 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
-2026-08-12 16:10:40,260 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
-2026-08-12 16:10:41,144 [INFO] [EVAL-KB-1-1a3a] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can help with your HeartBug account or put you through to the right team.
-2026-08-12 16:10:43,529 [INFO] [EVAL-KB-1-1a3a] CALLER: That's not really what I'm looking for, so I'll just ask another app-related question - do you have a user guide or tutorial on setting up the ECG feature in HeartBug?
-2026-08-12 16:10:43,530 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
-2026-08-12 16:10:45,143 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
-2026-08-12 16:10:45,144 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
-2026-08-12 16:10:46,078 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"user guide or tutorial on setting up the ECG feature in HeartBug"},"confidence":0.98}
-2026-08-12 16:10:46,117 [INFO] search_kb GOT query='user guide or tutorial on setting up the ECG feature in HeartBug' verified=False
-2026-08-12 16:10:46,294 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_93' matched_q='How does HeartBug record when I have symptoms?' score=0.763
-2026-08-12 16:10:46,295 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_94' matched_q='What is a manual recording?' score=0.760
-2026-08-12 16:10:46,296 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_82' matched_q='How does HeartBug detect irregular beats?' score=0.752
-2026-08-12 16:10:46,296 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_95' matched_q='What happens when I make a recording?' score=0.750
-2026-08-12 16:10:46,297 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_106' matched_q='What ECG technology does HeartBug use?' score=0.747
-2026-08-12 16:10:47,206 [INFO] [EVAL-KB-1-1a3a] SYSTEM: I don’t have a setup guide or tutorial here, but I can help with HeartBug questions about how the ECG works, or connect you with the right team if you’d like.
-2026-08-12 16:10:48,468 [INFO] [EVAL-KB-1-1a3a] CALLER: Does it still work if my phone is completely dead and not charging at all?
-2026-08-12 16:10:48,468 [INFO] [EVAL-KB-1-1a3a] Orchestrator: A mode
-2026-08-12 16:10:49,329 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":false}
-2026-08-12 16:10:49,330 [INFO] [EVAL-KB-1-1a3a] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=False
-2026-08-12 16:10:50,279 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work if my phone is completely dead and not charging at all?"},"confidence":0.96}
-2026-08-12 16:10:50,305 [INFO] search_kb GOT query='Does HeartBug still work if my phone is completely dead and not charging at all?' verified=False
-2026-08-12 16:10:50,450 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_113' matched_q='How do I reconnect HeartBug to the app?' score=0.788
-2026-08-12 16:10:50,450 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.772
-2026-08-12 16:10:50,451 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_27' matched_q='What happens if the HeartBug battery runs out?' score=0.771
-2026-08-12 16:10:50,452 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.765
-2026-08-12 16:10:50,452 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_91' matched_q='Why isn’t HeartBug connecting to Bluetooth?' score=0.761
-2026-08-12 16:10:52,672 [INFO] [EVAL-KB-1-1a3a] SYSTEM: Yes — HeartBug can keep recording even if your phone is dead or not with you, and it will sync once the phone is back on and in Bluetooth range.
+2026-08-13 09:05:34,896 [INFO] [EVAL-KB-1-6aa8] ANI: +61498765432
+2026-08-13 09:05:36,591 [INFO] [EVAL-KB-1-6aa8] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth to get started?
+2026-08-13 09:05:39,122 [INFO] [EVAL-KB-1-6aa8] CALLER: What are the requirements for recording an ECG while my screen is turned off, like when I'm in bed at night?
+2026-08-13 09:05:39,122 [INFO] [EVAL-KB-1-6aa8] Orchestrator: B mode
+2026-08-13 09:05:40,057 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":false}
+2026-08-13 09:05:40,058 [INFO] [EVAL-KB-1-6aa8] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=False
+2026-08-13 09:05:41,033 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"requirements for recording an ECG while screen is turned off in bed at night"},"confidence":0.96}
+2026-08-13 09:05:41,086 [INFO] search_kb GOT query='requirements for recording an ECG while screen is turned off in bed at night' verified=False
+2026-08-13 09:05:41,601 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.708
+2026-08-13 09:05:41,603 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_94' matched_q='What is a manual recording?' score=0.686
+2026-08-13 09:05:41,603 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_110' matched_q='Can recordings be lost?' score=0.680
+2026-08-13 09:05:41,604 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_95' matched_q='What happens when I make a recording?' score=0.657
+2026-08-13 09:05:41,605 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.655
+2026-08-13 09:05:42,354 [INFO] [EVAL-KB-1-6aa8] SYSTEM: Yes — manual HeartBug recordings keep running even if your screen is off or the app is in the background, and they also work while charging, in airplane mode, silent mode, or without Wi‑Fi or internet.
+2026-08-13 09:05:44,029 [INFO] [EVAL-KB-1-6aa8] CALLER: Does the device still track my heart rate data and send it to my doctor's portal when I'm in airplane mode?
+2026-08-13 09:05:44,029 [INFO] [EVAL-KB-1-6aa8] Orchestrator: B mode
+2026-08-13 09:05:44,737 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-08-13 09:05:44,739 [INFO] [EVAL-KB-1-6aa8] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-08-13 09:05:45,558 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_by_phone","args":{"phone":null},"confidence":0.12}
+2026-08-13 09:05:46,196 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_by_phone","args":{"phone":null},"confidence":0.12}
+2026-08-13 09:05:46,196 [INFO] [EVAL-KB-1-6aa8] SLOTS domain=verification tool=verify_identity have={} missing=name
+2026-08-13 09:05:47,144 [INFO] [EVAL-KB-1-6aa8] SYSTEM: I can help with that, but first I need the full name on the HeartBug account, and then I can look into your device questions or connect you with the team if needed.
+2026-08-13 09:05:48,784 [INFO] [EVAL-KB-1-6aa8] CALLER: Can I use the HeartBug app while my phone is connected to a different Bluetooth device, like my car stereo?
+2026-08-13 09:05:48,784 [INFO] [EVAL-KB-1-6aa8] Orchestrator: B mode
+2026-08-13 09:05:49,683 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":null,"dob":null,"clinic":null},"confidence":0.18}
+2026-08-13 09:05:49,683 [INFO] [EVAL-KB-1-6aa8] SLOTS domain=verification tool=verify_identity have={} missing=name
+2026-08-13 09:05:50,502 [INFO] [EVAL-KB-1-6aa8] SYSTEM: I can help with that, but I’ll need the full name on the HeartBug account first, please.
+2026-08-13 09:05:51,394 [INFO] [EVAL-KB-1-6aa8] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:05:51,394 [INFO] [EVAL-KB-1-6aa8] Orchestrator: B mode
+2026-08-13 09:05:52,402 [INFO] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":null,"dob":null,"clinic":null},"confidence":0.12}
+2026-08-13 09:05:52,402 [INFO] [EVAL-KB-1-6aa8] SLOTS domain=verification tool=verify_identity have={} missing=name
+2026-08-13 09:05:53,164 [INFO] [EVAL-KB-1-6aa8] HANDOFF reason=verification_stuck role=patient
+2026-08-13 09:05:53,875 [INFO] [EVAL-KB-1-6aa8] SYSTEM: I’ll connect you now to our patient support team, and please hold while I put you through.
+2026-08-13 09:06:16,503 [INFO] [EVAL-KB-1-3496] ANI: +61498765432
+2026-08-13 09:06:17,265 [INFO] [EVAL-KB-1-3496] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-08-13 09:06:18,054 [INFO] [EVAL-KB-1-3496] CALLER: Can I record while my screen is off?
+2026-08-13 09:06:18,055 [INFO] [EVAL-KB-1-3496] Orchestrator: B mode
+2026-08-13 09:06:18,993 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:06:18,994 [INFO] [EVAL-KB-1-3496] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:06:19,744 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.96}
+2026-08-13 09:06:19,800 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:06:20,194 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
+2026-08-13 09:06:20,195 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
+2026-08-13 09:06:20,197 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
+2026-08-13 09:06:20,198 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
+2026-08-13 09:06:20,199 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
+2026-08-13 09:06:21,121 [INFO] [EVAL-KB-1-3496] SYSTEM: Yes — if you start a manual recording, HeartBug will keep recording even when your screen is off or the app is in the background.
+2026-08-13 09:06:22,004 [INFO] [EVAL-KB-1-3496] CALLER: Does it still work in airplane mode?
+2026-08-13 09:06:22,004 [INFO] [EVAL-KB-1-3496] Orchestrator: B mode
+2026-08-13 09:06:22,717 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:06:22,719 [INFO] [EVAL-KB-1-3496] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:06:23,476 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode?"},"confidence":0.96}
+2026-08-13 09:06:23,520 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode?' verified=False
+2026-08-13 09:06:23,661 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.784
+2026-08-13 09:06:23,662 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_92' matched_q='Does HeartBug sync directly with hospitals?' score=0.764
+2026-08-13 09:06:23,662 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_130' matched_q='Is HeartBug safe through airport security?' score=0.754
+2026-08-13 09:06:23,663 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.748
+2026-08-13 09:06:23,664 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_136' matched_q='Do I need to keep the app open?' score=0.744
+2026-08-13 09:06:25,013 [INFO] [EVAL-KB-1-3496] SYSTEM: Yes — HeartBug can keep recording without your phone nearby, and recordings will sync once you’re back in Bluetooth range, though I don’t have a specific answer for airplane mode itself.
+2026-08-13 09:06:26,036 [INFO] [EVAL-KB-1-3496] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:06:26,036 [INFO] [EVAL-KB-1-3496] Orchestrator: B mode
+2026-08-13 09:06:26,752 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.98,"connect_human":false}
+2026-08-13 09:06:26,753 [INFO] [EVAL-KB-1-3496] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.98 connect_human=False
+2026-08-13 09:06:27,617 [INFO] [EVAL-KB-1-3496] SYSTEM: I’m sorry, but I only handle HeartBug account matters and I can’t help with mango pricing; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-13 09:06:28,812 [INFO] [EVAL-KB-1-3496] CALLER: Can I sync my data from an old phone to a new one?
+2026-08-13 09:06:28,813 [INFO] [EVAL-KB-1-3496] Orchestrator: B mode
+2026-08-13 09:06:29,619 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:06:29,620 [INFO] [EVAL-KB-1-3496] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:06:30,393 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I sync my data from an old phone to a new one?"},"confidence":0.98}
+2026-08-13 09:06:30,420 [INFO] search_kb GOT query='Can I sync my data from an old phone to a new one?' verified=False
+2026-08-13 09:06:30,622 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_1' matched_q='What happens if I use a new phone with HeartBug?' score=0.703
+2026-08-13 09:06:30,623 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.667
+2026-08-13 09:06:30,624 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.636
+2026-08-13 09:06:30,624 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_83' matched_q='How long does HeartBug store data before uploading?' score=0.602
+2026-08-13 09:06:30,625 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_110' matched_q='Can recordings be lost?' score=0.601
+2026-08-13 09:06:31,667 [INFO] [EVAL-KB-1-3496] SYSTEM: Yes — if you’re changing phones, unpair HeartBug or turn off Bluetooth on the old phone, install the app on the new one, log in with your mobile number, and keep Bluetooth and internet on.
+2026-08-13 09:06:32,952 [INFO] [EVAL-KB-1-3496] CALLER: How do I delete an ECG recording that's not needed anymore?
+2026-08-13 09:06:32,952 [INFO] [EVAL-KB-1-3496] Orchestrator: B mode
+2026-08-13 09:06:33,675 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 09:06:33,676 [INFO] [EVAL-KB-1-3496] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 09:06:34,381 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"How do I delete an ECG recording that's not needed anymore?"},"confidence":0.98}
+2026-08-13 09:06:34,409 [INFO] search_kb GOT query="How do I delete an ECG recording that's not needed anymore?" verified=False
+2026-08-13 09:06:34,575 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_9' matched_q='Can I request my data to be deleted?' score=0.711
+2026-08-13 09:06:34,576 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_13' matched_q='Is my data deleted after monitoring ends?' score=0.710
+2026-08-13 09:06:34,577 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.703
+2026-08-13 09:06:34,577 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_110' matched_q='Can recordings be lost?' score=0.691
+2026-08-13 09:06:34,578 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_94' matched_q='What is a manual recording?' score=0.675
+2026-08-13 09:06:35,663 [INFO] [EVAL-KB-1-3496] SYSTEM: You can’t usually delete an ECG yourself, and HeartBug keeps recordings securely for medical-record reasons, but if you want a deletion request you’ll need to send it in writing to patientcare@heartbug.com.au.
+2026-08-13 09:06:37,155 [INFO] [EVAL-KB-1-3496] CALLER: Why do some of my daily activity summaries show "unknown device" instead of the actual device used?
+2026-08-13 09:06:37,156 [INFO] [EVAL-KB-1-3496] Orchestrator: B mode
+2026-08-13 09:06:38,004 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":false}
+2026-08-13 09:06:38,005 [INFO] [EVAL-KB-1-3496] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=False
+2026-08-13 09:06:38,949 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Why do some of my daily activity summaries show \"unknown device\" instead of the actual device used?"},"confidence":0.94}
+2026-08-13 09:06:38,990 [INFO] search_kb GOT query='Why do some of my daily activity summaries show "unknown device" instead of the actual device used?' verified=False
+2026-08-13 09:06:39,152 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_26' matched_q='What if my phone loses connection during monitoring?' score=0.637
+2026-08-13 09:06:39,153 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.635
+2026-08-13 09:06:39,154 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.627
+2026-08-13 09:06:39,154 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_150' matched_q='What if the device is not updating?' score=0.618
+2026-08-13 09:06:39,155 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.617
+2026-08-13 09:06:40,165 [INFO] [EVAL-KB-1-3496] SYSTEM: I’m sorry, but I don’t have a specific answer for why a daily summary may show “unknown device”; if you’d like, I can help you check that your HeartBug connection is working or put you through to patient care.
+2026-08-13 09:14:53,469 [INFO] [EVAL-KB-1-6077] ANI: +61498765432
+2026-08-13 09:14:54,960 [INFO] [EVAL-KB-1-6077] SYSTEM: Hello, welcome to HeartBug—could I please have your full name and date of birth?
+2026-08-13 09:14:57,707 [INFO] [EVAL-KB-1-6077] CALLER: I'm just looking for some general information about the app and device, so I don't need that. Can I record while my screen is off?
+2026-08-13 09:14:57,707 [INFO] [EVAL-KB-1-6077] Orchestrator: B mode
+2026-08-13 09:14:58,594 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:14:58,594 [INFO] [EVAL-KB-1-6077] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:14:59,633 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.97}
+2026-08-13 09:14:59,670 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:15:00,280 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
+2026-08-13 09:15:00,282 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
+2026-08-13 09:15:00,283 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
+2026-08-13 09:15:00,284 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
+2026-08-13 09:15:00,285 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
+2026-08-13 09:15:01,243 [INFO] [EVAL-KB-1-6077] SYSTEM: Yes—manual recordings keep running even if your screen is off or the app is in the background.
+2026-08-13 09:15:02,679 [INFO] [EVAL-KB-1-6077] CALLER: Does it still work in airplane mode, or do I have to disable that too for recordings and Bluetooth connectivity?
+2026-08-13 09:15:02,679 [INFO] [EVAL-KB-1-6077] Orchestrator: B mode
+2026-08-13 09:15:03,581 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:15:03,582 [INFO] [EVAL-KB-1-6077] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:15:04,501 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does it still work in airplane mode, or do I have to disable that too for recordings and Bluetooth connectivity?"},"confidence":0.96}
+2026-08-13 09:15:04,526 [INFO] search_kb GOT query='Does it still work in airplane mode, or do I have to disable that too for recordings and Bluetooth connectivity?' verified=False
+2026-08-13 09:15:04,661 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.757
+2026-08-13 09:15:04,662 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.720
+2026-08-13 09:15:04,662 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.696
+2026-08-13 09:15:04,663 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.684
+2026-08-13 09:15:04,664 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.682
+2026-08-13 09:15:05,621 [INFO] [EVAL-KB-1-6077] SYSTEM: Yes—HeartBug manual recordings work in airplane mode, and the device still records, but Bluetooth needs to be on for syncing to your phone.
+2026-08-13 09:15:07,556 [INFO] [EVAL-KB-1-6077] CALLER: I'm trying to plan a mango smoothie party, what's the price of ten kilos of mango if I order from their wholesale supplier?
+2026-08-13 09:15:07,556 [INFO] [EVAL-KB-1-6077] Orchestrator: B mode
+2026-08-13 09:15:08,429 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-13 09:15:08,430 [INFO] [EVAL-KB-1-6077] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-13 09:15:09,580 [INFO] [EVAL-KB-1-6077] SYSTEM: I’m sorry, but I can only help with HeartBug account matters, so I don’t have wholesale mango pricing. If you’d like, I can help with anything on your HeartBug account or put you through to the right team.
+2026-08-13 09:15:11,506 [INFO] [EVAL-KB-1-6077] CALLER: I see—no issue here, I was just curious. Can you tell me how to enable manual alerts for irregular heart rhythms in the app?
+2026-08-13 09:15:11,506 [INFO] [EVAL-KB-1-6077] Orchestrator: B mode
+2026-08-13 09:15:12,380 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:15:12,381 [INFO] [EVAL-KB-1-6077] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:15:13,308 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"How to enable manual alerts for irregular heart rhythms in the app"},"confidence":0.97}
+2026-08-13 09:15:13,338 [INFO] search_kb GOT query='How to enable manual alerts for irregular heart rhythms in the app' verified=False
+2026-08-13 09:15:13,445 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_93' matched_q='How does HeartBug record when I have symptoms?' score=0.772
+2026-08-13 09:15:13,446 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_82' matched_q='How does HeartBug detect irregular beats?' score=0.732
+2026-08-13 09:15:13,446 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_19' matched_q='How do I record symptoms with HeartBug?' score=0.727
+2026-08-13 09:15:13,447 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_94' matched_q='What is a manual recording?' score=0.705
+2026-08-13 09:15:13,448 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.705
+2026-08-13 09:15:14,649 [INFO] [EVAL-KB-1-6077] SYSTEM: HeartBug doesn’t have manual alerts to turn on, but it does automatically watch for irregular rhythms and save an ECG when it detects something unusual.
+2026-08-13 09:15:15,971 [INFO] [EVAL-KB-1-6077] CALLER: Is there a way to view or download those saved ECGs from previous sessions?
+2026-08-13 09:15:15,972 [INFO] [EVAL-KB-1-6077] Orchestrator: B mode
+2026-08-13 09:15:16,986 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.91,"connect_human":false}
+2026-08-13 09:15:16,987 [INFO] [EVAL-KB-1-6077] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.91 connect_human=False
+2026-08-13 09:15:17,972 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Is there a way to view or download saved ECGs from previous sessions?"},"confidence":0.96}
+2026-08-13 09:15:18,002 [INFO] search_kb GOT query='Is there a way to view or download saved ECGs from previous sessions?' verified=False
+2026-08-13 09:15:18,190 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.710
+2026-08-13 09:15:18,191 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_110' matched_q='Can recordings be lost?' score=0.699
+2026-08-13 09:15:18,192 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_1' matched_q='Is my HeartBug data private?' score=0.695
+2026-08-13 09:15:18,193 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_48' matched_q='Can I see my results in the app?' score=0.692
+2026-08-13 09:15:18,193 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_94' matched_q='What is a manual recording?' score=0.683
+2026-08-13 09:15:19,237 [INFO] [EVAL-KB-1-6077] SYSTEM: You can’t view reports or recordings in the HeartBug app, and your final report is sent to your doctor at the end of monitoring.
+2026-08-13 09:15:20,964 [INFO] [EVAL-KB-1-6077] CALLER: What's the procedure if I need a new device or sensor, do I just reorder on the website or contact someone directly?
+2026-08-13 09:15:20,965 [INFO] [EVAL-KB-1-6077] Orchestrator: B mode
+2026-08-13 09:15:21,774 [INFO] ROUTER llm-raw: {"domain":"verification","confidence":0.97,"connect_human":false}
+2026-08-13 09:15:21,774 [INFO] [EVAL-KB-1-6077] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.97 connect_human=False
+2026-08-13 09:15:22,922 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_by_phone","args":{"phone":null},"confidence":0.12}
+2026-08-13 09:15:23,844 [INFO] TOOL-SELECT llm-raw: {"tool":"lookup_by_phone","args":{"phone":null},"confidence":0.12}
+2026-08-13 09:15:23,845 [INFO] [EVAL-KB-1-6077] SLOTS domain=verification tool=verify_identity have={} missing=name
+2026-08-13 09:15:24,787 [INFO] [EVAL-KB-1-6077] SYSTEM: Absolutely — before I can help with the next step on your HeartBug account, could you please tell me the full name on the account?
+2026-08-13 09:22:29,747 [INFO] [EVAL-KB-1-cb0b] ANI: +61498765432
+2026-08-13 09:22:30,934 [INFO] [EVAL-KB-1-cb0b] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
+2026-08-13 09:22:33,127 [INFO] [EVAL-KB-1-cb0b] CALLER: I don't have my information ready, can I just ask about some general usage questions instead?
+2026-08-13 09:22:33,127 [INFO] [EVAL-KB-1-cb0b] Orchestrator: B mode
+2026-08-13 09:22:34,351 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
+2026-08-13 09:22:34,353 [INFO] [EVAL-KB-1-cb0b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
+2026-08-13 09:22:35,052 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"general usage questions"},"confidence":0.94}
+2026-08-13 09:22:35,105 [INFO] search_kb GOT query='general usage questions' verified=False
+2026-08-13 09:22:35,635 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_7' matched_q='Who typically uses the HeartBug device?' score=0.568
+2026-08-13 09:22:35,637 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.540
+2026-08-13 09:22:35,637 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_55' matched_q='Who should avoid using HeartBug?' score=0.533
+2026-08-13 09:22:35,638 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_12' matched_q='Who do I contact for medical concerns or symptoms?' score=0.533
+2026-08-13 09:22:35,639 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_71' matched_q='When should I change my patches?' score=0.531
+2026-08-13 09:22:36,492 [INFO] [EVAL-KB-1-cb0b] SYSTEM: Of course — HeartBug can help with general usage questions, and I can also tell you that it’s used by people of all ages for longer-term heart rhythm monitoring, especially when symptoms come and go.
+2026-08-13 09:22:38,026 [INFO] [EVAL-KB-1-cb0b] CALLER: Can I record while my screen is off? I'd like to track things at night without being bothered.
+2026-08-13 09:22:38,026 [INFO] [EVAL-KB-1-cb0b] Orchestrator: B mode
+2026-08-13 09:22:38,921 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 09:22:38,922 [INFO] [EVAL-KB-1-cb0b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 09:22:39,948 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off? I'd like to track things at night without being bothered."},"confidence":0.96}
+2026-08-13 09:22:39,971 [INFO] search_kb GOT query="Can I record while my screen is off? I'd like to track things at night without being bothered." verified=False
+2026-08-13 09:22:40,110 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.832
+2026-08-13 09:22:40,111 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.728
+2026-08-13 09:22:40,112 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.716
+2026-08-13 09:22:40,112 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.701
+2026-08-13 09:22:40,113 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.691
+2026-08-13 09:22:40,870 [INFO] [EVAL-KB-1-cb0b] SYSTEM: Yes — manual recordings keep running even if your screen is off or the app is in the background, so you can track at night without being bothered.
+2026-08-13 09:22:42,465 [INFO] [EVAL-KB-1-cb0b] CALLER: Does it still work in airplane mode, or do I need Wi-Fi for it to sync and send data?
+2026-08-13 09:22:42,465 [INFO] [EVAL-KB-1-cb0b] Orchestrator: B mode
+2026-08-13 09:22:43,284 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:22:43,285 [INFO] [EVAL-KB-1-cb0b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:22:44,168 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode, or does it need Wi-Fi to sync and send data?"},"confidence":0.98}
+2026-08-13 09:22:44,198 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode, or does it need Wi-Fi to sync and send data?' verified=False
+2026-08-13 09:22:44,331 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.871
+2026-08-13 09:22:44,332 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_126' matched_q='Can Wi-Fi or mobile signals affect HeartBug?' score=0.832
+2026-08-13 09:22:44,332 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_42' matched_q='Does the HeartBug app track my location or activities?' score=0.780
+2026-08-13 09:22:44,333 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.779
+2026-08-13 09:22:44,333 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.774
+2026-08-13 09:22:45,260 [INFO] [EVAL-KB-1-cb0b] SYSTEM: Yes — HeartBug works without Wi‑Fi or mobile signals, and it only needs Bluetooth to sync to your phone; your phone just needs internet later to upload the recordings automatically when you reconnect.
+2026-08-13 09:22:46,302 [INFO] [EVAL-KB-1-cb0b] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:22:46,302 [INFO] [EVAL-KB-1-cb0b] Orchestrator: B mode
+2026-08-13 09:22:47,137 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-13 09:22:47,138 [INFO] [EVAL-KB-1-cb0b] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-13 09:22:48,623 [INFO] [EVAL-KB-1-cb0b] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-13 09:22:50,499 [INFO] [EVAL-KB-1-cb0b] CALLER: That's fine, it's just a random question, anyway - never mind about that! What kind of batteries does the device use?
+2026-08-13 09:22:50,500 [INFO] [EVAL-KB-1-cb0b] Orchestrator: B mode
+2026-08-13 09:22:51,540 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:22:51,541 [INFO] [EVAL-KB-1-cb0b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:22:53,061 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"What kind of batteries does the HeartBug device use?"},"confidence":0.98}
+2026-08-13 09:22:53,103 [INFO] search_kb GOT query='What kind of batteries does the HeartBug device use?' verified=False
+2026-08-13 09:22:53,264 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_20' matched_q='What kind of patches does HeartBug use?' score=0.844
+2026-08-13 09:22:53,264 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_106' matched_q='What ECG technology does HeartBug use?' score=0.835
+2026-08-13 09:22:53,265 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_27' matched_q='What happens if the HeartBug battery runs out?' score=0.822
+2026-08-13 09:22:53,266 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_2' matched_q='What does the HeartBug device do?' score=0.795
+2026-08-13 09:22:53,266 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_107' matched_q='Do the lights on HeartBug show battery status?' score=0.788
+2026-08-13 09:22:54,350 [INFO] [EVAL-KB-1-cb0b] SYSTEM: HeartBug isn’t rechargeable and is designed to last the whole monitoring period, over 28 days, and if you ever see a low-battery alert, please contact patient care right away.
+2026-08-13 09:22:55,927 [INFO] [EVAL-KB-1-cb0b] CALLER: Wait, what happens after the 28 days are up? Do I need to get it replaced or something?
+2026-08-13 09:22:55,927 [INFO] [EVAL-KB-1-cb0b] Orchestrator: B mode
+2026-08-13 09:22:56,865 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.94,"connect_human":false}
+2026-08-13 09:22:56,866 [INFO] [EVAL-KB-1-cb0b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.94 connect_human=False
+2026-08-13 09:22:57,992 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"What happens after the 28 days are up? Do I need to get it replaced or something?"},"confidence":0.96}
+2026-08-13 09:22:58,024 [INFO] search_kb GOT query='What happens after the 28 days are up? Do I need to get it replaced or something?' verified=False
+2026-08-13 09:22:58,162 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_29' matched_q='What happens at the end of my monitoring period?' score=0.683
+2026-08-13 09:22:58,162 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_32' matched_q='What if I return HeartBug late?' score=0.670
+2026-08-13 09:22:58,163 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_119' matched_q='What if I forget to wear the HeartBug device?' score=0.669
+2026-08-13 09:22:58,163 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_156' matched_q='What if I wear a patch backward or upside down?' score=0.648
+2026-08-13 09:22:58,164 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_108' matched_q='What should I do if the light turns red?' score=0.647
+2026-08-13 09:22:59,084 [INFO] [EVAL-KB-1-cb0b] SYSTEM: When your monitoring period ends, just place HeartBug in the prepaid return envelope and post it, and then your recordings will be reviewed and a report sent to your doctor.
+2026-08-13 09:27:32,422 [INFO] [EVAL-KB-1-1876] ANI: +61498765432
+2026-08-13 09:27:33,383 [INFO] [EVAL-KB-1-1876] SYSTEM: Welcome to HeartBug—could I have your full name and date of birth, please?
+2026-08-13 09:27:35,050 [INFO] [EVAL-KB-1-1876] CALLER: No, I just need some general info on how the app works with my device. Can I record while my screen is off?
+2026-08-13 09:27:35,050 [INFO] [EVAL-KB-1-1876] Orchestrator: B mode
+2026-08-13 09:27:35,855 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:27:35,856 [INFO] [EVAL-KB-1-1876] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:27:36,626 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.96}
+2026-08-13 09:27:36,674 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:27:37,358 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
+2026-08-13 09:27:37,359 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
+2026-08-13 09:27:37,360 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
+2026-08-13 09:27:37,361 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
+2026-08-13 09:27:37,362 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
+2026-08-13 09:27:38,060 [INFO] [EVAL-KB-1-1876] SYSTEM: Yes — if you start a manual recording, HeartBug keeps recording even when your screen is off or the app is in the background.
+2026-08-13 09:27:39,489 [INFO] [EVAL-KB-1-1876] CALLER: Does it still work in airplane mode, though, or will the recording stop because of that?
+2026-08-13 09:27:39,490 [INFO] [EVAL-KB-1-1876] Orchestrator: B mode
+2026-08-13 09:27:40,448 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 09:27:40,449 [INFO] [EVAL-KB-1-1876] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 09:27:41,544 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode, or will recording stop because of that?"},"confidence":0.96}
+2026-08-13 09:27:41,571 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode, or will recording stop because of that?' verified=False
+2026-08-13 09:27:41,708 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.808
+2026-08-13 09:27:41,709 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_4' matched_q='Does HeartBug record my voice or conversations?' score=0.791
+2026-08-13 09:27:41,710 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_136' matched_q='Do I need to keep the app open?' score=0.786
+2026-08-13 09:27:41,710 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_24' matched_q='Does HeartBug record continuously?' score=0.782
+2026-08-13 09:27:41,711 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.770
+2026-08-13 09:27:42,608 [INFO] [EVAL-KB-1-1876] SYSTEM: Yes — manual recordings still work in airplane mode, and HeartBug will keep them running even without Wi‑Fi or internet.
+2026-08-13 09:27:43,648 [INFO] [EVAL-KB-1-1876] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:27:43,648 [INFO] [EVAL-KB-1-1876] Orchestrator: B mode
+2026-08-13 09:27:44,734 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-13 09:27:44,735 [INFO] [EVAL-KB-1-1876] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-13 09:27:45,630 [INFO] [EVAL-KB-1-1876] SYSTEM: I’m sorry, but I only handle HeartBug account matters; if you’d like, I can help with your HeartBug account or connect you with the right team.
+2026-08-13 09:27:47,936 [INFO] [EVAL-KB-1-1876] CALLER: Is there an official website where I could find that information instead? I just want to know about mangoes in case I get a craving while I'm monitoring my ECGs.
+2026-08-13 09:27:47,936 [INFO] [EVAL-KB-1-1876] Orchestrator: B mode
+2026-08-13 09:27:48,777 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.1,"connect_human":false}
+2026-08-13 09:27:48,777 [INFO] [EVAL-KB-1-1876] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.1 connect_human=False
+2026-08-13 09:27:49,737 [INFO] [EVAL-KB-1-1876] SYSTEM: I’m sorry, but I can only help with HeartBug account matters, so I can’t point you to information about mangoes or other outside topics. If you’d like, I can help with your HeartBug account or connect you with the team.
+2026-08-13 09:27:51,178 [INFO] [EVAL-KB-1-1876] CALLER: Can you transfer me to someone who might know about something else for a second, then?
+2026-08-13 09:27:51,178 [INFO] [EVAL-KB-1-1876] Orchestrator: B mode
+2026-08-13 09:27:51,986 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.97,"connect_human":true,"small_talk":false,"answer_from_context":false}
+2026-08-13 09:27:51,988 [INFO] [EVAL-KB-1-1876] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.97 connect_human=True
+2026-08-13 09:27:51,988 [INFO] [EVAL-KB-1-1876] HANDOFF reason=voluntary role=patient
+2026-08-13 09:27:52,808 [INFO] [EVAL-KB-1-1876] SYSTEM: Of course — I’ll connect you to a member of our patient support team now, so please hold for just a moment.
+2026-08-13 09:32:33,301 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-08-13 09:32:33,439 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-08-13 09:32:35,046 [INFO] TRACING on → http://host.docker.internal:5001
+2026-08-13 09:33:16,002 [INFO] [EVAL-KB-1-fa43] ANI: +61498765432
+2026-08-13 09:33:17,306 [INFO] [EVAL-KB-1-fa43] SYSTEM: Hello, welcome to HeartBug—could you please tell me your full name and date of birth?
+2026-08-13 09:33:19,712 [INFO] [EVAL-KB-1-fa43] CALLER: I'm just calling with some general questions about the app and device. Can I record while my screen is off?
+2026-08-13 09:33:19,712 [INFO] [EVAL-KB-1-fa43] Orchestrator: B mode
+2026-08-13 09:33:20,385 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:33:20,386 [INFO] [EVAL-KB-1-fa43] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:33:21,238 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.96}
+2026-08-13 09:33:21,261 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:33:21,589 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
+2026-08-13 09:33:21,590 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
+2026-08-13 09:33:21,591 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
+2026-08-13 09:33:21,592 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
+2026-08-13 09:33:21,592 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
+2026-08-13 09:33:22,441 [INFO] [EVAL-KB-1-fa43] SYSTEM: Yes—manual recordings keep running even if your screen is off or the app is in the background, and they still work without Wi‑Fi or internet.
+2026-08-13 09:33:23,341 [INFO] [EVAL-KB-1-fa43] CALLER: Does it still work in airplane mode?
+2026-08-13 09:33:23,341 [INFO] [EVAL-KB-1-fa43] Orchestrator: B mode
+2026-08-13 09:33:24,197 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:33:24,198 [INFO] [EVAL-KB-1-fa43] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:33:25,075 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode?"},"confidence":0.96}
+2026-08-13 09:33:25,097 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode?' verified=False
+2026-08-13 09:33:25,257 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.784
+2026-08-13 09:33:25,258 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_92' matched_q='Does HeartBug sync directly with hospitals?' score=0.764
+2026-08-13 09:33:25,259 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_130' matched_q='Is HeartBug safe through airport security?' score=0.754
+2026-08-13 09:33:25,259 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.748
+2026-08-13 09:33:25,260 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_136' matched_q='Do I need to keep the app open?' score=0.744
+2026-08-13 09:33:26,143 [INFO] [EVAL-KB-1-fa43] SYSTEM: Yes—HeartBug can keep recording without your phone, and it syncs when it’s back in Bluetooth range, while your phone uploads once it has internet again.
+2026-08-13 09:33:27,163 [INFO] [EVAL-KB-1-fa43] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:33:27,163 [INFO] [EVAL-KB-1-fa43] Orchestrator: B mode
+2026-08-13 09:33:28,261 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.98,"connect_human":false}
+2026-08-13 09:33:28,262 [INFO] [EVAL-KB-1-fa43] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.98 connect_human=False
+2026-08-13 09:33:29,153 [INFO] [EVAL-KB-1-fa43] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can connect you with the right team or help with something on your HeartBug account.
+2026-08-13 09:33:30,745 [INFO] [EVAL-KB-1-fa43] CALLER: That doesn't really answer my question about mango prices... Can you put me through to someone who might know?
+2026-08-13 09:33:30,745 [INFO] [EVAL-KB-1-fa43] Orchestrator: B mode
+2026-08-13 09:33:32,425 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.94,"connect_human":true}
+2026-08-13 09:33:32,426 [INFO] [EVAL-KB-1-fa43] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.94 connect_human=True
+2026-08-13 09:33:32,426 [INFO] [EVAL-KB-1-fa43] HANDOFF reason=voluntary role=patient
+2026-08-13 09:33:33,449 [INFO] [EVAL-KB-1-fa43] SYSTEM: Of course — I’ll put you through to our HeartBug patient support team now, and please hold for the next available member.
+2026-08-13 09:40:14,244 [INFO] [EVAL-KB-1-2d89] ANI: +61498765432
+2026-08-13 09:40:15,171 [INFO] [EVAL-KB-1-2d89] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-08-13 09:40:16,735 [INFO] [EVAL-KB-1-2d89] CALLER: Can I record while my screen is off?
+2026-08-13 09:40:16,736 [INFO] [EVAL-KB-1-2d89] Orchestrator: B mode
+2026-08-13 09:40:18,065 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:40:18,066 [INFO] [EVAL-KB-1-2d89] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:40:18,751 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.96}
+2026-08-13 09:40:18,806 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:40:19,340 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
+2026-08-13 09:40:19,341 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
+2026-08-13 09:40:19,342 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
+2026-08-13 09:40:19,343 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
+2026-08-13 09:40:19,343 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
+2026-08-13 09:40:20,090 [INFO] [EVAL-KB-1-2d89] SYSTEM: Yes — if you start a manual recording, HeartBug keeps recording even when your screen is off or the app is in the background.
+2026-08-13 09:40:21,164 [INFO] [EVAL-KB-1-2d89] CALLER: Does it still work in airplane mode on my phone?
+2026-08-13 09:40:21,165 [INFO] [EVAL-KB-1-2d89] Orchestrator: B mode
+2026-08-13 09:40:21,910 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
+2026-08-13 09:40:21,912 [INFO] [EVAL-KB-1-2d89] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
+2026-08-13 09:40:22,924 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode on my phone?"},"confidence":0.96}
+2026-08-13 09:40:22,971 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode on my phone?' verified=False
+2026-08-13 09:40:23,128 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.813
+2026-08-13 09:40:23,128 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_113' matched_q='How do I reconnect HeartBug to the app?' score=0.769
+2026-08-13 09:40:23,129 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_1' matched_q='What happens if I use a new phone with HeartBug?' score=0.762
+2026-08-13 09:40:23,130 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.760
+2026-08-13 09:40:23,130 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_126' matched_q='Can Wi-Fi or mobile signals affect HeartBug?' score=0.760
+2026-08-13 09:40:24,109 [INFO] [EVAL-KB-1-2d89] SYSTEM: Yes — HeartBug doesn’t rely on Wi‑Fi or phone signal, only Bluetooth to sync, so airplane mode on your phone won’t interfere, though your phone will need internet later to upload the recordings.
+2026-08-13 09:40:25,187 [INFO] [EVAL-KB-1-2d89] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:40:25,188 [INFO] [EVAL-KB-1-2d89] Orchestrator: B mode
+2026-08-13 09:40:26,045 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.98,"connect_human":false}
+2026-08-13 09:40:26,046 [INFO] [EVAL-KB-1-2d89] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.98 connect_human=False
+2026-08-13 09:40:26,975 [INFO] [EVAL-KB-1-2d89] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can help with your account or put you through to the right team.
+2026-08-13 09:40:28,702 [INFO] [EVAL-KB-1-2d89] CALLER: That doesn't answer my question, though. Can you at least tell me where to find the information about mango prices?
+2026-08-13 09:40:28,704 [INFO] [EVAL-KB-1-2d89] Orchestrator: B mode
+2026-08-13 09:40:29,741 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.98,"connect_human":false}
+2026-08-13 09:40:29,742 [INFO] [EVAL-KB-1-2d89] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.98 connect_human=False
+2026-08-13 09:40:30,444 [INFO] [EVAL-KB-1-2d89] SYSTEM: I can’t help with mango prices, but I’m happy to help with your HeartBug account or put you through to the right team.
+2026-08-13 09:40:31,792 [INFO] [EVAL-KB-1-2d89] CALLER: Can I access my synced recordings from a different phone using HeartBug's companion device?
+2026-08-13 09:40:31,793 [INFO] [EVAL-KB-1-2d89] Orchestrator: B mode
+2026-08-13 09:40:32,678 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":false}
+2026-08-13 09:40:32,679 [INFO] [EVAL-KB-1-2d89] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=False
+2026-08-13 09:40:33,572 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I access my synced recordings from a different phone using HeartBug's companion device?"},"confidence":0.94}
+2026-08-13 09:40:33,604 [INFO] search_kb GOT query="Can I access my synced recordings from a different phone using HeartBug's companion device?" verified=False
+2026-08-13 09:40:34,085 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.841
+2026-08-13 09:40:34,087 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.822
+2026-08-13 09:40:34,087 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_84' matched_q='Does HeartBug delete or overwrite old data?' score=0.794
+2026-08-13 09:40:34,088 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.794
+2026-08-13 09:40:34,089 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_1' matched_q='Is my HeartBug data private?' score=0.786
+2026-08-13 09:40:35,064 [INFO] [EVAL-KB-1-2d89] SYSTEM: HeartBug can sync recordings when you’re back in Bluetooth range, but I don’t have any information saying you can view them from a different phone using a companion device.
+2026-08-13 09:40:36,766 [INFO] [EVAL-KB-1-2d89] CALLER: That doesn't really answer my question – is there a way to view synced recordings remotely or on another device at all?
+2026-08-13 09:40:36,766 [INFO] [EVAL-KB-1-2d89] Orchestrator: B mode
+2026-08-13 09:40:37,929 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:40:37,930 [INFO] [EVAL-KB-1-2d89] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:40:39,051 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Is there a way to view synced recordings remotely or on another device at all in HeartBug?"},"confidence":0.93}
+2026-08-13 09:40:39,076 [INFO] search_kb GOT query='Is there a way to view synced recordings remotely or on another device at all in HeartBug?' verified=False
+2026-08-13 09:40:39,255 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.802
+2026-08-13 09:40:39,256 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_1' matched_q='Is my HeartBug data private?' score=0.799
+2026-08-13 09:40:39,256 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.792
+2026-08-13 09:40:39,257 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_84' matched_q='Does HeartBug delete or overwrite old data?' score=0.792
+2026-08-13 09:40:39,257 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_83' matched_q='How long does HeartBug store data before uploading?' score=0.787
+2026-08-13 09:40:41,105 [INFO] [EVAL-KB-1-2d89] SYSTEM: HeartBug recordings stay on the device until your phone reconnects by Bluetooth, then they sync to the app and upload when the phone has internet, and I don’t have anything here saying they can be viewed remotely or on another device.
+2026-08-13 09:43:42,760 [INFO] [EVAL-KB-1-649e] ANI: +61498765432
+2026-08-13 09:43:43,708 [INFO] [EVAL-KB-1-649e] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
+2026-08-13 09:43:45,751 [INFO] [EVAL-KB-1-649e] CALLER: I'm just trying to figure out some general features, so I don't have that information ready. Can you tell me if I can record while my screen is off?
+2026-08-13 09:43:45,751 [INFO] [EVAL-KB-1-649e] Orchestrator: B mode
+2026-08-13 09:43:46,411 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:43:46,412 [INFO] [EVAL-KB-1-649e] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:43:47,180 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.96}
+2026-08-13 09:43:47,223 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:43:47,912 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
+2026-08-13 09:43:47,913 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
+2026-08-13 09:43:47,914 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
+2026-08-13 09:43:47,914 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
+2026-08-13 09:43:47,915 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
+2026-08-13 09:43:48,839 [INFO] [EVAL-KB-1-649e] SYSTEM: Yes — HeartBug’s manual recordings keep running even if your screen is off or the app is in the background.
+2026-08-13 09:43:50,188 [INFO] [EVAL-KB-1-649e] CALLER: That's good to know, thanks. Does it still work in airplane mode?
+2026-08-13 09:43:50,189 [INFO] [EVAL-KB-1-649e] Orchestrator: B mode
+2026-08-13 09:43:51,102 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 09:43:51,103 [INFO] [EVAL-KB-1-649e] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 09:43:51,900 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug work in airplane mode?"},"confidence":0.97}
+2026-08-13 09:43:51,943 [INFO] search_kb GOT query='Does HeartBug work in airplane mode?' verified=False
+2026-08-13 09:43:52,204 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_92' matched_q='Does HeartBug sync directly with hospitals?' score=0.778
+2026-08-13 09:43:52,204 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.766
+2026-08-13 09:43:52,205 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.757
+2026-08-13 09:43:52,206 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_163' matched_q='Can I travel within Australia while wearing HeartBug?' score=0.756
+2026-08-13 09:43:52,206 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_99' matched_q='Can my doctor monitor me live while I wear HeartBug?' score=0.755
+2026-08-13 09:43:53,002 [INFO] [EVAL-KB-1-649e] SYSTEM: Yes — HeartBug can keep recording without your phone, and it only needs Bluetooth to sync later, while your phone needs internet to upload the recordings.
+2026-08-13 09:43:54,400 [INFO] [EVAL-KB-1-649e] CALLER: What happens if I travel to a country with different phone frequencies will my device be compatible?
+2026-08-13 09:43:54,401 [INFO] [EVAL-KB-1-649e] Orchestrator: B mode
+2026-08-13 09:43:55,298 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 09:43:55,299 [INFO] [EVAL-KB-1-649e] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 09:43:56,178 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"What happens if I travel to a country with different phone frequencies will my device be compatible?"},"confidence":0.93}
+2026-08-13 09:43:56,211 [INFO] search_kb GOT query='What happens if I travel to a country with different phone frequencies will my device be compatible?' verified=False
+2026-08-13 09:43:56,430 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_1' matched_q='What happens if I use a new phone with HeartBug?' score=0.662
+2026-08-13 09:43:56,431 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_126' matched_q='Can Wi-Fi or mobile signals affect HeartBug?' score=0.640
+2026-08-13 09:43:56,432 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_120' matched_q='How far can I go from my phone before Bluetooth disconnects?' score=0.621
+2026-08-13 09:43:56,432 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_164' matched_q='Can I travel overseas with HeartBug?' score=0.611
+2026-08-13 09:43:56,433 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_26' matched_q='What if my phone loses connection during monitoring?' score=0.596
+2026-08-13 09:43:57,461 [INFO] [EVAL-KB-1-649e] SYSTEM: HeartBug isn’t meant to be taken overseas, so if you’re traveling to another country, please let your doctor or clinic know before you go.
+2026-08-13 09:43:58,798 [INFO] [EVAL-KB-1-649e] CALLER: That's helpful, thanks. What's the price of ten kilos of mango?
+2026-08-13 09:43:58,799 [INFO] [EVAL-KB-1-649e] Orchestrator: B mode
+2026-08-13 09:44:00,026 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.98,"connect_human":false}
+2026-08-13 09:44:00,029 [INFO] [EVAL-KB-1-649e] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.98 connect_human=False
+2026-08-13 09:44:00,889 [INFO] [EVAL-KB-1-649e] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can help with your HeartBug account or connect you with the right team.
+2026-08-13 09:44:02,377 [INFO] [EVAL-KB-1-649e] CALLER: Can someone actually explain why my device won't turn on when it's been completely submerged in water?
+2026-08-13 09:44:02,377 [INFO] [EVAL-KB-1-649e] Orchestrator: B mode
+2026-08-13 09:44:03,131 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.99,"connect_human":true}
+2026-08-13 09:44:03,132 [INFO] [EVAL-KB-1-649e] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.99 connect_human=True
+2026-08-13 09:44:03,132 [INFO] [EVAL-KB-1-649e] HANDOFF reason=voluntary role=patient
+2026-08-13 09:44:03,961 [INFO] [EVAL-KB-1-649e] SYSTEM: I understand this is frustrating, and I’m connecting you now to our patient support team at HeartBug—please hold while I transfer you through.
+2026-08-13 09:50:18,409 [INFO] [EVAL-KB-1-848b] ANI: +61498765432
+2026-08-13 09:50:19,357 [INFO] [EVAL-KB-1-848b] SYSTEM: Hello, welcome to HeartBug—may I have your full name and date of birth, please?
+2026-08-13 09:50:21,613 [INFO] [EVAL-KB-1-848b] CALLER: No, that information isn't required for my question; can I record while my screen is off?
+2026-08-13 09:50:21,613 [INFO] [EVAL-KB-1-848b] Orchestrator: B mode
+2026-08-13 09:50:22,497 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 09:50:22,500 [INFO] [EVAL-KB-1-848b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 09:50:23,351 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.97}
+2026-08-13 09:50:23,441 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:50:24,391 [INFO] KB-CACHE MISS best=0.000 q='Can I record while my screen is off?'
+2026-08-13 09:50:24,502 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
+2026-08-13 09:50:24,503 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
+2026-08-13 09:50:24,504 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
+2026-08-13 09:50:24,504 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
+2026-08-13 09:50:24,505 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
+2026-08-13 09:50:25,403 [INFO] [EVAL-KB-1-848b] SYSTEM: Yes — if you’re doing a manual recording on HeartBug, it keeps running even with the screen off or the app in the background.
+2026-08-13 09:50:26,692 [INFO] [EVAL-KB-1-848b] CALLER: Does it still work in airplane mode, even though the Bluetooth connection is lost?
+2026-08-13 09:50:26,693 [INFO] [EVAL-KB-1-848b] Orchestrator: B mode
+2026-08-13 09:50:27,755 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
+2026-08-13 09:50:27,756 [INFO] [EVAL-KB-1-848b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
+2026-08-13 09:50:28,583 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode even though the Bluetooth connection is lost?"},"confidence":0.95}
+2026-08-13 09:50:28,615 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode even though the Bluetooth connection is lost?' verified=False
+2026-08-13 09:50:28,782 [INFO] KB-CACHE MISS best=0.507 q='Does HeartBug still work in airplane mode even though the Bluetooth connection is lost?'
+2026-08-13 09:50:28,914 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_113' matched_q='How do I reconnect HeartBug to the app?' score=0.828
+2026-08-13 09:50:28,914 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_91' matched_q='Why isn’t HeartBug connecting to Bluetooth?' score=0.821
+2026-08-13 09:50:28,915 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.784
+2026-08-13 09:50:28,916 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_26' matched_q='What if my phone loses connection during monitoring?' score=0.784
+2026-08-13 09:50:28,916 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.780
+2026-08-13 09:50:29,852 [INFO] [EVAL-KB-1-848b] SYSTEM: Yes — HeartBug can keep recording without your phone, and if Bluetooth drops it stores the data and uploads it automatically when you reconnect.
+2026-08-13 09:50:30,919 [INFO] [EVAL-KB-1-848b] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:50:30,920 [INFO] [EVAL-KB-1-848b] Orchestrator: B mode
+2026-08-13 09:50:31,588 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-13 09:50:31,589 [INFO] [EVAL-KB-1-848b] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-13 09:50:32,363 [INFO] [EVAL-KB-1-848b] SYSTEM: I’m sorry, but I only handle HeartBug account matters; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-13 09:50:33,894 [INFO] [EVAL-KB-1-848b] CALLER: Can I get a general answer about the 10 kilogram price on something not related to HeartBug?
+2026-08-13 09:50:33,894 [INFO] [EVAL-KB-1-848b] Orchestrator: B mode
+2026-08-13 09:50:34,602 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.98,"connect_human":false}
+2026-08-13 09:50:34,606 [INFO] [EVAL-KB-1-848b] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.98 connect_human=False
+2026-08-13 09:50:35,436 [INFO] [EVAL-KB-1-848b] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can help with something on your HeartBug account or connect you to the team.
+2026-08-13 09:50:37,450 [INFO] [EVAL-KB-1-848b] CALLER: I think there's been a misunderstanding – my question about mango wasn't related to HeartBug at all; what happens when the recording storage is almost full?
+2026-08-13 09:50:37,450 [INFO] [EVAL-KB-1-848b] Orchestrator: B mode
+2026-08-13 09:50:38,223 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:50:38,224 [INFO] [EVAL-KB-1-848b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:50:38,912 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"What happens when the recording storage is almost full?"},"confidence":0.97}
+2026-08-13 09:50:38,940 [INFO] search_kb GOT query='What happens when the recording storage is almost full?' verified=False
+2026-08-13 09:50:39,130 [INFO] KB-CACHE MISS best=0.673 q='What happens when the recording storage is almost full?'
+2026-08-13 09:50:39,333 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_84' matched_q='Does HeartBug delete or overwrite old data?' score=0.799
+2026-08-13 09:50:39,334 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_110' matched_q='Can recordings be lost?' score=0.789
+2026-08-13 09:50:39,334 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.765
+2026-08-13 09:50:39,335 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.727
+2026-08-13 09:50:39,335 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_142' matched_q='How do I know a recording has started?' score=0.692
+2026-08-13 09:50:40,325 [INFO] [EVAL-KB-1-848b] SYSTEM: If HeartBug’s storage gets close to full, it can hold about 40 recordings, and once it’s full the oldest recordings are overwritten unless they’ve already synced to your phone, in which case they’re safely stored.
+2026-08-13 09:50:41,555 [INFO] [EVAL-KB-1-848b] CALLER: Will a factory reset on my phone delete any HeartBug data or recordings?
+2026-08-13 09:50:41,556 [INFO] [EVAL-KB-1-848b] Orchestrator: B mode
+2026-08-13 09:50:42,206 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
+2026-08-13 09:50:42,207 [INFO] [EVAL-KB-1-848b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
+2026-08-13 09:50:43,014 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Will a factory reset on my phone delete any HeartBug data or recordings?"},"confidence":0.98}
+2026-08-13 09:50:43,049 [INFO] search_kb GOT query='Will a factory reset on my phone delete any HeartBug data or recordings?' verified=False
+2026-08-13 09:50:43,193 [INFO] KB-CACHE MISS best=0.664 q='Will a factory reset on my phone delete any HeartBug data or recordings?'
+2026-08-13 09:50:43,311 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_84' matched_q='Does HeartBug delete or overwrite old data?' score=0.859
+2026-08-13 09:50:43,312 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.836
+2026-08-13 09:50:43,312 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_13' matched_q='Is my data deleted after monitoring ends?' score=0.826
+2026-08-13 09:50:43,313 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_83' matched_q='How long does HeartBug store data before uploading?' score=0.799
+2026-08-13 09:50:43,313 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_109' matched_q='Does HeartBug reset after it’s returned?' score=0.794
+2026-08-13 09:50:44,344 [INFO] [EVAL-KB-1-848b] SYSTEM: A factory reset on your phone won’t delete HeartBug’s stored recordings, since the data stays on the device until it reconnects and then uploads to HeartBug servers.
+2026-08-13 09:51:46,657 [INFO] [EVAL-KB-1-ed73] ANI: +61498765432
+2026-08-13 09:51:47,460 [INFO] [EVAL-KB-1-ed73] SYSTEM: Welcome to HeartBug—could you please tell me your full name and date of birth?
+2026-08-13 09:51:49,528 [INFO] [EVAL-KB-1-ed73] CALLER: I'm just looking for some general information on how to use my app and device, I don't have any specific issues. Can I record while my screen is off?
+2026-08-13 09:51:49,529 [INFO] [EVAL-KB-1-ed73] Orchestrator: B mode
+2026-08-13 09:51:50,289 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 09:51:50,290 [INFO] [EVAL-KB-1-ed73] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 09:51:52,031 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.97}
+2026-08-13 09:51:52,105 [INFO] search_kb GOT query='Can I record while my screen is off?' verified=False
+2026-08-13 09:51:52,727 [INFO] KB-CACHE HIT score=1.000 q='Can I record while my screen is off?'
+2026-08-13 09:51:53,451 [INFO] [EVAL-KB-1-ed73] SYSTEM: Yes — if you start a manual recording, it will keep running even when your screen is off or the app is in the background.
+2026-08-13 09:51:54,366 [INFO] [EVAL-KB-1-ed73] CALLER: Does it still work in airplane mode?
+2026-08-13 09:51:54,366 [INFO] [EVAL-KB-1-ed73] Orchestrator: B mode
+2026-08-13 09:51:55,049 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:51:55,049 [INFO] [EVAL-KB-1-ed73] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:51:55,922 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode?"},"confidence":0.96}
+2026-08-13 09:51:55,947 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode?' verified=False
+2026-08-13 09:51:56,097 [INFO] KB-CACHE HIT score=0.921 q='Does HeartBug still work in airplane mode?'
+2026-08-13 09:51:56,874 [INFO] [EVAL-KB-1-ed73] SYSTEM: Yes, HeartBug can keep recording even without your phone nearby, and your phone only needs internet when you want the recordings to upload.
+2026-08-13 09:51:57,918 [INFO] [EVAL-KB-1-ed73] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:51:57,918 [INFO] [EVAL-KB-1-ed73] Orchestrator: B mode
+2026-08-13 09:51:58,665 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-13 09:51:58,665 [INFO] [EVAL-KB-1-ed73] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-13 09:51:59,506 [INFO] [EVAL-KB-1-ed73] SYSTEM: I’m sorry, but I only handle HeartBug account matters, so I can’t help with mango pricing. If you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-13 09:52:01,347 [INFO] [EVAL-KB-1-ed73] CALLER: That's okay, I'm just curious about prices in general – is there anyone who could help me with my app and device instead?
+2026-08-13 09:52:01,348 [INFO] [EVAL-KB-1-ed73] Orchestrator: B mode
+2026-08-13 09:52:02,153 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":true,"small_talk":false,"answer_from_context":false}
+2026-08-13 09:52:02,153 [INFO] [EVAL-KB-1-ed73] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=True
+2026-08-13 09:52:02,154 [INFO] [EVAL-KB-1-ed73] HANDOFF reason=voluntary role=patient
+2026-08-13 09:52:02,832 [INFO] [EVAL-KB-1-ed73] SYSTEM: Absolutely — I can connect you with our patient support team now for help with your HeartBug app and device, so please hold for just a moment.
+2026-08-13 09:53:19,890 [INFO] [EVAL-KB-1-8637] ANI: +61498765432
+2026-08-13 09:53:20,759 [INFO] [EVAL-KB-1-8637] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-08-13 09:53:21,645 [INFO] [EVAL-KB-1-8637] CALLER: What features can I use while my screen is off?
+2026-08-13 09:53:21,646 [INFO] [EVAL-KB-1-8637] Orchestrator: B mode
+2026-08-13 09:53:22,549 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":false}
+2026-08-13 09:53:22,550 [INFO] [EVAL-KB-1-8637] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=False
+2026-08-13 09:53:23,268 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"What features can I use while my screen is off?"},"confidence":0.95}
+2026-08-13 09:53:23,312 [INFO] search_kb GOT query='What features can I use while my screen is off?' verified=False
+2026-08-13 09:53:23,814 [INFO] KB-CACHE MISS best=0.805 q='What features can I use while my screen is off?'
+2026-08-13 09:53:23,974 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.745
+2026-08-13 09:53:23,975 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.653
+2026-08-13 09:53:23,976 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_112' matched_q='Does the app notify me if the connection fails?' score=0.625
+2026-08-13 09:53:23,977 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_119' matched_q='What if I forget to wear the HeartBug device?' score=0.618
+2026-08-13 09:53:23,977 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.607
+2026-08-13 09:53:25,025 [INFO] [EVAL-KB-1-8637] SYSTEM: You can keep HeartBug recording even with the screen off, and it will also keep working if your phone is away, while charging, in airplane mode, or without Wi‑Fi or internet.
+2026-08-13 09:53:25,900 [INFO] [EVAL-KB-1-8637] CALLER: Does it still work in airplane mode?
+2026-08-13 09:53:25,901 [INFO] [EVAL-KB-1-8637] Orchestrator: B mode
+2026-08-13 09:53:26,751 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
+2026-08-13 09:53:26,752 [INFO] [EVAL-KB-1-8637] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
+2026-08-13 09:53:27,575 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode?"},"confidence":0.98}
+2026-08-13 09:53:27,605 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode?' verified=False
+2026-08-13 09:53:27,746 [INFO] KB-CACHE HIT score=0.921 q='Does HeartBug still work in airplane mode?'
+2026-08-13 09:53:28,700 [INFO] [EVAL-KB-1-8637] SYSTEM: Yes—HeartBug can keep recording without your phone, and it will sync once you’re back in Bluetooth range.
+2026-08-13 09:53:29,708 [INFO] [EVAL-KB-1-8637] CALLER: What's the price of ten kilos of mango?
+2026-08-13 09:53:29,709 [INFO] [EVAL-KB-1-8637] Orchestrator: B mode
+2026-08-13 09:53:30,374 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-13 09:53:30,375 [INFO] [EVAL-KB-1-8637] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-13 09:53:31,153 [INFO] [EVAL-KB-1-8637] SYSTEM: I’m sorry, but I only handle HeartBug account matters; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-13 09:53:32,721 [INFO] [EVAL-KB-1-8637] CALLER: That doesn't answer my question about mango prices; my wife is a farmer and needs that information for taxes.
+2026-08-13 09:53:32,721 [INFO] [EVAL-KB-1-8637] Orchestrator: B mode
+2026-08-13 09:53:33,509 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.88,"connect_human":false}
+2026-08-13 09:53:33,510 [INFO] [EVAL-KB-1-8637] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.88 connect_human=False
+2026-08-13 09:53:34,430 [INFO] [EVAL-KB-1-8637] SYSTEM: I understand this is frustrating, but I can only help with HeartBug account matters and I don’t have mango price information; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-13 09:53:35,548 [INFO] [EVAL-KB-1-8637] CALLER: Can you transfer me to the mango commodity pricing department, then?
+2026-08-13 09:53:35,549 [INFO] [EVAL-KB-1-8637] Orchestrator: B mode
+2026-08-13 09:53:36,275 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.14,"connect_human":true}
+2026-08-13 09:53:36,275 [INFO] [EVAL-KB-1-8637] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.14 connect_human=True
+2026-08-13 09:53:36,276 [INFO] [EVAL-KB-1-8637] HANDOFF reason=voluntary role=patient
+2026-08-13 09:53:37,094 [INFO] [EVAL-KB-1-8637] SYSTEM: Of course — I’m connecting you to our patient support team now, so please hold for just a moment.
+2026-08-13 10:00:55,305 [INFO] [EVAL-KB-1-8954] ANI: +61498765432
+2026-08-13 10:00:56,458 [INFO] [EVAL-KB-1-8954] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth?
+2026-08-13 10:00:58,312 [INFO] [EVAL-KB-1-8954] CALLER: Can I record while my screen is off with the app?
+2026-08-13 10:00:58,312 [INFO] [EVAL-KB-1-8954] Orchestrator: B mode
+2026-08-13 10:00:59,423 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
+2026-08-13 10:00:59,424 [INFO] [EVAL-KB-1-8954] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
+2026-08-13 10:01:00,372 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off with the app?"},"confidence":0.96}
+2026-08-13 10:01:00,439 [INFO] search_kb GOT query='Can I record while my screen is off with the app?' verified=False
+2026-08-13 10:01:01,182 [INFO] KB-CACHE MISS best=0.000 q='Can I record while my screen is off with the app?'
+2026-08-13 10:01:01,343 [INFO] KB RETRIEVE (DB) entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.931
+2026-08-13 10:01:01,344 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.765
+2026-08-13 10:01:01,344 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.731
+2026-08-13 10:01:01,345 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_4' matched_q='Does HeartBug record my voice or conversations?' score=0.731
+2026-08-13 10:01:01,345 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_154' matched_q='What happens if my phone restarts during a recording?' score=0.725
+2026-08-13 10:01:01,470 [INFO] KB-CACHE PUT q='Can I record while my screen is off with the app?' store=1
+2026-08-13 10:01:02,335 [INFO] [EVAL-KB-1-8954] SYSTEM: Yes — with HeartBug, manual recordings keep running even if your screen is off or the app is in the background.
+2026-08-13 10:01:03,305 [INFO] [EVAL-KB-1-8954] CALLER: Does it still work in airplane mode?
+2026-08-13 10:01:03,305 [INFO] [EVAL-KB-1-8954] Orchestrator: B mode
+2026-08-13 10:01:04,119 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
+2026-08-13 10:01:04,120 [INFO] [EVAL-KB-1-8954] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
+2026-08-13 10:01:04,993 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode?"},"confidence":0.96}
+2026-08-13 10:01:05,041 [INFO] search_kb GOT query='Does HeartBug still work in airplane mode?' verified=False
+2026-08-13 10:01:05,258 [INFO] KB-CACHE MISS best=0.547 q='Does HeartBug still work in airplane mode?'
+2026-08-13 10:01:05,405 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.784
+2026-08-13 10:01:05,406 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_92' matched_q='Does HeartBug sync directly with hospitals?' score=0.764
+2026-08-13 10:01:05,407 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_130' matched_q='Is HeartBug safe through airport security?' score=0.754
+2026-08-13 10:01:05,407 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_89' matched_q='Does HeartBug need internet?' score=0.748
+2026-08-13 10:01:05,408 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_136' matched_q='Do I need to keep the app open?' score=0.744
+2026-08-13 10:01:05,552 [INFO] KB-CACHE PUT q='Does HeartBug still work in airplane mode?' store=2
+2026-08-13 10:01:06,428 [INFO] [EVAL-KB-1-8954] SYSTEM: Yes — HeartBug can keep recording without your phone nearby, but it still needs Bluetooth to sync to your phone and your phone needs internet to upload the recordings.
+2026-08-13 10:01:07,503 [INFO] [EVAL-KB-1-8954] CALLER: What's the price of ten kilos of mango?
+2026-08-13 10:01:07,504 [INFO] [EVAL-KB-1-8954] Orchestrator: B mode
+2026-08-13 10:01:08,631 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
+2026-08-13 10:01:08,635 [INFO] [EVAL-KB-1-8954] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
+2026-08-13 10:01:09,389 [INFO] [EVAL-KB-1-8954] SYSTEM: I’m sorry, but I only handle HeartBug account matters; if you’d like, I can help with your HeartBug account or connect you to the right team.
+2026-08-13 10:01:10,811 [INFO] [EVAL-KB-1-8954] CALLER: That doesn't answer my question, can you check on a mango price list for me?
+2026-08-13 10:01:10,811 [INFO] [EVAL-KB-1-8954] Orchestrator: B mode
+2026-08-13 10:01:11,871 [INFO] ROUTER llm-raw: {"domain":"unknown","confidence":0.98,"connect_human":false}
+2026-08-13 10:01:11,872 [INFO] [EVAL-KB-1-8954] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.98 connect_human=False
+2026-08-13 10:01:12,773 [INFO] [EVAL-KB-1-8954] SYSTEM: I’m sorry, but I can only help with HeartBug account matters, not price lists; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-08-13 10:01:14,128 [INFO] [EVAL-KB-1-8954] CALLER: That's not helpful, isn't there a general information line for non-account questions?
+2026-08-13 10:01:14,128 [INFO] [EVAL-KB-1-8954] Orchestrator: B mode
+2026-08-13 10:01:15,043 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.67,"connect_human":false}
+2026-08-13 10:01:15,044 [INFO] [EVAL-KB-1-8954] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.67 connect_human=False
+2026-08-13 10:01:15,846 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"general information line for non-account questions"},"confidence":0.62}
+2026-08-13 10:01:15,876 [INFO] search_kb GOT query='general information line for non-account questions' verified=False
+2026-08-13 10:01:16,017 [INFO] KB-CACHE MISS best=0.453 q='general information line for non-account questions'
+2026-08-13 10:01:16,137 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_12' matched_q='Who do I contact for medical concerns or symptoms?' score=0.578
+2026-08-13 10:01:16,138 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_80' matched_q='Do I pay for recordings or reports?' score=0.569
+2026-08-13 10:01:16,138 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_47' matched_q='Does HeartBug give me results directly?' score=0.563
+2026-08-13 10:01:16,139 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_153' matched_q='How do I report side effects from HeartBug?' score=0.561
+2026-08-13 10:01:16,140 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_31' matched_q='What if my return envelope is lost?' score=0.556
+2026-08-13 10:01:16,240 [INFO] KB-CACHE PUT q='general information line for non-account questions' store=3
+2026-08-13 10:01:17,180 [INFO] [EVAL-KB-1-8954] SYSTEM: I hear you, but I don’t have a general information line here; if it’s not a HeartBug account or device issue, please contact your doctor, and I can still help with anything HeartBug-related or put you through to the right team.
+2026-08-13 10:01:18,759 [INFO] [EVAL-KB-1-8954] CALLER: My doctor won't know this, is there a support page on the HeartBug website for common questions?
+2026-08-13 10:01:18,759 [INFO] [EVAL-KB-1-8954] Orchestrator: B mode
+2026-08-13 10:01:19,464 [INFO] ROUTER llm-raw: {"domain":"kb","confidence":0.95,"connect_human":false}
+2026-08-13 10:01:19,465 [INFO] [EVAL-KB-1-8954] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.95 connect_human=False
+2026-08-13 10:01:20,250 [INFO] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"support page on the HeartBug website for common questions"},"confidence":0.93}
+2026-08-13 10:01:20,279 [INFO] search_kb GOT query='support page on the HeartBug website for common questions' verified=False
+2026-08-13 10:01:20,451 [INFO] KB-CACHE MISS best=0.656 q='support page on the HeartBug website for common questions'
+2026-08-13 10:01:20,547 [INFO] KB RETRIEVE (DB) entry='kb_company_q_prisup_12' matched_q='Who do I contact for medical concerns or symptoms?' score=0.780
+2026-08-13 10:01:20,548 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_153' matched_q='How do I report side effects from HeartBug?' score=0.771
+2026-08-13 10:01:20,548 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_31' matched_q='What if my return envelope is lost?' score=0.761
+2026-08-13 10:01:20,549 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_75' matched_q='Can I buy extra HeartBug patches?' score=0.750
+2026-08-13 10:01:20,549 [INFO] KB RETRIEVE (DB) entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.748
+2026-08-13 10:01:20,663 [INFO] KB-CACHE PUT q='support page on the HeartBug website for common questions' store=4
+2026-08-13 10:01:21,701 [INFO] [EVAL-KB-1-8954] SYSTEM: I understand the frustration, but I don’t have a HeartBug support page to share here; for medical concerns or symptoms, please contact your doctor, and I can still help with any HeartBug device or monitoring issue.
