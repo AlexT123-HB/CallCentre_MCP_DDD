@@ -52,6 +52,7 @@ class Host:
         self.registry = None                             # kept for gate signature compat
 
     # ── POST /webhook ─────────────────────────────────────────────────────────
+    @tracing.traced("webhook", tracing.AGENT)
     async def webhook(self, call_id: str, ani: str) -> dict:
         session = self.sessions.start(call_id, ani)
         tracing.set_session(call_id, ani=ani)  # for tracing context propagation in async tasks

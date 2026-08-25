@@ -23,6 +23,20 @@ from src.client.host import Host
 
 app = FastAPI(title="HeartBug DDD Host")
 _host = Host()
+# Twilio telephony adapter — adds /twilio/voice, /twilio/turn.
+# It translates Twilio's webhook+TwiML format onto _host.webhook()/turn(); the
+# MCP-DDD core is unchanged. Share THIS _host so there's one instance.
+from src.client.telephony import twilio_adapter
+twilio_adapter._host = _host          # reuse the same host, don't build a second
+app.include_router(twilio_adapter.router)
+
+# Talkdesk telephony adapter — adds /talkdesk/voice, /talkdesk/turn.
+# Thin JSON data-dip endpoints the Talkdesk Studio flow calls per turn (Talkdesk
+# owns the turn-loop + STT/TTS in Studio; we just return reply text). Same shared
+# host and same shared decision logic (telephony base) as Twilio.
+from src.client.telephony import talkdesk_adapter
+talkdesk_adapter._host = _host
+app.include_router(talkdesk_adapter.router)
 
 
 class WebhookBody(BaseModel):
