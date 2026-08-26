@@ -64,6 +64,8 @@ async def check_patient_status(call_id: str, verified: bool, subject_id: str | N
     patient <name> going", "is <name> still being monitored", "when does <name>
     finish", or "is <name>'s report ready". Takes the patient's full name."""
     ctx = _context(call_id, verified, subject_id, role)
+    if role != "doctor":
+        return {"found": False, "event": "doctor_role_required"}
     try:
         patient, clarify = await _resolve_or_clarify(ctx, patient_name)
         if clarify:
@@ -86,6 +88,8 @@ async def check_patient_alerts(call_id: str, verified: bool, subject_id: str | N
     issues with <name>". Takes the patient's full name; reports the alerts or that
     none were raised."""
     ctx = _context(call_id, verified, subject_id, role)
+    if role != "doctor":
+        return {"found": False, "event": "doctor_role_required"}
     try:
         patient, clarify = await _resolve_or_clarify(ctx, patient_name)
         if clarify:
@@ -107,6 +111,8 @@ async def send_patient_report(call_id: str, verified: bool, subject_id: str | No
     <name>'s results". Only the registered-address send is automated; anything
     unusual is escalated to a human."""
     ctx = _context(call_id, verified, subject_id, role)
+    if role != "doctor":
+        return {"found": False, "event": "doctor_role_required"}
     try:
         patient, clarify = await _resolve_or_clarify(ctx, patient_name)
         if clarify:

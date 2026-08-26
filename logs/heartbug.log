@@ -1,517 +1,120 @@
-2026-08-25 09:38:49,132 [INFO] [EVAL-KB-1-71ab] ANI: +61498765432
-2026-08-25 09:38:52,630 [INFO] [EVAL-KB-1-71ab] SYSTEM: Welcome to HeartBug—may I please have your full name and date of birth?
-2026-08-25 09:38:54,533 [INFO] [EVAL-KB-1-71ab] CALLER: No, actually I was wondering if I can record while my screen is off?
-2026-08-25 09:38:54,534 [INFO] [EVAL-KB-1-71ab] Orchestrator: B mode
-2026-08-25 09:38:55,426 [INFO] [EVAL-KB-1-71ab] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
-2026-08-25 09:38:55,427 [INFO] [EVAL-KB-1-71ab] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
-2026-08-25 09:38:56,181 [INFO] [EVAL-KB-1-71ab] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.96}
-2026-08-25 09:39:00,042 [INFO] [EVAL-KB-1-71ab] SYSTEM: Yes — if you’re doing a manual recording, HeartBug will keep running even if your screen is off or the app is in the background.
-2026-08-25 09:39:01,769 [INFO] [EVAL-KB-1-71ab] CALLER: Does it still work in airplane mode though? My phone goes into that sometimes when I'm trying to sleep.
-2026-08-25 09:39:01,769 [INFO] [EVAL-KB-1-71ab] Orchestrator: B mode
-2026-08-25 09:39:02,567 [INFO] [EVAL-KB-1-71ab] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
-2026-08-25 09:39:02,567 [INFO] [EVAL-KB-1-71ab] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
-2026-08-25 09:39:03,666 [INFO] [EVAL-KB-1-71ab] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode when the phone goes into airplane mode while sleeping?"},"confidence":0.95}
-2026-08-25 09:39:05,667 [INFO] [EVAL-KB-1-71ab] SYSTEM: Yes — airplane mode won’t interfere with HeartBug, since it only uses Bluetooth to sync, so it should still work while you sleep.
-2026-08-25 09:39:06,802 [INFO] [EVAL-KB-1-71ab] CALLER: What's the price of ten kilos of mango?
-2026-08-25 09:39:06,803 [INFO] [EVAL-KB-1-71ab] Orchestrator: B mode
-2026-08-25 09:39:07,787 [INFO] [EVAL-KB-1-71ab] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
-2026-08-25 09:39:07,788 [INFO] [EVAL-KB-1-71ab] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
-2026-08-25 09:39:08,916 [INFO] [EVAL-KB-1-71ab] SYSTEM: I’m sorry, but I only handle HeartBug account matters; I don’t have pricing for mango, and I can help with anything on your HeartBug account or connect you with the right team.
-2026-08-25 09:39:10,767 [INFO] [EVAL-KB-1-71ab] CALLER: That makes sense, I was just curious about something unrelated, okay so back to my app – how do I delete a recording?
-2026-08-25 09:39:10,767 [INFO] [EVAL-KB-1-71ab] Orchestrator: B mode
-2026-08-25 09:39:11,552 [INFO] [EVAL-KB-1-71ab] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
-2026-08-25 09:39:11,552 [INFO] [EVAL-KB-1-71ab] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
-2026-08-25 09:39:12,435 [INFO] [EVAL-KB-1-71ab] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"How do I delete a recording?"},"confidence":0.98}
-2026-08-25 09:39:14,010 [INFO] [EVAL-KB-1-71ab] SYSTEM: I’m sorry, but I don’t have the steps for deleting a recording here; if you’d like, I can help with another HeartBug question or put you through to the team.
-2026-08-25 09:39:15,313 [INFO] [EVAL-KB-1-71ab] CALLER: Can I use the same device for multiple users' accounts on the app?
-2026-08-25 09:39:15,315 [INFO] [EVAL-KB-1-71ab] Orchestrator: B mode
-2026-08-25 09:39:16,673 [INFO] [EVAL-KB-1-71ab] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
-2026-08-25 09:39:16,674 [INFO] [EVAL-KB-1-71ab] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
-2026-08-25 09:39:17,337 [INFO] [EVAL-KB-1-71ab] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I use the same device for multiple users' accounts on the app?"},"confidence":0.98}
-2026-08-25 09:39:18,564 [INFO] [EVAL-KB-1-71ab] SYSTEM: I don’t have confirmation on multiple users sharing one device, but I can help with your HeartBug setup or connect you with the team if you’d like.
-2026-08-25 09:39:20,252 [INFO] [EVAL-KB-1-71ab] CALLER: You said earlier that HeartBug uses Bluetooth to sync, so would it work with other devices connected via Wi-Fi too?
-2026-08-25 09:39:20,252 [INFO] [EVAL-KB-1-71ab] Orchestrator: B mode
-2026-08-25 09:39:20,979 [INFO] [EVAL-KB-1-71ab] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
-2026-08-25 09:39:20,980 [INFO] [EVAL-KB-1-71ab] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
-2026-08-25 09:39:22,307 [INFO] [EVAL-KB-1-71ab] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"You said earlier that HeartBug uses Bluetooth to sync, so would it work with other devices connected via Wi-Fi too?"},"confidence":0.92}
-2026-08-25 09:39:23,738 [INFO] [EVAL-KB-1-71ab] SYSTEM: Yes — HeartBug only uses Bluetooth to sync, and Wi‑Fi or phone signals don’t interfere, while your phone just needs internet to upload recordings when it reconnects.
-2026-08-25 10:30:53,090 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-08-25 10:30:53,194 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-25 10:30:54,439 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-25 10:30:54,443 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-25 10:30:54,619 [INFO] TRACING on → http://host.docker.internal:5001
-2026-08-25 10:33:20,253 [INFO] [EVAL-KB-1-8b9b] ANI: +61498765432
-2026-08-25 10:33:23,626 [INFO] [EVAL-KB-1-8b9b] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-25 10:33:26,360 [INFO] [EVAL-KB-1-8b9b] CALLER: I'm just looking for some general info about the app, I don't need to set up an account or anything. Can I record while my screen is off?
-2026-08-25 10:33:26,360 [INFO] [EVAL-KB-1-8b9b] Orchestrator: B mode
-2026-08-25 10:33:27,351 [INFO] [EVAL-KB-1-8b9b] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
-2026-08-25 10:33:27,352 [INFO] [EVAL-KB-1-8b9b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
-2026-08-25 10:33:28,625 [INFO] [EVAL-KB-1-8b9b] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I record while my screen is off?"},"confidence":0.97}
-2026-08-25 10:33:29,108 [INFO] [EVAL-KB-1-8b9b] KB-CACHE MISS best=0.000 q='Can I record while my screen is off?'
-2026-08-25 10:33:29,248 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.917
-2026-08-25 10:33:29,249 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_96' matched_q='What if I press the record button by accident?' score=0.736
-2026-08-25 10:33:29,250 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_117' matched_q='Can I turn Bluetooth off?' score=0.735
-2026-08-25 10:33:29,250 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.730
-2026-08-25 10:33:29,251 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.708
-2026-08-25 10:33:29,252 [INFO] [EVAL-KB-1-8b9b] KB → ANSWER 5 entries best=0.917
-2026-08-25 10:33:29,341 [INFO] [EVAL-KB-1-8b9b] KB-CACHE PUT q='Can I record while my screen is off?' store=1
-2026-08-25 10:33:30,487 [INFO] [EVAL-KB-1-8b9b] SYSTEM: Yes — if you start a manual recording, it keeps running even when your screen is off or the app is in the background.
-2026-08-25 10:33:31,956 [INFO] [EVAL-KB-1-8b9b] CALLER: How does that work with the heart rate monitoring feature – will it keep tracking without draining the battery?
-2026-08-25 10:33:31,956 [INFO] [EVAL-KB-1-8b9b] Orchestrator: B mode
-2026-08-25 10:33:32,948 [INFO] [EVAL-KB-1-8b9b] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:33:32,949 [INFO] [EVAL-KB-1-8b9b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
-2026-08-25 10:33:34,173 [INFO] [EVAL-KB-1-8b9b] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"How does heart rate monitoring work when recording with the screen off? Will it keep tracking without draining the battery?"},"confidence":0.93}
-2026-08-25 10:33:34,336 [INFO] [EVAL-KB-1-8b9b] KB-CACHE MISS best=0.761 q='How does heart rate monitoring work when recording with the screen off? Will it keep tracking without draining the battery?'
-2026-08-25 10:33:34,446 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_general_2' matched_q='Can I do a manual recording in the background?' score=0.762
-2026-08-25 10:33:34,446 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.750
-2026-08-25 10:33:34,447 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_22' matched_q='What if symptoms happen when I’m not wearing HeartBug?' score=0.711
-2026-08-25 10:33:34,448 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_119' matched_q='What if I forget to wear the HeartBug device?' score=0.705
-2026-08-25 10:33:34,448 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_24' matched_q='Does HeartBug record continuously?' score=0.684
-2026-08-25 10:33:34,450 [INFO] [EVAL-KB-1-8b9b] KB → ANSWER 5 entries best=0.762
-2026-08-25 10:33:34,564 [INFO] [EVAL-KB-1-8b9b] KB-CACHE PUT q='How does heart rate monitoring work when recording with the screen off? Will it keep tracking without draining the battery?' store=2
-2026-08-25 10:33:35,587 [INFO] [EVAL-KB-1-8b9b] SYSTEM: HeartBug monitors continuously, but it only saves a recording when you trigger one or if it detects an abnormal rhythm, so it’s designed to keep tracking in the background without needing constant recording.
-2026-08-25 10:33:37,277 [INFO] [EVAL-KB-1-8b9b] CALLER: Does it still work in airplane mode, so I can take a call on my phone while it's monitoring my heart rate?
-2026-08-25 10:33:37,278 [INFO] [EVAL-KB-1-8b9b] Orchestrator: B mode
-2026-08-25 10:33:38,430 [INFO] [EVAL-KB-1-8b9b] ROUTER llm-raw: {"domain":"kb","confidence":0.96,"connect_human":false}
-2026-08-25 10:33:38,431 [INFO] [EVAL-KB-1-8b9b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.96 connect_human=False
-2026-08-25 10:33:39,703 [INFO] [EVAL-KB-1-8b9b] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does HeartBug still work in airplane mode while monitoring heart rate and taking a phone call?"},"confidence":0.96}
-2026-08-25 10:33:39,864 [INFO] [EVAL-KB-1-8b9b] KB-CACHE MISS best=0.652 q='Does HeartBug still work in airplane mode while monitoring heart rate and taking a phone call?'
-2026-08-25 10:33:39,970 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.811
-2026-08-25 10:33:39,971 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_16' matched_q='Does HeartBug monitor my heart all day?' score=0.781
-2026-08-25 10:33:39,971 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_41' matched_q='Does the HeartBug device track my location or activities?' score=0.780
-2026-08-25 10:33:39,972 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_86' matched_q='Does HeartBug alert my doctor in real time?' score=0.769
-2026-08-25 10:33:39,973 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_126' matched_q='Can Wi-Fi or mobile signals affect HeartBug?' score=0.767
-2026-08-25 10:33:39,973 [INFO] [EVAL-KB-1-8b9b] KB → ANSWER 5 entries best=0.811
-2026-08-25 10:33:40,076 [INFO] [EVAL-KB-1-8b9b] KB-CACHE PUT q='Does HeartBug still work in airplane mode while monitoring heart rate and taking a phone call?' store=3
-2026-08-25 10:33:41,444 [INFO] [EVAL-KB-1-8b9b] SYSTEM: Yes — HeartBug isn’t affected by Wi‑Fi or phone signals and uses Bluetooth only to sync, so it can keep monitoring while you use your phone.
-2026-08-25 10:33:43,022 [INFO] [EVAL-KB-1-8b9b] CALLER: I'm buying some mangoes at the market – what's the price of ten kilos of mango in season?
-2026-08-25 10:33:43,022 [INFO] [EVAL-KB-1-8b9b] Orchestrator: B mode
-2026-08-25 10:33:43,900 [INFO] [EVAL-KB-1-8b9b] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":false}
-2026-08-25 10:33:43,901 [INFO] [EVAL-KB-1-8b9b] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=False
-2026-08-25 10:33:45,027 [INFO] [EVAL-KB-1-8b9b] SYSTEM: I’m sorry, but I only handle HeartBug account matters, so I can’t help with mango prices; if you’d like, I can help with anything on your HeartBug account or connect you to the right team.
-2026-08-25 10:33:47,246 [INFO] [EVAL-KB-1-8b9b] CALLER: That's okay, I just needed clarification – I'm looking at the Bluetooth sync though, does it disconnect when the phone is low on battery and the HeartBug is still monitoring?
-2026-08-25 10:33:47,247 [INFO] [EVAL-KB-1-8b9b] Orchestrator: B mode
-2026-08-25 10:33:48,095 [INFO] [EVAL-KB-1-8b9b] ROUTER llm-raw: {"domain":"kb","confidence":0.97,"connect_human":false}
-2026-08-25 10:33:48,096 [INFO] [EVAL-KB-1-8b9b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.97 connect_human=False
-2026-08-25 10:33:48,952 [INFO] [EVAL-KB-1-8b9b] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Does Bluetooth sync disconnect when the phone is low on battery and HeartBug is still monitoring?"},"confidence":0.93}
-2026-08-25 10:33:49,122 [INFO] [EVAL-KB-1-8b9b] KB-CACHE MISS best=0.725 q='Does Bluetooth sync disconnect when the phone is low on battery and HeartBug is still monitoring?'
-2026-08-25 10:33:49,236 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_26' matched_q='What if my phone loses connection during monitoring?' score=0.901
-2026-08-25 10:33:49,237 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_113' matched_q='How do I reconnect HeartBug to the app?' score=0.858
-2026-08-25 10:33:49,237 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_118' matched_q='Can I leave my phone at home while wearing HeartBug?' score=0.857
-2026-08-25 10:33:49,238 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.852
-2026-08-25 10:33:49,238 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_91' matched_q='Why isn’t HeartBug connecting to Bluetooth?' score=0.832
-2026-08-25 10:33:49,239 [INFO] [EVAL-KB-1-8b9b] KB → ANSWER 5 entries best=0.901
-2026-08-25 10:33:49,348 [INFO] [EVAL-KB-1-8b9b] KB-CACHE PUT q='Does Bluetooth sync disconnect when the phone is low on battery and HeartBug is still monitoring?' store=4
-2026-08-25 10:33:50,456 [INFO] [EVAL-KB-1-8b9b] SYSTEM: No — if your phone’s battery gets low or disconnects, HeartBug keeps monitoring and stores the data, then syncs it automatically when the phone reconnects.
-2026-08-25 10:33:51,706 [INFO] [EVAL-KB-1-8b9b] CALLER: Can I set up multiple users with their own profiles on my HeartBug app?
-2026-08-25 10:33:51,707 [INFO] [EVAL-KB-1-8b9b] Orchestrator: B mode
-2026-08-25 10:33:52,501 [INFO] [EVAL-KB-1-8b9b] ROUTER llm-raw: {"domain":"kb","confidence":0.98,"connect_human":false}
-2026-08-25 10:33:52,502 [INFO] [EVAL-KB-1-8b9b] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.98 connect_human=False
-2026-08-25 10:33:53,323 [INFO] [EVAL-KB-1-8b9b] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"Can I set up multiple users with their own profiles on my HeartBug app?"},"confidence":0.96}
-2026-08-25 10:33:53,519 [INFO] [EVAL-KB-1-8b9b] KB-CACHE MISS best=0.571 q='Can I set up multiple users with their own profiles on my HeartBug app?'
-2026-08-25 10:33:53,627 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_88' matched_q='How does HeartBug pair with the app?' score=0.694
-2026-08-25 10:33:53,628 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_111' matched_q='Can HeartBug sync after days without my phone?' score=0.685
-2026-08-25 10:33:53,629 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_general_1' matched_q='What happens if I use a new phone with HeartBug?' score=0.682
-2026-08-25 10:33:53,629 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_42' matched_q='Does the HeartBug app track my location or activities?' score=0.681
-2026-08-25 10:33:53,630 [INFO] [EVAL-KB-1-8b9b] KB RETRIEVE entry='kb_company_q_about_81' matched_q='Can I use third-party patches with HeartBug?' score=0.673
-2026-08-25 10:33:53,630 [INFO] [EVAL-KB-1-8b9b] KB → ANSWER 5 entries best=0.694
-2026-08-25 10:33:53,756 [INFO] [EVAL-KB-1-8b9b] KB-CACHE PUT q='Can I set up multiple users with their own profiles on my HeartBug app?' store=5
-2026-08-25 10:33:54,699 [INFO] [EVAL-KB-1-8b9b] SYSTEM: I don’t have a HeartBug fact here about multiple user profiles, so I can’t confirm that, but I can help with anything else on your HeartBug account or connect you to the team.
-2026-08-25 10:40:12,944 [INFO] [EVAL-EVASIVE-1-6793] ANI: +61481103973
-2026-08-25 10:40:14,250 [INFO] [EVAL-EVASIVE-1-6793] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth so I can help you today?
-2026-08-25 10:40:16,839 [INFO] [EVAL-EVASIVE-1-6793] CALLER: My name is Alex Thompson, but as for the date of birth... why do you need that? Can't we just discuss my issue with the Pulse-O-Matic first?
-2026-08-25 10:40:16,840 [INFO] [EVAL-EVASIVE-1-6793] Orchestrator: B mode
-2026-08-25 10:40:17,590 [INFO] [EVAL-EVASIVE-1-6793] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 10:40:17,591 [INFO] [EVAL-EVASIVE-1-6793] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 10:40:18,649 [INFO] [EVAL-EVASIVE-1-6793] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Alex Thompson","dob":null,"clinic":null},"confidence":0.98}
-2026-08-25 10:40:18,649 [INFO] [EVAL-EVASIVE-1-6793] SLOTS domain=verification tool=verify_identity have={'name': 'Alex Thompson'} missing=None
-2026-08-25 10:40:18,684 [INFO] [EVAL-EVASIVE-1-6793] VERIFICATION verified=False subject_id=None reason=need the date of birth role=patient clinic_id=None
-2026-08-25 10:40:19,669 [INFO] [EVAL-EVASIVE-1-6793] SYSTEM: I understand, and I can help with your HeartBug issue, but I do need your full date of birth, including the year, to verify the account first.
-2026-08-25 10:40:21,814 [INFO] [EVAL-EVASIVE-1-6793] CALLER: Look, is it really necessary? It's a private piece of information... can't you just take my word for it? What kind of verification are we talking about here?
-2026-08-25 10:40:21,815 [INFO] [EVAL-EVASIVE-1-6793] Orchestrator: B mode
-2026-08-25 10:40:22,607 [INFO] [EVAL-EVASIVE-1-6793] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 10:40:22,608 [INFO] [EVAL-EVASIVE-1-6793] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 10:40:23,625 [INFO] [EVAL-EVASIVE-1-6793] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Alex Thompson","dob":null,"clinic":null},"confidence":0.98}
-2026-08-25 10:40:23,625 [INFO] [EVAL-EVASIVE-1-6793] SLOTS domain=verification tool=verify_identity have={'name': 'Alex Thompson'} missing=None
-2026-08-25 10:40:23,659 [INFO] [EVAL-EVASIVE-1-6793] VERIFICATION verified=False subject_id=None reason=need the date of birth role=patient clinic_id=None
-2026-08-25 10:40:24,791 [INFO] [EVAL-EVASIVE-1-6793] SYSTEM: I understand it feels private; for HeartBug verification, I do need your full date of birth, including the year, and if you’d rather not share it here, I can help with something else on your account or connect you to the team.
-2026-08-25 10:40:27,520 [INFO] [EVAL-EVASIVE-1-6793] CALLER: If I have to give you a date of birth, fine... but only because it's probably stored in the system anyway, right? It's July 22nd, but what year is that even relevant for this thing to work?
-2026-08-25 10:40:27,521 [INFO] [EVAL-EVASIVE-1-6793] Orchestrator: B mode
-2026-08-25 10:40:28,277 [INFO] [EVAL-EVASIVE-1-6793] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-08-25 10:40:28,279 [INFO] [EVAL-EVASIVE-1-6793] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-08-25 10:40:29,222 [INFO] [EVAL-EVASIVE-1-6793] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Alex Thompson","dob":null,"clinic":null},"confidence":0.98}
-2026-08-25 10:40:29,223 [INFO] [EVAL-EVASIVE-1-6793] SLOTS domain=verification tool=verify_identity have={'name': 'Alex Thompson'} missing=None
-2026-08-25 10:40:29,258 [INFO] [EVAL-EVASIVE-1-6793] VERIFICATION verified=False subject_id=None reason=need the date of birth role=patient clinic_id=None
-2026-08-25 10:40:30,155 [INFO] [EVAL-EVASIVE-1-6793] HANDOFF reason=task_failure role=patient
-2026-08-25 10:40:31,037 [INFO] [EVAL-EVASIVE-1-6793] SYSTEM: I’m sorry for the frustration, and I’ll connect you to our patient support team now for the task issue—please hold.
-2026-08-25 10:41:16,523 [INFO] [EVAL-KB-2-f347] ANI: +61412345678
-2026-08-25 10:41:17,942 [INFO] [EVAL-KB-2-f347] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-25 10:41:20,315 [INFO] [EVAL-KB-2-f347] CALLER: My full name is John Smith, and my date of birth is March 15th, 1985 – that's correct, isn't it?
-2026-08-25 10:41:20,316 [INFO] [EVAL-KB-2-f347] Orchestrator: B mode
-2026-08-25 10:41:21,417 [INFO] [EVAL-KB-2-f347] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 10:41:21,418 [INFO] [EVAL-KB-2-f347] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 10:41:22,237 [INFO] [EVAL-KB-2-f347] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
-2026-08-25 10:41:22,238 [INFO] [EVAL-KB-2-f347] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-08-25 10:41:22,272 [INFO] [EVAL-KB-2-f347] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-08-25 10:41:22,308 [INFO] CACHE MISS patient:P001, query DB
-2026-08-25 10:41:22,309 [INFO] CACHE MISS patient:P001, query DB
-2026-08-25 10:41:22,346 [INFO] CACHE HIT order_by_patient:P001
-2026-08-25 10:41:22,347 [INFO] CACHE HIT order:O1001
-2026-08-25 10:41:22,348 [INFO] CACHE HIT order:O1002
-2026-08-25 10:41:23,382 [INFO] [EVAL-KB-2-f347] SYSTEM: Yes, John—you’re verified, and I’m happy to help with your HeartBug account.
-2026-08-25 10:41:25,420 [INFO] [EVAL-KB-2-f347] CALLER: How much does 10 kilos of mango cost in the local market right now? I'm planning on making a smoothie tomorrow morning before my... uh... check-up.
-2026-08-25 10:41:25,420 [INFO] [EVAL-KB-2-f347] Orchestrator: B mode
-2026-08-25 10:41:26,777 [INFO] [EVAL-KB-2-f347] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"How much does 10 kilos of mango cost in the local market right now? Caller is planning to make a smoothie tomorrow morning before a check-up."},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:41:26,778 [INFO] [EVAL-KB-2-f347] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'kb', 'search_kb')]
-2026-08-25 10:41:27,299 [INFO] [EVAL-KB-2-f347] KB-CACHE MISS best=0.399 q='How much does 10 kilos of mango cost in the local market right now? Caller is planning to make a smoothie tomorrow morning before a check-up.'
-2026-08-25 10:41:27,516 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_120' matched_q='How far can I go from my phone before Bluetooth disconnects?' score=0.530
-2026-08-25 10:41:27,517 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_5' matched_q='What should I do if chest or heart pain starts?' score=0.529
-2026-08-25 10:41:27,518 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_80' matched_q='Do I pay for recordings or reports?' score=0.528
-2026-08-25 10:41:27,519 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_79' matched_q='Is HeartBug free?' score=0.526
-2026-08-25 10:41:27,519 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_47' matched_q='Does HeartBug give me results directly?' score=0.525
-2026-08-25 10:41:27,520 [INFO] [EVAL-KB-2-f347] KB → ANSWER 5 entries best=0.530
-2026-08-25 10:41:27,697 [INFO] [EVAL-KB-2-f347] KB-CACHE PUT q='How much does 10 kilos of mango cost in the local market right now? Caller is planning to make a smoothie tomorrow morning before a check-up.' store=6
-2026-08-25 10:41:28,644 [INFO] [EVAL-KB-2-f347] SYSTEM: I’m not able to help with local market prices, but HeartBug recordings and reports are included, and if you’d like I can help with anything else on your account or put you through to the team.
-2026-08-25 10:41:31,302 [INFO] [EVAL-KB-2-f347] CALLER: No, no, that's okay, I just need a minute – what's the weather forecast for tomorrow? Will it be sunny in Seattle where I'm headed? That might affect my, uh, appointment...
-2026-08-25 10:41:31,303 [INFO] [EVAL-KB-2-f347] Orchestrator: B mode
-2026-08-25 10:41:32,558 [INFO] [EVAL-KB-2-f347] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"Weather forecast for tomorrow in Seattle; caller is headed there and wants to know if it will be sunny because it may affect an appointment."},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:41:32,560 [INFO] [EVAL-KB-2-f347] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'kb', 'search_kb')]
-2026-08-25 10:41:32,737 [INFO] [EVAL-KB-2-f347] KB-CACHE MISS best=0.616 q='Weather forecast for tomorrow in Seattle; caller is headed there and wants to know if it will be sunny because it may affect an appointment.'
-2026-08-25 10:41:32,877 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_143' matched_q='What should I do if the device feels too hot?' score=0.555
-2026-08-25 10:41:32,879 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_119' matched_q='What if I forget to wear the HeartBug device?' score=0.550
-2026-08-25 10:41:32,879 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.540
-2026-08-25 10:41:32,880 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_135' matched_q='What if my sticker isn’t flat on my skin?' score=0.535
-2026-08-25 10:41:32,881 [INFO] [EVAL-KB-2-f347] KB RETRIEVE entry='kb_company_q_about_51' matched_q='What if my monitoring period needs to be extended?' score=0.530
-2026-08-25 10:41:32,881 [INFO] [EVAL-KB-2-f347] KB → ANSWER 5 entries best=0.555
-2026-08-25 10:41:33,004 [INFO] [EVAL-KB-2-f347] KB-CACHE PUT q='Weather forecast for tomorrow in Seattle; caller is headed there and wants to know if it will be sunny because it may affect an appointment.' store=7
-2026-08-25 10:41:33,888 [INFO] [EVAL-KB-2-f347] SYSTEM: I can’t check the Seattle forecast, but if you’re unsure about your HeartBug device or monitoring, I can help with that or put you through to patient care.
-2026-08-25 10:41:36,164 [INFO] [EVAL-KB-2-f347] CALLER: Come on, it's a simple question – is there someone who actually knows what's going on outside? Can you at least transfer me to the person in charge of sunshine and clouds?
-2026-08-25 10:41:36,165 [INFO] [EVAL-KB-2-f347] Orchestrator: B mode
-2026-08-25 10:41:37,495 [INFO] [EVAL-KB-2-f347] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"Caller is asking for a human/person in charge of sunshine and clouds; they want to be transferred to someone who knows what's going on outside. Determine whether HeartBug can transfer to a human or support person for non-HeartBug weather questions."},"depends_on":[]}],"confidence":0.95,"connect_human":true,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:41:37,496 [INFO] [EVAL-KB-2-f347] HANDOFF reason=voluntary role=patient
-2026-08-25 10:41:38,532 [INFO] [EVAL-KB-2-f347] SYSTEM: I hear your frustration, and I’ll connect you now to our patient support team, so please hold for the next available HeartBug representative.
-2026-08-25 10:45:41,202 [INFO] [EVAL-EMERGENCY-1-ddd7] ANI: +61412345678
-2026-08-25 10:45:42,448 [INFO] [EVAL-EMERGENCY-1-ddd7] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
-2026-08-25 10:45:45,228 [INFO] [EVAL-EMERGENCY-1-ddd7] CALLER: I'm having a bit of trouble breathing, it's hard to talk, my chest feels... tight, like something is squeezing me from the inside, can't catch my breath.
-2026-08-25 10:45:45,229 [INFO] [EVAL-EMERGENCY-1-ddd7] Orchestrator: B mode
-2026-08-25 10:45:46,090 [INFO] [EVAL-EMERGENCY-1-ddd7] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":true}
-2026-08-25 10:45:46,091 [INFO] [EVAL-EMERGENCY-1-ddd7] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.99 connect_human=True
-2026-08-25 10:45:46,091 [INFO] [EVAL-EMERGENCY-1-ddd7] HANDOFF reason=voluntary role=patient
-2026-08-25 10:45:46,875 [INFO] [EVAL-EMERGENCY-1-ddd7] SYSTEM: I’m connecting you now to the patient support team here at HeartBug, so please hold on, and I’ll get you through right away.
-2026-08-25 10:49:34,855 [INFO] [EVAL-CTX-1-f5bf] ANI: +61000000
-2026-08-25 10:49:36,135 [INFO] [EVAL-CTX-1-f5bf] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth to get started?
-2026-08-25 10:49:38,535 [INFO] [EVAL-CTX-1-f5bf] CALLER: My name is Jane Doe, my date of birth is 22nd July 1990, and I'm under care with the Sydney Heart Centre.
-2026-08-25 10:49:38,535 [INFO] [EVAL-CTX-1-f5bf] Orchestrator: B mode
-2026-08-25 10:49:39,285 [INFO] [EVAL-CTX-1-f5bf] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 10:49:39,286 [INFO] [EVAL-CTX-1-f5bf] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 10:49:40,122 [INFO] [EVAL-CTX-1-f5bf] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":"Sydney Heart Centre"},"confidence":0.99}
-2026-08-25 10:49:40,122 [INFO] [EVAL-CTX-1-f5bf] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22', 'clinic': 'Sydney Heart Centre'} missing=None
-2026-08-25 10:49:40,164 [INFO] [EVAL-CTX-1-f5bf] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
-2026-08-25 10:49:40,190 [INFO] CACHE MISS patient:P002, query DB
-2026-08-25 10:49:40,191 [INFO] CACHE MISS patient:P002, query DB
-2026-08-25 10:49:40,222 [INFO] CACHE HIT order_by_patient:P002
-2026-08-25 10:49:40,222 [INFO] CACHE HIT order:O1003
-2026-08-25 10:49:40,223 [INFO] CACHE HIT order:O1004
-2026-08-25 10:49:40,223 [INFO] CACHE HIT order:O1005
-2026-08-25 10:49:41,203 [INFO] [EVAL-CTX-1-f5bf] SYSTEM: Thanks, Jane — you’re verified with HeartBug, and I’m here to help.
-2026-08-25 10:49:42,880 [INFO] [EVAL-CTX-1-f5bf] CALLER: I've got an order from a few days ago that's supposed to arrive soon - can you tell me when it will be delivered?
-2026-08-25 10:49:42,880 [INFO] [EVAL-CTX-1-f5bf] Orchestrator: B mode
-2026-08-25 10:49:43,811 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":null,"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:49:43,812 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'list_orders')]
-2026-08-25 10:49:43,852 [INFO] CACHE HIT order_by_patient:P002
-2026-08-25 10:49:43,853 [INFO] CACHE HIT order:O1003
-2026-08-25 10:49:43,854 [INFO] CACHE HIT order:O1004
-2026-08-25 10:49:43,855 [INFO] CACHE HIT order:O1005
-2026-08-25 10:49:45,021 [INFO] [EVAL-CTX-1-f5bf] SYSTEM: Your HeartBug Monitor was already delivered on July 8, your Electrode Stickers were shipped and are due on July 30, and your Replacement Device is still processing with an estimated delivery of August 2.
-2026-08-25 10:49:47,627 [INFO] [EVAL-CTX-1-f5bf] CALLER: I think there might have been some mistake about the monitor - I'm not sure why it would've arrived that early since my doctor said I needed to replace it with a newer model. What's going on with that?
-2026-08-25 10:49:47,628 [INFO] [EVAL-CTX-1-f5bf] Orchestrator: B mode
-2026-08-25 10:49:48,620 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1003"},"depends_on":[]}],"confidence":0.95,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:49:48,621 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
-2026-08-25 10:49:48,622 [INFO] [EVAL-CTX-1-f5bf] SLOTS domain=order tool=lookup_order have={'order_id': 'O1003'} missing=None
-2026-08-25 10:49:48,651 [INFO] CACHE HIT order:O1003
-2026-08-25 10:49:50,236 [INFO] [EVAL-CTX-1-f5bf] SYSTEM: I can confirm the HeartBug Monitor on that order was delivered by StarTrack on July 8, and I don’t have any information here about why your doctor recommended a newer model. If you’d like, I can help with the replacement device order or connect you with the team.
-2026-08-25 10:49:53,295 [INFO] [EVAL-CTX-1-f5bf] CALLER: I think it's just a mix-up - my doctor said that when we spoke about it on July 15. Anyway, the Replacement Device is still processing, right? Who's handling that delivery then, is it StarTrack again?
-2026-08-25 10:49:53,296 [INFO] [EVAL-CTX-1-f5bf] Orchestrator: B mode
-2026-08-25 10:49:54,336 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1005"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:49:54,338 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
-2026-08-25 10:49:54,338 [INFO] [EVAL-CTX-1-f5bf] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
-2026-08-25 10:49:54,364 [INFO] CACHE HIT order:O1005
-2026-08-25 10:49:55,232 [INFO] [EVAL-CTX-1-f5bf] SYSTEM: Yes, the Replacement Device is still processing and it’s estimated to arrive on August 2, and I don’t have a carrier or tracking number for it yet.
-2026-08-25 10:49:57,075 [INFO] [EVAL-CTX-1-f5bf] CALLER: So there won't be any tracking information available until after it's shipped, okay - how do I know when it's actually shipped then?
-2026-08-25 10:49:57,075 [INFO] [EVAL-CTX-1-f5bf] Orchestrator: B mode
-2026-08-25 10:49:58,674 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"HeartBug order tracking information: when tracking becomes available after shipment, how to know when an order has actually shipped, and what notifications or status updates the patient receives for a processing replacement device"},"depends_on":[]}],"confidence":0.95,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:49:58,674 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'kb', 'search_kb')]
-2026-08-25 10:49:59,229 [INFO] [EVAL-CTX-1-f5bf] KB-CACHE MISS best=0.620 q='HeartBug order tracking information: when tracking becomes available after shipment, how to know when an order has actually shipped, and what notifications or status updates the patient receives for a processing replacement device'
-2026-08-25 10:49:59,459 [INFO] [EVAL-CTX-1-f5bf] KB RETRIEVE entry='kb_company_q_about_29' matched_q='What happens at the end of my monitoring period?' score=0.809
-2026-08-25 10:49:59,460 [INFO] [EVAL-CTX-1-f5bf] KB RETRIEVE entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.797
-2026-08-25 10:49:59,461 [INFO] [EVAL-CTX-1-f5bf] KB RETRIEVE entry='kb_company_q_about_34' matched_q='How does my doctor receive my HeartBug results?' score=0.783
-2026-08-25 10:49:59,461 [INFO] [EVAL-CTX-1-f5bf] KB RETRIEVE entry='kb_company_q_about_51' matched_q='What if my monitoring period needs to be extended?' score=0.778
-2026-08-25 10:49:59,462 [INFO] [EVAL-CTX-1-f5bf] KB RETRIEVE entry='kb_company_q_about_14' matched_q='How does the HeartBug system work?' score=0.767
-2026-08-25 10:49:59,463 [INFO] [EVAL-CTX-1-f5bf] KB → ANSWER 5 entries best=0.809
-2026-08-25 10:49:59,651 [INFO] [EVAL-CTX-1-f5bf] KB-CACHE PUT q='HeartBug order tracking information: when tracking becomes available after shipment, how to know when an order has actually shipped, and what notifications or status updates the patient receives for a processing replacement device' store=8
-2026-08-25 10:50:00,584 [INFO] [EVAL-CTX-1-f5bf] SYSTEM: Once the Replacement Device ships, you’ll get the tracking details then, and if you’d like I can help check anything else on your HeartBug account or put you through to the team.
-2026-08-25 10:50:03,154 [INFO] [EVAL-CTX-1-f5bf] CALLER: That's not really what I'm looking for - can I just be sent an email as soon as that order ships? That way I'll know it's actually moving forward instead of just sitting in processing?
-2026-08-25 10:50:03,155 [INFO] [EVAL-CTX-1-f5bf] Orchestrator: B mode
-2026-08-25 10:50:04,086 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1005"},"depends_on":[]}],"confidence":0.94,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 10:50:04,087 [INFO] [EVAL-CTX-1-f5bf] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
-2026-08-25 10:50:04,088 [INFO] [EVAL-CTX-1-f5bf] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
-2026-08-25 10:50:04,232 [INFO] CACHE HIT order:O1005
-2026-08-25 10:50:05,191 [INFO] [EVAL-CTX-1-f5bf] SYSTEM: I understand why you’d want that, but I can’t send emails from here; the Replacement Device is still processing and is expected to arrive on August 2. If you’d like, I can help with anything else on your HeartBug account or connect you with the team.
-2026-08-25 11:06:22,029 [INFO] [EVAL-CTX-1-1a97] ANI: +61000000
-2026-08-25 11:06:23,490 [INFO] [EVAL-CTX-1-1a97] SYSTEM: Welcome to HeartBug—could I have your full name and date of birth, please?
-2026-08-25 11:06:26,356 [INFO] [EVAL-CTX-1-1a97] CALLER: Jane Doe, born 22nd July 1990. I'm a patient at Sydney Heart Centre and I need help with my recent order.
-2026-08-25 11:06:26,357 [INFO] [EVAL-CTX-1-1a97] Orchestrator: B mode
-2026-08-25 11:06:27,523 [INFO] [EVAL-CTX-1-1a97] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-08-25 11:06:27,524 [INFO] [EVAL-CTX-1-1a97] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-08-25 11:06:28,391 [INFO] [EVAL-CTX-1-1a97] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
-2026-08-25 11:06:28,392 [INFO] [EVAL-CTX-1-1a97] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
-2026-08-25 11:06:28,429 [INFO] [EVAL-CTX-1-1a97] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
-2026-08-25 11:06:29,842 [INFO] [EVAL-CTX-1-1a97] SYSTEM: Thanks, Jane — could you please tell me which HeartBug clinic you’re registered with, and I can help you with your order from there?
-2026-08-25 11:06:31,228 [INFO] [EVAL-CTX-1-1a97] CALLER: I'm registered with the Sydney Heart Centre – will that allow you to look up my order?
-2026-08-25 11:06:31,228 [INFO] [EVAL-CTX-1-1a97] Orchestrator: B mode
-2026-08-25 11:06:32,004 [INFO] [EVAL-CTX-1-1a97] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 11:06:32,005 [INFO] [EVAL-CTX-1-1a97] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 11:06:32,906 [INFO] [EVAL-CTX-1-1a97] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":"Sydney Heart Centre"},"confidence":0.98}
-2026-08-25 11:06:32,907 [INFO] [EVAL-CTX-1-1a97] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22', 'clinic': 'Sydney Heart Centre'} missing=None
-2026-08-25 11:06:32,924 [INFO] [EVAL-CTX-1-1a97] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
-2026-08-25 11:06:32,954 [INFO] CACHE MISS patient:P002, query DB
-2026-08-25 11:06:32,954 [INFO] CACHE MISS patient:P002, query DB
-2026-08-25 11:06:32,986 [INFO] CACHE MISS order_by_patient:P002, query DB
-2026-08-25 11:06:34,018 [INFO] [EVAL-CTX-1-1a97] SYSTEM: Hi Jane, you’re verified with HeartBug, and I’m here to help.
-2026-08-25 11:06:35,722 [INFO] [EVAL-CTX-1-1a97] CALLER: Thanks for verifying me quickly. Can you tell me about my recent order from HeartBug, specifically the one I placed a few days ago?
-2026-08-25 11:06:35,723 [INFO] [EVAL-CTX-1-1a97] Orchestrator: B mode
-2026-08-25 11:06:36,708 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":null,"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 11:06:36,710 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'list_orders')]
-2026-08-25 11:06:36,741 [INFO] CACHE HIT order_by_patient:P002
-2026-08-25 11:06:36,742 [INFO] CACHE HIT order:O1003
-2026-08-25 11:06:36,743 [INFO] CACHE HIT order:O1004
-2026-08-25 11:06:36,744 [INFO] CACHE HIT order:O1005
-2026-08-25 11:06:38,046 [INFO] [EVAL-CTX-1-1a97] SYSTEM: Yes — your recent HeartBug orders are a HeartBug Monitor, which was delivered, Electrode Stickers, which have shipped with Australia Post and are due on 26 August, and a Replacement Device that’s still processing and due on 29 August.
-2026-08-25 11:06:38,962 [INFO] [EVAL-CTX-1-1a97] CALLER: When will the Electrode Stickers arrive?
-2026-08-25 11:06:38,962 [INFO] [EVAL-CTX-1-1a97] Orchestrator: B mode
-2026-08-25 11:06:40,449 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":true}
-2026-08-25 11:06:40,450 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → []
-2026-08-25 11:06:41,301 [INFO] [EVAL-CTX-1-1a97] ANSWER-FROM-CONTEXT
-2026-08-25 11:06:41,302 [INFO] [EVAL-CTX-1-1a97] SYSTEM: The Electrode Stickers are due to arrive on 26 August.
-2026-08-25 11:06:42,842 [INFO] [EVAL-CTX-1-1a97] CALLER: Who is delivering those stickers on the 26th, will it be a person or just a parcel left at my door?
-2026-08-25 11:06:42,843 [INFO] [EVAL-CTX-1-1a97] Orchestrator: B mode
-2026-08-25 11:06:43,985 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1004"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 11:06:43,985 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
-2026-08-25 11:06:43,986 [INFO] [EVAL-CTX-1-1a97] SLOTS domain=order tool=lookup_order have={'order_id': 'O1004'} missing=None
-2026-08-25 11:06:44,009 [INFO] CACHE HIT order:O1004
-2026-08-25 11:06:44,974 [INFO] [EVAL-CTX-1-1a97] SYSTEM: Australia Post is delivering the Electrode Stickers on 26 August, and I don’t have any detail here on whether it’ll need a signature or be left at your door.
-2026-08-25 11:06:46,412 [INFO] [EVAL-CTX-1-1a97] CALLER: How do I track that delivery once it's shipped to make sure I get it when it arrives?
-2026-08-25 11:06:46,412 [INFO] [EVAL-CTX-1-1a97] Orchestrator: B mode
-2026-08-25 11:06:47,353 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1004"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 11:06:47,354 [INFO] [EVAL-CTX-1-1a97] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'lookup_order')]
-2026-08-25 11:06:47,354 [INFO] [EVAL-CTX-1-1a97] SLOTS domain=order tool=lookup_order have={'order_id': 'O1004'} missing=None
-2026-08-25 11:06:47,383 [INFO] CACHE HIT order:O1004
-2026-08-25 11:06:48,286 [INFO] [EVAL-CTX-1-1a97] SYSTEM: You can track the Electrode Stickers with Australia Post using tracking number AP1004AU, and they’re due on 26 August.
-2026-08-25 12:15:26,614 [INFO] [TEST-1] TWILIO inbound from +61498765432
-2026-08-25 12:15:26,624 [INFO] [TEST-1] ANI: +61498765432
-2026-08-25 12:15:28,195 [INFO] [TEST-1] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-25 14:36:02,895 [INFO] [EVAL-DSTAT-1-c32a] ANI: +61478901234
-2026-08-25 14:36:04,965 [INFO] [EVAL-DSTAT-1-c32a] SYSTEM: Welcome to HeartBug—may I have your full name and the clinic you’re calling from?
-2026-08-25 14:36:07,806 [INFO] [EVAL-DSTAT-1-c32a] CALLER: Good morning, this is Dr Robert Brown from the Melbourne Cardiac Clinic, I'm a cardiologist at the clinic and I was wondering about one of my patients, Alex Thompson.
-2026-08-25 14:36:07,807 [INFO] [EVAL-DSTAT-1-c32a] Orchestrator: B mode
-2026-08-25 14:36:08,678 [INFO] [EVAL-DSTAT-1-c32a] ROUTER llm-raw: {"domain":"verification","confidence":0.93,"connect_human":false}
-2026-08-25 14:36:08,679 [INFO] [EVAL-DSTAT-1-c32a] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.93 connect_human=False
-2026-08-25 14:36:09,700 [INFO] [EVAL-DSTAT-1-c32a] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.95}
-2026-08-25 14:36:09,701 [INFO] [EVAL-DSTAT-1-c32a] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
-2026-08-25 14:36:09,740 [INFO] [EVAL-DSTAT-1-c32a] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
-2026-08-25 14:36:10,214 [INFO] CACHE MISS patient:D002, query DB
-2026-08-25 14:36:10,218 [INFO] CACHE MISS patient:D002, query DB
-2026-08-25 14:36:10,472 [INFO] CACHE MISS order_by_patient:D002, query DB
-2026-08-25 14:36:11,306 [INFO] [EVAL-DSTAT-1-c32a] SYSTEM: Good morning, Dr, you’re verified with HeartBug, and I’m happy to help—what can I do for you today?
-2026-08-25 14:36:14,017 [INFO] [EVAL-DSTAT-1-c32a] CALLER: Thanks for verifying me, I appreciate that. I'm calling about Alex Thompson, who's been fitted with a HeartMonitor device - I need to know if they're still being monitored remotely and if the latest report is ready for review.
-2026-08-25 14:36:14,017 [INFO] [EVAL-DSTAT-1-c32a] Orchestrator: B mode
-2026-08-25 14:36:15,169 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"depends_on":[]}],"confidence":0.97,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 14:36:15,169 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
-2026-08-25 14:36:15,170 [INFO] [EVAL-DSTAT-1-c32a] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Alex Thompson'} missing=None
-2026-08-25 14:36:15,964 [INFO] CACHE MISS monitoring:P003, query DB
-2026-08-25 14:36:16,819 [INFO] [EVAL-DSTAT-1-c32a] SYSTEM: Alex Thompson’s enrolment is completed, their monitoring runs until 23 August 2026, and the latest report is ready for review.
-2026-08-25 14:36:19,014 [INFO] [EVAL-DSTAT-1-c32a] CALLER: Can you expedite the report's release so I can review it as soon as possible, preferably today if possible? Alex is due for a follow-up appointment with me tomorrow morning.
-2026-08-25 14:36:19,014 [INFO] [EVAL-DSTAT-1-c32a] Orchestrator: B mode
-2026-08-25 14:36:20,310 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"send_patient_report","args":{"patient_name":"Alex Thompson"},"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 14:36:20,311 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'send_patient_report')]
-2026-08-25 14:36:20,312 [INFO] [EVAL-DSTAT-1-c32a] SLOTS domain=doctor tool=send_patient_report have={'patient_name': 'Alex Thompson'} missing=None
-2026-08-25 14:36:20,402 [INFO] CACHE HIT monitoring:P003
-2026-08-25 14:36:21,743 [INFO] [EVAL-DSTAT-1-c32a] SYSTEM: Alex Thompson’s report has now been emailed to your registered address at robert.brown@heartbug.com.au, so you should be able to review it today.
-2026-08-25 14:36:24,559 [INFO] [EVAL-DSTAT-1-c32a] CALLER: Thank you for taking care of that - I'll log on to the email as soon as possible and go over Alex's report, but can you also confirm if there have been any alerts or notifications regarding their condition since they started being monitored?
-2026-08-25 14:36:24,559 [INFO] [EVAL-DSTAT-1-c32a] Orchestrator: B mode
-2026-08-25 14:36:25,633 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_alerts","args":{"patient_name":"Alex Thompson"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 14:36:25,634 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_alerts')]
-2026-08-25 14:36:25,634 [INFO] [EVAL-DSTAT-1-c32a] SLOTS domain=doctor tool=check_patient_alerts have={'patient_name': 'Alex Thompson'} missing=None
-2026-08-25 14:36:26,575 [INFO] [EVAL-DSTAT-1-c32a] SYSTEM: Alex Thompson has had no alerts raised since monitoring began, so there are no notifications to review right now.
-2026-08-25 14:36:29,036 [INFO] [EVAL-DSTAT-1-c32a] CALLER: That's good news, I'll review the report and we'll discuss Alex's progress at our appointment tomorrow - one more thing, do you have a note of their current medication regimen that's been logged in HeartBug?
-2026-08-25 14:36:29,037 [INFO] [EVAL-DSTAT-1-c32a] Orchestrator: B mode
-2026-08-25 14:36:30,358 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"Does HeartBug store or display a patient's current medication regimen in the app or monitoring record? Caller is a verified doctor asking about Alex Thompson's medication regimen logged in HeartBug, after asking about monitoring status, report, and alerts."},"depends_on":[]}],"confidence":0.92,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 14:36:30,359 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'kb', 'search_kb')]
-2026-08-25 14:36:33,882 [INFO] [EVAL-DSTAT-1-c32a] KB-CACHE MISS best=0.708 q="Does HeartBug store or display a patient's current medication regimen in the app or monitoring record? Caller is a verified doctor asking about Alex Thompson's medication regimen logged in HeartBug, after asking about monitoring status, report, and alerts."
-2026-08-25 14:36:34,154 [INFO] [EVAL-DSTAT-1-c32a] KB RETRIEVE entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.759
-2026-08-25 14:36:34,155 [INFO] [EVAL-DSTAT-1-c32a] KB RETRIEVE entry='kb_company_q_about_14' matched_q='How does the HeartBug system work?' score=0.753
-2026-08-25 14:36:34,155 [INFO] [EVAL-DSTAT-1-c32a] KB RETRIEVE entry='kb_company_q_about_34' matched_q='How does my doctor receive my HeartBug results?' score=0.751
-2026-08-25 14:36:34,156 [INFO] [EVAL-DSTAT-1-c32a] KB RETRIEVE entry='kb_company_q_about_99' matched_q='Can my doctor monitor me live while I wear HeartBug?' score=0.750
-2026-08-25 14:36:34,156 [INFO] [EVAL-DSTAT-1-c32a] KB RETRIEVE entry='kb_company_q_about_36' matched_q='Can HeartBug tell me my results immediately?' score=0.748
-2026-08-25 14:36:34,157 [INFO] [EVAL-DSTAT-1-c32a] KB → ANSWER 5 entries best=0.759
-2026-08-25 14:36:34,378 [INFO] [EVAL-DSTAT-1-c32a] KB-CACHE PUT q="Does HeartBug store or display a patient's current medication regimen in the app or monitoring record? Caller is a verified doctor asking about Alex Thompson's medication regimen logged in HeartBug, after asking about monitoring status, report, and alerts." store=9
-2026-08-25 14:36:35,375 [INFO] [EVAL-DSTAT-1-c32a] SYSTEM: I’m sorry, but I don’t have their current medication regimen logged in HeartBug; if you’d like, I can help you with anything else on their account or put you through to the team.
-2026-08-25 14:36:37,338 [INFO] [EVAL-DSTAT-1-c32a] CALLER: That's fine, I'll just access it from my patient records here at the clinic - no worries at all, thank you for checking.
-2026-08-25 14:36:37,339 [INFO] [EVAL-DSTAT-1-c32a] Orchestrator: B mode
-2026-08-25 14:36:38,541 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":false,"small_talk":true,"answer_from_context":false}
-2026-08-25 14:36:38,542 [INFO] [EVAL-DSTAT-1-c32a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → []
-2026-08-25 14:36:39,524 [INFO] [EVAL-DSTAT-1-c32a] SMALL-TALK
-2026-08-25 14:36:39,524 [INFO] [EVAL-DSTAT-1-c32a] SYSTEM: That works perfectly—thank you for letting me know, and if you need anything else with your HeartBug account, I’m here to help.
-2026-08-25 14:45:25,416 [INFO] [EVAL-DSTAT-2-1e19] ANI: +61478901234
-2026-08-25 14:45:26,436 [INFO] [EVAL-DSTAT-2-1e19] SYSTEM: Welcome to HeartBug — could I have your full name and the clinic you’re calling from?
-2026-08-25 14:45:29,191 [INFO] [EVAL-DSTAT-2-1e19] CALLER: Dr Robert Brown, Melbourne Cardiac Clinic C02 - I'm trying to get an update on one of my patients, John Smith, can someone help me with that?
-2026-08-25 14:45:29,192 [INFO] [EVAL-DSTAT-2-1e19] Orchestrator: B mode
-2026-08-25 14:45:30,098 [INFO] [EVAL-DSTAT-2-1e19] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":true}
-2026-08-25 14:45:30,099 [INFO] [EVAL-DSTAT-2-1e19] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=True
-2026-08-25 14:45:30,100 [INFO] [EVAL-DSTAT-2-1e19] HANDOFF reason=voluntary role=patient
-2026-08-25 14:45:30,920 [INFO] [EVAL-DSTAT-2-1e19] SYSTEM: Absolutely — I’ll connect you to our patient support team now, and please hold while I put you through.
-2026-08-25 14:45:51,743 [INFO] [EVAL-DSTAT-2-9e6a] ANI: +61478901234
-2026-08-25 14:45:52,951 [INFO] [EVAL-DSTAT-2-9e6a] SYSTEM: Welcome to HeartBug—could I have your full name and the clinic you’re calling from?
-2026-08-25 14:45:56,085 [INFO] [EVAL-DSTAT-2-9e6a] CALLER: This is Dr Robert Brown, cardiologist at the Melbourne Cardiac Clinic, and I'm looking for an update on one of my patients, John Smith - just need a quick status check if possible.
-2026-08-25 14:45:56,086 [INFO] [EVAL-DSTAT-2-9e6a] Orchestrator: B mode
-2026-08-25 14:45:56,967 [INFO] [EVAL-DSTAT-2-9e6a] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 14:45:56,968 [INFO] [EVAL-DSTAT-2-9e6a] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 14:45:57,887 [INFO] [EVAL-DSTAT-2-9e6a] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.95}
-2026-08-25 14:45:57,888 [INFO] [EVAL-DSTAT-2-9e6a] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
-2026-08-25 14:45:57,920 [INFO] [EVAL-DSTAT-2-9e6a] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
-2026-08-25 14:45:57,946 [INFO] CACHE MISS patient:D002, query DB
-2026-08-25 14:45:57,947 [INFO] CACHE MISS patient:D002, query DB
-2026-08-25 14:45:57,979 [INFO] CACHE HIT order_by_patient:D002
-2026-08-25 14:45:58,800 [INFO] [EVAL-DSTAT-2-9e6a] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m happy to help; if you’d like, I can put you through to the team for the patient status update.
-2026-08-25 14:46:00,684 [INFO] [EVAL-DSTAT-2-9e6a] CALLER: No, no need for that, I'm his doctor, after all... just a quick question, is John Smith's heart monitor functioning properly?
-2026-08-25 14:46:00,684 [INFO] [EVAL-DSTAT-2-9e6a] Orchestrator: B mode
-2026-08-25 14:46:01,932 [INFO] [EVAL-DSTAT-2-9e6a] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"John Smith"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 14:46:01,933 [INFO] [EVAL-DSTAT-2-9e6a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
-2026-08-25 14:46:01,933 [INFO] [EVAL-DSTAT-2-9e6a] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'John Smith'} missing=None
-2026-08-25 14:46:03,131 [INFO] [EVAL-DSTAT-2-9e6a] SYSTEM: I couldn’t find a patient named John Smith under your care in HeartBug; could you please confirm the patient’s full name?
-2026-08-25 14:46:05,207 [INFO] [EVAL-DSTAT-2-9e6a] CALLER: That's impossible - I've been following him for years, and we transferred his records to you... his name is definitely John Smith. Can you just check again?
-2026-08-25 14:46:05,208 [INFO] [EVAL-DSTAT-2-9e6a] Orchestrator: B mode
-2026-08-25 14:46:07,373 [INFO] [EVAL-DSTAT-2-9e6a] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"John Smith"},"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 14:46:07,376 [INFO] [EVAL-DSTAT-2-9e6a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
-2026-08-25 14:46:07,377 [INFO] [EVAL-DSTAT-2-9e6a] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'John Smith'} missing=None
-2026-08-25 14:46:09,034 [INFO] [EVAL-DSTAT-2-9e6a] SYSTEM: I understand this is frustrating, but I still can’t find a patient named John Smith under your care in HeartBug; please confirm the full name, or I can put you through to the team for further help.
-2026-08-25 14:46:11,162 [INFO] [EVAL-DSTAT-2-9e6a] CALLER: I'm telling you, I've got him down here in my notes as John Smith - it's not a mistake! Can't you just give me the monitoring status?
-2026-08-25 14:46:11,163 [INFO] [EVAL-DSTAT-2-9e6a] Orchestrator: B mode
-2026-08-25 14:46:12,911 [INFO] [EVAL-DSTAT-2-9e6a] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"John Smith"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 14:46:12,912 [INFO] [EVAL-DSTAT-2-9e6a] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
-2026-08-25 14:46:12,912 [INFO] [EVAL-DSTAT-2-9e6a] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'John Smith'} missing=None
-2026-08-25 14:46:14,439 [INFO] [EVAL-DSTAT-2-9e6a] HANDOFF reason=task_failure role=doctor
-2026-08-25 14:46:15,327 [INFO] [EVAL-DSTAT-2-9e6a] SYSTEM: I hear your frustration, and I’m sorry I can’t provide that here; I’m connecting you now to the clinical desk team, so please hold.
-2026-08-25 14:58:44,970 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-08-25 14:58:45,090 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-25 14:58:46,285 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-25 14:58:46,310 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-08-25 14:58:46,555 [INFO] TRACING on → http://host.docker.internal:5001
-2026-08-25 15:26:05,743 [INFO] [EVAL-DSTAT-3-e401] ANI: +61412345678
-2026-08-25 15:26:07,282 [INFO] [EVAL-DSTAT-3-e401] SYSTEM: Welcome to HeartBug—may I please have your full name and date of birth?
-2026-08-25 15:26:10,447 [INFO] [EVAL-DSTAT-3-e401] CALLER: This must be some kind of mistake, my wife uses one of these devices, not me... I'm John Smith, born March 15th, 1985, but I was calling about a different patient.
-2026-08-25 15:26:10,447 [INFO] [EVAL-DSTAT-3-e401] Orchestrator: B mode
-2026-08-25 15:26:11,248 [INFO] [EVAL-DSTAT-3-e401] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 15:26:11,249 [INFO] [EVAL-DSTAT-3-e401] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 15:26:12,181 [INFO] [EVAL-DSTAT-3-e401] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
-2026-08-25 15:26:12,182 [INFO] [EVAL-DSTAT-3-e401] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-08-25 15:26:12,218 [INFO] [EVAL-DSTAT-3-e401] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-08-25 15:26:12,407 [INFO] CACHE MISS patient:P001, query DB
-2026-08-25 15:26:12,408 [INFO] CACHE MISS patient:P001, query DB
-2026-08-25 15:26:12,598 [INFO] CACHE MISS order_by_patient:P001, query DB
-2026-08-25 15:26:13,556 [INFO] [EVAL-DSTAT-3-e401] SYSTEM: Thanks, John — I’ve verified you, and I’m here to help; if you’d like, I can also connect you with the team or help with anything else on your HeartBug account.
-2026-08-25 15:26:16,216 [INFO] [EVAL-DSTAT-3-e401] CALLER: No, no, it's not me who has the device, it's a patient of mine – Jane Doe – her monitoring report is overdue, can I speak to someone about her status and if the report is ready yet?
-2026-08-25 15:26:16,216 [INFO] [EVAL-DSTAT-3-e401] Orchestrator: B mode
-2026-08-25 15:26:17,750 [INFO] [EVAL-DSTAT-3-e401] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Jane Doe"},"depends_on":[]}],"confidence":0.97,"connect_human":true,"small_talk":false,"answer_from_context":false}
-2026-08-25 15:26:17,751 [INFO] [EVAL-DSTAT-3-e401] HANDOFF reason=voluntary role=patient
-2026-08-25 15:26:18,573 [INFO] [EVAL-DSTAT-3-e401] SYSTEM: I’ll connect you to our patient support team now, and please hold for a moment while they review Jane Doe’s monitoring report status.
-2026-08-25 15:32:03,492 [INFO] [EVAL-DSTAT-3-cd83] ANI: +61412345678
-2026-08-25 15:32:04,422 [INFO] [EVAL-DSTAT-3-cd83] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-25 15:32:07,252 [INFO] [EVAL-DSTAT-3-cd83] CALLER: This is John Smith, born March 15th, 1985, and I'm trying to get some information about... about my patient Jane Doe's current status, actually.
-2026-08-25 15:32:07,252 [INFO] [EVAL-DSTAT-3-cd83] Orchestrator: B mode
-2026-08-25 15:32:08,009 [INFO] [EVAL-DSTAT-3-cd83] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 15:32:08,010 [INFO] [EVAL-DSTAT-3-cd83] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 15:32:08,900 [INFO] [EVAL-DSTAT-3-cd83] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
-2026-08-25 15:32:08,901 [INFO] [EVAL-DSTAT-3-cd83] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-08-25 15:32:08,935 [INFO] [EVAL-DSTAT-3-cd83] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-08-25 15:32:08,964 [INFO] CACHE HIT patient:P001
-2026-08-25 15:32:08,966 [INFO] CACHE HIT patient:P001
-2026-08-25 15:32:09,004 [INFO] CACHE HIT order_by_patient:P001
-2026-08-25 15:32:09,004 [INFO] CACHE HIT order:O1001
-2026-08-25 15:32:09,005 [INFO] CACHE HIT order:O1002
-2026-08-25 15:32:09,789 [INFO] [EVAL-DSTAT-3-cd83] SYSTEM: Hi John, you’re verified, and I’m happy to help with your HeartBug account.
-2026-08-25 15:32:11,538 [INFO] [EVAL-DSTAT-3-cd83] CALLER: What about the monitoring status of one of our patients, Jane Doe? Is her report ready yet? She's been experiencing some... issues lately.
-2026-08-25 15:32:11,538 [INFO] [EVAL-DSTAT-3-cd83] Orchestrator: B mode
-2026-08-25 15:32:12,579 [INFO] [EVAL-DSTAT-3-cd83] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Jane Doe"},"depends_on":[]}],"confidence":0.97,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 15:32:12,580 [INFO] [EVAL-DSTAT-3-cd83] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
-2026-08-25 15:32:12,580 [INFO] [EVAL-DSTAT-3-cd83] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Jane Doe'} missing=None
-2026-08-25 15:32:13,539 [INFO] [EVAL-DSTAT-3-cd83] SYSTEM: I’m sorry, but I can’t see a monitoring status or report for Jane Doe right now. If you’d like, I can help with something on your own HeartBug account or put you through to the team.
-2026-08-25 15:32:16,248 [INFO] [EVAL-DSTAT-3-cd83] CALLER: Wait, I'm confused – I don't have a HeartBug device, I'm just trying to access information about my patient's monitoring status. Can you tell me who this "team" is that I could be transferred to?
-2026-08-25 15:32:16,249 [INFO] [EVAL-DSTAT-3-cd83] Orchestrator: B mode
-2026-08-25 15:32:17,785 [INFO] [EVAL-DSTAT-3-cd83] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"Who is the HeartBug team or support team that a caller can be transferred to? The caller is asking who 'the team' is for transfer when they need help accessing a patient's monitoring status."},"depends_on":[]}],"confidence":0.92,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 15:32:17,786 [INFO] [EVAL-DSTAT-3-cd83] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'kb', 'search_kb')]
-2026-08-25 15:32:21,264 [INFO] [EVAL-DSTAT-3-cd83] KB-CACHE MISS best=0.000 q="Who is the HeartBug team or support team that a caller can be transferred to? The caller is asking who 'the team' is for transfer when they need help accessing a patient's monitoring status."
-2026-08-25 15:32:21,574 [INFO] [EVAL-DSTAT-3-cd83] KB RETRIEVE entry='kb_company_q_prisup_12' matched_q='Who do I contact for medical concerns or symptoms?' score=0.767
-2026-08-25 15:32:21,575 [INFO] [EVAL-DSTAT-3-cd83] KB RETRIEVE entry='kb_company_q_about_7' matched_q='Who typically uses the HeartBug device?' score=0.748
-2026-08-25 15:32:21,576 [INFO] [EVAL-DSTAT-3-cd83] KB RETRIEVE entry='kb_company_q_about_34' matched_q='How does my doctor receive my HeartBug results?' score=0.736
-2026-08-25 15:32:21,577 [INFO] [EVAL-DSTAT-3-cd83] KB RETRIEVE entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.730
-2026-08-25 15:32:21,578 [INFO] [EVAL-DSTAT-3-cd83] KB RETRIEVE entry='kb_company_q_about_51' matched_q='What if my monitoring period needs to be extended?' score=0.723
-2026-08-25 15:32:21,578 [INFO] [EVAL-DSTAT-3-cd83] KB → ANSWER 5 entries best=0.767
-2026-08-25 15:32:21,823 [INFO] [EVAL-DSTAT-3-cd83] KB-CACHE PUT q="Who is the HeartBug team or support team that a caller can be transferred to? The caller is asking who 'the team' is for transfer when they need help accessing a patient's monitoring status." store=1
-2026-08-25 15:32:22,746 [INFO] [EVAL-DSTAT-3-cd83] SYSTEM: I’m not able to share another patient’s monitoring status, and for any medical concerns or symptoms you should contact the doctor; if you need HeartBug device or monitoring help, I can put you through to patient care.
-2026-08-25 15:32:25,084 [INFO] [EVAL-DSTAT-3-cd83] CALLER: My patient's doctor is already aware of her situation, and I just need to check on some... administrative details. Can I speak with someone who handles report generation and release?
-2026-08-25 15:32:25,084 [INFO] [EVAL-DSTAT-3-cd83] Orchestrator: B mode
-2026-08-25 15:32:25,920 [INFO] [EVAL-DSTAT-3-cd83] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.95,"connect_human":true,"small_talk":false,"answer_from_context":false}
-2026-08-25 15:32:25,922 [INFO] [EVAL-DSTAT-3-cd83] HANDOFF reason=voluntary role=patient
-2026-08-25 15:32:26,831 [INFO] [EVAL-DSTAT-3-cd83] SYSTEM: Absolutely — I’ll connect you to our patient support team now, so please hold for the next available HeartBug representative.
-2026-08-25 15:38:03,027 [INFO] [EVAL-DORDER-3-2d59] ANI: +61434567890
-2026-08-25 15:38:04,323 [INFO] [EVAL-DORDER-3-2d59] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-08-25 15:38:06,901 [INFO] [EVAL-DORDER-3-2d59] CALLER: David Chen, born October 12th, 1975. Just need a few more sticker packs for the Melbourne Cardiac Clinic, we're low on them.
-2026-08-25 15:38:06,901 [INFO] [EVAL-DORDER-3-2d59] Orchestrator: B mode
-2026-08-25 15:38:07,912 [INFO] [EVAL-DORDER-3-2d59] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 15:38:07,913 [INFO] [EVAL-DORDER-3-2d59] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 15:38:09,166 [INFO] [EVAL-DORDER-3-2d59] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"David Chen","dob":"1975-10-12","clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
-2026-08-25 15:38:09,167 [INFO] [EVAL-DORDER-3-2d59] SLOTS domain=verification tool=verify_identity have={'name': 'David Chen', 'dob': '1975-10-12', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
-2026-08-25 15:38:09,203 [INFO] [EVAL-DORDER-3-2d59] VERIFICATION verified=False subject_id=None reason=details do not match role=patient clinic_id=None
-2026-08-25 15:38:10,014 [INFO] [EVAL-DORDER-3-2d59] SYSTEM: I’m sorry, I couldn’t verify your details, so please repeat your full name and date of birth, and I can help from there.
-2026-08-25 15:38:12,382 [INFO] [EVAL-DORDER-3-2d59] CALLER: It's David Chen, born October 12th, 1975 – I'm a regular patient here at the Melbourne Cardiac Clinic, just need to get some more stickers in for them.
-2026-08-25 15:38:12,382 [INFO] [EVAL-DORDER-3-2d59] Orchestrator: B mode
-2026-08-25 15:38:13,155 [INFO] [EVAL-DORDER-3-2d59] ROUTER llm-raw: {"domain":"verification","confidence":0.97,"connect_human":false}
-2026-08-25 15:38:13,156 [INFO] [EVAL-DORDER-3-2d59] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.97 connect_human=False
-2026-08-25 15:38:14,183 [INFO] [EVAL-DORDER-3-2d59] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"David Chen","dob":"1975-10-12","clinic":null},"confidence":0.99}
-2026-08-25 15:38:14,184 [INFO] [EVAL-DORDER-3-2d59] SLOTS domain=verification tool=verify_identity have={'name': 'David Chen', 'dob': '1975-10-12'} missing=None
-2026-08-25 15:38:14,220 [INFO] [EVAL-DORDER-3-2d59] VERIFICATION verified=False subject_id=None reason=details do not match role=patient clinic_id=None
-2026-08-25 15:38:15,477 [INFO] [EVAL-DORDER-3-2d59] SYSTEM: Thanks, David — I’m sorry, but I couldn’t verify your details, so please repeat your name and date of birth for me, and I’ll help you with the HeartBug stickers.
-2026-08-25 15:38:18,264 [INFO] [EVAL-DORDER-3-2d59] CALLER: Come on, mate, it's on file – Melbourne Cardiac Clinic, they know me there! October 12th, 1975, David Chen, that's my details. Now can we just order some more stickers?
-2026-08-25 15:38:18,265 [INFO] [EVAL-DORDER-3-2d59] Orchestrator: B mode
-2026-08-25 15:38:19,018 [INFO] [EVAL-DORDER-3-2d59] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 15:38:19,019 [INFO] [EVAL-DORDER-3-2d59] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 15:38:19,913 [INFO] [EVAL-DORDER-3-2d59] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"David Chen","dob":"1975-10-12","clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
-2026-08-25 15:38:19,913 [INFO] [EVAL-DORDER-3-2d59] SLOTS domain=verification tool=verify_identity have={'name': 'David Chen', 'dob': '1975-10-12', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
-2026-08-25 15:38:19,952 [INFO] [EVAL-DORDER-3-2d59] VERIFICATION verified=False subject_id=None reason=details do not match role=patient clinic_id=None
-2026-08-25 15:38:20,988 [INFO] [EVAL-DORDER-3-2d59] HANDOFF reason=task_failure role=patient
-2026-08-25 15:38:21,963 [INFO] [EVAL-DORDER-3-2d59] SYSTEM: I hear your frustration, and I’m connecting you to our patient support team now, so please hold while they help with the HeartBug stickers.
-2026-08-25 15:39:41,200 [INFO] [EVAL-DORDER-3-af85] ANI: +61434567890
-2026-08-25 15:39:42,656 [INFO] [EVAL-DORDER-3-af85] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
-2026-08-25 15:39:45,463 [INFO] [EVAL-DORDER-3-af85] CALLER: My name's David Chen, born May 8th, 1965, and I'm from the Melbourne Cardiac Clinic here to restock on some sticker packs – about a hundred, if you don't mind.
-2026-08-25 15:39:45,464 [INFO] [EVAL-DORDER-3-af85] Orchestrator: B mode
-2026-08-25 15:39:47,260 [INFO] [EVAL-DORDER-3-af85] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-08-25 15:39:47,261 [INFO] [EVAL-DORDER-3-af85] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-08-25 15:39:48,283 [INFO] [EVAL-DORDER-3-af85] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"David Chen","dob":"1965-05-08","clinic":null},"confidence":0.98}
-2026-08-25 15:39:48,283 [INFO] [EVAL-DORDER-3-af85] SLOTS domain=verification tool=verify_identity have={'name': 'David Chen', 'dob': '1965-05-08'} missing=None
-2026-08-25 15:39:48,372 [INFO] [EVAL-DORDER-3-af85] VERIFICATION verified=True subject_id=P005 reason=None role=patient clinic_id=C01
-2026-08-25 15:39:48,415 [INFO] CACHE MISS patient:P005, query DB
-2026-08-25 15:39:48,415 [INFO] CACHE MISS patient:P005, query DB
-2026-08-25 15:39:48,486 [INFO] CACHE MISS order_by_patient:P005, query DB
-2026-08-25 15:39:49,301 [INFO] [EVAL-DORDER-3-af85] SYSTEM: Thanks, David — you’re verified, and I’m here to help with your HeartBug account.
-2026-08-25 15:39:50,986 [INFO] [EVAL-DORDER-3-af85] CALLER: That's great, thanks. I just need those sticker packs for the clinic, so can we go ahead and process that order?
-2026-08-25 15:39:50,987 [INFO] [EVAL-DORDER-3-af85] Orchestrator: B mode
-2026-08-25 15:39:51,920 [INFO] [EVAL-DORDER-3-af85] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"request_clinic_restock","args":{"product":"sticker packs","quantity":100},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-08-25 15:39:51,921 [INFO] [EVAL-DORDER-3-af85] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'request_clinic_restock')]
-2026-08-25 15:39:51,922 [INFO] [EVAL-DORDER-3-af85] SLOTS domain=order tool=request_clinic_restock have={'product': 'sticker packs', 'quantity': 100} missing=None
-2026-08-25 15:39:52,995 [INFO] [EVAL-DORDER-3-af85] SYSTEM: I can’t process that restock request, because clinic restocks on HeartBug can only be submitted by a verified doctor. If you’d like, I can help with something else on your HeartBug account or put you through to the team.
-2026-08-25 15:39:54,952 [INFO] [EVAL-DORDER-3-af85] CALLER: Can you just transfer me to someone who deals with customer orders then? I need those sticker packs for patient monitoring at the Melbourne Cardiac Clinic.
-2026-08-25 15:39:54,952 [INFO] [EVAL-DORDER-3-af85] Orchestrator: B mode
-2026-08-25 15:39:55,842 [INFO] [EVAL-DORDER-3-af85] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false}
-2026-08-25 15:39:55,843 [INFO] [EVAL-DORDER-3-af85] HANDOFF reason=voluntary role=patient
-2026-08-25 15:39:56,997 [INFO] [EVAL-DORDER-3-af85] SYSTEM: Of course — I’ll connect you to a member of our HeartBug patient support team now, so please hold for just a moment.
+2026-08-26 08:58:19,643 [INFO] [S1] ANI: +61412345678
+2026-08-26 08:58:20,863 [INFO] [S1] SYSTEM: Welcome to HeartBug—could I have your full name and date of birth, please?
+2026-08-26 08:58:27,148 [INFO] [S1] CALLER: what about the other one?
+2026-08-26 08:58:27,148 [INFO] [S1] Orchestrator: B mode
+2026-08-26 08:58:28,005 [INFO] [S1] ROUTER llm-raw: {"domain":"unknown","confidence":0.34,"connect_human":false}
+2026-08-26 08:58:28,006 [INFO] [S1] ROUTER allowed=['verification', 'kb'] → domain=unknown conf=0.34 connect_human=False
+2026-08-26 08:58:28,997 [INFO] [S1] SYSTEM: I’m sorry, but I can only help with HeartBug account matters—if you’d like, I can help with anything else on your HeartBug account or connect you to the right team.
+2026-08-26 08:58:38,244 [INFO] [S1] CALLER: my name is John Smith date of birth the fifteenth of March, eighty-five
+2026-08-26 08:58:38,244 [INFO] [S1] Orchestrator: B mode
+2026-08-26 08:58:39,189 [INFO] [S1] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-08-26 08:58:39,189 [INFO] [S1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-08-26 08:58:40,317 [INFO] [S1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
+2026-08-26 08:58:40,318 [INFO] [S1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-08-26 08:58:40,347 [INFO] [S1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-08-26 08:58:41,327 [INFO] [S1] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account.
+2026-08-26 09:14:36,241 [INFO] [S18] ANI: +61467890123
+2026-08-26 09:14:37,120 [INFO] [S18] SYSTEM: Welcome to HeartBug—may I have your full name and the clinic you’re calling from?
+2026-08-26 09:14:45,580 [INFO] [S18] CALLER: Dr Emily Nguyen, Sydney Heart Centre
+2026-08-26 09:14:45,581 [INFO] [S18] Orchestrator: B mode
+2026-08-26 09:14:46,524 [INFO] [S18] ROUTER llm-raw: {"domain":"verification","confidence":0.89,"connect_human":false}
+2026-08-26 09:14:46,524 [INFO] [S18] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.89 connect_human=False
+2026-08-26 09:14:47,337 [INFO] [S18] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Emily Nguyen","clinic":"Sydney Heart Centre"},"confidence":0.98}
+2026-08-26 09:14:47,337 [INFO] [S18] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Emily Nguyen', 'clinic': 'Sydney Heart Centre'} missing=None
+2026-08-26 09:14:47,374 [INFO] [S18] VERIFICATION verified=True subject_id=D001 reason=None role=doctor clinic_id=C01
+2026-08-26 09:14:48,228 [INFO] [S18] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m here to help.
+2026-08-26 09:15:00,167 [INFO] [S18] CALLER: send me Jane Doe's monitoring report
+2026-08-26 09:15:00,167 [INFO] [S18] Orchestrator: B mode
+2026-08-26 09:15:01,751 [INFO] [S18] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"send_patient_report","args":{"patient_name":"Jane Doe"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-26 09:15:01,752 [INFO] [S18] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'send_patient_report')]
+2026-08-26 09:15:01,752 [INFO] [S18] SLOTS domain=doctor tool=send_patient_report have={'patient_name': 'Jane Doe'} missing=None
+2026-08-26 09:15:02,938 [INFO] [S18] SYSTEM: I’m sorry, but Jane Doe’s monitoring report isn’t ready yet, so I can’t send it right now; if you’d like, I can help with something else on HeartBug or connect you with the team.
+2026-08-26 09:15:49,362 [INFO] [S19] ANI: +61467890123
+2026-08-26 09:15:50,616 [INFO] [S19] SYSTEM: Welcome to HeartBug — may I have your full name and the clinic you’re calling from?
+2026-08-26 09:15:56,284 [INFO] [S19] CALLER: Dr Emily Nguyen, from Sydney Heart Centre
+2026-08-26 09:15:56,284 [INFO] [S19] Orchestrator: B mode
+2026-08-26 09:15:57,318 [INFO] [S19] ROUTER llm-raw: {"domain":"verification","confidence":0.74,"connect_human":false}
+2026-08-26 09:15:57,319 [INFO] [S19] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.74 connect_human=False
+2026-08-26 09:15:58,384 [INFO] [S19] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Emily Nguyen","dob":null,"clinic":"Sydney Heart Centre"},"confidence":0.98}
+2026-08-26 09:15:58,385 [INFO] [S19] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Emily Nguyen', 'clinic': 'Sydney Heart Centre'} missing=None
+2026-08-26 09:15:58,419 [INFO] [S19] VERIFICATION verified=True subject_id=D001 reason=None role=doctor clinic_id=C01
+2026-08-26 09:15:59,356 [INFO] [S19] SYSTEM: Hello Dr, you’re verified, and I’m happy to help with anything on your HeartBug account.
+2026-08-26 09:16:07,241 [INFO] [S19] CALLER: how is my patient Maria Garcia going
+2026-08-26 09:16:07,241 [INFO] [S19] Orchestrator: B mode
+2026-08-26 09:16:08,440 [INFO] [S19] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Maria Garcia"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-26 09:16:08,441 [INFO] [S19] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
+2026-08-26 09:16:08,441 [INFO] [S19] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Maria Garcia'} missing=None
+2026-08-26 09:16:09,339 [INFO] [S19] SYSTEM: I’m sorry, but I couldn’t find a patient named Maria Garcia under your care in HeartBug—could you please confirm the patient’s full name?
+2026-08-26 09:28:12,844 [INFO] [S2] ANI: +61400000000
+2026-08-26 09:28:14,285 [INFO] [S2] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth?
+2026-08-26 09:28:20,933 [INFO] [S2] CALLER: HI my name is Jane Doe July 22 1990
+2026-08-26 09:28:20,934 [INFO] [S2] Orchestrator: B mode
+2026-08-26 09:28:21,808 [INFO] [S2] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-08-26 09:28:21,809 [INFO] [S2] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-08-26 09:28:22,628 [INFO] [S2] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-08-26 09:28:22,629 [INFO] [S2] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-08-26 09:28:22,665 [INFO] [S2] VERIFICATION verified=False subject_id=None reason=need the clinic for an unrecognised number role=patient clinic_id=None
+2026-08-26 09:28:23,514 [INFO] [S2] SYSTEM: Thanks, Jane — could you tell me which HeartBug clinic you’re registered with?
+2026-08-26 09:28:30,899 [INFO] [S2] CALLER: Sydney Heart Centre
+2026-08-26 09:28:30,900 [INFO] [S2] Orchestrator: B mode
+2026-08-26 09:28:31,995 [INFO] [S2] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-08-26 09:28:31,996 [INFO] [S2] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-08-26 09:28:33,178 [INFO] [S2] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":null,"clinic":"Sydney Heart Centre"},"confidence":0.98}
+2026-08-26 09:28:33,179 [INFO] [S2] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22', 'clinic': 'Sydney Heart Centre'} missing=None
+2026-08-26 09:28:33,199 [INFO] [S2] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-08-26 09:28:34,152 [INFO] [S2] SYSTEM: Hi Jane, you’re verified with HeartBug, and I’m here to help.
+2026-08-26 09:28:39,834 [INFO] [S2] CALLER: where are my stickers?
+2026-08-26 09:28:39,834 [INFO] [S2] Orchestrator: B mode
+2026-08-26 09:28:40,876 [INFO] [S2] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":null,"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-26 09:28:40,876 [INFO] [S2] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'order', 'list_orders')]
+2026-08-26 09:28:42,001 [INFO] [S2] SYSTEM: Your HeartBug Monitor was delivered, your Electrode Stickers have shipped with Australia Post and are due on August 26, and your Replacement Device is still processing for August 29.
+2026-08-26 10:43:59,707 [INFO] [SUB1] ANI: +61467890123
+2026-08-26 10:44:00,906 [INFO] [SUB1] SYSTEM: Welcome to HeartBug—could I please have your full name and the clinic you’re calling from?
+2026-08-26 10:44:06,267 [INFO] [SUB1] CALLER: Dr Emily Nguyen, from Sydney Heart Centre
+2026-08-26 10:44:06,267 [INFO] [SUB1] Orchestrator: B mode
+2026-08-26 10:44:06,946 [INFO] [SUB1] ROUTER llm-raw: {"domain":"verification","confidence":0.94,"connect_human":false}
+2026-08-26 10:44:06,947 [INFO] [SUB1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.94 connect_human=False
+2026-08-26 10:44:09,508 [INFO] [SUB1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Emily Nguyen","dob":null,"clinic":"Sydney Heart Centre"},"confidence":0.98}
+2026-08-26 10:44:09,508 [INFO] [SUB1] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Emily Nguyen', 'clinic': 'Sydney Heart Centre'} missing=None
+2026-08-26 10:44:09,546 [INFO] [SUB1] VERIFICATION verified=True subject_id=D001 reason=None role=doctor clinic_id=C01
+2026-08-26 10:44:10,381 [INFO] [SUB1] SYSTEM: Thanks, Dr — you’re verified with HeartBug, and I’m here to help with anything you need on your account.
+2026-08-26 10:44:26,462 [INFO] [SUB1] CALLER: How is Jane Doe going on her monitoring, and are there any alerts for her?
+2026-08-26 10:44:26,463 [INFO] [SUB1] Orchestrator: B mode
+2026-08-26 10:44:27,393 [INFO] [SUB1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Jane Doe"},"depends_on":[]},{"id":"s2","domain":"doctor","tool":"check_patient_alerts","args":{"patient_name":"Jane Doe"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-26 10:44:27,394 [INFO] [SUB1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status'), ('s2', 'doctor', 'check_patient_alerts')]
+2026-08-26 10:44:27,395 [INFO] [SUB1] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Jane Doe'} missing=None
+2026-08-26 10:44:27,395 [INFO] [SUB1] SLOTS domain=doctor tool=check_patient_alerts have={'patient_name': 'Jane Doe'} missing=None
+2026-08-26 10:44:28,217 [INFO] [SUB1] SYSTEM: Jane Doe is actively enrolled on HeartBug monitoring until August 28, 2026, and there is one high-severity atrial fibrillation alert from August 24 for an irregular rhythm episode overnight.
+2026-08-26 10:50:50,018 [INFO] [SUB2] ANI: +61478901234
+2026-08-26 10:50:51,101 [INFO] [SUB2] SYSTEM: Welcome to HeartBug—may I have your full name and the clinic you’re calling from?
+2026-08-26 10:50:56,332 [INFO] [SUB2] CALLER: Dr Robert Brown, from Melbourne Cardiac Clinic
+2026-08-26 10:50:56,332 [INFO] [SUB2] Orchestrator: B mode
+2026-08-26 10:50:57,112 [INFO] [SUB2] ROUTER llm-raw: {"domain":"verification","confidence":0.97,"connect_human":false}
+2026-08-26 10:50:57,113 [INFO] [SUB2] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.97 connect_human=False
+2026-08-26 10:50:57,704 [INFO] [SUB2] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","dob":null,"clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-08-26 10:50:57,705 [INFO] [SUB2] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-08-26 10:50:57,742 [INFO] [SUB2] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-08-26 10:50:58,416 [INFO] [SUB2] SYSTEM: Hello Dr, you’re verified and I’m here to help with your HeartBug account whenever you’re ready.
+2026-08-26 10:51:08,907 [INFO] [SUB2] CALLER: Can you give me the monitoring status for both Alex Thompson and Maria Garcia?
+2026-08-26 10:51:08,908 [INFO] [SUB2] Orchestrator: B mode
+2026-08-26 10:51:10,149 [INFO] [SUB2] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"depends_on":[]},{"id":"s2","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Maria Garcia"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-26 10:51:10,150 [INFO] [SUB2] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status'), ('s2', 'doctor', 'check_patient_status')]
+2026-08-26 10:51:10,150 [INFO] [SUB2] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Alex Thompson'} missing=None
+2026-08-26 10:51:10,150 [INFO] [SUB2] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Maria Garcia'} missing=None
+2026-08-26 10:51:11,048 [INFO] [SUB2] SYSTEM: I can confirm Maria Garcia’s monitoring is completed, it ends on August 15, 2026, and her report is ready; I don’t have Alex Thompson’s status here, so if you’d like, I can try again or connect you with the team.
+2026-08-26 11:01:36,550 [INFO] [S13] ANI: +61467890123
+2026-08-26 11:01:38,140 [INFO] [S13] SYSTEM: Welcome to HeartBug—could I please have your full name and which clinic you’re calling from?
+2026-08-26 11:01:46,252 [INFO] [S13] CALLER: my name is Dr Emily Nguyen from Sydney Heart Centre
+2026-08-26 11:01:46,253 [INFO] [S13] Orchestrator: B mode
+2026-08-26 11:01:47,023 [INFO] [S13] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-08-26 11:01:47,024 [INFO] [S13] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-08-26 11:01:47,713 [INFO] [S13] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Emily Nguyen","dob":null,"clinic":"Sydney Heart Centre"},"confidence":0.98}
+2026-08-26 11:01:47,714 [INFO] [S13] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Emily Nguyen', 'clinic': 'Sydney Heart Centre'} missing=None
+2026-08-26 11:01:47,748 [INFO] [S13] VERIFICATION verified=True subject_id=D001 reason=None role=doctor clinic_id=C01
+2026-08-26 11:01:48,556 [INFO] [S13] SYSTEM: Thank you, Dr, you’re verified with HeartBug, and I’m happy to help with anything on your account.
+2026-08-26 11:01:56,272 [INFO] [S13] CALLER: I want to check my patient report. Her name is Jane Doe.
+2026-08-26 11:01:56,273 [INFO] [S13] Orchestrator: B mode
+2026-08-26 11:01:57,331 [INFO] [S13] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Jane Doe"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-08-26 11:01:57,332 [INFO] [S13] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor'] → [('s1', 'doctor', 'check_patient_status')]
+2026-08-26 11:01:57,332 [INFO] [S13] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Jane Doe'} missing=None
+2026-08-26 11:01:58,414 [INFO] [S13] SYSTEM: Jane Doe is currently active in HeartBug monitoring, there are about two days left until monitoring ends on 28 August 2026, and her report isn’t ready yet.

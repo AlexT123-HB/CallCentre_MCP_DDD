@@ -248,7 +248,7 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S13","transcript":"my name is Dr Emily Nguyen date of birth 1975-06-12","intents":[{"name":"verification_identity","score":0.95}]}'
+  -d '{"call_id":"S13","transcript":"my name is Dr Emily Nguyen from Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
 
 
 curl -s -X POST http://localhost:8000/verification \
@@ -370,7 +370,7 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S18","transcript":"Dr Emily Nguyen, date of birth 1975-06-12","intents":[{"name":"verification_identity","score":0.95}]}'
+  -d '{"call_id":"S18","transcript":"Dr Emily Nguyen, Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
 
 curl -s -X POST http://localhost:8000/doctor \
   -H "Content-Type: application/json" \
@@ -387,7 +387,7 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S19","transcript":"Dr Emily Nguyen, date of birth 1975-06-12","intents":[{"name":"verification_identity","score":0.95}]}'
+  -d '{"call_id":"S19","transcript":"Dr Emily Nguyen, from Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
 
 curl -s -X POST http://localhost:8000/doctor \
   -H "Content-Type: application/json" \
@@ -407,7 +407,7 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S20","transcript":"Dr Emily Nguyen, date of birth 1975-06-12","intents":[{"name":"verification_identity","score":0.95}]}'
+  -d '{"call_id":"S20","transcript":"Dr Emily Nguyen, from Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
 
 curl -s -X POST http://localhost:8000/doctor \
   -H "Content-Type: application/json" \
@@ -477,3 +477,57 @@ curl -s -X POST http://localhost:8000/turn \
 curl -s -X POST http://localhost:8000/turn \
   -H "Content-Type: application/json" \
   -d '{"call_id":"CTX-TEST-1","transcript":"Thank you for taking care of it – I appreciate your help."}'
+
+
+# ── SUB-1: Doctor status + alerts in ONE turn (2 subtasks, same domain) ──
+# Dr Emily Nguyen (D001) → Jane Doe (P002, HIGH alert A001). Expect BOTH answered.
+ 
+curl -s -X POST http://localhost:8000/webhook \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB1","ani":"+61467890123"}'
+ 
+curl -s -X POST http://localhost:8000/verification \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB1","transcript":"Dr Emily Nguyen, from Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
+ 
+# compound turn → plan splits into check_patient_status + check_patient_alerts
+curl -s -X POST http://localhost:8000/doctor \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB1","transcript":"How is Jane Doe going on her monitoring, and are there any alerts for her?","intents":[]}'
+
+
+# ── SUB-2: Doctor status for TWO patients in ONE turn (2 subtasks, same tool x2) ──
+# Dr Robert Brown (D002) → Alex Thompson (P003) + Maria Garcia (P004), both his.
+ 
+curl -s -X POST http://localhost:8000/webhook \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB2","ani":"+61478901234"}'
+ 
+curl -s -X POST http://localhost:8000/verification \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB2","transcript":"Dr Robert Brown, from Melbourne Cardiac Clinic","intents":[{"name":"verification_identity","score":0.95}]}'
+ 
+# compound turn → two check_patient_status subtasks
+curl -s -X POST http://localhost:8000/doctor \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB2","transcript":"Can you give me the monitoring status for both Alex Thompson and Maria Garcia?","intents":[]}'
+ 
+
+# ── SUB-3: Doctor mixed authorized + UNAUTHORIZED in one turn (partial success) ──
+# Dr Emily Nguyen (D001) → Jane Doe (P002, HERS) + Maria Garcia (P004, NOT hers).
+# Expect: Jane answered, Maria refused — INDEPENDENTLY, no leak of Maria.
+ 
+curl -s -X POST http://localhost:8000/webhook \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB3","ani":"+61467890123"}'
+ 
+curl -s -X POST http://localhost:8000/verification \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB3","transcript":"Dr Emily Nguyen, from Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
+ 
+# compound turn → Jane (authorized) status + Maria (unauthorized) refusal
+curl -s -X POST http://localhost:8000/doctor \
+  -H "Content-Type: application/json" \
+  -d '{"call_id":"SUB3","transcript":"How are Jane Doe and Maria Garcia going?","intents":[]}'
+ 
+ 

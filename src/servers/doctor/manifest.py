@@ -55,5 +55,7 @@ MANIFEST = DomainManifest(
                                  "name (list the candidates from the facts) and ask which one",
         "ask_patient_name":      "ask the doctor which patient (the patient's full name) they "
                                  "want this for",
+        "doctor_role_required":  "explain that only a verified doctor can do this, Offer to "
+                                 "help with their own account.",
     },
 )
