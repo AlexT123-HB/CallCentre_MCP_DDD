@@ -6,7 +6,7 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S1","transcript":"my name is John Smith date of birth the fifteenth of March, eighty-five","intents":[{"name":"verification_identity","score":0.95}]}'
+  -d '{"call_id":"S1","transcript":"my name is John Smith date of birth the fifteenth of March, eighty-five"}'
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
@@ -21,17 +21,17 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S2","transcript":"HI my name is Jane Doe July 22 1990","intents":[{"name":"verify_identity","score":0.93}]}'
+  -d '{"call_id":"S2","transcript":"HI my name is Jane Doe July 22 1990"}'
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S2","transcript":"Sydney Heart Centre","intents":[{"name":"verify_identity","score":0.93}]}'
+  -d '{"call_id":"S2","transcript":"Sydney Heart Centre"}'
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S2","transcript":"where are my stickers?","intents":[{"name":"order_status","score":0.91}]}'
+  -d '{"call_id":"S2","transcript":"where are my stickers?"}'
 
-# ══ SCENARIO 3: Wrong details → retry → correct ══
+# ══ SCENARIO 3: Wrong details → retry → escalate ══
 
 curl -s -X POST http://localhost:8000/webhook \
   -H "Content-Type: application/json" \
@@ -39,7 +39,7 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S3","transcript":"my name is Wrong Person January 1 2000","intents":[{"name":"verify_identity","score":0.91}]}'
+  -d '{"call_id":"S3","transcript":"my name is Wrong Person January 1 2000"}'
 
 
 # ══ SCENARIO 5: Access another patient order (blocked) ══
@@ -50,11 +50,11 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S5","transcript":"John Smith March 15 1985","intents":[{"name":"verify_identity","score":0.95}]}'
+  -d '{"call_id":"S5","transcript":"John Smith March 15 1985"}'
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S5","transcript":"check order 1003","intents":[{"name":"order_status","score":0.91}]}'
+  -d '{"call_id":"S5","transcript":"check my order 1003"}'
 
 # ══ SCENARIO 10: LLM fallback ══
 
@@ -64,11 +64,11 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verify \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S10","transcript":"John Smith March 15 1985","intents":[{"name":"verify_identity","score":0.95}]}'
+  -d '{"call_id":"S10","transcript":"John Smith March 15 1985"}'
 
-curl -s -X POST http://localhost:8000/verify \
+curl -s -X POST http://localhost:8000/turn \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S10","transcript":"how much does it cost for 1 kilogram of mango?","intents":[]}'
+  -d '{"call_id":"S10","transcript":"how much does it cost for 1 kilogram of mango?"}'
 
 # ══ SCENARIO 13: Phone matched → verify (Dr Robert Brown) ══
 
@@ -78,11 +78,11 @@ curl -s -X POST http://localhost:8000/webhook \
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S13","transcript":"my name is Dr Emily Nguyen from Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
+  -d '{"call_id":"S13","transcript":"my name is Dr Emily Nguyen from Sydney Heart Centre"}'
 
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"S13","transcript":"I want to check my patient report. Her name is Jane Doe.","intents":[]}'
+  -d '{"call_id":"S13","transcript":"I want to check my patient report. Her name is Jane Doe."}'
 
 
 # ── SUB-1: Doctor status + alerts in ONE turn (2 subtasks, same domain) ──
@@ -94,9 +94,9 @@ curl -s -X POST http://localhost:8000/webhook \
  
 curl -s -X POST http://localhost:8000/verification \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"SUB1","transcript":"Dr Emily Nguyen, from Sydney Heart Centre","intents":[{"name":"verification_identity","score":0.95}]}'
+  -d '{"call_id":"SUB1","transcript":"Dr Emily Nguyen, from Sydney Heart Centre"}'
  
 # compound turn → plan splits into check_patient_status + check_patient_alerts
 curl -s -X POST http://localhost:8000/doctor \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"SUB1","transcript":"How is Jane Doe going on her monitoring, and are there any alerts for her?","intents":[]}'
+  -d '{"call_id":"SUB1","transcript":"How is Jane Doe going on her monitoring, and are there any alerts for her?"}'

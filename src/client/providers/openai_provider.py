@@ -256,8 +256,8 @@ class OpenAIProvider(LLMProvider):
             "single subtask.\n"
             "Available domains and their tools:\n" + block +
             "When building each subtask's query/intent, include relevant context from the whole caller message, "
-            "not just the clause for that subtask. If the caller mentions a situation (travelling, going overseas, an upcoming event) "
-            "that could affect the answer, carry that context into the query so retrieval sees it."
+            "not just the clause for that subtask. If the caller mentions a situation that could affect the answer, "
+            "carry that context into the query so retrieval sees it."
             "For each subtask give: id (s1, s2, ...), domain, tool (one of that domain's "
             "tools), args (extracted from the message; null if absent), and depends_on "
             "(ids of subtasks whose result it needs, else []).\n"

@@ -281,7 +281,7 @@ SCENARIOS = [
     {
         "name": "context-awareness",
         "call_id": f"EVAL-CTX-1-{unique_id}",
-        "ani": "+61000000",                      # Jane Doe, P002 — owns O1003
+        "ani": "+61498765432",                      # Jane Doe, P002 — owns O1003
         "persona": (
             "You ARE patient Jane Doe (DOB 22 July 1990), who is under the care of Sydney Heart Centre. "
             "Verify correctly when asked (give your name, date of birth and clinic name only if asked). "

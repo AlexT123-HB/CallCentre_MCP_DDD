@@ -510,7 +510,7 @@ curl -s -X POST http://localhost:8000/verification \
 # compound turn → two check_patient_status subtasks
 curl -s -X POST http://localhost:8000/doctor \
   -H "Content-Type: application/json" \
-  -d '{"call_id":"SUB2","transcript":"Can you give me the monitoring status for both Alex Thompson and Maria Garcia?","intents":[]}'
+  -d '{"call_id":"SUB2","transcript":"Can you give me the monitoring status for both Maria Garcia and Alex Thompson?","intents":[]}'
  
 
 # ── SUB-3: Doctor mixed authorized + UNAUTHORIZED in one turn (partial success) ──
