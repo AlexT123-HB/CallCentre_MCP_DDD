@@ -25,13 +25,14 @@ x-common: &common
     HEARTBUG_PUBLIC_URL: "https://stopping-catnip-bazooka.ngrok-free.dev"
     MCP_BIND_HOST: "0.0.0.0"
     HEARTBUG_IN_DOCKER: "1"          # for src/shared/logging_config.py
-    MCP_ALLOWED_HOSTS: "localhost:*,127.0.0.1:*,verification:*,patient:*,order:*,kb:*,doctor:*,host:*"
+    MCP_ALLOWED_HOSTS: "localhost:*,127.0.0.1:*,verification:*,patient:*,order:*,kb:*,doctor:*,host:*,booking:*"
     # inter-service URLs by container name (what server_urls() reads)
     VERIFICATION_URL: "http://verification:3001/mcp"
     PATIENT_URL:      "http://patient:3002/mcp"
     ORDER_URL:        "http://order:3003/mcp"
     KB_URL:           "http://kb:3004/mcp"
     DOCTOR_URL:       "http://doctor:3005/mcp"
+    BOOKING_URL:      "http://booking:3006/mcp"
     # ── tracing (off by default; flip HEARTBUG_TRACING=1 in .env to enable) ──
     # Traces are generated INSIDE the container, so they must be shipped OUT to a
     # tracking server on the host, or they're trapped (same lesson as heartbug.log).
@@ -109,6 +110,16 @@ services:
       REDIS_URL: redis://doctorsvc:doctor-secret@redis:6379/0
     ports: ["3005:3005"]
     depends_on: [patient]        # doctor calls patient (OHS/ACL)
+  
+  booking:
+    <<: *common
+    command: python -m src.servers.booking.run
+    environment:
+      <<: *common-env
+      BOOKING_PORT: "3006"
+      REDIS_URL: redis://bookingsvc:booking-secret@redis:6379/0
+    ports: ["3006:3006"]
+    depends_on: [patient]
 
   host:
     <<: *common
@@ -117,7 +128,7 @@ services:
       <<: *common-env
       REDIS_URL: redis://hostsvc:host-secret@redis:6379/0
     ports: ["8000:8000"]
-    depends_on: [verification, patient, order, kb, doctor]
+    depends_on: [verification, patient, order, kb, doctor, booking]
 
 networks:
   heartbug:

@@ -20,6 +20,7 @@ from src.servers.patient.manifest import MANIFEST as PATIENT
 from src.servers.order.manifest import MANIFEST as ORDER     # ← future: one line
 from src.servers.kb.manifest import MANIFEST as KB          
 from src.servers.doctor.manifest import MANIFEST as DOCTOR 
+from src.servers.booking.manifest import MANIFEST as BOOKING
 
 MANIFESTS: List[DomainManifest] = [
     VERIFICATION,
@@ -27,6 +28,7 @@ MANIFESTS: List[DomainManifest] = [
     ORDER,
     KB,
     DOCTOR,
+    BOOKING,
 ]
 
 # ── derived lookups the host uses ──

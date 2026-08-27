@@ -10,7 +10,7 @@ MANIFEST = DomainManifest(
     description="bookings, appointments, and scheduling for the verified caller's own callback",
     requires_verification=True,         # verified-only — private to the caller
     primary_tool="request_callback",
-    tools=["request_callback", "submit_callback", "reschedule_callback", "submit_reschedule", "cancel_callback", "get_my_callback"],
+    tools=["request_callback", "reschedule_callback", "cancel_callback", "get_my_callback"],
     tool_events={"request_callback": "callback_confirm", "submit_callback": "callback_recorded",
                  "reschedule_callback": "reschedule_confirm", "submit_reschedule": "reschedule_recorded",
                  "cancel_callback": "cancel_confirmed", "get_my_callback": "callback_details"},
