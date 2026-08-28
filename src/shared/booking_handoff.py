@@ -28,7 +28,7 @@ _log = logging.getLogger("heartbug")
 
 # where the handoff rows are written. In dev this is a local CSV; in your tenant
 # this is replaced by a Microsoft Graph workbook write (see _write_row).
-_HANDOFF_PATH = os.getenv("HEARTBUG_HANDOFF_PATH", "/docs/callback_handoff.csv")
+_HANDOFF_PATH = os.getenv("HEARTBUG_HANDOFF_PATH", "/app/logs/callback_handoff.csv")
 
 # the human-readable columns a staffer sees, in order. Keep this list in sync with
 # the Excel sheet's header row.

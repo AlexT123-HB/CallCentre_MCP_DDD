@@ -3,20 +3,21 @@
 References the patient by id (never embeds a Patient). Holds the lifecycle state
 and the pure invariants (working hours, validity) — no storage, no transport.
 """
-
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Optional, List
-from datetime import datetime, timezone
-import uuid
 import os
-
+import uuid
+from dataclasses import dataclass, field
+from datetime import datetime, timezone, timedelta
+from typing import Optional
 
 # ── working-hours policy (pure config the domain validates against) ───────────
 OPEN_HOUR  = int(os.getenv("HEARTBUG_CALLBACK_OPEN_HOUR", "9"))
 CLOSE_HOUR = int(os.getenv("HEARTBUG_CALLBACK_CLOSE_HOUR", "17"))
 WINDOW_MIN = int(os.getenv("HEARTBUG_CALLBACK_WINDOW_MIN", "30"))
+# a callback less than this many minutes away isn't scheduled — the caller is
+# connected now instead (avoids racing the scheduler's lead window).
+MIN_LEAD_MIN = int(os.getenv("HEARTBUG_CALLBACK_MIN_LEAD_MIN", "30"))
 
 # lifecycle states
 PENDING   = "pending"      # booked, waiting for its time
@@ -42,14 +43,18 @@ def parse_dt(date_str: str, time_str: str):
 
 def validate_slot(dt: datetime) -> Optional[str]:
     """Pure invariant check. Returns a reason if the slot is not bookable, else None:
-    not in the past, a weekday, within open–close hours."""
-    if dt <= datetime.now():
+    not in the past, not too soon (connect-now instead), a weekday, within hours."""
+    now = datetime.now()
+    if dt <= now:
         return "in_past"
-    if dt.weekday() >= 5:                       # 5=Sat, 6=Sun
+    if dt < now + timedelta(minutes=MIN_LEAD_MIN):
+        return "too_soon"                       # < 30 min out → connect now, don't schedule
+    if dt.weekday() >= 5:                        # 5=Sat, 6=Sun
         return "weekend"
     if dt.hour < OPEN_HOUR or dt.hour >= CLOSE_HOUR:
         return "outside_hours"
     return None
+
 
 @dataclass
 class Booking:
@@ -67,26 +72,34 @@ class Booking:
     schedule_history: list = field(default_factory=list)   # prior times, for audit
 
     def belongs_to(self, subject_id: str) -> bool:
-        """Is this callback for the given patient?"""
+        """Ownership: is this the caller's own booking?"""
         return self.patient_id == subject_id
 
-    def reschedule_to(self, new_time: str) -> None:
-        """Update the callback to a new time. The caller must have confirmed it."""
-        self.scheduled_for = new_time
+    def reschedule_to(self, new_iso: str) -> None:
+        """Move to a new time; a due/expired booking returns to pending.
+        The OLD time is appended to schedule_history so the cache keeps every
+        reschedule (a patient may move a booking more than once)."""
+        self.schedule_history.append({
+            "was_scheduled_for": self.scheduled_for,
+            "moved_at": datetime.now(timezone.utc).isoformat(),
+        })
+        self.scheduled_for = new_iso
         self.status = PENDING
         self.rescheduled_at = datetime.now(timezone.utc).isoformat()
 
     @classmethod
-    def create(cls, booking_id: str, patient_id: str, name: str, scheduled_for: str,
-               reason: str = "", requested_at: Optional[str] = None) -> Booking:
-        """Create a new callback for a patient."""
+    def create(cls, patient_id: str, name: str, scheduled_iso: str,
+               reason: str = "", replaced: Optional[str] = None) -> "Booking":
         return cls(
-            booking_id=booking_id,
+            booking_id=new_booking_id(),
             patient_id=patient_id,
             name=name,
-            scheduled_for=scheduled_for,
-            reason=reason,
-            requested_at=requested_at or datetime.now(timezone.utc).isoformat(),
+            scheduled_for=scheduled_iso,
+            reason=(reason or "").strip(),
+            window_min=WINDOW_MIN,
+            status=PENDING,
+            requested_at=datetime.now(timezone.utc).isoformat(),
+            replaced=replaced,
         )
 
     def to_dict(self) -> dict:

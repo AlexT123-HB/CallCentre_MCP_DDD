@@ -32,6 +32,10 @@ class DefaultBookingService(BookingService):
         if perr:
             return None, {"found": True, "recorded": False, "event": "callback_need_time"}
         why = validate_slot(dt)
+        if why == "too_soon":
+            # under the minimum lead — don't schedule; signal the host to connect now
+            return None, {"found": True, "recorded": False, "event": "callback_too_soon",
+                          "connect_now": True}
         if why:
             return None, {"found": True, "recorded": False, "event": "callback_out_of_hours",
                           "why": why, "open_hour": OPEN_HOUR, "close_hour": CLOSE_HOUR}
@@ -112,7 +116,7 @@ class DefaultBookingService(BookingService):
                 "event": "reschedule_recorded"}
 
     # ── cancel ─────────────────────────────────────────────────────────────────
-    def cancel(self, subject_id: str, call_id: str = "") -> dict:
+    def cancel_booking(self, subject_id: str, call_id: str = "") -> dict:
         existing = self._repo.get_for_patient(subject_id)
         if not existing:
             return {"found": True, "recorded": False, "event": "callback_none_to_change"}
@@ -122,7 +126,7 @@ class DefaultBookingService(BookingService):
                 "was_scheduled_for": existing.scheduled_for, "event": "cancel_confirmed"}
 
     # ── read ───────────────────────────────────────────────────────────────────
-    def get(self, subject_id: str) -> dict:
+    def get_booking(self, subject_id: str) -> dict:
         existing = self._repo.get_for_patient(subject_id)
         if not existing:
             return {"found": True, "has_booking": False, "event": "callback_none"}

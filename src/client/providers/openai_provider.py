@@ -271,6 +271,10 @@ class OpenAIProvider(LLMProvider):
             "as 24-hour HH:MM ('2pm' → '14:00', '3pm' → '15:00', 'half nine' → '09:30'). "
             "For a relative offset like 'in 1 hour' or 'in 30 minutes', add it to the current time to get the date+time. "
             "Never pass a bare weekday word or an am/pm string as the argument value.\n"
+            "CRITICAL: `date` and `time` args come ONLY from what the caller actually "
+            "SAID. The current date/time above is for RESOLVING a time the caller stated NEVER to invent one. "
+            "If the caller did not give a day, set date=null; if they gave no time, set time=null. Do NOT default to "
+            "'now' or the current clock. A caller who says 'I need help' without naming a time has date=null AND time=null.\n"
             "Available domains and their tools:\n" + block +
             "When building each subtask's query/intent, include relevant context from the whole caller message, "
             "not just the clause for that subtask. If the caller mentions a situation that could affect the answer, "

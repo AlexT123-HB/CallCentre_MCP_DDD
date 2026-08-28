@@ -16,13 +16,9 @@ MANIFEST = DomainManifest(
                  "cancel_callback": "cancel_confirmed", "get_my_callback": "callback_details"},
     required_args={
         "request_callback": {"date": "ask_date", "time": "ask_time"},
-        "submit_callback": {"date": "ask_date", "time": "ask_time"},
+        "reschedule_callback": {"date": "ask_date", "time": "ask_time"},
     },
     confirmations={
-        # preview tool → how to resolve the caller's confirmation reply. The host
-        # is generic: it classifies the reply into one of these labels (using the
-        # hints) and runs the declared action. Submit tools are host-invoked here,
-        # never planner-selectable — the LLM can't trigger a write.
         "request_callback": {
             "answers": {
                 "yes": {"action": "call_tool", "tool": "submit_callback",
@@ -50,6 +46,9 @@ MANIFEST = DomainManifest(
                                  "working hours (open_hour to close_hour) and the time they "
                                  "gave isn't available; ask them to pick a weekday time in "
                                  "those hours",
+        "callback_too_soon": "explain that's too soon to schedule a callback, and offer to "
+                             "connect them with the team NOW instead — or to book a later "
+                             "time if they'd prefer",
         "callback_confirm": "read the scheduled date and time back and ask them to confirm "
                             "it's right. Tell them the call will come AROUND that time but "
                             "may vary by up to window_min minutes. Wait for yes/no — do not "

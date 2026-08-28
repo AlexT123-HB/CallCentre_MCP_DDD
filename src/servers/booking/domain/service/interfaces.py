@@ -32,11 +32,11 @@ class BookingService(ABC):
         ...
 
     @abstractmethod
-    def cancel(self, subject_id: str) -> dict:
+    def cancel_booking(self, subject_id: str) -> dict:
         """Cancel the caller's booking."""
         ...
 
     @abstractmethod
-    def get(self, subject_id: str) -> dict:
+    def get_booking(self, subject_id: str) -> dict:
         """Read the caller's current booking."""
         ...
