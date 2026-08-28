@@ -114,3 +114,4 @@
 2026-08-28 09:31:08,165 [INFO] [S9] SLOTS domain=booking tool=request_callback have={'reason': 'Caller has problems with their HeartBug device and wants a call with someone who can help them.', 'time': '14:00'} missing=date
 2026-08-28 09:31:08,826 [INFO] [S9] SYSTEM: Thanks, Friday around 2 PM works—I’ll note that for your callback.
 2026-08-28 09:35:14,041 [WARNING] CACHE redis unavailable (invalid username-password pair or user is disabled.) → in-process
+2026-08-28 09:39:27,355 [WARNING] CACHE redis unavailable (invalid username-password pair or user is disabled.) → in-process

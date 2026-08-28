@@ -16,6 +16,7 @@ import logging
 import os
 from typing import List
 from openai import OpenAI 
+from datetime import datetime, timezone
 
 from src.client.providers.interfaces import LLMProvider
 from src.shared import tracing
@@ -148,6 +149,7 @@ class OpenAIProvider(LLMProvider):
             args = spec.get("args", {})
             arg_txt = (" (args: " + ", ".join(f"{a}: {h}" for a, h in args.items()) + ")") if args else " (no args)"
             tool_block += f"  - {name}: {desc}{arg_txt}\n"
+            today_s = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         system = (
             "You are selecting the right tool to handle the caller's request within "
             "the chosen domain. Choose exactly one tool, and extract its arguments "
@@ -155,6 +157,11 @@ class OpenAIProvider(LLMProvider):
             "Available tools:\n" + tool_block +
             "Extract only the arguments the chosen tool needs. If a required argument "
             "isn't present in the message, set it to null.\n"
+            "Today is " + today_s + ". For a `date` argument output YYYY-MM-DD, resolving "
+            "'today'/'tomorrow'/a weekday name ('Friday' → the next such weekday on or "
+            "after today) against today. For a `time` argument output 24-hour HH:MM "
+            "('2pm' → '14:00', '3pm' → '15:00'). For a relative offset ('in 1 hour', 'in 30 minutes') add it to the current time. "
+            "Never pass a bare weekday word or an am/pm string as the value.\n"
             "When extracting a date of birth, output YYYY-MM-DD. Convert spoken/ordinal "
             "forms ('the fifteenth of March' -> 03-15; month names -> numbers) and spoken "
             "years (a two-digit year like 'eighty-five' is a STATED year -> infer a "
@@ -249,11 +256,21 @@ class OpenAIProvider(LLMProvider):
                 args = tspec.get("args", {})
                 arg_txt = (" args(" + ", ".join(f"{a}: {h}" for a, h in args.items()) + ")") if args else " (no args)"
                 block += f"    tool '{tool}': {tspec.get('description','')}{arg_txt}\n"
+        today_s = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         system = (
             "You are the orchestration brain of the HeartBug voice assistant. In ONE "
             "step: break the caller's request into subtasks, choose the domain AND the "
             "tool for each, and extract that tool's arguments. MOST requests are a "
             "single subtask.\n"
+            "Today is " + today_s + " and the current time is " + datetime.now(timezone.utc).strftime("%H:%M") + ""
+            "(use these to resolve relative dates and times )."
+            "When a tool takes a `date` argument, output it as YYYY-MM-DD, "
+            "resolving spoken/relative forms against today: 'today' → today's date, "
+            "'tomorrow' → the next day, a weekday name like 'Friday' → the NEXT such "
+            "weekday on or after today. When a tool takes a `time` argument, output it "
+            "as 24-hour HH:MM ('2pm' → '14:00', '3pm' → '15:00', 'half nine' → '09:30'). "
+            "For a relative offset like 'in 1 hour' or 'in 30 minutes', add it to the current time to get the date+time. "
+            "Never pass a bare weekday word or an am/pm string as the argument value.\n"
             "Available domains and their tools:\n" + block +
             "When building each subtask's query/intent, include relevant context from the whole caller message, "
             "not just the clause for that subtask. If the caller mentions a situation that could affect the answer, "

@@ -3,5 +3,5 @@ user hostsvc on >host-secret ~session:* +@read +@write +@keyspace +@transaction 
 user patientsvc on >patient-secret ~patient:* ~monitoring:* +@read +@write +@keyspace +ping
 user ordersvc on >order-secret ~order:* ~order_by_clinic:* ~order_by_patient:* ~pending:* +@read +@write +@keyspace +ping
 user doctorsvc on >doctor-secret ~doctor:* ~clinic:* +@read +@write +@keyspace +ping
-user bookingsvd on >booking-secret ~booking:* ~callback:* +@read +@write +@keyspace +ping
+user bookingsvd on >booking-secret ~callback:* +@read +@write +@keyspace +ping
 user verifysvc on >verify-secret +ping
