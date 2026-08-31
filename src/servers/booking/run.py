@@ -101,7 +101,20 @@ def get_my_callback(call_id: str, verified: bool, subject_id: str | None,
     ok, err = _self(verified, subject_id)
     if not ok:
         return err
-    return _service.get_booking(subject_id)
+    return _service.get(subject_id)
+
+
+@mcp.tool()
+def connect_now(call_id: str, verified: bool, subject_id: str | None,
+                role: str = "patient", reason: str = "", queue: str = "") -> dict:
+    """Offer to connect the caller to a human NOW. Previews the choice and asks them
+    to confirm: 'yes' connects now (the F2 transfer / outbound call), 'no' offers to
+    schedule a callback instead. `reason` is the escalation reason (whole-conversation
+    summary), `queue` the target human queue. Does NOT connect by itself — the host
+    resolves the confirmation."""
+    return {"found": True, "needs_confirmation": True, "event": "connect_now_confirm",
+            "reason": reason, "queue": queue or "patient_support"}
+
 
 if __name__ == "__main__":
     port = int(os.getenv("BOOKING_PORT", "3006"))

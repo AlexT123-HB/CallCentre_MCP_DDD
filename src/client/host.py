@@ -245,15 +245,35 @@ class Host:
         return {"call_id": call_id, "domain": domain, "tts_response": tts}
 
     # ── build the caller-facing handoff response ──────────────────────────────
-    def _handoff_response(self, call_id, session, action, transcript) -> dict:
-        tts = self.narrator.say(
-            {"event": "handoff", "queue": action["queue"], "reason": action["reason"]},
-            transcript)
+    async def _handoff_response(self, call_id, session, action, transcript) -> dict:
+        # tts = self.narrator.say(
+        #     {"event": "handoff", "queue": action["queue"], "reason": action["reason"]},
+        #     transcript)
+        # session["history"].append({"role": "assistant", "content": tts})
+        # self.log.info(f"[{call_id}] SYSTEM: {tts}")
+        summary = self._escalation_summary(session, action["reason"], transcript)
+        step = {"domain": "booking", "tool": "connect_now", "args": {"queue": action["queue"], "reason": summary}}
+        tts = await self._execute_single(session, step, transcript)
         session["history"].append({"role": "assistant", "content": tts})
         self.log.info(f"[{call_id}] SYSTEM: {tts}")
         return {"call_id": call_id, "action": action["action"], "queue": action["queue"],
-                "reason": action["reason"], "tts_response": tts}
+                "reason": summary, "tts_response": tts}
 
+    def _escalation_summary(self, session: dict, reason: str, transcript: str) -> str:
+        """Summarize the escalation reason for the human agent."""
+        parts = [reason]
+        note = notes.render(session)          # structured: entities looked up + actions
+        if note:
+            # compact the multi-line note block into one line for the reason field
+            note_1l = " ; ".join(l.strip() for l in note.splitlines()[1:] if l.strip())
+            if note_1l:
+                parts.append(f"so far: {note_1l}")
+        caller_turns = [h.get("content", "").strip()
+                        for h in session.get("history", []) if h.get("role") == "user"]
+        gist = " | ".join(t for t in caller_turns[-3:] if t)
+        if gist:
+            parts.append(f"caller said: {gist}")
+        return " — ".join(parts)
     # ── verification domain flow (slot-filling) ────────────────────────────────
     # identity params the HOST injects (never extracted by the LLM)
     _IDENTITY_PARAMS = {"call_id", "verified", "subject_id", "role", "clinic_id", "matched_subject_id"}
@@ -570,7 +590,6 @@ class Host:
             return False
         return True
 
-
     def _validate_plan(self, subtasks: list, allowed) -> list:
         """Sanity-filter the LLM's plan: drop disallowed domains, bad depends_on
         references, and dedupe. (Authorization is enforced here; the gate already
@@ -589,7 +608,6 @@ class Host:
             seen.add(fingerprint)
             out.append(s)
         return out
-
 
     async def _build_call(self, session: dict, subtask: dict, prior_results: dict):
         """Resolve one subtask to a DomainCall. For dependents, the prior step's
