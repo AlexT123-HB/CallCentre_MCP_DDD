@@ -11,7 +11,7 @@ Enable with:
     MLFLOW_EXPERIMENT=heartbug-callcentre
 
 Run the MLflow server with:
-    uvx --python 3.12 --from mlflow mlflow server \                                        
+    uvx --python 3.12 --from mlflow mlflow server                                         
   --host 0.0.0.0 --port 5001 \
   --backend-store-uri sqlite:///mlflow.db \
   --allowed-hosts '*' \

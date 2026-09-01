@@ -145,7 +145,7 @@ class Host:
                     self.handoff.record_task_outcome(session, "confirmation", False)
                     action = self.handoff.check(session)
                     if action:
-                        return self._handoff_response(call_id, session, action, transcript)
+                        return await self._handoff_response(call_id, session, action, transcript)
 
             # ── RESUME: a pinned plan is waiting for slot-fill? ──
             # If the caller is still on it, fill slots WITHOUT re-planning/re-selecting
@@ -166,7 +166,7 @@ class Host:
                     ps = self._provider.plan_and_select(call_id, transcript, domain_tools, self._with_note(session))
                     if ps.get("connect_human"):
                         action = self.handoff.check(session, voluntary=True)
-                        return self._handoff_response(call_id, session, action, transcript)
+                        return await self._handoff_response(call_id, session, action, transcript)
                     small_talk = ps.get("small_talk")
                     from_context = ps.get("answer_from_context")
                     subtasks = self._validate_plan(ps.get("subtasks", []), allowed)
@@ -177,7 +177,7 @@ class Host:
                     plan = self._provider.plan(call_id, transcript, candidates, self._with_note(session))
                     if plan.get("connect_human"):
                         action = self.handoff.check(session, voluntary=True)
-                        return self._handoff_response(call_id, session, action, transcript)
+                        return await self._handoff_response(call_id, session, action, transcript)
                     small_talk = plan.get("small_talk")
                     from_context = plan.get("answer_from_context")
                     subtasks = self._validate_plan(plan.get("subtasks", []), allowed)
@@ -222,7 +222,7 @@ class Host:
                     f"conf={routed.get('confidence')} connect_human={routed.get('connect_human')}")
                 if routed.get("connect_human"):
                     action = self.handoff.check(session, voluntary=True)
-                    return self._handoff_response(call_id, session, action, transcript)
+                    return await self._handoff_response(call_id, session, action, transcript)
                 if domain != "unknown" and domain not in allowed:
                     domain = "unknown"                 # disallowed pick → out of scope
                 if domain == "unknown":
@@ -238,7 +238,7 @@ class Host:
         # ── INVOLUNTARY handoff: any counter over threshold? ──
         action = self.handoff.check(session)
         if action:
-            return self._handoff_response(call_id, session, action, transcript)
+            return await self._handoff_response(call_id, session, action, transcript)
 
         session["history"].append({"role": "assistant", "content": tts})
         self.log.info(f"[{call_id}] SYSTEM: {tts}")
@@ -251,6 +251,7 @@ class Host:
         #     transcript)
         # session["history"].append({"role": "assistant", "content": tts})
         # self.log.info(f"[{call_id}] SYSTEM: {tts}")
+        self.handoff.reset_after_handoff(session)  # clear the counters that triggered the handoff
         summary = self._escalation_summary(session, action["reason"], transcript)
         step = {"domain": "booking", "tool": "connect_now", "args": {"queue": action["queue"], "reason": summary}}
         tts = await self._execute_single(session, step, transcript)
@@ -486,6 +487,10 @@ class Host:
         self.handoff.record_task_outcome(session, tool, success)
         if success:
             notes.record_result(session, tool, res)      # working memory for later turns
+        if not success and m.special_flow != "verification":
+            action = self.handoff.check(session)
+            if action:
+                return await self._handoff_response(call_id, session, action, transcript)
 
         if m.special_flow == "verification":
             return await self._after_verify(session, tool, res, transcript)

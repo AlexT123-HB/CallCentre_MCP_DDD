@@ -63,6 +63,13 @@ class HandoffService:
     def reset_out_of_scope(self, session: dict) -> None:
         self._counters(session)["out_of_scope"] = 0
 
+    def reset_after_handoff(self, session: dict) -> None:
+        """Once an escalation has been OFFERED/handled, clear the counters that triggered it."""
+        c = self._counters(session)
+        c["verify_stuck"] = 0
+        c["out_of_scope"] = 0
+        c["task_failures"] = {}
+
     # ── the escalation decision ───────────────────────────────────────────────
     def check(self, session: dict, voluntary: bool = False) -> dict | None:
         """

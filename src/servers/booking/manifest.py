@@ -40,10 +40,13 @@ MANIFEST = DomainManifest(
         # no → schedule a callback instead (request_callback).
         "connect_now": {
             "answers": {
-                "yes": {"action": "escalate", "event": "handoff",
+                "now": {"action": "escalate", "event": "handoff",
                         "hint": "the caller wants to be connected to a person now"},
-                "no":  {"action": "call_tool", "tool": "request_callback",
-                        "hint": "the caller would rather schedule a callback for later"},
+                "later":  {"action": "call_tool", "tool": "request_callback",
+                           "hint": "the caller would rather schedule a callback for later"},
+                "decline": {"action": "escalate", "event": "handoff",
+                            "hint": "the caller wants NEITHER, no transfer and no callback "
+                            "(e.g. 'no need for that', 'just look again', 'no thanks')"},
             }
         },
     },
