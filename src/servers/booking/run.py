@@ -101,7 +101,7 @@ def get_my_callback(call_id: str, verified: bool, subject_id: str | None,
     ok, err = _self(verified, subject_id)
     if not ok:
         return err
-    return _service.get(subject_id)
+    return _service.get_booking(subject_id)
 
 
 @mcp.tool()

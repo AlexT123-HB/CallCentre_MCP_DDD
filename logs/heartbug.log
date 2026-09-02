@@ -43,3 +43,166 @@
 2026-09-02 09:34:38,045 [INFO] [S5] SYSTEM: {'call_id': 'S5', 'action': 'transfer', 'queue': 'patient_support', 'reason': 'task_failure — so far: ACTION: caller verified as a patient — caller said: check my order 1003 | check my order 1003 | check my order 1003', 'tts_response': 'I can connect you with the HeartBug team now, or I can schedule a callback for later — would you like to be connected now or scheduled for later?'}
 2026-09-02 09:34:50,152 [INFO] [S5] CALLER: call me later
 2026-09-02 09:34:50,153 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:41:34,698 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 09:41:35,350 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 09:41:35,356 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 09:41:35,526 [INFO] TRACING on → http://host.docker.internal:5001
+2026-09-02 09:49:16,585 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-09-02 09:49:16,585 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
+2026-09-02 09:49:16,729 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 09:49:18,440 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 09:49:18,468 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 09:49:18,744 [INFO] TRACING on → http://host.docker.internal:5001
+2026-09-02 09:50:23,260 [INFO] [S5] ANI: +61412345678
+2026-09-02 09:50:24,611 [INFO] [S5] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-09-02 09:50:30,967 [INFO] [S5] CALLER: John Smith March 15 1985
+2026-09-02 09:50:30,967 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:50:32,170 [INFO] [S5] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-09-02 09:50:32,171 [INFO] [S5] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-09-02 09:50:33,246 [INFO] [S5] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-09-02 09:50:33,247 [INFO] [S5] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-09-02 09:50:33,282 [INFO] [S5] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-09-02 09:50:33,314 [INFO] CACHE HIT patient:P001
+2026-09-02 09:50:33,315 [INFO] CACHE HIT patient:P001
+2026-09-02 09:50:33,344 [INFO] CACHE HIT order_by_patient:P001
+2026-09-02 09:50:33,345 [INFO] CACHE HIT order:O1001
+2026-09-02 09:50:33,346 [INFO] CACHE HIT order:O1002
+2026-09-02 09:50:34,136 [INFO] [S5] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account.
+2026-09-02 09:50:40,013 [INFO] [S5] CALLER: check my order 1003
+2026-09-02 09:50:40,013 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:50:41,158 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 09:50:41,159 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-02 09:50:41,160 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
+2026-09-02 09:50:41,187 [INFO] CACHE MISS order:1003, query DB
+2026-09-02 09:50:42,006 [INFO] [S5] SYSTEM: I’m sorry, but I can’t find that HeartBug order number, so please double-check the order number and send it again.
+2026-09-02 09:50:44,614 [INFO] [S5] CALLER: check my order 1003
+2026-09-02 09:50:44,615 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:50:45,780 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 09:50:45,781 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-02 09:50:45,781 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
+2026-09-02 09:50:45,805 [INFO] CACHE MISS order:1003, query DB
+2026-09-02 09:50:46,690 [INFO] [S5] SYSTEM: I still can’t find that HeartBug order, so please double-check the order number and send it again. If you’d like, I can help with something else on your HeartBug account or put you through to the team.
+2026-09-02 09:50:49,179 [INFO] [S5] CALLER: check my order 1003
+2026-09-02 09:50:49,179 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:50:50,557 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 09:50:50,558 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-02 09:50:50,558 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
+2026-09-02 09:50:50,585 [INFO] CACHE MISS order:1003, query DB
+2026-09-02 09:50:50,593 [INFO] [S5] HANDOFF reason=task_failure role=patient
+2026-09-02 09:50:51,587 [INFO] [S5] SYSTEM: I can connect you with the HeartBug team now, or I can schedule a callback for later — which would you prefer?
+2026-09-02 09:50:51,589 [INFO] [S5] SYSTEM: I can connect you with the HeartBug team now, or I can schedule a callback for later — which would you prefer?
+2026-09-02 09:51:47,718 [INFO] [S5] CALLER: call me later
+2026-09-02 09:51:47,719 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:51:48,568 [INFO] [S5] CONFIRM llm-raw: {"decision":"later"}
+2026-09-02 09:51:49,484 [INFO] [S5] SYSTEM: Of course — which day would you like us to call you back?
+2026-09-02 09:52:02,617 [INFO] [S5] CALLER: today, 3pm
+2026-09-02 09:52:02,618 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:52:03,720 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":"2026-09-01","time":"15:00","reason":"Caller asked to be called later and then specified today, 3pm for the callback."},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 09:52:03,721 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'request_callback')]
+2026-09-02 09:52:03,722 [INFO] [S5] SLOTS domain=booking tool=request_callback have={'date': '2026-09-01', 'time': '15:00', 'reason': 'Caller asked to be called later and then specified today, 3pm for the callback.'} missing=None
+2026-09-02 09:52:04,641 [INFO] [S5] SYSTEM: I’m sorry, but HeartBug callbacks are only available on weekdays between 9 AM and 5 PM, and today at 3 PM isn’t available. Please choose a weekday time within those hours, or I can help with something else on your HeartBug account.
+2026-09-02 09:52:57,267 [INFO] [S5] CALLER: wednesday, 3pm
+2026-09-02 09:52:57,268 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:52:58,405 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":"2026-09-02","time":"15:00","reason":"Caller wants a callback later and specified Wednesday at 3pm."},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 09:52:58,411 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'request_callback')]
+2026-09-02 09:52:58,412 [INFO] [S5] SLOTS domain=booking tool=request_callback have={'date': '2026-09-02', 'time': '15:00', 'reason': 'Caller wants a callback later and specified Wednesday at 3pm.'} missing=None
+2026-09-02 09:52:59,377 [INFO] [S5] SYSTEM: Just to confirm, HeartBug has you scheduled for Wednesday, September 2 at 3:00 PM, and the call may come around that time but could vary by up to 30 minutes — is that right?
+2026-09-02 09:53:11,267 [INFO] [S5] CALLER: correct
+2026-09-02 09:53:11,267 [INFO] [S5] Orchestrator: B mode
+2026-09-02 09:53:12,098 [INFO] [S5] CONFIRM llm-raw: {"decision":"yes"}
+2026-09-02 09:53:12,143 [INFO] CACHE HIT callback:P001
+2026-09-02 09:53:12,147 [INFO] [S5] HANDOFF row written: CB-8F6807 John Smith @ 2026-09-02T15:00
+2026-09-02 09:53:13,035 [INFO] [S5] SYSTEM: Absolutely — your HeartBug callback is booked for Wednesday at 3:00 PM, booking reference CB-8F6807, and a staff member should call you within about 30 minutes of that time.
+2026-09-02 10:19:19,400 [INFO] [S5] CALLER: what are callbacks I have?
+2026-09-02 10:19:19,401 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:19:21,389 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"get_my_callback","args":{},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 10:19:21,391 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'get_my_callback')]
+2026-09-02 10:19:22,432 [INFO] [S5] SYSTEM: I’m not able to pull up a callback list right now, but I can help with something else on your HeartBug account or put you through to the team.
+2026-09-02 10:30:54,484 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-09-02 10:30:54,486 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
+2026-09-02 10:30:54,696 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 10:30:56,072 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 10:30:56,077 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-02 10:30:56,353 [INFO] TRACING on → http://host.docker.internal:5001
+2026-09-02 10:35:04,569 [INFO] [S5] ANI: +61412345678
+2026-09-02 10:35:06,403 [INFO] [S5] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-09-02 10:35:16,908 [INFO] [S5] CALLER: John Smith March 15 1985
+2026-09-02 10:35:16,909 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:35:17,957 [INFO] [S5] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-09-02 10:35:17,958 [INFO] [S5] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-09-02 10:35:18,921 [INFO] [S5] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-09-02 10:35:18,922 [INFO] [S5] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-09-02 10:35:18,955 [INFO] [S5] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-09-02 10:35:19,007 [INFO] CACHE MISS patient:P001, query DB
+2026-09-02 10:35:19,008 [INFO] CACHE MISS patient:P001, query DB
+2026-09-02 10:35:19,039 [INFO] CACHE HIT order_by_patient:P001
+2026-09-02 10:35:19,040 [INFO] CACHE HIT order:O1001
+2026-09-02 10:35:19,041 [INFO] CACHE HIT order:O1002
+2026-09-02 10:35:20,415 [INFO] [S5] SYSTEM: Thanks, John — you’re verified with HeartBug, and I’m happy to help.
+2026-09-02 10:35:29,140 [INFO] [S5] CALLER: check my order 1003
+2026-09-02 10:35:29,140 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:35:30,383 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 10:35:30,384 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-02 10:35:30,384 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
+2026-09-02 10:35:30,408 [INFO] CACHE MISS order:1003, query DB
+2026-09-02 10:35:31,689 [INFO] [S5] SYSTEM: I’m sorry, but I can’t find order 1003 in HeartBug—could you double-check the order number for me? If you’d like, I can also help with something else on your account or connect you to the team.
+2026-09-02 10:35:34,556 [INFO] [S5] CALLER: check my order 1003
+2026-09-02 10:35:34,557 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:35:55,134 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 10:35:55,138 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-02 10:35:55,139 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
+2026-09-02 10:35:55,177 [INFO] CACHE MISS order:1003, query DB
+2026-09-02 10:35:56,152 [INFO] [S5] SYSTEM: I still can’t find order 1003 in HeartBug, so could you please double-check the order number? I can also help with something else on your HeartBug account or connect you to the team.
+2026-09-02 10:35:59,580 [INFO] [S5] CALLER: check my order 1003
+2026-09-02 10:35:59,580 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:36:00,883 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 10:36:00,884 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-02 10:36:00,884 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
+2026-09-02 10:36:00,920 [INFO] CACHE MISS order:1003, query DB
+2026-09-02 10:36:00,927 [INFO] [S5] HANDOFF reason=task_failure role=patient
+2026-09-02 10:36:01,809 [INFO] [S5] SYSTEM: I can connect you with our HeartBug patient support team now, or I can schedule a callback for later — would you like to be connected now or scheduled for later?
+2026-09-02 10:36:01,810 [INFO] [S5] SYSTEM: I can connect you with our HeartBug patient support team now, or I can schedule a callback for later — would you like to be connected now or scheduled for later?
+2026-09-02 10:36:13,340 [INFO] [S5] CALLER: call me later
+2026-09-02 10:36:13,340 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:36:14,389 [INFO] [S5] CONFIRM llm-raw: {"decision":"later"}
+2026-09-02 10:36:34,655 [INFO] [S5] SYSTEM: Of course — which day would you like HeartBug to call you back?
+2026-09-02 10:36:43,861 [INFO] [S5] CALLER: this friday
+2026-09-02 10:36:43,862 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:36:45,631 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":"2026-09-04","time":null,"reason":"Caller wants a callback later and specified this Friday."},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 10:36:45,632 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'request_callback')]
+2026-09-02 10:36:46,839 [INFO] [S5] TOOL-SELECT llm-raw: {"tool":"request_callback","args":{"date":"2026-09-04","time":null,"reason":"Caller requested a callback later and specified this Friday."},"confidence":0.95}
+2026-09-02 10:36:46,839 [INFO] [S5] SLOTS domain=booking tool=request_callback have={'date': '2026-09-04', 'reason': 'Caller requested a callback later and specified this Friday.'} missing=time
+2026-09-02 10:36:47,624 [INFO] [S5] SYSTEM: Thanks—what time of day on Friday would you like HeartBug to call you back?
+2026-09-02 10:37:04,037 [INFO] [S5] CALLER: at 9, morning
+2026-09-02 10:37:04,037 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:37:05,478 [INFO] [S5] ROUTER llm-raw: {"domain":"booking","confidence":0.97,"connect_human":false}
+2026-09-02 10:37:06,499 [INFO] [S5] TOOL-SELECT llm-raw: {"tool":"request_callback","args":{"date":"2026-09-04","time":"09:00","reason":"Caller requested a callback later and specified Friday at 9:00 AM."},"confidence":0.98}
+2026-09-02 10:37:06,499 [INFO] [S5] SLOTS domain=booking tool=request_callback have={'date': '2026-09-04', 'reason': 'Caller requested a callback later and specified Friday at 9:00 AM.', 'time': '09:00'} missing=None
+2026-09-02 10:37:07,626 [INFO] [S5] SYSTEM: Just to confirm, HeartBug has you down for Friday, September fourth at 9:00 AM, and the call may come around then but could be up to 30 minutes early or late — is that right?
+2026-09-02 10:37:21,460 [INFO] [S5] CALLER: correct
+2026-09-02 10:37:21,461 [INFO] [S5] Orchestrator: B mode
+2026-09-02 10:37:22,468 [INFO] [S5] CONFIRM llm-raw: {"decision":"yes"}
+2026-09-02 10:37:22,505 [INFO] CACHE HIT callback:P001
+2026-09-02 10:37:22,510 [INFO] [S5] HANDOFF row written: CB-550F5C John Smith @ 2026-09-04T09:00
+2026-09-02 10:37:23,559 [INFO] [S5] SYSTEM: That’s all booked for Friday at 9:00 AM, and a HeartBug team member will call you then or within about 30 minutes; your booking reference is CB-550F5C if you need to quote it.
+2026-09-02 15:22:33,133 [INFO] [S5] ANI: +61412345678
+2026-09-02 15:22:34,098 [INFO] [S5] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-09-02 15:22:44,447 [INFO] [S5] CALLER: John Smith March 15 1985
+2026-09-02 15:22:44,448 [INFO] [S5] Orchestrator: B mode
+2026-09-02 15:22:46,466 [INFO] [S5] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-09-02 15:22:46,467 [INFO] [S5] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-09-02 15:22:47,312 [INFO] [S5] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-09-02 15:22:47,312 [INFO] [S5] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-09-02 15:22:47,348 [INFO] [S5] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-09-02 15:22:47,378 [INFO] CACHE MISS patient:P001, query DB
+2026-09-02 15:22:47,379 [INFO] CACHE MISS patient:P001, query DB
+2026-09-02 15:22:47,407 [INFO] CACHE HIT order_by_patient:P001
+2026-09-02 15:22:47,407 [INFO] CACHE HIT order:O1001
+2026-09-02 15:22:47,408 [INFO] CACHE HIT order:O1002
+2026-09-02 15:22:48,542 [INFO] [S5] SYSTEM: Thanks, John — you’re all verified, and I’m here to help with anything on your HeartBug account.
+2026-09-02 15:22:56,345 [INFO] [S5] CALLER: what are callbacks I have
+2026-09-02 15:22:56,345 [INFO] [S5] Orchestrator: B mode
+2026-09-02 15:22:57,659 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"get_my_callback","args":{},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-02 15:22:57,660 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'get_my_callback')]
+2026-09-02 15:22:57,707 [INFO] CACHE HIT callback:P001
+2026-09-02 15:22:59,009 [INFO] [S5] SYSTEM: You have a HeartBug callback booked for Friday, September 4th at 9:00 AM, reference CB-550F5C, and our team should call you within about 30 minutes of that time.

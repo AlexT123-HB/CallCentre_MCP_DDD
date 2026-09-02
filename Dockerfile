@@ -12,8 +12,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-# tzdata so TZ=Australia/Sydney resolves (slim images ship UTC-only). Without
-# this, logs stamp in UTC and midnight rotation fires at ~10am Sydney.
+# tzdata so TZ=Australia/Sydney resolves (slim images ship UTC-only). 
 RUN apt-get update && apt-get install -y --no-install-recommends tzdata \
     && rm -rf /var/lib/apt/lists/*
 

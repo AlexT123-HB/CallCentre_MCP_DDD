@@ -490,7 +490,8 @@ class Host:
         if not success and m.special_flow != "verification":
             action = self.handoff.check(session)
             if action:
-                return await self._handoff_response(call_id, session, action, transcript)
+                res = await self._handoff_response(call_id, session, action, transcript)
+                return res["tts_response"]
 
         if m.special_flow == "verification":
             return await self._after_verify(session, tool, res, transcript)

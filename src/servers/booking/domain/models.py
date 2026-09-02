@@ -81,11 +81,11 @@ class Booking:
         reschedule (a patient may move a booking more than once)."""
         self.schedule_history.append({
             "was_scheduled_for": self.scheduled_for,
-            "moved_at": datetime.now(timezone.utc).isoformat(),
+            "moved_at": datetime.now().isoformat(),
         })
         self.scheduled_for = new_iso
         self.status = PENDING
-        self.rescheduled_at = datetime.now(timezone.utc).isoformat()
+        self.rescheduled_at = datetime.now().isoformat()
 
     @classmethod
     def create(cls, patient_id: str, name: str, scheduled_iso: str,
@@ -98,7 +98,7 @@ class Booking:
             reason=(reason or "").strip(),
             window_min=WINDOW_MIN,
             status=PENDING,
-            requested_at=datetime.now(timezone.utc).isoformat(),
+            requested_at=datetime.now().isoformat(),
             replaced=replaced,
         )
 

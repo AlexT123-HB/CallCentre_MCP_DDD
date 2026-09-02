@@ -49,7 +49,7 @@ def _row_from_record(record: dict, call_id: str) -> dict:
     The `booked_at` column shows the RESCHEDULE time when the booking was moved,
     else the original booking time — so staff always see when it was last set."""
     booked_at = record.get("rescheduled_at") or record.get("requested_at") \
-        or datetime.now(timezone.utc).isoformat()
+        or datetime.now().isoformat()
     return {
         "booking_id":    record.get("booking_id", ""),
         "scheduled_for": record.get("scheduled_for", ""),
