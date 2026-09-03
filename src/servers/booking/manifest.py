@@ -10,11 +10,10 @@ MANIFEST = DomainManifest(
     description="bookings, appointments, and scheduling for the verified caller's own callback",
     requires_verification=True,         # verified-only — private to the caller
     primary_tool="request_callback",
-    tools=["request_callback", "reschedule_callback", "cancel_callback", "get_my_callback", "connect_now"],
+    tools=["request_callback", "reschedule_callback", "cancel_callback", "get_my_callback"],
     tool_events={"request_callback": "callback_confirm", "submit_callback": "callback_recorded",
                  "reschedule_callback": "reschedule_confirm", "submit_reschedule": "reschedule_recorded",
-                 "cancel_callback": "cancel_confirmed", "get_my_callback": "callback_details",
-                 "connect_now": "connect_now_confirm"},
+                 "cancel_callback": "cancel_confirmed", "get_my_callback": "callback_details"},
     required_args={
         "request_callback": {"date": "ask_date", "time": "ask_time"},
         "reschedule_callback": {"date": "ask_date", "time": "ask_time"},
@@ -34,19 +33,6 @@ MANIFEST = DomainManifest(
                         "hint": "the caller confirms the new callback time"},
                 "no":  {"action": "narrate", "event": "reschedule_cancelled",
                         "hint": "the caller declines the new time / keeps the old one"},
-            }
-        },
-        # connect_now previews at escalation: yes → connect now (F2 transfer),
-        # no → schedule a callback instead (request_callback).
-        "connect_now": {
-            "answers": {
-                "now": {"action": "escalate", "event": "handoff",
-                        "hint": "the caller wants to be connected to a person now"},
-                "later":  {"action": "call_tool", "tool": "request_callback",
-                           "hint": "the caller would rather schedule a callback for later"},
-                "decline": {"action": "escalate", "event": "handoff",
-                            "hint": "the caller wants NEITHER, no transfer and no callback "
-                            "(e.g. 'no need for that', 'just look again', 'no thanks')"},
             }
         },
     },
@@ -88,12 +74,5 @@ MANIFEST = DomainManifest(
                             "about window_min minutes of it",
         "callback_none": "tell them they have no callback currently booked, and offer to "
                          "book one",
-        "handoff": ("tell the caller you'll connect them with the team now (mention the "
-                    "queue/team if given) and to please hold — do NOT ask for name or "
-                    "date of birth here"),
-        "connect_now_confirm": ("tell the caller you can connect them with the team, and "
-                                "ask whether they'd like to be connected NOW or would "
-                                "prefer to SCHEDULE a callback for later — one short "
-                                "either/or question. Do NOT ask for name or date of birth."),
     },
 )

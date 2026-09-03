@@ -46,8 +46,13 @@ def _self(verified: bool, subject_id: str | None):
 @mcp.tool()
 def request_callback(call_id: str, verified: bool, subject_id: str | None,
                      role: str = "patient", date: str = "", time: str = "", reason: str = "") -> dict:
-    """Request a callback for the verified caller's own account — reads back the requested date and time for confirmation. Use when a
-    caller wants to book a callback"""
+    """Request a staff CALLBACK at a specific date and time. `date` is YYYY-MM-DD,
+    `time` is 24-hour HH:MM, resolve the caller's words using today's date. `reason`
+    is WHAT THE CALLBACK IS ABOUT, the caller's underlying issue or question in a few
+    words (e.g. "device keeps disconnecting", "question about replacement leads order").
+    Do NOT put the scheduling itself in `reason` (never "caller wants a callback at 9am") ; 
+    capture the PROBLEM, not the request to be called. If the caller hasn't stated a topic, leave reason empty. 
+    Previews and reads back for confirmation ; does NOT book (host books on a 'yes')."""
     ok, err = _self(verified, subject_id)
     if not ok:
         return err
@@ -102,19 +107,6 @@ def get_my_callback(call_id: str, verified: bool, subject_id: str | None,
     if not ok:
         return err
     return _service.get_booking(subject_id)
-
-
-@mcp.tool()
-def connect_now(call_id: str, verified: bool, subject_id: str | None,
-                role: str = "patient", reason: str = "", queue: str = "") -> dict:
-    """Offer to connect the caller to a human NOW. Previews the choice and asks them
-    to confirm: 'yes' connects now (the F2 transfer / outbound call), 'no' offers to
-    schedule a callback instead. `reason` is the escalation reason (whole-conversation
-    summary), `queue` the target human queue. Does NOT connect by itself — the host
-    resolves the confirmation."""
-    return {"found": True, "needs_confirmation": True, "event": "connect_now_confirm",
-            "reason": reason, "queue": queue or "patient_support"}
-
 
 if __name__ == "__main__":
     port = int(os.getenv("BOOKING_PORT", "3006"))
