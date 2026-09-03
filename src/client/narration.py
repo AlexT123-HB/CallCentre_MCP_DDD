@@ -18,6 +18,13 @@ _HOST_EVENTS = {
     "handoff": ("tell the caller you'll connect them to a human member of the team now "
                 "(mention the queue/team if given) and to please hold — do NOT ask for "
                 "name or date of birth here"),
+    "escalation_choice": ("tell the caller you can connect them with the team, and ask "
+                          "whether they'd like to be connected NOW or would prefer to "
+                          "SCHEDULE a callback for a time that suits them — one short, "
+                          "clear either/or question. Do NOT ask for name or date of birth."),
+    "handoff_declined": ("acknowledge they don't want to be transferred or booked in, and "
+                         "warmly offer to keep helping with their HeartBug account however "
+                         "you can — one short sentence, no transfer, no callback"),
     "out_of_scope": "politely decline, you only handle HeartBug account matters",
     "small_talk": "reply warmly and briefly to the caller's social remark, then offer "
                   "to help with their HeartBug account — one short, natural sentence",

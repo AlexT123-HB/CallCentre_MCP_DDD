@@ -114,6 +114,45 @@ class Host:
         # ── VERIFIED callers use the PLANNER (may split into multi-domain subtasks);
         #    UNVERIFIED callers use single-domain routing (only verification allowed) ──
         if session["ctx"].verified:
+            # ── ESCALATION CHOICE: the host offered now/later/decline last turn and
+            #    is waiting for the reply. Host-owned (escalation isn't a domain).
+            #    now     → trigger the human transfer (F2 / LiveKit) — host action
+            #    later   → fall through to normal planning so the caller's words are
+            #              re-planned as a booking (extracts any date/time they give)
+            #    decline → narrate "keep helping", drop the handoff ──
+            esc = session.get("_pending_escalation")
+            if esc:
+                session.pop("_pending_escalation", None)
+                choice = self._provider.classify_confirmation(call_id,
+                    transcript, "connect you to a person now, or schedule a callback for later?",
+                    session["history"],
+                    {"now": {"hint": "wants to be connected to a person now"},
+                     "later": {"hint": "wants to schedule a callback for a later time"},
+                     "decline": {"hint": "wants neither — no transfer and no callback"}})
+                if choice == "now":
+                    notes.record_action(session, "caller chose to connect to a human now")
+                    tts = self.narrator.say({"event": "handoff", "queue": esc["queue"]},
+                                            transcript, self._with_note(session))
+                    session["history"].append({"role": "assistant", "content": tts})
+                    self.log.info(f"[{call_id}] SYSTEM (transfer): {tts}")
+                    # ← F2 SEAM: trigger the outbound call / LiveKit warm transfer here,
+                    #   passing esc["reason"] (whole-conversation summary) + esc["queue"].
+                    return {"call_id": call_id, "tts_response": tts, "action": "transfer",
+                            "queue": esc["queue"], "reason": esc["reason"]}
+                if choice == "decline":
+                    notes.record_action(session, "caller declined transfer and callback")
+                    tts = self.narrator.say({"event": "handoff_declined"}, transcript,
+                                            self._with_note(session))
+                    session["history"].append({"role": "assistant", "content": tts})
+                    self.log.info(f"[{call_id}] SYSTEM: {tts}")
+                    return {"call_id": call_id, "tts_response": tts}
+                # choice == "later" (or unclear) → carry the escalation reason so the
+                # booking captures WHY, then fall through to normal planning, which
+                # re-plans this turn's words as a booking and extracts any date/time.
+                notes.record_action(session, "caller chose to schedule a callback (later)")
+                session["_escalation_reason"] = esc["reason"]
+                # (do NOT return — fall through to the planner below)
+
             # ── CONFIRM: a sensitive write is waiting for the caller's reply. Catch
             #    it BEFORE planning so the reply doesn't get re-routed. Fully generic:
             #    the tool's manifest `confirmations` contract declares the valid
@@ -187,6 +226,16 @@ class Host:
 
                 if subtasks:
                     self.handoff.reset_out_of_scope(session)
+                    # if the caller reached booking via the escalation "later" choice,
+                    # carry the whole-conversation escalation reason into the callback
+                    # so the staff sheet shows WHY they escalated (unless the planner
+                    # already extracted a reason from what the caller said).
+                    esc_reason = session.pop("_escalation_reason", None)
+                    if esc_reason:
+                        for st in subtasks:
+                            if st.get("tool") == "request_callback" \
+                                    and not (st.get("args") or {}).get("reason"):
+                                st.setdefault("args", {})["reason"] = esc_reason
                     tts = await self._run_plan(session, subtasks, transcript)
                     domain = subtasks[0]["domain"] if len(subtasks) == 1 else "multi"
                 elif small_talk:
@@ -246,23 +295,39 @@ class Host:
 
     # ── build the caller-facing handoff response ──────────────────────────────
     async def _handoff_response(self, call_id, session, action, transcript) -> dict:
-        # tts = self.narrator.say(
-        #     {"event": "handoff", "queue": action["queue"], "reason": action["reason"]},
-        #     transcript)
-        # session["history"].append({"role": "assistant", "content": tts})
-        # self.log.info(f"[{call_id}] SYSTEM: {tts}")
-        self.handoff.reset_after_handoff(session)  # clear the counters that triggered the handoff
-        summary = self._escalation_summary(session, action["reason"], transcript)
-        step = {"domain": "booking", "tool": "connect_now", "args": {"queue": action["queue"], "reason": summary}}
-        tts = await self._execute_single(session, step, transcript)
+        # Escalation is a HOST orchestration concern (not a domain). The host detects
+        # it (counters / connect_human), OWNS the now/later/decline choice, and routes
+        # the outcome — no booking.connect_now tool. This keeps booking = callbacks only.
+        #   now     → host triggers the human transfer (F2 / LiveKit) — a host action
+        #   later   → next turn is re-planned as a fresh booking (planner extracts the
+        #             date/time the caller gives) → booking.request_callback
+        #   decline → host narrates "keep helping", no handoff
+        # The reason summarises the WHOLE conversation so staff see why it escalated.
+        summary = self._escalation_summary(session, action["reason"])
+        # clear the counters that triggered it so a stale counter doesn't re-fire.
+        self.handoff.reset_after_handoff(session)
+        # stash the host-owned escalation choice; the reply is caught next turn.
+        session["_pending_escalation"] = {"reason": summary, "queue": action["queue"]}
+        tts = self.narrator.say({"event": "escalation_choice"}, transcript,
+                                self._with_note(session))
         session["history"].append({"role": "assistant", "content": tts})
-        self.log.info(f"[{call_id}] SYSTEM: {tts}")
-        return {"call_id": call_id, "action": action["action"], "queue": action["queue"],
-                "reason": summary, "tts_response": tts}
+        self.log.info(f"[{call_id}] SYSTEM (escalation offer): {tts}")
+        return {"call_id": call_id, "tts_response": tts, "reason": summary, "queue": action["queue"]}
 
-    def _escalation_summary(self, session: dict, reason: str, transcript: str) -> str:
-        """Summarize the escalation reason for the human agent."""
-        parts = [reason]
+    def _escalation_summary(self, session: dict, category: str) -> str:
+        """A human-readable escalation reason for staff, drawn from the WHOLE call.
+        Combines: the category label + structured call notes (what was established/
+        done) when present + the caller's recent turns. Notes is often EMPTY at an
+        escalation (the caller escalated because nothing succeeded), so the caller
+        turns are the reliable floor — notes augments when there's real state."""
+        label = {
+            "voluntary": "caller asked to speak with a person",
+            "verification_stuck": "could not complete identity verification",
+            "task_failure": "the assistant couldn't resolve the caller's request",
+            "out_of_scope": "request outside what the assistant can handle",
+        }.get(category, category)
+
+        parts = [label]
         note = notes.render(session)          # structured: entities looked up + actions
         if note:
             # compact the multi-line note block into one line for the reason field
