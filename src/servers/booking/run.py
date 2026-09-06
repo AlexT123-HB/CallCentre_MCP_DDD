@@ -47,17 +47,20 @@ def _self(verified: bool, subject_id: str | None):
 def request_callback(call_id: str, verified: bool, subject_id: str | None,
                      role: str = "patient", date: str = "", time: str = "", reason: str = "") -> dict:
     """Request a staff CALLBACK at a specific date and time. `date` is YYYY-MM-DD,
-    `time` is 24-hour HH:MM, resolve the caller's words using today's date. `reason`
-    is WHAT THE CALLBACK IS ABOUT, the caller's underlying issue or question in a few
+    `time` is 24-hour HH:MM - resolve the caller's words using today's date. `reason`
+    is WHAT THE CALLBACK IS ABOUT — the caller's underlying issue or question in a few
     words (e.g. "device keeps disconnecting", "question about replacement leads order").
-    Do NOT put the scheduling itself in `reason` (never "caller wants a callback at 9am") ; 
-    capture the PROBLEM, not the request to be called. If the caller hasn't stated a topic, leave reason empty. 
-    Previews and reads back for confirmation ; does NOT book (host books on a 'yes')."""
+    Draw `reason` from the WHOLE conversation and the call notes, NOT only the latest
+    message: if the caller earlier asked about an order or a problem and is now just
+    picking a callback time, `reason` is that earlier concern (e.g. "issue with order
+    1001"), not the scheduling. Do NOT put the scheduling itself in `reason` (never
+    "caller wants a callback at 9am") — capture the PROBLEM. Only leave `reason` empty
+    if the caller never stated any concern anywhere in the conversation. Previews and
+    reads back for confirmation; does NOT book (host books on a 'yes')."""
     ok, err = _self(verified, subject_id)
     if not ok:
         return err
-    return _service.preview_booking(subject_id, (date or "").strip(),
-                                    (time or "").strip(), reason)
+    return _service.preview_booking(subject_id, (date or "").strip(), (time or "").strip(), reason)
 
 @mcp.tool()
 def submit_callback(call_id: str, verified: bool, subject_id: str | None,

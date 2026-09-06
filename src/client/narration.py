@@ -18,7 +18,7 @@ _HOST_EVENTS = {
     "handoff": ("tell the caller you'll connect them to a human member of the team now "
                 "(mention the queue/team if given) and to please hold — do NOT ask for "
                 "name or date of birth here"),
-    "escalation_choice": ("tell the caller you can connect them with the team, and ask "
+    "escalation_choice": ("tell the caller that the task is being escalated to the team due to its failure, and ask "
                           "whether they'd like to be connected NOW or would prefer to "
                           "SCHEDULE a callback for a time that suits them — one short, "
                           "clear either/or question. Do NOT ask for name or date of birth."),
@@ -36,7 +36,6 @@ _HOST_EVENTS = {
               "someone. NEVER silently omit a failed part; the caller asked about it and "
               "must hear that it wasn't resolved."),
 }
-
 
 def _all_events() -> dict:
     """Every event → instruction, assembled from all domain manifests + host events."""

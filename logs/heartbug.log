@@ -1,99 +1,177 @@
-2026-09-03 09:30:12,159 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-09-03 09:30:12,253 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-03 09:30:13,719 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-03 09:30:13,741 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-03 09:30:14,054 [INFO] TRACING on → http://host.docker.internal:5001
-2026-09-03 09:31:53,745 [INFO] [S5] ANI: +61412345678
-2026-09-03 09:31:56,702 [INFO] [S5] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
-2026-09-03 09:32:07,863 [INFO] [S5] CALLER: John Smith March 15 1985
-2026-09-03 09:32:07,864 [INFO] [S5] Orchestrator: B mode
-2026-09-03 09:32:09,180 [INFO] [S5] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-09-03 09:32:09,181 [INFO] [S5] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-09-03 09:32:10,399 [INFO] [S5] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
-2026-09-03 09:32:10,400 [INFO] [S5] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-09-03 09:32:10,417 [INFO] [S5] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-09-03 09:32:10,443 [INFO] CACHE MISS patient:P001, query DB
-2026-09-03 09:32:10,443 [INFO] CACHE MISS patient:P001, query DB
-2026-09-03 09:32:10,473 [INFO] CACHE HIT order_by_patient:P001
-2026-09-03 09:32:10,473 [INFO] CACHE HIT order:O1001
-2026-09-03 09:32:10,474 [INFO] CACHE HIT order:O1002
-2026-09-03 09:32:11,537 [INFO] [S5] SYSTEM: Thanks, John, you’re all verified with HeartBug, and I’m here to help.
-2026-09-03 09:32:29,342 [INFO] [S5] CALLER: check my order 1003
-2026-09-03 09:32:29,342 [INFO] [S5] Orchestrator: B mode
-2026-09-03 09:32:31,198 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-09-03 09:32:31,199 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-03 09:32:31,200 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
-2026-09-03 09:32:31,221 [INFO] CACHE MISS order:1003, query DB
-2026-09-03 09:32:32,399 [INFO] [S5] SYSTEM: I’m sorry, I can’t find order 1003 in HeartBug, so please double-check the order number for me.
-2026-09-03 09:32:36,249 [INFO] [S5] CALLER: check my order 1003
-2026-09-03 09:32:36,250 [INFO] [S5] Orchestrator: B mode
-2026-09-03 09:32:37,410 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-09-03 09:32:37,413 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-03 09:32:37,414 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
-2026-09-03 09:32:37,446 [INFO] CACHE MISS order:1003, query DB
-2026-09-03 09:32:38,750 [INFO] [S5] SYSTEM: I still can’t find that order in HeartBug, so please double-check the order number for me. If you’d like, I can also help with something else on your HeartBug account or connect you to the team.
-2026-09-03 09:32:43,898 [INFO] [S5] CALLER: check my order 1003
-2026-09-03 09:32:43,898 [INFO] [S5] Orchestrator: B mode
-2026-09-03 09:32:45,048 [INFO] [S5] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"1003"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
-2026-09-03 09:32:45,049 [INFO] [S5] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-03 09:32:45,049 [INFO] [S5] SLOTS domain=order tool=lookup_order have={'order_id': '1003'} missing=None
-2026-09-03 09:32:45,075 [INFO] CACHE MISS order:1003, query DB
-2026-09-03 09:32:45,083 [INFO] [S5] HANDOFF reason=task_failure role=patient
-2026-09-03 09:32:46,262 [INFO] [S5] SYSTEM: I can connect you with the HeartBug patient support team now, or I can schedule a callback for later—would you like me to connect you now or set up a callback?
-2026-09-03 09:32:46,264 [INFO] [S5] SYSTEM: I can connect you with the HeartBug patient support team now, or I can schedule a callback for later—would you like me to connect you now or set up a callback?
-2026-09-03 09:33:07,655 [INFO] [S5] CALLER: call me back tomorrow
-2026-09-03 09:33:07,655 [INFO] [S5] Orchestrator: B mode
-2026-09-03 09:33:09,453 [INFO] [S5] CONFIRM llm-raw: {"decision":"later"}
-2026-09-03 09:33:10,657 [INFO] [S5] SYSTEM: Of course — I’ve noted tomorrow for your callback, and we’ll have the HeartBug team reach out then.
-2026-09-03 10:43:07,442 [INFO] [S5] ANI: +61412345678
-2026-09-03 10:43:09,391 [INFO] [S5] SYSTEM: Welcome to HeartBug, and to get started could I please have your full name and date of birth?
-2026-09-03 10:43:20,079 [INFO] [G1] ANI: +61412345678
-2026-09-03 10:43:21,177 [INFO] [G1] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
-2026-09-03 10:44:01,333 [INFO] [G1] CALLER: how can you help me?
-2026-09-03 10:44:01,334 [INFO] [G1] Orchestrator: B mode
-2026-09-03 10:44:02,188 [INFO] [G1] ROUTER llm-raw: {"domain":"kb","confidence":0.91,"connect_human":false}
-2026-09-03 10:44:02,191 [INFO] [G1] ROUTER allowed=['verification', 'kb'] → domain=kb conf=0.91 connect_human=False
-2026-09-03 10:44:03,181 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"search_kb","args":{"query":"how can you help me?"},"confidence":0.94}
-2026-09-03 10:44:03,909 [INFO] [G1] KB-CACHE MISS best=0.000 q='how can you help me?'
-2026-09-03 10:44:04,034 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_47' matched_q='Does HeartBug give me results directly?' score=0.616
-2026-09-03 10:44:04,034 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_100' matched_q='How do I know if the device is working correctly?' score=0.616
-2026-09-03 10:44:04,035 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_51' matched_q='What if my monitoring period needs to be extended?' score=0.615
-2026-09-03 10:44:04,035 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_5' matched_q='What should I do if chest or heart pain starts?' score=0.613
-2026-09-03 10:44:04,036 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_19' matched_q='How do I record symptoms with HeartBug?' score=0.609
-2026-09-03 10:44:04,037 [INFO] [G1] KB → ANSWER 5 entries best=0.616
-2026-09-03 10:44:04,157 [INFO] [G1] KB-CACHE PUT q='how can you help me?' store=1
-2026-09-03 10:44:05,411 [INFO] [G1] SYSTEM: I can help you start symptom recordings, check whether your HeartBug device is connected with a live trace, explain what to do for chest pain, and guide you on next steps like asking your doctor about more monitoring or getting your results through your clinic or patient care.
-2026-09-03 10:44:48,070 [INFO] [G1] CALLER: can I ask about my order?
-2026-09-03 10:44:48,071 [INFO] [G1] Orchestrator: B mode
-2026-09-03 10:44:48,806 [INFO] [G1] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-09-03 10:44:48,807 [INFO] [G1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-09-03 10:44:49,749 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"lookup_by_phone","args":{"phone":null},"confidence":0.42}
-2026-09-03 10:44:50,389 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"lookup_by_phone","args":{"phone":null},"confidence":0.18}
-2026-09-03 10:44:50,390 [INFO] [G1] SLOTS domain=verification tool=verify_identity have={} missing=name
-2026-09-03 10:44:51,022 [INFO] [G1] SYSTEM: Absolutely — could I have the full name on the HeartBug account so I can help with your order?
-2026-09-03 10:45:20,499 [INFO] [G1] CALLER: can I stop monitoring? It is so annoying to wear device all day
-2026-09-03 10:45:20,500 [INFO] [G1] Orchestrator: B mode
-2026-09-03 10:45:22,826 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":null,"dob":null,"clinic":null},"confidence":0.62}
-2026-09-03 10:45:22,826 [INFO] [G1] SLOTS domain=verification tool=verify_identity have={} missing=name
-2026-09-03 10:45:23,764 [INFO] [G1] SYSTEM: I’m sorry it’s feeling annoying; I can help with that, and to look up your HeartBug account, may I have the full name on the account?
-2026-09-03 10:45:49,884 [INFO] [G1] CALLER: John Smith March 15 1985
-2026-09-03 10:45:49,885 [INFO] [G1] Orchestrator: B mode
-2026-09-03 10:45:52,369 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
-2026-09-03 10:45:52,370 [INFO] [G1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-09-03 10:45:52,442 [INFO] [G1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-09-03 10:45:52,480 [INFO] CACHE MISS patient:P001, query DB
-2026-09-03 10:45:52,480 [INFO] CACHE MISS patient:P001, query DB
-2026-09-03 10:45:52,520 [INFO] CACHE HIT order_by_patient:P001
-2026-09-03 10:45:52,520 [INFO] CACHE HIT order:O1001
-2026-09-03 10:45:52,521 [INFO] CACHE HIT order:O1002
-2026-09-03 10:45:53,444 [INFO] [G1] SYSTEM: Thanks, John — you’re verified with HeartBug, and I’m here to help.
-2026-09-03 10:45:56,574 [INFO] [G1] CALLER: can I stop monitoring? It is so annoying to wear device all day
-2026-09-03 10:45:56,574 [INFO] [G1] Orchestrator: B mode
-2026-09-03 10:45:57,846 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"connect_now","args":{"reason":"caller wants to stop monitoring because wearing the device all day is annoying","queue":"clinical support"},"depends_on":[]}],"confidence":0.96,"connect_human":true,"small_talk":false,"answer_from_context":false}
-2026-09-03 10:45:57,847 [INFO] [G1] HANDOFF reason=voluntary role=patient
-2026-09-03 10:45:58,716 [INFO] [G1] SYSTEM: I can connect you with the HeartBug team to help with that — would you like me to connect you now, or would you prefer to schedule a callback for later?
-2026-09-03 10:46:51,703 [INFO] [G1] CALLER: no , I mean stop recording my heartbeat, now
-2026-09-03 10:46:51,704 [INFO] [G1] Orchestrator: B mode
-2026-09-03 10:46:53,141 [INFO] [G1] CONFIRM llm-raw: {"decision":"now"}
-2026-09-03 10:46:53,142 [INFO] [G1] CONFIRM escalate → handoff
-2026-09-03 10:46:53,919 [INFO] [G1] SYSTEM: I’ll connect you with the team now, so please hold for a moment.
+2026-09-07 09:12:43,765 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:12:44,889 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:12:44,903 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:12:45,416 [INFO] TRACING on → http://host.docker.internal:5001
+2026-09-07 09:13:03,495 [INFO] [G1] ANI: +61412345678
+2026-09-07 09:13:07,533 [INFO] [G1] SYSTEM: Welcome to HeartBug — may I have your full name and date of birth, please?
+2026-09-07 09:13:18,271 [INFO] [G1] CALLER: John Smith March 15 1985
+2026-09-07 09:13:18,271 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:13:19,030 [INFO] [G1] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-09-07 09:13:19,031 [INFO] [G1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-09-07 09:13:20,206 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-09-07 09:13:20,207 [INFO] [G1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-09-07 09:13:20,243 [INFO] [G1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-09-07 09:13:21,851 [INFO] [G1] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account.
+2026-09-07 09:14:01,931 [INFO] [G1] CALLER: I want to order 3 stickers
+2026-09-07 09:14:01,933 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:14:03,729 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"place_order","args":{"product":"stickers","quantity":3},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:14:03,730 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'place_order')]
+2026-09-07 09:14:03,730 [INFO] [G1] SLOTS domain=order tool=place_order have={'product': 'stickers', 'quantity': 3} missing=None
+2026-09-07 09:14:04,789 [INFO] [G1] SYSTEM: Absolutely — I can place an order for 3 HeartBug stickers and ship them to the address we have on file, 12 Wattle St, Chatswood NSW 2067; can you please confirm that’s correct before I place it?
+2026-09-07 09:14:23,638 [INFO] [G1] CALLER: no , i want to change the address
+2026-09-07 09:14:23,639 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:14:25,291 [INFO] [G1] CONFIRM llm-raw: {"decision":"change_address"}
+2026-09-07 09:14:25,292 [INFO] [G1] CONFIRM escalate → address_change_escalate
+2026-09-07 09:14:26,266 [INFO] [G1] SYSTEM: I understand, and for your security HeartBug can only ship orders to the address on file, so I’ll connect you with the team to help arrange delivery to a different address.
+2026-09-07 09:16:42,791 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:16:43,453 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:16:43,457 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:16:43,613 [INFO] TRACING on → http://host.docker.internal:5001
+2026-09-07 09:16:54,380 [INFO] [G1] ANI: +61412345678
+2026-09-07 09:16:55,727 [INFO] [G1] SYSTEM: Welcome to HeartBug—may I please have your full name and date of birth?
+2026-09-07 09:17:03,562 [INFO] [G1] CALLER: John Smith March 15 1985
+2026-09-07 09:17:03,562 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:17:04,298 [INFO] [G1] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-09-07 09:17:04,298 [INFO] [G1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-09-07 09:17:05,128 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-09-07 09:17:05,129 [INFO] [G1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-09-07 09:17:05,160 [INFO] [G1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-09-07 09:17:06,179 [INFO] [G1] SYSTEM: Thanks, John, you’re all verified with HeartBug, and I’m here to help you with anything on your HeartBug account.
+2026-09-07 09:17:32,780 [INFO] [G1] CALLER: how is the weather today?
+2026-09-07 09:17:32,780 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:17:33,855 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"weather today"},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:17:33,857 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:17:37,415 [INFO] [G1] KB-CACHE MISS best=0.000 q='weather today'
+2026-09-07 09:17:37,609 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_61' matched_q='Does hot weather affect the patches or adhesive?' score=0.597
+2026-09-07 09:17:37,610 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_28' matched_q='Does weather affect the HeartBug battery?' score=0.586
+2026-09-07 09:17:37,612 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_143' matched_q='What should I do if the device feels too hot?' score=0.503
+2026-09-07 09:17:37,613 [INFO] [G1] KB → ANSWER 3 entries best=0.597
+2026-09-07 09:17:37,777 [INFO] [G1] KB-CACHE PUT q='weather today' store=1
+2026-09-07 09:17:38,829 [INFO] [G1] SYSTEM: Normal daily temperatures won’t affect your HeartBug battery, but very hot weather can make you sweat more and loosen the stickers, so if a patch lifts off just replace it on clean, dry skin.
+2026-09-07 09:17:53,783 [INFO] [G1] CALLER: how is the weather in Australia today?
+2026-09-07 09:17:53,784 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:17:55,107 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"weather in Australia today and any HeartBug guidance relevant to weather, battery, stickers, or device use"},"depends_on":[]}],"confidence":0.86,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:17:55,108 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:17:55,447 [INFO] [G1] KB-CACHE MISS best=0.691 q='weather in Australia today and any HeartBug guidance relevant to weather, battery, stickers, or device use'
+2026-09-07 09:17:55,563 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_28' matched_q='Does weather affect the HeartBug battery?' score=0.785
+2026-09-07 09:17:55,564 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_78' matched_q='Can I get patches delivered overseas?' score=0.736
+2026-09-07 09:17:55,564 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_59' matched_q='What if soap gets on the HeartBug device?' score=0.736
+2026-09-07 09:17:55,565 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_119' matched_q='What if I forget to wear the HeartBug device?' score=0.721
+2026-09-07 09:17:55,565 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_163' matched_q='Can I travel within Australia while wearing HeartBug?' score=0.718
+2026-09-07 09:17:55,566 [INFO] [G1] KB → ANSWER 5 entries best=0.785
+2026-09-07 09:17:55,672 [INFO] [G1] KB-CACHE PUT q='weather in Australia today and any HeartBug guidance relevant to weather, battery, stickers, or device use' store=2
+2026-09-07 09:17:56,541 [INFO] [G1] SYSTEM: I’m sorry, but I can’t check today’s weather in Australia, though if you’re asking about HeartBug, normal daily temperatures won’t affect the battery and you can travel within Australia with it.
+2026-09-07 09:18:00,004 [INFO] [G1] CALLER: how is the weather in Australia today?
+2026-09-07 09:18:00,004 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:18:00,941 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"weather in Australia today"},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:18:00,942 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:18:01,114 [INFO] [G1] KB-CACHE MISS best=0.856 q='weather in Australia today'
+2026-09-07 09:18:01,231 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_61' matched_q='Does hot weather affect the patches or adhesive?' score=0.593
+2026-09-07 09:18:01,232 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_163' matched_q='Can I travel within Australia while wearing HeartBug?' score=0.588
+2026-09-07 09:18:01,233 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_28' matched_q='Does weather affect the HeartBug battery?' score=0.549
+2026-09-07 09:18:01,233 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_78' matched_q='Can I get patches delivered overseas?' score=0.541
+2026-09-07 09:18:01,234 [INFO] [G1] KB → ANSWER 4 entries best=0.593
+2026-09-07 09:18:01,349 [INFO] [G1] KB-CACHE PUT q='weather in Australia today' store=3
+2026-09-07 09:18:02,279 [INFO] [G1] SYSTEM: I can’t check today’s weather in Australia, but if you’re asking about HeartBug, normal daily temperatures won’t affect the battery and you can travel within Australia with it.
+2026-09-07 09:18:06,877 [INFO] [G1] CALLER: how is the weather in Australia today?
+2026-09-07 09:18:06,878 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:18:07,803 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"weather in Australia today"},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:18:07,804 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:18:08,026 [INFO] [G1] KB-CACHE HIT score=1.000 q='weather in Australia today'
+2026-09-07 09:18:09,120 [INFO] [G1] SYSTEM: I can’t check today’s weather in Australia, but if you’re asking about HeartBug, normal daily temperatures won’t affect the battery and you can travel within Australia with it.
+2026-09-07 09:18:52,242 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:18:52,247 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:18:53,375 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"price or cost of 1 kilogram of mango"},"depends_on":[]}],"confidence":0.86,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:18:53,378 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:18:53,787 [INFO] [G1] KB-CACHE MISS best=0.490 q='price or cost of 1 kilogram of mango'
+2026-09-07 09:18:53,943 [INFO] [G1] KB RETRIEVE entry='kb_company_q_about_79' matched_q='Is HeartBug free?' score=0.503
+2026-09-07 09:18:53,944 [INFO] [G1] KB → ANSWER 1 entries best=0.503
+2026-09-07 09:18:54,039 [INFO] [G1] KB-CACHE PUT q='price or cost of 1 kilogram of mango' store=4
+2026-09-07 09:18:54,907 [INFO] [G1] SYSTEM: I’m sorry, but I don’t have mango pricing here; if you’d like, I can help with anything on your HeartBug account or put you through to the team.
+2026-09-07 09:18:59,445 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:18:59,445 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:19:00,473 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:19:00,473 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
+2026-09-07 09:19:01,254 [INFO] [G1] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you’d like, I can help with your HeartBug account or connect you to the right team.
+2026-09-07 09:19:03,448 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:19:03,448 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:19:04,279 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:19:04,280 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
+2026-09-07 09:19:05,259 [INFO] [G1] SYSTEM: I’m sorry, but I only handle HeartBug account matters; if you’d like, I can help with your HeartBug account or put you through to the right team.
+2026-09-07 09:19:07,508 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:19:07,509 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:19:08,575 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"How much does 1 kilogram of mango cost?"},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:19:08,576 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:19:08,752 [INFO] [G1] KB-CACHE HIT score=0.972 q='How much does 1 kilogram of mango cost?'
+2026-09-07 09:19:09,569 [INFO] [G1] SYSTEM: For Medicare patients, HeartBug is bulk billed for up to 4 weeks each year, so there’s no charge from HeartBug, though your clinic may charge a fitting or consult fee and fees may apply if you don’t have Medicare.
+2026-09-07 09:19:42,228 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:19:42,228 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:19:44,064 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"cost for 1 kilogram of mango"},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:19:44,066 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:19:44,531 [INFO] [G1] KB-CACHE HIT score=0.986 q='cost for 1 kilogram of mango'
+2026-09-07 09:19:46,204 [INFO] [G1] SYSTEM: For Medicare patients, HeartBug is bulk billed for up to 4 weeks each year, so there’s no charge from HeartBug, though your clinic may charge a fitting or consult fee.
+2026-09-07 09:25:29,597 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
+2026-09-07 09:25:29,598 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-09-07 09:25:29,720 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:25:31,046 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:25:31,057 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-09-07 09:25:31,304 [INFO] TRACING on → http://host.docker.internal:5001
+2026-09-07 09:26:25,179 [INFO] [G1] ANI: +61412345678
+2026-09-07 09:26:26,842 [INFO] [G1] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
+2026-09-07 09:26:35,744 [INFO] [G1] CALLER: John Smith March 15 1985
+2026-09-07 09:26:35,744 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:26:36,602 [INFO] [G1] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-09-07 09:26:36,603 [INFO] [G1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-09-07 09:26:37,542 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-09-07 09:26:37,543 [INFO] [G1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-09-07 09:26:37,576 [INFO] [G1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-09-07 09:26:37,606 [INFO] CACHE HIT patient:P001
+2026-09-07 09:26:37,607 [INFO] CACHE HIT patient:P001
+2026-09-07 09:26:37,640 [INFO] CACHE HIT order_by_patient:P001
+2026-09-07 09:26:37,641 [INFO] CACHE HIT order:O1001
+2026-09-07 09:26:37,642 [INFO] CACHE HIT order:O1002
+2026-09-07 09:26:38,365 [INFO] [G1] SYSTEM: Hi John, you’re verified with HeartBug, and I’m happy to help you with anything else on your account.
+2026-09-07 09:26:46,099 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:26:46,099 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:26:48,097 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"How much does 1 kilogram of mango cost?"},"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:26:48,098 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:26:48,746 [INFO] [G1] KB-CACHE MISS best=0.000 q='How much does 1 kilogram of mango cost?'
+2026-09-07 09:26:48,836 [INFO] [G1] KB → MISS (best 0.503 < 0.8) q='How much does 1 kilogram of mango cost?'
+2026-09-07 09:26:49,737 [INFO] [G1] SYSTEM: I don’t have specific information on that, but I can help with your HeartBug orders, device, or account questions, or put you through to the team.
+2026-09-07 09:26:54,215 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:26:54,215 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:26:55,263 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"How much does 1 kilogram of mango cost?"},"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:26:55,264 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:26:55,441 [INFO] [G1] KB-CACHE MISS best=0.000 q='How much does 1 kilogram of mango cost?'
+2026-09-07 09:26:55,518 [INFO] [G1] KB → MISS (best 0.503 < 0.8) q='How much does 1 kilogram of mango cost?'
+2026-09-07 09:26:56,419 [INFO] [G1] SYSTEM: I don’t have that information, but I can help with your HeartBug account, order, or device questions, or connect you with the team.
+2026-09-07 09:26:59,263 [INFO] [G1] CALLER: how much it cost for 1 kilogram of mango?
+2026-09-07 09:26:59,263 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:27:00,327 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"How much does 1 kilogram of mango cost? The caller is asking about mango pricing, which is unrelated to HeartBug products, device, orders, booking, or patient records."},"depends_on":[]}],"confidence":0.18,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:27:00,328 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:27:00,537 [INFO] [G1] KB-CACHE MISS best=0.000 q='How much does 1 kilogram of mango cost? The caller is asking about mango pricing, which is unrelated to HeartBug products, device, orders, booking, or patient records.'
+2026-09-07 09:27:00,675 [INFO] [G1] KB → MISS (best 0.696 < 0.8) q='How much does 1 kilogram of mango cost? The caller is asking about mango pricing, which is unrelated to HeartBug products, device, orders, booking, or patient records.'
+2026-09-07 09:27:00,682 [INFO] [G1] HANDOFF reason=task_failure role=patient
+2026-09-07 09:27:01,664 [INFO] [G1] SYSTEM (escalation offer): I’m escalating this to the HeartBug team because I can’t help with that here; would you like me to connect you now, or schedule a callback for a time that suits you?
+2026-09-07 09:27:01,664 [INFO] [G1] SYSTEM: I’m escalating this to the HeartBug team because I can’t help with that here; would you like me to connect you now, or schedule a callback for a time that suits you?
+2026-09-07 09:27:17,973 [INFO] [G1] CALLER: call me back on friday morning
+2026-09-07 09:27:17,974 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:27:18,814 [INFO] [G1] CONFIRM llm-raw: {"decision":"later"}
+2026-09-07 09:27:20,044 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":"2026-09-11","time":null,"reason":"question about mango pricing"},"depends_on":[]}],"confidence":0.95,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:27:20,045 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'request_callback')]
+2026-09-07 09:27:20,814 [INFO] [G1] TOOL-SELECT llm-raw: {"tool":"request_callback","args":{"date":"2026-09-11","time":"09:00","reason":null},"confidence":0.86}
+2026-09-07 09:27:20,815 [INFO] [G1] SLOTS domain=booking tool=request_callback have={'date': '2026-09-11', 'reason': 'question about mango pricing', 'time': '09:00'} missing=None
+2026-09-07 09:27:22,136 [INFO] [G1] SYSTEM: I have you down for Friday, September 11th at 9:00 AM, and our call should come around then, though it may vary by up to 30 minutes — does that sound right?
+2026-09-07 09:27:49,588 [INFO] [G1] CALLER: correct
+2026-09-07 09:27:49,589 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:27:50,427 [INFO] [G1] CONFIRM llm-raw: {"decision":"yes"}
+2026-09-07 09:27:50,482 [INFO] CACHE HIT callback:P001
+2026-09-07 09:27:50,486 [INFO] [G1] HANDOFF row written: CB-DAFC88 John Smith @ 2026-09-11T09:00
+2026-09-07 09:27:51,795 [INFO] [G1] SYSTEM: Your callback is now booked for 9:00 AM on 11 September 2026, and a HeartBug staff member will call you around then, within about 30 minutes; your booking reference is CB-DAFC88.
+2026-09-07 09:38:15,600 [INFO] [G1] CALLER: how is the weather in Australia today?
+2026-09-07 09:38:15,601 [INFO] [G1] Orchestrator: B mode
+2026-09-07 09:38:17,294 [INFO] [G1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"weather in Australia today"},"depends_on":[]}],"confidence":0.86,"connect_human":false,"small_talk":false,"answer_from_context":false}
+2026-09-07 09:38:17,296 [INFO] [G1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-07 09:38:17,713 [INFO] [G1] KB-CACHE MISS best=0.000 q='weather in Australia today'
+2026-09-07 09:38:17,794 [INFO] [G1] KB → MISS (best 0.593 < 0.8) q='weather in Australia today'
+2026-09-07 09:38:18,939 [INFO] [G1] SYSTEM: I’m sorry, but I don’t have specific information on the weather in Australia today; if you’d like, I can help with your HeartBug account, device, or order, or put you through to the team.

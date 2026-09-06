@@ -256,13 +256,13 @@ class OpenAIProvider(LLMProvider):
                 args = tspec.get("args", {})
                 arg_txt = (" args(" + ", ".join(f"{a}: {h}" for a, h in args.items()) + ")") if args else " (no args)"
                 block += f"    tool '{tool}': {tspec.get('description','')}{arg_txt}\n"
-        today_s = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        today_s = datetime.now().strftime("%Y-%m-%d")
         system = (
             "You are the orchestration brain of the HeartBug voice assistant. In ONE "
             "step: break the caller's request into subtasks, choose the domain AND the "
             "tool for each, and extract that tool's arguments. MOST requests are a "
             "single subtask.\n"
-            "Today is " + today_s + " and the current time is " + datetime.now(timezone.utc).strftime("%H:%M") + ""
+            "Today is " + today_s + " and the current time is " + datetime.now().strftime("%H:%M") + ""
             "(use these to resolve relative dates and times )."
             "When a tool takes a `date` argument, output it as YYYY-MM-DD, "
             "resolving spoken/relative forms against today: 'today' → today's date, "
