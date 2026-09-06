@@ -146,11 +146,13 @@ class Host:
                     session["history"].append({"role": "assistant", "content": tts})
                     self.log.info(f"[{call_id}] SYSTEM: {tts}")
                     return {"call_id": call_id, "tts_response": tts}
-                # choice == "later" (or unclear) → carry the escalation reason so the
-                # booking captures WHY, then fall through to normal planning, which
-                # re-plans this turn's words as a booking and extracts any date/time.
-                notes.record_action(session, "caller chose to schedule a callback (later)")
-                session["_escalation_reason"] = esc["reason"]
+                # choice == "later" (or unclear) → fall through to normal planning.
+                # We do NOT inject a mechanical reason. Instead we NOTE why this became
+                # an escalation; the note is fed to the planner via _with_note as
+                # aggregated whole-conversation context, so the LLM fills request_callback's
+                # `reason` naturally AND with full context (not just the recent turn).
+                notes.record_action(session,
+                    f"conversation escalated ({esc['reason']}); caller chose a callback")
                 # (do NOT return — fall through to the planner below)
 
             # ── CONFIRM: a sensitive write is waiting for the caller's reply. Catch
@@ -226,16 +228,6 @@ class Host:
 
                 if subtasks:
                     self.handoff.reset_out_of_scope(session)
-                    # if the caller reached booking via the escalation "later" choice,
-                    # carry the whole-conversation escalation reason into the callback
-                    # so the staff sheet shows WHY they escalated (unless the planner
-                    # already extracted a reason from what the caller said).
-                    esc_reason = session.pop("_escalation_reason", None)
-                    if esc_reason:
-                        for st in subtasks:
-                            if st.get("tool") == "request_callback" \
-                                    and not (st.get("args") or {}).get("reason"):
-                                st.setdefault("args", {})["reason"] = esc_reason
                     tts = await self._run_plan(session, subtasks, transcript)
                     domain = subtasks[0]["domain"] if len(subtasks) == 1 else "multi"
                 elif small_talk:
@@ -303,7 +295,8 @@ class Host:
         #             date/time the caller gives) → booking.request_callback
         #   decline → host narrates "keep helping", no handoff
         # The reason summarises the WHOLE conversation so staff see why it escalated.
-        summary = self._escalation_summary(session, action["reason"])
+        # summary = self._escalation_summary(session, action["reason"])
+        summary = action["reason"]  
         # clear the counters that triggered it so a stale counter doesn't re-fire.
         self.handoff.reset_after_handoff(session)
         # stash the host-owned escalation choice; the reply is caught next turn.
@@ -314,20 +307,13 @@ class Host:
         self.log.info(f"[{call_id}] SYSTEM (escalation offer): {tts}")
         return {"call_id": call_id, "tts_response": tts, "reason": summary, "queue": action["queue"]}
 
-    def _escalation_summary(self, session: dict, category: str) -> str:
+    def _escalation_summary(self, session: dict, reason: str) -> str:
         """A human-readable escalation reason for staff, drawn from the WHOLE call.
         Combines: the category label + structured call notes (what was established/
         done) when present + the caller's recent turns. Notes is often EMPTY at an
         escalation (the caller escalated because nothing succeeded), so the caller
         turns are the reliable floor — notes augments when there's real state."""
-        label = {
-            "voluntary": "caller asked to speak with a person",
-            "verification_stuck": "could not complete identity verification",
-            "task_failure": "the assistant couldn't resolve the caller's request",
-            "out_of_scope": "request outside what the assistant can handle",
-        }.get(category, category)
-
-        parts = [label]
+        parts = [reason]
         note = notes.render(session)          # structured: entities looked up + actions
         if note:
             # compact the multi-line note block into one line for the reason field
@@ -340,6 +326,7 @@ class Host:
         if gist:
             parts.append(f"caller said: {gist}")
         return " — ".join(parts)
+    
     # ── verification domain flow (slot-filling) ────────────────────────────────
     # identity params the HOST injects (never extracted by the LLM)
     _IDENTITY_PARAMS = {"call_id", "verified", "subject_id", "role", "clinic_id", "matched_subject_id"}
