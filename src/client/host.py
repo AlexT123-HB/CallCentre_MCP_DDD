@@ -208,6 +208,19 @@ class Host:
                     if ps.get("connect_human"):
                         action = self.handoff.check(session, voluntary=True)
                         return await self._handoff_response(call_id, session, action, transcript)
+                    if ps.get("out_of_scope"):
+                        # clearly unrelated to HeartBug — do NOT route to KB (which would
+                        # be a wasted search + a misleading task_failure on the miss).
+                        # Narrate the decline and count it as out_of_scope.
+                        self.handoff.record_out_of_scope(session)
+                        tts = self.narrator.say({"event": "out_of_scope"}, transcript,
+                                                self._with_note(session))
+                        session["history"].append({"role": "assistant", "content": tts})
+                        self.log.info(f"[{call_id}] SYSTEM (out_of_scope): {tts}")
+                        action = self.handoff.check(session)   # escalate only if repeated
+                        if action:
+                            return await self._handoff_response(call_id, session, action, transcript)
+                        return {"call_id": call_id, "tts_response": tts}
                     small_talk = ps.get("small_talk")
                     from_context = ps.get("answer_from_context")
                     subtasks = self._validate_plan(ps.get("subtasks", []), allowed)
