@@ -46,9 +46,7 @@ def _load_kb():
     print(f"[mcp] loaded {len(entries)} active KB entries from {_KB_DIR}")
     return entries
 
-
 _KB_ENTRIES = _load_kb()
-
 
 def _entry_text(entry: dict) -> str:
     """

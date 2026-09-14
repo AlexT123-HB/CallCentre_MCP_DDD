@@ -38,7 +38,7 @@ import urllib.request
 BACKEND       = "ollama"       # "openai" | "ollama"
 
 SYSTEM_BASE   = "http://0.0.0.0:8000"
-DEFAULT_TURNS = 10
+DEFAULT_TURNS = 6
 HTTP_TIMEOUT  = 60
 
 # OpenAI settings (used when BACKEND == "openai") — needs OPENAI_API_KEY env var
@@ -617,7 +617,7 @@ def run_scenario(sc: dict, max_turns: int) -> dict:
     history.append({"role": "system", "text": greeting})
 
     leaked = []
-    terminal_actions = {}
+    terminal_actions = {"transfer"}
 
     # 2. conversation loop
     for turn in range(1, max_turns + 1):

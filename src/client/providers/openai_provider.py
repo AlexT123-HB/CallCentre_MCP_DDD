@@ -215,9 +215,14 @@ class OpenAIProvider(LLMProvider):
             "In that case return NO subtasks; the answer will be given from the "
             "conversation. Do NOT use it for anything whose live status could have "
             "changed since (use a tool for a fresh status check).\n"
+            "Set out_of_scope=true when the request is clearly UNRELATED to HeartBug "
+            "(account, orders, device, bookings, monitoring, or product/FAQ questions)."
+            "Things like weather, sports, general trivia, or prices of unrelated goods"
+            "are out_of_scope=true — return NO subtasks and do NOT route to the knowledge base.\n"
             "Respond ONLY with JSON: "
             '{"subtasks":[{"id":"s1","domain":"...","tool":"...","args":{},"depends_on":[]}],'
-            '"confidence":0.0-1.0,"connect_human":false,"small_talk":false,"answer_from_context":false}'
+            '"confidence":0.0-1.0,"connect_human":false,"small_talk":false,"answer_from_context":false,'
+            '"out_of_scope":false}'
         )
         msgs = [{"role": "system", "content": system}]
         msgs += [{"role": m["role"], "content": m["content"]} for m in history[-HISTORY_WINDOW:]]
@@ -235,7 +240,8 @@ class OpenAIProvider(LLMProvider):
                 "confidence": float(data.get("confidence", 0.0)),
                 "connect_human": bool(data.get("connect_human", False)),
                 "small_talk": bool(data.get("small_talk", False)),
-                "answer_from_context": bool(data.get("answer_from_context", False))}
+                "answer_from_context": bool(data.get("answer_from_context", False)),
+                "out_of_scope": bool(data.get("out_of_scope", False))}
 
     # ── Version B: ONE call — decompose + pick tool + extract args per subtask ──
     @tracing.traced("llm.plan_and_select", tracing.LLM)
@@ -247,7 +253,7 @@ class OpenAIProvider(LLMProvider):
                       "tools": {tool: {"description": str, "args": {arg: hint}}}}}
         Returns subtasks already carrying their tool + args:
             {"subtasks": [{"id","domain","tool","args","depends_on":[ids]}],
-             "confidence": float, "connect_human": bool, "small_talk": bool, "answer_from_context": bool}
+             "confidence": float, "connect_human": bool, "small_talk": bool, "answer_from_context": bool, "out_of_scope": bool}
         """
         block = ""
         for dom, spec in domain_tools.items():
@@ -296,9 +302,14 @@ class OpenAIProvider(LLMProvider):
             "In that case return NO subtasks; the answer will be given from the "
             "conversation. Do NOT use it for anything whose live status could have "
             "changed since (use a tool for a fresh status check).\n"
+            "Set out_of_scope=true when the request is clearly UNRELATED to HeartBug "
+            "(account, orders, device, bookings, monitoring, or product/FAQ questions)."
+            "Things like weather, sports, general trivia, or prices of unrelated goods"
+            "are out_of_scope=true — return NO subtasks and do NOT route to the knowledge base.\n"
             "Respond ONLY with JSON: "
             '{"subtasks":[{"id":"s1","domain":"...","tool":"...","args":{},"depends_on":[]}],'
-            '"confidence":0.0-1.0,"connect_human":false,"small_talk":false,"answer_from_context":false}'
+            '"confidence":0.0-1.0,"connect_human":false,"small_talk":false,"answer_from_context":false'
+            '"out_of_scope": false}'
         )
         msgs = [{"role": "system", "content": system}]
         msgs += [{"role": m["role"], "content": m["content"]} for m in history[-HISTORY_WINDOW:]]
@@ -316,7 +327,8 @@ class OpenAIProvider(LLMProvider):
                 "confidence": float(data.get("confidence", 0.0)),
                 "connect_human": bool(data.get("connect_human", False)),
                 "small_talk": bool(data.get("small_talk", False)),
-                "answer_from_context": bool(data.get("answer_from_context", False))}
+                "answer_from_context": bool(data.get("answer_from_context", False)),
+                "out_of_scope": bool(data.get("out_of_scope", False))}
     
     # ── narration: LLM speaks one sentence from STRUCTURED FACTS ──────────────
     @tracing.traced("llm.narrate", tracing.LLM)

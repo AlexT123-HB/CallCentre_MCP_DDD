@@ -20,7 +20,7 @@ Run:
 from __future__ import annotations
 import sys
 sys.path.insert(0, ".")
-from src.client.faithfulness import faithfulness_loss  # noqa: E402
+from evals.faithfulness import faithfulness_loss  # noqa: E402
 
 
 # Each: (call, label, request, tool_results, narration, expect)
@@ -211,6 +211,20 @@ TURNS = [
     {"order_id": "O1005", "product": "Replacement Device", "status": "processing", "eta": "August 2"},
     "If the 2 August date passes without any update, please call HeartBug back and we can check again for you or put you through to the team.",
     "clean"),
+    
+    ("ADDR1", "address change → escalation (policy-grounded, clean, no fabrication)",
+    "no, i want to change the address",
+    {"event": "address_change", "reason": "address_change", "policy": "orders ship only to the address on file", "action": "transfer"},
+    "I understand, and for your security HeartBug can only ship orders to the address on "
+    "file, so I'll connect you with the team to help arrange delivery to a different address.",
+    "clean"),
+
+    ("ADDR2", "★ address change → escalation but narration FABRICATES a reason (rot)",
+    "no, i want to change the address",
+    {"event": "address_change", "reason": "address_change", "action": "transfer"},
+    # fabricates a specific approval/timeframe never in any tool result
+    "No problem — I've updated your delivery address and your order will now ship to the new address within 2 business days.",
+    "rot"),
 ]
  
 def run():

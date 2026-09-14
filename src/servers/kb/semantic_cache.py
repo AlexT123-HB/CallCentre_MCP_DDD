@@ -85,8 +85,7 @@ def get(query: str, call_id: str = ""):
 
 
 def put(query: str, answer: dict, call_id: str = "") -> None:
-    """Store an answer for future semantic matches. Caller decides what's cacheable
-    (we cache all real answers; misses/needs-verify are not passed here)."""
+    """Store an answer for future semantic matches."""
     if not _ENABLED:
         return
     qv = embed_query(query)

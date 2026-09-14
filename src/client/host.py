@@ -216,11 +216,12 @@ class Host:
                         tts = self.narrator.say({"event": "out_of_scope"}, transcript,
                                                 self._with_note(session))
                         session["history"].append({"role": "assistant", "content": tts})
-                        self.log.info(f"[{call_id}] SYSTEM (out_of_scope): {tts}")
+                        self.log.info(f"[{call_id}] SYSTEM: {tts}")
                         action = self.handoff.check(session)   # escalate only if repeated
                         if action:
                             return await self._handoff_response(call_id, session, action, transcript)
                         return {"call_id": call_id, "tts_response": tts}
+                    
                     small_talk = ps.get("small_talk")
                     from_context = ps.get("answer_from_context")
                     subtasks = self._validate_plan(ps.get("subtasks", []), allowed)
@@ -319,26 +320,6 @@ class Host:
         session["history"].append({"role": "assistant", "content": tts})
         self.log.info(f"[{call_id}] SYSTEM (escalation offer): {tts}")
         return {"call_id": call_id, "tts_response": tts, "reason": summary, "queue": action["queue"]}
-
-    # def _escalation_summary(self, session: dict, reason: str) -> str:
-    #     """A human-readable escalation reason for staff, drawn from the WHOLE call.
-    #     Combines: the category label + structured call notes (what was established/
-    #     done) when present + the caller's recent turns. Notes is often EMPTY at an
-    #     escalation (the caller escalated because nothing succeeded), so the caller
-    #     turns are the reliable floor — notes augments when there's real state."""
-    #     parts = [reason]
-    #     note = notes.render(session)          # structured: entities looked up + actions
-    #     if note:
-    #         # compact the multi-line note block into one line for the reason field
-    #         note_1l = " ; ".join(l.strip() for l in note.splitlines()[1:] if l.strip())
-    #         if note_1l:
-    #             parts.append(f"so far: {note_1l}")
-    #     caller_turns = [h.get("content", "").strip()
-    #                     for h in session.get("history", []) if h.get("role") == "user"]
-    #     gist = " | ".join(t for t in caller_turns[-3:] if t)
-    #     if gist:
-    #         parts.append(f"caller said: {gist}")
-    #     return " — ".join(parts)
     
     # ── verification domain flow (slot-filling) ────────────────────────────────
     # identity params the HOST injects (never extracted by the LLM)
@@ -552,6 +533,9 @@ class Host:
         self.handoff.record_task_outcome(session, tool, success)
         if success:
             notes.record_result(session, tool, res)      # working memory for later turns
+        # Record successful tasks and track the loop
+        
+
         if not success and m.special_flow != "verification":
             action = self.handoff.check(session)
             if action:
