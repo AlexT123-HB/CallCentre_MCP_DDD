@@ -46,7 +46,7 @@ CASES = [
 ]
 
 # ── method 1: lexical (reuse the live term) ──
-from src.client.faithfulness import request_uncovered
+from evals.faithfulness import request_uncovered
 def lexical_relevance(req, narr):
     return 1.0 - request_uncovered(req, narr)   # coverage = 1 - uncovered
 

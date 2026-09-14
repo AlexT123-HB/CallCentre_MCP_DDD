@@ -19,3 +19,36 @@
 2026-09-10 12:28:35,646 [INFO] [EVAL-PADDR-2-63b2] CONFIRM llm-raw: {"decision":"change_address"}
 2026-09-10 12:28:35,647 [INFO] [EVAL-PADDR-2-63b2] CONFIRM escalate → address_change_escalate
 2026-09-10 12:28:36,916 [INFO] [EVAL-PADDR-2-63b2] SYSTEM: For security, HeartBug can only ship orders to the address on file, so I’ll connect you to the team to arrange delivery to a different address.
+2026-09-10 15:22:52,040 [INFO] [S1] ANI: +61412345678
+2026-09-10 15:22:53,904 [INFO] [S1] SYSTEM: Welcome to HeartBug—could I have your full name and date of birth, please?
+2026-09-10 15:22:57,788 [INFO] [S1] CALLER: my name is John Smith date of birth the fifteenth of March, eighty-five
+2026-09-10 15:22:57,788 [INFO] [S1] Orchestrator: B mode
+2026-09-10 15:22:59,100 [INFO] [S1] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-09-10 15:22:59,101 [INFO] [S1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-09-10 15:23:00,250 [INFO] [S1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
+2026-09-10 15:23:00,250 [INFO] [S1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-09-10 15:23:00,284 [INFO] [S1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-09-10 15:23:01,344 [INFO] [S1] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account.
+2026-09-10 15:23:12,070 [INFO] [S1] CALLER: what orders do I have
+2026-09-10 15:23:12,070 [INFO] [S1] Orchestrator: B mode
+2026-09-10 15:23:13,569 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":{},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-09-10 15:23:13,570 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'list_orders')]
+2026-09-10 15:23:14,903 [INFO] [S1] SYSTEM: You have two HeartBug orders: your HeartBug Monitor was delivered by Australia Post on August 10, and your Replacement Leads are on the way with Australia Post and due August 27.
+2026-09-10 15:23:17,333 [INFO] [S1] CALLER: what orders do I have
+2026-09-10 15:23:17,333 [INFO] [S1] Orchestrator: B mode
+2026-09-10 15:23:18,832 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
+2026-09-10 15:23:18,833 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
+2026-09-10 15:23:20,624 [INFO] [S1] ANSWER-FROM-CONTEXT
+2026-09-10 15:23:20,625 [INFO] [S1] SYSTEM: You have two HeartBug orders: your HeartBug Monitor was delivered on August 10, and your Replacement Leads are on the way and due August 27.
+2026-09-10 15:23:26,756 [INFO] [S1] CALLER: what orders do I have
+2026-09-10 15:23:26,756 [INFO] [S1] Orchestrator: B mode
+2026-09-10 15:23:28,810 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
+2026-09-10 15:23:28,811 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
+2026-09-10 15:23:29,840 [INFO] [S1] ANSWER-FROM-CONTEXT
+2026-09-10 15:23:29,840 [INFO] [S1] SYSTEM: You have a HeartBug Monitor that was delivered on August 10, and Replacement Leads that are on the way and due August 27.
+2026-09-10 15:23:32,556 [INFO] [S1] CALLER: what orders do I have
+2026-09-10 15:23:32,556 [INFO] [S1] Orchestrator: B mode
+2026-09-10 15:23:34,431 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
+2026-09-10 15:23:34,432 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
+2026-09-10 15:23:35,275 [INFO] [S1] ANSWER-FROM-CONTEXT
+2026-09-10 15:23:35,275 [INFO] [S1] SYSTEM: You have a HeartBug Monitor delivered on August 10, and Replacement Leads on the way through Australia Post due August 27.

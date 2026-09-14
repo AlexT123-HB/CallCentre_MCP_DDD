@@ -42,6 +42,8 @@ class HandoffService:
             "verify_stuck": 0,      # missing-slot OR wrong-value verify turns
             "task_failures": {},    # operation name → consecutive not-found count
             "out_of_scope": 0,
+            "no_progress": 0,         # turns with no progress (no new task results)
+            "repeat_counts": {},        # task name → consecutive repeat count
         })
 
     # ── record outcomes (called by the host after each turn) ──────────────────
@@ -69,6 +71,8 @@ class HandoffService:
         c["verify_stuck"] = 0
         c["out_of_scope"] = 0
         c["task_failures"] = {}
+        c["no_progress"] = 0
+        c["repeat_counts"] = {}
 
     # ── the escalation decision ───────────────────────────────────────────────
     def check(self, session: dict, voluntary: bool = False) -> dict | None:

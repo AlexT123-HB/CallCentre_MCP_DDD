@@ -12,7 +12,7 @@ Run on the Mac:  PYTHONPATH=. python3 tests/diag_relevance_floor.py
 from __future__ import annotations
 import sys
 sys.path.insert(0, ".")
-from src.client.faithfulness import _cos  # noqa: E402
+from evals.faithfulness import _cos  # noqa: E402
 
 CASES = [
     # (label, request, narration, expect)

@@ -57,7 +57,6 @@ def _model():
             _embed_model = False   # sentinel: tried and failed
     return _embed_model or None
 
-
 def _cos(a: str, b: str) -> float | None:
     """Cosine similarity of two texts in [0,1]; None if no model or empty text."""
     if not a or not b:
@@ -74,7 +73,6 @@ def _cos(a: str, b: str) -> float | None:
         return max(0.0, min(1.0, sim))
     except Exception:
         return None
-
 
 # ── deterministic value grounding (catches wrong-value fabrication) ───────────
 # numbers (incl. decimals), dates (a few common shapes), and ID-like tokens
@@ -202,34 +200,6 @@ def rel_diff(a: str, b: str, floor: float) -> float | None:
         return 0.0
     return round((floor - sim) / floor, 3)
 
-
-# def request_uncovered(request: str, narration: str) -> float:
-#     """Regularization term: did the narration ADDRESS the request's key entities?
-
-#     Not semantic similarity (noisy on short factual text), not label comparison
-#     (intent-mapping missed narrations that followed the plan but answered the wrong
-#     thing). Instead: extract the request's content words (the entities/fields the
-#     caller asked about) and measure the fraction the narration FAILS to mention.
-
-#     request:   "when will my order O1001 arrive?"  → key: {order, o1001, arrive}
-#     narration: "your order O1001 shipped on Aug 4" → covers order, o1001; NOT arrive
-#     → uncovered = 1/3 ≈ 0.33  (the 'arrive' the caller asked about went unaddressed)
-
-#     This catches the case intent-mapping missed: the plan was right and executed,
-#     but the spoken answer didn't address what was actually asked. Deterministic,
-#     full-sentence, no embedding noise. Returns fraction uncovered in [0,1]."""
-#     req_kw = _keywords(request)
-#     if not req_kw:
-#         return 0.0                                  # nothing to cover → no signal
-#     narr_kw = _keywords(narration)
-#     # a request keyword is "covered" if it appears in the narration, OR a near
-#     # form does (prefix match handles arrive/arrives/arrival, ship/shipped, etc.)
-#     covered = 0
-#     for k in req_kw:
-#         if k in narr_kw or any(n.startswith(k[:4]) or k.startswith(n[:4])
-#                                for n in narr_kw):
-#             covered += 1
-#     return 1.0 - (covered / len(req_kw))
 # weights: the DETERMINISTIC terms (value, intent) carry the signal; the semantic
 # term is a small tiebreaker only. Rationale from live testing: on short factual
 # voice narrations grounded in structured tool results, embedding similarity is
