@@ -42,8 +42,12 @@ class HandoffService:
             "verify_stuck": 0,      # missing-slot OR wrong-value verify turns
             "task_failures": {},    # operation name → consecutive not-found count
             "out_of_scope": 0,
-            "no_progress": 0,         # turns with no progress (no new task results)
-            "repeat_counts": {},        # task name → consecutive repeat count
+            "repeat_counts": {},    # signature → TOTAL times the SAME request returned the
+                                    # SAME result over the call (cumulative, even if
+                                    # interspersed) — catches repeated same-data extraction:
+                                    # a caller pulling the same record again and again,
+                                    # possibly disguised among other questions (abuse pattern).
+            "last_results": {},     # signature → last result fingerprint (to detect "same result")
         })
 
     # ── record outcomes (called by the host after each turn) ──────────────────
@@ -65,14 +69,37 @@ class HandoffService:
     def reset_out_of_scope(self, session: dict) -> None:
         self._counters(session)["out_of_scope"] = 0
 
+    def record_progress(self, session: dict, signature: str,
+                        result_fingerprint: str = "") -> None:
+        """Repeated same-data extraction / no-progress detection (CUMULATIVE).
+
+        Counts how many times the SAME request returns the SAME result over the whole
+        call — even when interspersed with other turns. Catches the pattern where a
+        caller keeps pulling the same record again and again (possibly disguised among
+        other questions): each turn "succeeds", but no new information is gained. This
+        is a possible abuse vector under a verified session.
+
+        `signature` = what the turn was about (domain:tool:key-arg).
+        `result_fingerprint` = a cheap hash/summary of the result, so "same answer
+        again" is distinguished from "a new answer" (a new result resets the count)."""
+        c = self._counters(session)
+        if not signature:
+            return
+        prev = c["last_results"].get(signature)
+        if prev is not None and prev == result_fingerprint:
+            c["repeat_counts"][signature] = c["repeat_counts"].get(signature, 1) + 1
+        else:
+            c["repeat_counts"][signature] = 1   # first time, or a NEW result → reset
+        c["last_results"][signature] = result_fingerprint
+
     def reset_after_handoff(self, session: dict) -> None:
         """Once an escalation has been OFFERED/handled, clear the counters that triggered it."""
         c = self._counters(session)
         c["verify_stuck"] = 0
         c["out_of_scope"] = 0
         c["task_failures"] = {}
-        c["no_progress"] = 0
         c["repeat_counts"] = {}
+        c["last_results"] = {}
 
     # ── the escalation decision ───────────────────────────────────────────────
     def check(self, session: dict, voluntary: bool = False) -> dict | None:
@@ -92,6 +119,8 @@ class HandoffService:
             reason = "task_failure"
         elif c["out_of_scope"] >= THRESHOLD:
             reason = "out_of_scope"
+        elif any(n >= REPEAT_THRESHOLD for n in c["repeat_counts"].values()):
+            reason = "repeated_extraction"
 
         if reason is None:
             return None

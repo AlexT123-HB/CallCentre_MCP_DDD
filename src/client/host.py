@@ -531,6 +531,16 @@ class Host:
         res = agg.results.get(self.orchestrator.key_for(domain, tool), {})
         success = bool(res.get("found") or res.get("verified"))
         self.handoff.record_task_outcome(session, tool, success)
+        # no-progress / loop detection: signature = what this turn was ABOUT (domain,
+        # tool, and the primary arg). A success = progress (resets the loop counter);
+        # a repeat of the same signature with no success = a loop (increments it).
+        # repeated same-data extraction detection: signature = what the turn was about
+        # (domain:tool:key-arg); fingerprint = a cheap hash of the result so pulling the
+        # SAME record again counts, while a new/different result resets it.
+        _key_arg = next((str(v) for v in (st.get("args") or {}).values() if v), "")
+        _sig = f"{domain}:{tool}:{_key_arg}"
+        _fp = str(hash(repr(sorted(res.items())))) if isinstance(res, dict) else str(res)
+        self.handoff.record_progress(session, _sig, result_fingerprint=_fp)
         if success:
             notes.record_result(session, tool, res)      # working memory for later turns
         # Record successful tasks and track the loop
