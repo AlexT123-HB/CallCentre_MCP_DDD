@@ -543,9 +543,7 @@ class Host:
         self.handoff.record_progress(session, _sig, result_fingerprint=_fp)
         if success:
             notes.record_result(session, tool, res)      # working memory for later turns
-        # Record successful tasks and track the loop
         
-
         if not success and m.special_flow != "verification":
             action = self.handoff.check(session)
             if action:

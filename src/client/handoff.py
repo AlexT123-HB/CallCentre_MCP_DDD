@@ -21,6 +21,7 @@ from src.shared.security import AccessContext
 import logging
 
 THRESHOLD = 3
+REPEAT_THRESHOLD = 5   # repeated same-data extraction (cumulative over the call)
 
 # which human queue a role escalates to
 ROLE_QUEUE = {
