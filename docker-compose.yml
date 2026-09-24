@@ -36,7 +36,7 @@ x-common: &common
     # ── tracing (off by default; flip HEARTBUG_TRACING=1 in .env to enable) ──
     # Traces are generated INSIDE the container, so they must be shipped OUT to a
     # tracking server on the host, or they're trapped (same lesson as heartbug.log).
-    # On your Mac:  mlflow server --host 0.0.0.0 --port 5000 \
+    # On your Mac:  mlflow server --host 0.0.0.0 --port 5001 \
     #                 --backend-store-uri sqlite:///mlflow.db
     HEARTBUG_TRACING: ${HEARTBUG_TRACING:-0}
     MLFLOW_TRACKING_URI: ${MLFLOW_TRACKING_URI:-http://host.docker.internal:5001}

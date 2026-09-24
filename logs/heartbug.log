@@ -1,96 +1,37 @@
-2026-09-15 15:17:57,190 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
-2026-09-15 15:17:57,384 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-15 15:17:58,889 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-15 15:17:58,906 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-15 15:17:59,244 [INFO] TRACING on → http://host.docker.internal:5001
-2026-09-15 15:20:29,929 [INFO] [S1] ANI: +61412345678
-2026-09-15 15:20:31,870 [INFO] [S1] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth so I can help you today?
-2026-09-15 15:20:40,569 [INFO] [S1] CALLER: my name is John Smith date of birth the fifteenth of March, eighty-five
-2026-09-15 15:20:40,570 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:20:41,657 [INFO] [S1] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
-2026-09-15 15:20:41,659 [INFO] [S1] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
-2026-09-15 15:20:42,918 [INFO] [S1] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
-2026-09-15 15:20:42,919 [INFO] [S1] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-09-15 15:20:42,941 [INFO] [S1] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-09-15 15:20:42,966 [INFO] CACHE MISS patient:P001, query DB
-2026-09-15 15:20:42,967 [INFO] CACHE MISS patient:P001, query DB
-2026-09-15 15:20:42,996 [INFO] CACHE HIT order_by_patient:P001
-2026-09-15 15:20:42,998 [INFO] CACHE HIT order:O1001
-2026-09-15 15:20:42,998 [INFO] CACHE HIT order:O1002
-2026-09-15 15:20:44,119 [INFO] [S1] SYSTEM: Thanks, John—you’re verified, and I’m here to help with your HeartBug account.
-2026-09-15 15:20:50,375 [INFO] [S1] CALLER: what orders do I have
-2026-09-15 15:20:50,376 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:20:51,523 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":{},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
-2026-09-15 15:20:51,525 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'list_orders')]
-2026-09-15 15:20:51,553 [INFO] CACHE HIT order_by_patient:P001
-2026-09-15 15:20:51,554 [INFO] CACHE HIT order:O1001
-2026-09-15 15:20:51,555 [INFO] CACHE HIT order:O1002
-2026-09-15 15:20:52,393 [INFO] [S1] SYSTEM: You have two HeartBug orders: a HeartBug Monitor that was delivered, and Replacement Leads that are in transit with Australia Post and expected on the 27th of August.
-2026-09-15 15:20:53,932 [INFO] [S1] CALLER: what orders do I have
-2026-09-15 15:20:53,932 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:20:54,923 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:20:54,924 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
-2026-09-15 15:20:55,653 [INFO] [S1] ANSWER-FROM-CONTEXT
-2026-09-15 15:20:55,653 [INFO] [S1] SYSTEM: You have a delivered HeartBug Monitor and Replacement Leads that are in transit and expected on the 27th of August.
-2026-09-15 15:20:57,195 [INFO] [S1] CALLER: what orders do I have
-2026-09-15 15:20:57,195 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:20:58,166 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:20:58,168 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
-2026-09-15 15:20:59,130 [INFO] [S1] ANSWER-FROM-CONTEXT
-2026-09-15 15:20:59,130 [INFO] [S1] SYSTEM: You have a delivered HeartBug Monitor and Replacement Leads that are in transit with Australia Post and expected on the 27th of August.
-2026-09-15 15:21:01,049 [INFO] [S1] CALLER: what orders do I have
-2026-09-15 15:21:01,049 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:21:02,155 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:21:02,156 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
-2026-09-15 15:21:03,106 [INFO] [S1] ANSWER-FROM-CONTEXT
-2026-09-15 15:21:03,106 [INFO] [S1] SYSTEM: You have a delivered HeartBug Monitor and Replacement Leads that are in transit with Australia Post and expected on the 27th of August.
-2026-09-15 15:21:04,890 [INFO] [S1] CALLER: what orders do I have
-2026-09-15 15:21:04,891 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:21:05,859 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":{},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:21:05,861 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'list_orders')]
-2026-09-15 15:21:05,879 [INFO] CACHE HIT order_by_patient:P001
-2026-09-15 15:21:05,879 [INFO] CACHE HIT order:O1001
-2026-09-15 15:21:05,880 [INFO] CACHE HIT order:O1002
-2026-09-15 15:21:07,002 [INFO] [S1] SYSTEM: You have two HeartBug orders: a HeartBug Monitor that was delivered, and Replacement Leads that are in transit with Australia Post and expected on the 27th of August.
-2026-09-15 15:21:10,018 [INFO] [S1] CALLER: what orders do I have
-2026-09-15 15:21:10,018 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:21:10,978 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:21:10,979 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → []
-2026-09-15 15:21:12,006 [INFO] [S1] ANSWER-FROM-CONTEXT
-2026-09-15 15:21:12,007 [INFO] [S1] SYSTEM: You have a delivered HeartBug Monitor and Replacement Leads that are in transit with Australia Post and expected on the 27th of August.
-2026-09-15 15:21:36,057 [INFO] [S1] CALLER: where is my monitor?
-2026-09-15 15:21:36,058 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:21:37,595 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1001"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
-2026-09-15 15:21:37,597 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-15 15:21:37,597 [INFO] [S1] SLOTS domain=order tool=lookup_order have={'order_id': 'O1001'} missing=None
-2026-09-15 15:21:37,625 [INFO] CACHE HIT order:O1001
-2026-09-15 15:21:38,430 [INFO] [S1] SYSTEM: Your HeartBug Monitor was delivered by Australia Post on the 10th of August, and the tracking number is AP1001AU.
-2026-09-15 15:21:41,887 [INFO] [S1] CALLER: where is my monitor?
-2026-09-15 15:21:41,888 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:21:42,929 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1001"},"depends_on":[]}],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
-2026-09-15 15:21:42,930 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-15 15:21:42,930 [INFO] [S1] SLOTS domain=order tool=lookup_order have={'order_id': 'O1001'} missing=None
-2026-09-15 15:21:42,967 [INFO] CACHE HIT order:O1001
-2026-09-15 15:21:43,951 [INFO] [S1] SYSTEM: Your HeartBug Monitor was delivered by Australia Post on the 10th of August, and the tracking number is AP1001AU.
-2026-09-15 15:21:45,059 [INFO] [S1] CALLER: where is my monitor?
-2026-09-15 15:21:45,059 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:21:46,036 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1001"},"depends_on":[]}],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:21:46,037 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-15 15:21:46,037 [INFO] [S1] SLOTS domain=order tool=lookup_order have={'order_id': 'O1001'} missing=None
-2026-09-15 15:21:46,057 [INFO] CACHE HIT order:O1001
-2026-09-15 15:21:46,921 [INFO] [S1] SYSTEM: Your HeartBug Monitor was delivered by Australia Post on the 10th of August, and the tracking number is AP1001AU.
-2026-09-15 15:21:48,410 [INFO] [S1] CALLER: where is my monitor?
-2026-09-15 15:21:48,411 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:21:49,363 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1001"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:21:49,364 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-15 15:21:49,364 [INFO] [S1] SLOTS domain=order tool=lookup_order have={'order_id': 'O1001'} missing=None
-2026-09-15 15:21:49,394 [INFO] CACHE HIT order:O1001
-2026-09-15 15:21:50,185 [INFO] [S1] SYSTEM: Your HeartBug Monitor was delivered by Australia Post on the 10th of August, and the tracking number is AP1001AU.
-2026-09-15 15:22:01,800 [INFO] [S1] CALLER: where is my monitor?
-2026-09-15 15:22:01,800 [INFO] [S1] Orchestrator: B mode
-2026-09-15 15:22:02,906 [INFO] [S1] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1001"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":true,"out_of_scope":false}
-2026-09-15 15:22:02,906 [INFO] [S1] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
-2026-09-15 15:22:02,907 [INFO] [S1] SLOTS domain=order tool=lookup_order have={'order_id': 'O1001'} missing=None
-2026-09-15 15:22:02,931 [INFO] CACHE HIT order:O1001
-2026-09-15 15:22:03,818 [INFO] [S1] HANDOFF reason=repeated_extraction role=patient
-2026-09-15 15:22:04,857 [INFO] [S1] SYSTEM (escalation offer): I’m escalating this to the HeartBug team because we’ve had a failure here — would you like me to connect you now, or schedule a callback for a time that suits you?
+2026-09-23 13:48:18,984 [INFO] [EVAL-CTX-1-6f04] ANI: +61498765432
+2026-09-23 13:48:21,425 [INFO] [EVAL-CTX-1-6f04] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth to get started?
+2026-09-23 13:48:24,458 [INFO] [EVAL-CTX-1-6f04] CALLER: My name is Jane Doe, and my date of birth is July 22nd, 1990. I'm currently under the care of Sydney Heart Centre.
+2026-09-23 13:48:24,459 [INFO] [EVAL-CTX-1-6f04] Orchestrator: B mode
+2026-09-23 13:48:25,596 [INFO] [EVAL-CTX-1-6f04] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-09-23 13:48:25,597 [INFO] [EVAL-CTX-1-6f04] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-09-23 13:48:26,725 [INFO] [EVAL-CTX-1-6f04] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":"Sydney Heart Centre"},"confidence":0.99}
+2026-09-23 13:48:26,726 [INFO] [EVAL-CTX-1-6f04] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22', 'clinic': 'Sydney Heart Centre'} missing=None
+2026-09-23 13:48:26,763 [INFO] [EVAL-CTX-1-6f04] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-09-23 13:48:28,515 [INFO] [EVAL-CTX-1-6f04] SYSTEM: Thanks, Jane — you’re verified, and I’m here to help with your HeartBug account.
+2026-09-23 13:48:30,796 [INFO] [EVAL-CTX-1-6f04] CALLER: I'm trying to track an order that was placed by my doctor at Sydney Heart Centre - I think it's something they ordered for me? Can you look into what's going on with it?
+2026-09-23 13:48:30,796 [INFO] [EVAL-CTX-1-6f04] Orchestrator: B mode
+2026-09-23 13:48:31,945 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":{},"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-09-23 13:48:31,946 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'list_orders')]
+2026-09-23 13:48:33,070 [INFO] [EVAL-CTX-1-6f04] SYSTEM: Absolutely — I can see three HeartBug orders: the monitor was delivered, the electrode stickers have shipped with Australia Post, and the replacement device is still processing.
+2026-09-23 13:48:34,574 [INFO] [EVAL-CTX-1-6f04] CALLER: The replacement device - that must be "it" - when will "it" arrive?
+2026-09-23 13:48:34,576 [INFO] [EVAL-CTX-1-6f04] Orchestrator: B mode
+2026-09-23 13:48:35,835 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1005"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-09-23 13:48:35,837 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-23 13:48:35,837 [INFO] [EVAL-CTX-1-6f04] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
+2026-09-23 13:48:36,805 [INFO] [EVAL-CTX-1-6f04] SYSTEM: The Replacement Device is still processing right now, and it’s currently expected to arrive on September 25th.
+2026-09-23 13:48:38,587 [INFO] [EVAL-CTX-1-6f04] CALLER: September 25th sounds a bit late for what I need it for - who's delivering the replacement device, Australia Post or someone else?
+2026-09-23 13:48:38,587 [INFO] [EVAL-CTX-1-6f04] Orchestrator: B mode
+2026-09-23 13:48:39,418 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1005"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-09-23 13:48:39,419 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-09-23 13:48:39,419 [INFO] [EVAL-CTX-1-6f04] SLOTS domain=order tool=lookup_order have={'order_id': 'O1005'} missing=None
+2026-09-23 13:48:40,603 [INFO] [EVAL-CTX-1-6f04] SYSTEM: I’m sorry, but I don’t have a carrier or tracking number for the Replacement Device yet because it’s still processing, and the current expected delivery date is September 25th.
+2026-09-23 13:48:41,949 [INFO] [EVAL-CTX-1-6f04] CALLER: That doesn't sound very helpful - how do I track "it" once it ships?
+2026-09-23 13:48:41,950 [INFO] [EVAL-CTX-1-6f04] Orchestrator: B mode
+2026-09-23 13:48:43,258 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"How to track a HeartBug order once it ships, including where to find the carrier and tracking number for a replacement device order."},"depends_on":[]}],"confidence":0.95,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-09-23 13:48:43,260 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-09-23 13:48:49,771 [INFO] [EVAL-CTX-1-6f04] SYSTEM: I understand that’s frustrating, and I don’t have specific tracking details for the replacement device yet because it’s still processing, but once it ships I can help you track it or I can put you through to the HeartBug team.
+2026-09-23 13:48:52,048 [INFO] [EVAL-CTX-1-6f04] CALLER: Can you put me through to the HeartBug team then, please - they might be able to give me a better update on when "it" will actually arrive?
+2026-09-23 13:48:52,048 [INFO] [EVAL-CTX-1-6f04] Orchestrator: B mode
+2026-09-23 13:48:52,937 [INFO] [EVAL-CTX-1-6f04] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-09-23 13:48:52,938 [INFO] [EVAL-CTX-1-6f04] HANDOFF reason=voluntary role=patient
+2026-09-23 13:48:54,080 [INFO] [EVAL-CTX-1-6f04] SYSTEM (escalation offer): I’m escalating this to the HeartBug team now because I can’t confirm a better arrival update for the replacement device, and would you like me to connect you now or schedule a callback for a time that suits you?
