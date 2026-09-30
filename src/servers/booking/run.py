@@ -48,15 +48,16 @@ def request_callback(call_id: str, verified: bool, subject_id: str | None,
                      role: str = "patient", date: str = "", time: str = "", reason: str = "") -> dict:
     """Request a staff CALLBACK at a specific date and time. `date` is YYYY-MM-DD,
     `time` is 24-hour HH:MM - resolve the caller's words using today's date. `reason`
-    is WHAT THE CALLBACK IS ABOUT — the caller's underlying issue or question in a few
-    words (e.g. "device keeps disconnecting", "question about replacement leads order").
-    Draw `reason` from the WHOLE conversation and the call notes, NOT only the latest
-    message: if the caller earlier asked about an order or a problem and is now just
-    picking a callback time, `reason` is that earlier concern (e.g. "issue with order
-    1001"), not the scheduling. Do NOT put the scheduling itself in `reason` (never
-    "caller wants a callback at 9am") — capture the PROBLEM. Only leave `reason` empty
-    if the caller never stated any concern anywhere in the conversation. Previews and
-    reads back for confirmation; does NOT book (host books on a 'yes')."""
+    is WHY the callback is needed: the PRECEDING EVENT plus the caller's PROBLEM, drawn
+    from the WHOLE conversation and the call notes (not just the latest message). State
+    what led here AND what it's about — e.g. "escalated after order 1001 couldn't be
+    found; wants help locating it", "couldn't verify identity; needs account access",
+    "asked to speak with a person about a device issue". If the caller earlier raised a
+    concern and is now only picking a time, `reason` still carries that concern, never
+    the scheduling itself (never "caller wants a callback at 9am"). If they gave no
+    concern at all, state just the preceding event (e.g. "caller asked to speak with a
+    person"). Previews and reads back for confirmation; does NOT book (host books on a
+    'yes')."""
     ok, err = _self(verified, subject_id)
     if not ok:
         return err
