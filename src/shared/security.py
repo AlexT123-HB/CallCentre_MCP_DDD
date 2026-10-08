@@ -31,7 +31,7 @@ class AccessContext:
     subject_id: Optional[str] = None           # authoritative caller id — set ONLY after verification
     role: str = "patient"                       # patient / doctor / technician / ...
     clinic_id: Optional[str] = None             # the caller's clinic (1→1) — set at verification
-
+    reason_of_escalation: Optional[str] = None           # if the caller was escalated, why
 
     def require_verified(self) -> None:
         if not self.verified or not self.subject_id:

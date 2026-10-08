@@ -1,87 +1,12 @@
-2026-09-30 09:31:42,586 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-09-30 09:31:42,740 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-30 09:31:43,753 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-30 09:31:43,757 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-30 09:31:44,183 [INFO] TRACING on → http://host.docker.internal:5001
-2026-09-30 09:32:47,134 [INFO] [S10] ANI: +61412345678
-2026-09-30 09:32:49,097 [INFO] [S10] SYSTEM: Welcome to HeartBug, and I’m here to help—could you please tell me your full name and date of birth?
-2026-09-30 09:32:58,291 [INFO] [S10] CALLER: John Smith March 15 1985
-2026-09-30 09:32:58,291 [INFO] [S10] Orchestrator: B mode
-2026-09-30 09:33:00,360 [INFO] [S10] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-09-30 09:33:00,361 [INFO] [S10] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-09-30 09:33:01,401 [INFO] [S10] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
-2026-09-30 09:33:01,401 [INFO] [S10] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-09-30 09:33:01,418 [INFO] [S10] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-09-30 09:33:01,442 [INFO] CACHE MISS patient:P001, query DB
-2026-09-30 09:33:01,443 [INFO] CACHE MISS patient:P001, query DB
-2026-09-30 09:33:01,470 [INFO] CACHE HIT order_by_patient:P001
-2026-09-30 09:33:01,471 [INFO] CACHE HIT order:O1001
-2026-09-30 09:33:01,471 [INFO] CACHE HIT order:O1002
-2026-09-30 09:33:02,815 [INFO] [S10] SYSTEM: Thanks, John — you’re verified with HeartBug, and I’m here to help with anything on your account.
-2026-09-30 09:33:13,480 [INFO] [S10] CALLER: how much does it cost for 1 kilogram of mango?
-2026-09-30 09:33:13,480 [INFO] [S10] Orchestrator: B mode
-2026-09-30 09:33:14,378 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":true}
-2026-09-30 09:33:15,411 [INFO] [S10] SYSTEM: I’m sorry, but I can only help with HeartBug account matters; if you need, I can help with anything on your account or connect you to the right team.
-2026-09-30 09:33:18,656 [INFO] [S10] CALLER: how much does it cost for 1 kilogram of mango?
-2026-09-30 09:33:18,656 [INFO] [S10] Orchestrator: B mode
-2026-09-30 09:33:19,815 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":true}
-2026-09-30 09:33:20,763 [INFO] [S10] SYSTEM: I can’t help with mango pricing, but I can help with your HeartBug account or put you through to the right team.
-2026-09-30 09:33:30,821 [INFO] [S10] CALLER: connect me to human
-2026-09-30 09:33:30,821 [INFO] [S10] Orchestrator: B mode
-2026-09-30 09:33:32,921 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":null,"time":null,"reason":"caller asked to speak with a human"},"depends_on":[]}],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
-2026-09-30 09:33:32,922 [INFO] [S10] HANDOFF reason=voluntary role=patient
-2026-09-30 09:33:33,770 [INFO] [S10] SYSTEM (escalation offer): I’m escalating this to the team because the previous step failed — would you like me to connect you now, or schedule a callback for a time that suits you?
-2026-09-30 09:33:52,622 [INFO] [S10] CALLER: tomorrow
-2026-09-30 09:33:52,622 [INFO] [S10] Orchestrator: B mode
-2026-09-30 09:33:53,710 [INFO] [S10] CONFIRM llm-raw: {"decision":"later"}
-2026-09-30 09:33:55,094 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":"2026-10-01","time":null,"reason":"caller chose a callback after asking to connect to a human"},"depends_on":[]}],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
-2026-09-30 09:33:55,095 [INFO] [S10] HANDOFF reason=voluntary role=patient
-2026-09-30 09:33:56,412 [INFO] [S10] SYSTEM (escalation offer): Thanks — I’ll set this up as a callback for tomorrow.
-2026-09-30 10:46:33,414 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
-2026-09-30 10:46:33,414 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
-2026-09-30 10:46:33,581 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-30 10:46:34,528 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-30 10:46:34,533 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
-2026-09-30 10:46:34,958 [INFO] TRACING on → http://host.docker.internal:5001
-2026-09-30 10:48:08,107 [INFO] [S10] ANI: +61412345678
-2026-09-30 10:48:09,277 [INFO] [S10] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
-2026-09-30 10:48:14,650 [INFO] [S10] CALLER: John Smith March 15 1985
-2026-09-30 10:48:14,650 [INFO] [S10] Orchestrator: B mode
-2026-09-30 10:48:16,918 [INFO] [S10] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
-2026-09-30 10:48:16,919 [INFO] [S10] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
-2026-09-30 10:48:17,842 [INFO] [S10] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.99}
-2026-09-30 10:48:17,843 [INFO] [S10] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
-2026-09-30 10:48:17,871 [INFO] [S10] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
-2026-09-30 10:48:17,902 [INFO] CACHE MISS patient:P001, query DB
-2026-09-30 10:48:17,903 [INFO] CACHE MISS patient:P001, query DB
-2026-09-30 10:48:17,938 [INFO] CACHE HIT order_by_patient:P001
-2026-09-30 10:48:17,939 [INFO] CACHE HIT order:O1001
-2026-09-30 10:48:17,939 [INFO] CACHE HIT order:O1002
-2026-09-30 10:48:19,049 [INFO] [S10] SYSTEM: Hi John, you’re verified with HeartBug, and I’m happy to help you with anything on your account.
-2026-09-30 10:48:25,617 [INFO] [S10] CALLER: how much does it cost for 1 kilogram of mango?
-2026-09-30 10:48:25,618 [INFO] [S10] Orchestrator: B mode
-2026-09-30 10:48:27,116 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":true}
-2026-09-30 10:48:28,026 [INFO] [S10] SYSTEM: I’m sorry, but I only handle HeartBug account matters, so I can’t help with mango pricing. If you’d like, I can help with your HeartBug account or put you through to the team.
-2026-09-30 10:48:29,634 [INFO] [S10] CALLER: how much does it cost for 1 kilogram of mango?
-2026-09-30 10:48:29,635 [INFO] [S10] Orchestrator: B mode
-2026-09-30 10:48:30,632 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":true}
-2026-09-30 10:48:31,793 [INFO] [S10] SYSTEM: I can’t help with mango pricing, since I only handle HeartBug account matters, but I can help with your HeartBug account or put you through to the team.
-2026-09-30 10:48:41,343 [INFO] [S10] CALLER: connect me to human
-2026-09-30 10:48:41,344 [INFO] [S10] Orchestrator: B mode
-2026-09-30 10:48:42,462 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.99,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
-2026-09-30 10:48:42,464 [INFO] [S10] HANDOFF reason=voluntary role=patient
-2026-09-30 10:48:43,861 [INFO] [S10] SYSTEM (escalation offer): I’m escalating this to the HeartBug team now; would you like me to connect you right away, or would you prefer I schedule a callback for a time that suits you?
-2026-09-30 10:49:05,184 [INFO] [S10] CALLER: call me tomorrow
-2026-09-30 10:49:05,185 [INFO] [S10] Orchestrator: B mode
-2026-09-30 10:49:06,467 [INFO] [S10] CONFIRM llm-raw: {"decision":"later"}
-2026-09-30 10:49:07,806 [INFO] [S10] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":"2026-10-01","time":null,"reason":"caller chose a callback after asking to connect to a human; wants a callback tomorrow"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
-2026-09-30 10:49:07,807 [INFO] [S10] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'request_callback')]
-2026-09-30 10:49:09,254 [INFO] [S10] TOOL-SELECT llm-raw: {"tool":"request_callback","args":{"date":"2026-10-01","time":null,"reason":"caller chose a callback after escalation to speak with a human"},"confidence":0.98}
-2026-09-30 10:49:09,255 [INFO] [S10] SLOTS domain=booking tool=request_callback have={'date': '2026-10-01', 'reason': 'caller chose a callback after escalation to speak with a human'} missing=time
-2026-09-30 10:49:10,125 [INFO] [S10] SYSTEM: Absolutely — what time of day tomorrow would you like HeartBug to call you back?
-2026-09-30 10:49:17,313 [INFO] [S10] CALLER: 1pm
-2026-09-30 10:49:17,313 [INFO] [S10] Orchestrator: B mode
-2026-09-30 10:49:18,830 [INFO] [S10] ROUTER llm-raw: {"domain":"booking","confidence":0.98,"connect_human":false}
-2026-09-30 10:49:19,747 [INFO] [S10] TOOL-SELECT llm-raw: {"tool":"request_callback","args":{"date":"2026-10-01","time":"13:00","reason":"conversation escalated voluntarily; caller chose a callback"},"confidence":0.98}
-2026-09-30 10:49:19,747 [INFO] [S10] SLOTS domain=booking tool=request_callback have={'date': '2026-10-01', 'reason': 'conversation escalated voluntarily; caller chose a callback', 'time': '13:00'} missing=None
-2026-09-30 10:49:20,646 [INFO] [S10] SYSTEM: HeartBug will call you tomorrow at 1:00 PM, and it may come a little around that time by up to 30 minutes—does that sound right?
+2026-10-09 10:28:53,398 [INFO] CACHE MISS patient:P001, query DB
+2026-10-09 10:28:53,410 [INFO] CACHE MISS patient:P001, query DB
+2026-10-09 10:28:53,950 [INFO] CACHE HIT order_by_patient:P001
+2026-10-09 10:28:53,954 [INFO] CACHE HIT order:O1001
+2026-10-09 10:28:53,956 [INFO] CACHE HIT order:O1002
+2026-10-09 10:31:43,069 [INFO] CACHE HIT patient:P001
+2026-10-09 10:31:43,070 [INFO] CACHE HIT patient:P001
+2026-10-09 10:31:43,102 [INFO] CACHE HIT order_by_patient:P001
+2026-10-09 10:31:43,103 [INFO] CACHE HIT order:O1001
+2026-10-09 10:31:43,104 [INFO] CACHE HIT order:O1002
+2026-10-09 10:33:52,608 [INFO] CACHE HIT callback:P001
+2026-10-09 10:33:52,635 [INFO] [HT-CONVO-33b6] HANDOFF row written: CB-E152B5 John Smith @ 2026-10-12T14:00

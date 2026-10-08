@@ -18,7 +18,7 @@ from src.servers.kb.domain.repository.interfaces import KBRepository
 from src.servers.kb.domain.service.interfaces import KBService
 
 # below this cosine similarity, we don't trust the match → treat as a miss
-_MIN_SCORE = float(os.getenv("KB_MIN_SCORE", "0.8"))
+_MIN_SCORE = float(os.getenv("KB_MIN_SCORE", "0.65"))
 _log = logging.getLogger("heartbug")
 
 
