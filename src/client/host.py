@@ -152,7 +152,24 @@ class Host:
                 # aggregated whole-conversation context, so the LLM fills request_callback's
                 # `reason` naturally AND with full context (not just the recent turn).
                 notes.record_action(session,
-                    f"conversation escalated ({esc['reason']}); caller chose a callback")
+                    f"escalated — {esc['reason']}"
+                    + (f'; caller was trying to: "{_topic}"' if _topic else "")
+                    + "; caller then chose a callback instead of connecting now")
+                # Host sets a CLEAN reason deterministically — the LLM planner can't be
+                # relied on to pull the topic into `reason` (it extracts from the caller's
+                # utterance, which on "call me later" has no topic → empty). Injected into
+                # the request_callback subtask below (only if the LLM didn't extract one).
+                # FREEZE the escalation reason on first set. The LLM re-derives `reason`
+                # on every request_callback call, so it DRIFTS ("asked for a human" →
+                # "chose a callback after asking for a human" → "...wants a callback
+                # tomorrow"). Persist it once here; the booking always uses this frozen
+                # value, never the LLM's re-derived one. Set only if not already frozen.
+                if not session.get("reason_of_escalation"):
+                    session["reason_of_escalation"] = (
+                        esc["reason"] + (f' (re: "{_topic}")' if _topic else ""))
+                # tell the planner path below: this turn is a BOOKING (the caller chose
+                # a callback), so do NOT re-escalate on connect_human — we already are.
+                session["_resolving_callback"] = True
                 # (do NOT return — fall through to the planner below)
 
             # ── CONFIRM: a sensitive write is waiting for the caller's reply. Catch
@@ -242,6 +259,15 @@ class Host:
 
                 if subtasks:
                     self.handoff.reset_out_of_scope(session)
+                    # escalation callback: force the FROZEN reason onto request_callback,
+                    # OVERRIDING whatever the LLM re-derived this turn (it drifts). Not
+                    # popped — it persists across the slot-fill turns (ask time, confirm)
+                    # until the booking completes, so every turn uses the same reason.
+                    esc_reason = session.get("reason_of_escalation")
+                    if esc_reason:
+                        for st in subtasks:
+                            if st.get("tool") == "request_callback":
+                                st.setdefault("args", {})["reason"] = esc_reason
                     tts = await self._run_plan(session, subtasks, transcript)
                     domain = subtasks[0]["domain"] if len(subtasks) == 1 else "multi"
                 elif small_talk:
@@ -456,6 +482,11 @@ class Host:
             if slot.missing(list(required_map.keys())):
                 fresh = await self._extract_args(session, domain, tool, transcript)
                 slot.update(fresh)
+            # FROZEN escalation reason wins: if this booking came from an escalation,
+            # force the reason saved at escalation time over any value the LLM re-derived
+            # this turn — otherwise the reason drifts across the slot-fill turns.
+            if tool == "request_callback" and session.get("reason_of_escalation"):
+                slot.values["reason"] = session["reason_of_escalation"]
             missing = slot.missing(list(required_map.keys()))
             self.log.info(f"[{call_id}] SLOTS domain={domain} tool={tool} "
                           f"have={slot.values} missing={missing}")
@@ -507,7 +538,13 @@ class Host:
                 session, [DomainCall(domain, tool, args)])
             res = agg.results.get(self.orchestrator.key_for(domain, tool), {})
             self.handoff.record_task_outcome(session, tool, bool(res.get("found")))
-            tts = self.narrator.say({**res}, transcript) if res.get("event") \
+            # callback booked → release the frozen escalation reason so a LATER
+            # escalation in the same call starts fresh (doesn't reuse this one).
+            if tool == "submit_callback" and res.get("recorded"):
+                session.pop("reason_of_escalation", None)
+            narr = {k: v for k, v in res.items()
+                    if k not in ("found", "recorded", "verified")}
+            tts = self.narrator.say(narr, transcript) if res.get("event") \
                 else self.narrator.say({"event": "out_of_scope"}, transcript)
             return {"tts": tts}
 
