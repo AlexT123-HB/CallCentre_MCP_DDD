@@ -153,20 +153,10 @@ class Host:
                 # `reason` naturally AND with full context (not just the recent turn).
                 notes.record_action(session,
                     f"escalated — {esc['reason']}"
-                    + (f'; caller was trying to: "{_topic}"' if _topic else "")
                     + "; caller then chose a callback instead of connecting now")
-                # Host sets a CLEAN reason deterministically — the LLM planner can't be
-                # relied on to pull the topic into `reason` (it extracts from the caller's
-                # utterance, which on "call me later" has no topic → empty). Injected into
-                # the request_callback subtask below (only if the LLM didn't extract one).
-                # FREEZE the escalation reason on first set. The LLM re-derives `reason`
-                # on every request_callback call, so it DRIFTS ("asked for a human" →
-                # "chose a callback after asking for a human" → "...wants a callback
-                # tomorrow"). Persist it once here; the booking always uses this frozen
-                # value, never the LLM's re-derived one. Set only if not already frozen.
+                # Host sets a CLEAN reason deterministically for the escalation → request_callback, so the LLM doesn't drift it
                 if not session.get("reason_of_escalation"):
-                    session["reason_of_escalation"] = (
-                        esc["reason"] + (f' (re: "{_topic}")' if _topic else ""))
+                    session["reason_of_escalation"] = (esc["reason"])
                 # tell the planner path below: this turn is a BOOKING (the caller chose
                 # a callback), so do NOT re-escalate on connect_human — we already are.
                 session["_resolving_callback"] = True
