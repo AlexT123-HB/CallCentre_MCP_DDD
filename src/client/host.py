@@ -586,9 +586,15 @@ class Host:
             tts = self.narrator.say({**res}, transcript, self._with_note(session))
             if needs_confirm:
                 contract = ((m.confirmations or {}).get(tool) or {}).get("answers", {})
+                snapshot_args = {**(st.get("args") or {})}
+                # the frozen escalation reason must flow to the SUBMIT too (submit_callback
+                # uses these snapshotted args). Without this, submit gets the stale subtask
+                # reason (e.g. raw "out_of_scope") while the preview showed the frozen one.
+                if tool == "request_callback" and session.get("reason_of_escalation"):
+                    snapshot_args["reason"] = session["reason_of_escalation"]
                 session["_pending_confirm"] = {
                     "domain": domain, "tool": tool,
-                    "args": {**(st.get("args") or {})},
+                    "args": snapshot_args,
                     "answers": contract,     # manifest-declared: label → {action, tool/event, hint}
                     "prompt": tts,           # what we asked → context for the classifier
                 }
