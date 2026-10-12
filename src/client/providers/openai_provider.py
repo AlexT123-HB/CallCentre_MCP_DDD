@@ -292,7 +292,7 @@ class OpenAIProvider(LLMProvider):
             "forms and a stated two-digit year to a realistic birth year). Only split or "
             "chain when the request genuinely requires it.\n"
             "Also set connect_human=true if they ask for a human/agent/person. — including "
-            "'someone', 'a real person', 'staff', 'the team', 'talk to somebody'. Wanting "
+            "'a real person', 'staff', 'talk to somebody'. Wanting "
             "to be CALLED BACK at a specific time is booking, but wanting help from a "
             "person (no time given) is connect_human. When connect_human=true, return NO "
             "subtasks (an EMPTY subtasks list) — do NOT also emit a request_callback: the "

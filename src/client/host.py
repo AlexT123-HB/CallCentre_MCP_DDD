@@ -151,12 +151,11 @@ class Host:
                 # an escalation; the note is fed to the planner via _with_note as
                 # aggregated whole-conversation context, so the LLM fills request_callback's
                 # `reason` naturally AND with full context (not just the recent turn).
-                notes.record_action(session,
-                    f"escalated — {esc['reason']}"
+                notes.record_action(session, f"escalated — {esc['escalation_category']}"
                     + "; caller then chose a callback instead of connecting now")
                 # Host sets a CLEAN reason deterministically for the escalation → request_callback, so the LLM doesn't drift it
-                if not session.get("reason_of_escalation"):
-                    session["reason_of_escalation"] = (esc["reason"])
+                # if not session.get("reason_of_escalation"):
+                #     session["reason_of_escalation"] = (esc["escalation_category"])
                 # tell the planner path below: this turn is a BOOKING (the caller chose
                 # a callback), so do NOT re-escalate on connect_human — we already are.
                 session["_resolving_callback"] = True
@@ -317,16 +316,16 @@ class Host:
         #   decline → host narrates "keep helping", no handoff
         # The reason summarises the WHOLE conversation so staff see why it escalated.
         # summary = self._escalation_summary(session, action["reason"])
-        summary = action["reason"]  
+        summary = action["escalation_category"]
         # clear the counters that triggered it so a stale counter doesn't re-fire.
         self.handoff.reset_after_handoff(session)
         # stash the host-owned escalation choice; the reply is caught next turn.
-        session["_pending_escalation"] = {"reason": summary, "queue": action["queue"]}
+        session["_pending_escalation"] = {"escalation_category": summary, "queue": action["queue"]}
         tts = self.narrator.say({"event": "escalation_choice"}, transcript,
                                 self._with_note(session))
         session["history"].append({"role": "assistant", "content": tts})
         self.log.info(f"[{call_id}] SYSTEM (escalation offer): {tts}")
-        return {"call_id": call_id, "tts_response": tts, "reason": summary, "queue": action["queue"]}
+        return {"call_id": call_id, "tts_response": tts, "escalation_category": summary, "queue": action["queue"]}
     
     # ── verification domain flow (slot-filling) ────────────────────────────────
     # identity params the HOST injects (never extracted by the LLM)

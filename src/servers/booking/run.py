@@ -47,17 +47,20 @@ def _self(verified: bool, subject_id: str | None):
 def request_callback(call_id: str, verified: bool, subject_id: str | None,
                      role: str = "patient", date: str = "", time: str = "", reason: str = "") -> dict:
     """Request a staff CALLBACK at a specific date and time. `date` is YYYY-MM-DD,
-    `time` is 24-hour HH:MM - resolve the caller's words using today's date. `reason`
-    is WHY the callback is needed: the PRECEDING EVENT plus the caller's PROBLEM, drawn
-    from the WHOLE conversation and the call notes (not just the latest message). State
-    what led here AND what it's about — e.g. "escalated after order 1001 couldn't be
-    found; wants help locating it", "couldn't verify identity; needs account access",
-    "asked to speak with a person about a device issue". If the caller earlier raised a
-    concern and is now only picking a time, `reason` still carries that concern, never
-    the scheduling itself (never "caller wants a callback at 9am"). If they gave no
-    concern at all, state just the preceding event (e.g. "caller asked to speak with a
-    person"). Previews and reads back for confirmation; does NOT book (host books on a
-    'yes')."""
+    `time` is 24-hour HH:MM — resolve the caller's words using today's date.
+ 
+    `reason` is a SHORT, ACCURATE note for the staff member who will take the call —
+    what the caller actually needs, grounded in what happened THIS conversation:
+    - Capture the PROBLEM, not the scheduling (never "caller wants a callback at 9am").
+    - If the caller's request COULDN'T be completed by the assistant (it was outside scope, blocked, 
+      or not something the system can do), say so plainly — 
+      e.g. "asked to view another patient's record (not permitted) — wants to speak to someone", 
+      "out-of-scope question about pepper pricing". Do NOT reword such a request as if it were the caller's 
+      own routine concern (e.g. do NOT write "patient monitoring status" when they were asking about SOMEONE ELSE's record).
+    - If the caller gave no concern at all (just asked for a person), leave `reason` empty — don't invent one.
+    Base it only on what the caller actually said/did this call; never guess a topic.
+ 
+    Previews and reads back for confirmation; does NOT book (host books on a 'yes')."""
     ok, err = _self(verified, subject_id)
     if not ok:
         return err
@@ -66,7 +69,11 @@ def request_callback(call_id: str, verified: bool, subject_id: str | None,
 @mcp.tool()
 def submit_callback(call_id: str, verified: bool, subject_id: str | None,
                     role: str = "patient", date: str = "", time: str = "", reason: str = "") -> dict:
-    """[host-invoked only] Submit a previewed callback booking after the caller has confirmed. Not selected by the planner."""
+    """[host-invoked only] Book a previewed callback after the caller confirms. The
+    host supplies the args (date, time, reason) from the confirmed preview; for an
+    escalation callback the host passes the reason it stored at escalation time, so the
+    booked record's reason is stable from the first offer through to the saved booking.
+    Not planner-selectable."""
     ok, err = _self(verified, subject_id)
     if not ok:
         return err

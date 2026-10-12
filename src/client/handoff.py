@@ -125,11 +125,11 @@ class HandoffService:
 
         if reason is None:
             return None
-        self.log.info(f"[{session['call_id']}] HANDOFF reason={reason} role={session['ctx'].role}")
+        self.log.info(f"[{session['call_id']}] HANDOFF escalation_category={reason} role={session['ctx'].role}")
         return self._transfer(session["ctx"], reason)
 
     # ── action builder (decision only — telephony layer connects) ─────────────
     @staticmethod
     def _transfer(ctx: AccessContext, reason: str) -> dict:
         queue = ROLE_QUEUE.get(ctx.role, "patient_support")
-        return {"action": "transfer", "queue": queue, "reason": reason}
+        return {"action": "transfer", "queue": queue, "escalation_category": reason}
