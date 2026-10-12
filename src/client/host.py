@@ -136,9 +136,9 @@ class Host:
                     session["history"].append({"role": "assistant", "content": tts})
                     self.log.info(f"[{call_id}] SYSTEM (transfer): {tts}")
                     # ← F2 SEAM: trigger the outbound call / LiveKit warm transfer here,
-                    #   passing esc["reason"] (whole-conversation summary) + esc["queue"].
+                    #   passing esc["summary"] (readable label) + esc["queue"].
                     return {"call_id": call_id, "tts_response": tts, "action": "transfer",
-                            "queue": esc["queue"], "reason": esc["reason"]}
+                            "queue": esc["queue"], "escalation_category": esc["escalation_category"]}
                 if choice == "decline":
                     notes.record_action(session, "caller declined transfer and callback")
                     tts = self.narrator.say({"event": "handoff_declined"}, transcript,
@@ -249,15 +249,6 @@ class Host:
 
                 if subtasks:
                     self.handoff.reset_out_of_scope(session)
-                    # escalation callback: force the FROZEN reason onto request_callback,
-                    # OVERRIDING whatever the LLM re-derived this turn (it drifts). Not
-                    # popped — it persists across the slot-fill turns (ask time, confirm)
-                    # until the booking completes, so every turn uses the same reason.
-                    esc_reason = session.get("reason_of_escalation")
-                    if esc_reason:
-                        for st in subtasks:
-                            if st.get("tool") == "request_callback":
-                                st.setdefault("args", {})["reason"] = esc_reason
                     tts = await self._run_plan(session, subtasks, transcript)
                     domain = subtasks[0]["domain"] if len(subtasks) == 1 else "multi"
                 elif small_talk:
@@ -472,11 +463,18 @@ class Host:
             if slot.missing(list(required_map.keys())):
                 fresh = await self._extract_args(session, domain, tool, transcript)
                 slot.update(fresh)
-            # FROZEN escalation reason wins: if this booking came from an escalation,
-            # force the reason saved at escalation time over any value the LLM re-derived
-            # this turn — otherwise the reason drifts across the slot-fill turns.
-            if tool == "request_callback" and session.get("reason_of_escalation"):
-                slot.values["reason"] = session["reason_of_escalation"]
+            # STICKY callback reason, stored in the session: the LLM re-derives `reason`
+            # every slot-fill turn and it drifts. Save the FIRST natural reason once, then
+            # read it back on every later turn (and at submit). The session is the single
+            # source of truth for the staff-facing reason; the escalation CATEGORY (an
+            # enum for logs) is separate.
+            if tool == "request_callback":
+                first = slot.values.get("reason")
+                if first and not session.get("reason_of_escalation"):
+                    session["reason_of_escalation"] = first      # freeze the first one
+                if session.get("reason_of_escalation"):
+                    slot.values["reason"] = session["reason_of_escalation"]
+
             missing = slot.missing(list(required_map.keys()))
             self.log.info(f"[{call_id}] SLOTS domain={domain} tool={tool} "
                           f"have={slot.values} missing={missing}")
@@ -524,6 +522,10 @@ class Host:
         if kind == "call_tool":
             tool = spec["tool"]
             args = {**confirm["args"]}
+            # read the sticky reason back from the session (single source of truth), so
+            # the booked record matches the reason shown through the whole flow.
+            if tool == "submit_callback" and session.get("reason_of_escalation"):
+                args["reason"] = session["reason_of_escalation"]
             agg = await self.orchestrator.dispatch(
                 session, [DomainCall(domain, tool, args)])
             res = agg.results.get(self.orchestrator.key_for(domain, tool), {})
@@ -586,15 +588,9 @@ class Host:
             tts = self.narrator.say({**res}, transcript, self._with_note(session))
             if needs_confirm:
                 contract = ((m.confirmations or {}).get(tool) or {}).get("answers", {})
-                snapshot_args = {**(st.get("args") or {})}
-                # the frozen escalation reason must flow to the SUBMIT too (submit_callback
-                # uses these snapshotted args). Without this, submit gets the stale subtask
-                # reason (e.g. raw "out_of_scope") while the preview showed the frozen one.
-                if tool == "request_callback" and session.get("reason_of_escalation"):
-                    snapshot_args["reason"] = session["reason_of_escalation"]
                 session["_pending_confirm"] = {
                     "domain": domain, "tool": tool,
-                    "args": snapshot_args,
+                    "args": {**(st.get("args") or {})},
                     "answers": contract,     # manifest-declared: label → {action, tool/event, hint}
                     "prompt": tts,           # what we asked → context for the classifier
                 }
