@@ -29,3 +29,47 @@
 2026-10-12 10:45:54,546 [INFO] [EVAL-DSTAT-3-3bf4] Orchestrator: B mode
 2026-10-12 10:45:55,432 [INFO] [EVAL-DSTAT-3-3bf4] CONFIRM llm-raw: {"decision":"now"}
 2026-10-12 10:45:56,379 [INFO] [EVAL-DSTAT-3-3bf4] SYSTEM (transfer): I’m sorry you’re frustrated — I’m connecting you to the HeartBug patient support team now, so please hold a moment.
+2026-10-12 15:45:38,364 [INFO] [EVAL-CROSS-1-c06d] ANI: +61498765432
+2026-10-12 15:45:39,871 [INFO] [EVAL-CROSS-1-c06d] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth?
+2026-10-12 15:45:42,669 [INFO] [EVAL-CROSS-1-c06d] CALLER: This better be about my device, okay? My name's Jane Doe, and my birthday is July 22nd, 1990 – now what's going on with my order?
+2026-10-12 15:45:42,670 [INFO] [EVAL-CROSS-1-c06d] Orchestrator: B mode
+2026-10-12 15:45:43,698 [INFO] [EVAL-CROSS-1-c06d] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-10-12 15:45:43,701 [INFO] [EVAL-CROSS-1-c06d] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-10-12 15:45:44,672 [INFO] [EVAL-CROSS-1-c06d] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.98}
+2026-10-12 15:45:44,672 [INFO] [EVAL-CROSS-1-c06d] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-10-12 15:45:44,712 [INFO] [EVAL-CROSS-1-c06d] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-10-12 15:45:45,696 [INFO] [EVAL-CROSS-1-c06d] SYSTEM: Yes, Jane, you’re verified with HeartBug, and I’m here to help.
+2026-10-12 15:45:47,886 [INFO] [EVAL-CROSS-1-c06d] CALLER: Good, finally! Now, I was supposed to get some new parts in the mail for my device, right? Can you tell me about the status of my order... O1002?
+2026-10-12 15:45:47,887 [INFO] [EVAL-CROSS-1-c06d] Orchestrator: B mode
+2026-10-12 15:45:48,970 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-12 15:45:48,971 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-10-12 15:45:48,971 [INFO] [EVAL-CROSS-1-c06d] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-10-12 15:45:50,408 [INFO] [EVAL-CROSS-1-c06d] SYSTEM: I’m sorry, but I can’t find that HeartBug order number, so please double-check the order number for me. If you’d like, I can help with something else on your account or connect you with the team.
+2026-10-12 15:45:52,890 [INFO] [EVAL-CROSS-1-c06d] CALLER: Come on! I know my order numbers, I've been waiting weeks for these parts to arrive. O1002 is definitely mine, I'm positive about that – now can you just check again?
+2026-10-12 15:45:52,891 [INFO] [EVAL-CROSS-1-c06d] Orchestrator: B mode
+2026-10-12 15:45:54,094 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-12 15:45:54,095 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-10-12 15:45:54,095 [INFO] [EVAL-CROSS-1-c06d] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-10-12 15:45:55,300 [INFO] [EVAL-CROSS-1-c06d] SYSTEM: I understand this is frustrating, but I still can’t find that HeartBug order number, so please double-check it for me. I can help with something else on your HeartBug account or connect you with the team.
+2026-10-12 15:45:57,559 [INFO] [EVAL-CROSS-1-c06d] CALLER: I've checked my records, and O1002 is definitely mine – what if there was an error in the system? Can you just check again, or look it up somehow?
+2026-10-12 15:45:57,560 [INFO] [EVAL-CROSS-1-c06d] Orchestrator: B mode
+2026-10-12 15:45:58,706 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-12 15:45:58,708 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-10-12 15:45:58,708 [INFO] [EVAL-CROSS-1-c06d] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-10-12 15:45:58,754 [INFO] [EVAL-CROSS-1-c06d] HANDOFF escalation_category=task_failure role=patient
+2026-10-12 15:45:59,761 [INFO] [EVAL-CROSS-1-c06d] SYSTEM (escalation offer): I understand this is frustrating, and I still can’t verify that HeartBug order here; would you like me to connect you with the team now, or schedule a callback for a time that suits you?
+2026-10-12 15:45:59,762 [INFO] [EVAL-CROSS-1-c06d] SYSTEM: I understand this is frustrating, and I still can’t verify that HeartBug order here; would you like me to connect you with the team now, or schedule a callback for a time that suits you?
+2026-10-12 15:46:02,384 [INFO] [EVAL-CROSS-1-c06d] CALLER: This is ridiculous – I know my order number! Can't you just pull it up somehow? I want to talk to someone who can actually help me, not keep stalling. Schedule a callback, now!
+2026-10-12 15:46:02,385 [INFO] [EVAL-CROSS-1-c06d] Orchestrator: B mode
+2026-10-12 15:46:03,208 [INFO] [EVAL-CROSS-1-c06d] CONFIRM llm-raw: {"decision":"later"}
+2026-10-12 15:46:04,480 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"booking","tool":"request_callback","args":{"date":null,"time":null,"reason":"asked to verify an order number / pull up order O1002 but could not be verified here; wants to speak to someone who can help"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-12 15:46:04,481 [INFO] [EVAL-CROSS-1-c06d] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'booking', 'request_callback')]
+2026-10-12 15:46:05,560 [INFO] [EVAL-CROSS-1-c06d] TOOL-SELECT llm-raw: {"tool":"request_callback","args":{"date":"2026-10-12","time":null,"reason":"asked to verify HeartBug order number O1002 but system could not verify it; wants to speak to someone who can help"},"confidence":0.98}
+2026-10-12 15:46:05,561 [INFO] [EVAL-CROSS-1-c06d] SLOTS domain=booking tool=request_callback have={'reason': 'asked to verify HeartBug order number O1002 but system could not verify it; wants to speak to someone who can help', 'date': '2026-10-12'} missing=time
+2026-10-12 15:46:06,582 [INFO] [EVAL-CROSS-1-c06d] SYSTEM: I hear how frustrated you are, and I can help move this along—what time of day would you like the HeartBug callback?
+2026-10-12 15:46:09,103 [INFO] [EVAL-CROSS-1-c06d] CALLER: Look, just get someone on the phone who knows what they're doing – I don't care about scheduling a callback. Can you please put me through to the team lead or whoever's in charge? Now!
+2026-10-12 15:46:09,103 [INFO] [EVAL-CROSS-1-c06d] Orchestrator: B mode
+2026-10-12 15:46:10,066 [INFO] [EVAL-CROSS-1-c06d] ROUTER llm-raw: {"domain":"unknown","confidence":0.99,"connect_human":true,"small_talk":false,"answer_from_context":false}
+2026-10-12 15:46:11,088 [INFO] [EVAL-CROSS-1-c06d] TOOL-SELECT llm-raw: {"tool":"request_callback","args":{"date":null,"time":null,"reason":"caller wants to speak with someone in charge after being unable to get help with their HeartBug order"},"confidence":0.93}
+2026-10-12 15:46:11,088 [INFO] [EVAL-CROSS-1-c06d] SLOTS domain=booking tool=request_callback have={'reason': 'asked to verify HeartBug order number O1002 but system could not verify it; wants to speak to someone who can help', 'date': '2026-10-12'} missing=time
+2026-10-12 15:46:12,012 [INFO] [EVAL-CROSS-1-c06d] SYSTEM: I hear how frustrated you are; I can’t transfer you to a team lead directly, but I can get the right HeartBug team involved and set up a callback—what time of day would you prefer?

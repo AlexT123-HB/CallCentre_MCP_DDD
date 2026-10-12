@@ -32,6 +32,13 @@ from src.shared.logging_config import setup_logging
 from src.shared import tracing
 
 
+# sentinel: a failed task tripped the escalation threshold. _execute_single
+# returns this instead of calling _handoff_response itself — the SINGLE tail
+# handoff check in _turn does the escalation once. Prevents the double-narrate
+# (escalation offer logged twice) when both _execute_single AND the tail escalate.
+_ESCALATE_SENTINEL = "__ESCALATE__"
+
+
 class Host:
     def __init__(self, mcp=None, provider=None, orchestration_mode=None) -> None:
         self.log = setup_logging()                       # → logs/heartbug.log
@@ -301,6 +308,10 @@ class Host:
         if action:
             return await self._handoff_response(call_id, session, action, transcript)
 
+        if tts == _ESCALATE_SENTINEL:
+            # a failed subtask signalled escalation but the tail check above didn't fire
+            # (shouldn't happen) — don't surface the sentinel; treat as a safe no-op reply.
+            tts = ""
         session["history"].append({"role": "assistant", "content": tts})
         self.log.info(f"[{call_id}] SYSTEM: {tts}")
         return {"call_id": call_id, "domain": domain, "tts_response": tts}
@@ -573,10 +584,10 @@ class Host:
             notes.record_result(session, tool, res)      # working memory for later turns
         
         if not success and m.special_flow != "verification":
-            action = self.handoff.check(session)
-            if action:
-                res = await self._handoff_response(call_id, session, action, transcript)
-                return res["tts_response"]
+            # do NOT escalate here — just signal it. The tail handoff check in _turn is
+            # the single place that runs _handoff_response, so the offer is narrated once.
+            if self.handoff.check(session):
+                return _ESCALATE_SENTINEL
 
         if m.special_flow == "verification":
             return await self._after_verify(session, tool, res, transcript)
