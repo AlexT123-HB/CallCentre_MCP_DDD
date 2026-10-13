@@ -22,12 +22,16 @@ from src.shared.policy import may_skip_verification
 
 def available_domains(session: dict, registry=None) -> List[str]:
     verified = session["ctx"].verified
+    role = session["ctx"].role
     out: List[str] = []
     for m in all_manifests():
+        required_role = getattr(m, "required_role", None)
+        if required_role and role != required_role:
+            continue  # caller's role doesn't match this domain's required role
         pre_verify_ok = may_skip_verification(m.name, m.requires_verification)
         if not verified:
             if pre_verify_ok:
-                out.append(m.name)            # reachable before verification
+                out.append(m.name)            # reachable before verification        
         else:
             # verified: the real data domains, PLUS any public domain that is also
             # useful after verifying (e.g. the knowledge base). Verification itself

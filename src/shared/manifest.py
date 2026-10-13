@@ -33,3 +33,4 @@ class DomainManifest:
     required_args: Optional[Dict[str, Dict[str, str]]] = None  # tool → {arg → slot-prompt event}
     confirmations: Optional[Dict[str, dict]] = None    # preview tool → {"answers": {label → {action, tool/event, hint}}}
     public: bool = False                        # reachable in BOTH states (e.g. KB) — general access
+    required_role: Optional[str] = None        # if set, only callers with this role can access

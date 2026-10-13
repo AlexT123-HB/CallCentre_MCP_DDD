@@ -37,6 +37,7 @@ MANIFEST = DomainManifest(
         "phone_index": "DOCTOR_PHONE_INDEX",
         "role": "doctor",
     },
+    required_role=["doctor"],
     events={
         "doctor_patient_status": "tell the doctor how their patient is going: enrolment "
                                  "status, how long is left in monitoring (from monitoring_end), "
