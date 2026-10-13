@@ -403,13 +403,25 @@ class Host:
 
     async def _candidate_tools(self, domain: str) -> dict:
         """Discover a domain's tools and shape them for the selector, with the
-        host-injected identity params filtered out (LLM only sees business args)."""
+        host-injected identity params filtered out (LLM only sees business args).
+
+        Only tools the domain's MANIFEST declares selectable are offered. The MCP
+        server exposes EVERY @mcp.tool() via list_tools — including service tools like
+        resolve_patient_by_name, confirmation-only writes like submit_order, and
+        webhook-only tools like lookup_by_phone — so without this filter the selector
+        could pick a tool the manifest deliberately withheld (and hallucinate its
+        args). This is what let a PATIENT's planner select resolve_patient_by_name to
+        look up ANOTHER patient."""
+        m = manifests.get(domain)
+        selectable = set(m.tools or []) if m else None
         discovered = await self.client.discover_tools(domain)
         out: dict = {}
         for t in sorted(discovered, key=lambda x: getattr(x, "name", "") or ""):
             name = getattr(t, "name", None)
             if not name or name == "prewarm":
                 continue
+            if selectable is not None and name not in selectable:
+                continue        # manifest withheld this tool from planner selection
             schema = getattr(t, "inputSchema", {}) or {}
             props = schema.get("properties", {}) if isinstance(schema, dict) else {}
             args = {a: (props[a].get("description", a) if isinstance(props[a], dict) else a)

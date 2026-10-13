@@ -197,3 +197,169 @@
 2026-10-13 12:38:51,071 [INFO] CACHE HIT callback:P001
 2026-10-13 12:38:51,083 [INFO] [HT-CONVO-cc1c] HANDOFF row written: CB-FC2E14 John Smith @ 2026-10-13T14:00
 2026-10-13 12:38:52,207 [INFO] [HT-CONVO-cc1c] SYSTEM: Your HeartBug callback is now booked for 2:00 PM on 13 October 2026, reference CB-FC2E14, and a staff member will call you within about 30 minutes either side of then.
+2026-10-13 13:00:35,944 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-10-13 13:00:35,945 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
+2026-10-13 13:00:36,053 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-10-13 13:00:36,975 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-10-13 13:00:36,980 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-10-13 13:00:37,362 [INFO] TRACING on → http://host.docker.internal:5001
+2026-10-13 13:01:21,479 [INFO] [HT-CONVO-ecff] ANI: +61412345678
+2026-10-13 13:01:22,925 [INFO] [HT-CONVO-ecff] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth to get started?
+2026-10-13 13:01:30,842 [INFO] [HT-CONVO-ecff] CALLER: John Smith, 15 March 85
+2026-10-13 13:01:30,842 [INFO] [HT-CONVO-ecff] Orchestrator: B mode
+2026-10-13 13:01:31,859 [INFO] [HT-CONVO-ecff] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-10-13 13:01:31,860 [INFO] [HT-CONVO-ecff] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-10-13 13:01:32,779 [INFO] [HT-CONVO-ecff] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1985-03-15","clinic":null},"confidence":0.98}
+2026-10-13 13:01:32,780 [INFO] [HT-CONVO-ecff] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1985-03-15'} missing=None
+2026-10-13 13:01:32,805 [INFO] [HT-CONVO-ecff] VERIFICATION verified=True subject_id=P001 reason=None role=patient clinic_id=C01
+2026-10-13 13:01:32,836 [INFO] CACHE HIT patient:P001
+2026-10-13 13:01:32,837 [INFO] CACHE HIT patient:P001
+2026-10-13 13:01:32,871 [INFO] CACHE HIT order_by_patient:P001
+2026-10-13 13:01:32,872 [INFO] CACHE HIT order:O1001
+2026-10-13 13:01:32,872 [INFO] CACHE HIT order:O1002
+2026-10-13 13:01:33,601 [INFO] [HT-CONVO-ecff] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account.
+2026-10-13 13:01:51,746 [INFO] [HT-CONVO-ecff] CALLER: I want to check the status of my patient, Jane Doe
+2026-10-13 13:01:51,747 [INFO] [HT-CONVO-ecff] Orchestrator: B mode
+2026-10-13 13:01:53,107 [INFO] [HT-CONVO-ecff] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:01:53,109 [INFO] [HT-CONVO-ecff] HANDOFF escalation_category=voluntary role=patient
+2026-10-13 13:01:53,805 [INFO] [HT-CONVO-ecff] SYSTEM (escalation offer): I can connect you with the HeartBug team now, or I can schedule a callback for a time that suits you — which would you prefer?
+2026-10-13 13:02:29,082 [INFO] [EVAL-DSTAT-1-7530] ANI: +61478901234
+2026-10-13 13:02:30,411 [INFO] [EVAL-DSTAT-1-7530] SYSTEM: Welcome to HeartBug—may I have your full name and which clinic you’re calling from?
+2026-10-13 13:02:33,178 [INFO] [EVAL-DSTAT-1-7530] CALLER: This is Dr Robert Brown, cardiologist from the Melbourne Cardiac Clinic, returning a call regarding one of my patients, Alex Thompson, please confirm his status on your system.
+2026-10-13 13:02:33,179 [INFO] [EVAL-DSTAT-1-7530] Orchestrator: B mode
+2026-10-13 13:02:34,014 [INFO] [EVAL-DSTAT-1-7530] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-10-13 13:02:34,015 [INFO] [EVAL-DSTAT-1-7530] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-10-13 13:02:34,830 [INFO] [EVAL-DSTAT-1-7530] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","clinic":"Melbourne Cardiac Clinic"},"confidence":0.95}
+2026-10-13 13:02:34,830 [INFO] [EVAL-DSTAT-1-7530] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-10-13 13:02:34,852 [INFO] [EVAL-DSTAT-1-7530] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-10-13 13:02:34,896 [INFO] CACHE MISS patient:D002, query DB
+2026-10-13 13:02:34,898 [INFO] CACHE MISS patient:D002, query DB
+2026-10-13 13:02:34,945 [INFO] CACHE MISS order_by_patient:D002, query DB
+2026-10-13 13:02:35,649 [INFO] [EVAL-DSTAT-1-7530] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m here to help.
+2026-10-13 13:02:37,881 [INFO] [EVAL-DSTAT-1-7530] CALLER: Good, thank you, can you tell me if Alex is still being monitored by the device and if the 30-day report is ready for review, we're due for a follow-up appointment?
+2026-10-13 13:02:37,881 [INFO] [EVAL-DSTAT-1-7530] Orchestrator: B mode
+2026-10-13 13:02:38,854 [INFO] [EVAL-DSTAT-1-7530] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"kb","tool":"search_kb","args":{"query":"Doctor asks whether patient Alex Thompson is still being monitored by the HeartBug device and whether the 30-day report is ready for review for an upcoming follow-up appointment."},"depends_on":[]}],"confidence":0.42,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:02:38,855 [INFO] [EVAL-DSTAT-1-7530] PLAN+SELECT allowed=['patient', 'order', 'kb', 'booking'] → [('s1', 'kb', 'search_kb')]
+2026-10-13 13:02:39,928 [INFO] [EVAL-DSTAT-1-7530] KB-CACHE MISS best=0.000 q='Doctor asks whether patient Alex Thompson is still being monitored by the HeartBug device and whether the 30-day report is ready for review for an upcoming follow-up appointment.'
+2026-10-13 13:02:40,121 [INFO] [EVAL-DSTAT-1-7530] KB RETRIEVE entry='kb_company_q_about_29' matched_q='What happens at the end of my monitoring period?' score=0.731
+2026-10-13 13:02:40,122 [INFO] [EVAL-DSTAT-1-7530] KB RETRIEVE entry='kb_company_q_about_86' matched_q='Does HeartBug alert my doctor in real time?' score=0.728
+2026-10-13 13:02:40,123 [INFO] [EVAL-DSTAT-1-7530] KB RETRIEVE entry='kb_company_q_about_1' matched_q='What is HeartBug?' score=0.710
+2026-10-13 13:02:40,123 [INFO] [EVAL-DSTAT-1-7530] KB RETRIEVE entry='kb_company_q_about_34' matched_q='How does my doctor receive my HeartBug results?' score=0.709
+2026-10-13 13:02:40,124 [INFO] [EVAL-DSTAT-1-7530] KB RETRIEVE entry='kb_company_q_about_51' matched_q='What if my monitoring period needs to be extended?' score=0.706
+2026-10-13 13:02:40,125 [INFO] [EVAL-DSTAT-1-7530] KB → ANSWER 5 entries best=0.731
+2026-10-13 13:02:40,317 [INFO] [EVAL-DSTAT-1-7530] KB-CACHE PUT q='Doctor asks whether patient Alex Thompson is still being monitored by the HeartBug device and whether the 30-day report is ready for review for an upcoming follow-up appointment.' store=1
+2026-10-13 13:02:41,230 [INFO] [EVAL-DSTAT-1-7530] SYSTEM: I can confirm HeartBug reports are sent to the referring doctor after monitoring ends, but I can’t see Alex’s live device status or whether his 30-day report is already ready from here.
+2026-10-13 13:02:43,576 [INFO] [EVAL-DSTAT-1-7530] CALLER: That's not what I want to hear, is there a way for you to escalate this and check on the device status remotely, or perhaps someone who can access the patient's full profile?
+2026-10-13 13:02:43,577 [INFO] [EVAL-DSTAT-1-7530] Orchestrator: B mode
+2026-10-13 13:02:44,532 [INFO] [EVAL-DSTAT-1-7530] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.96,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:02:44,533 [INFO] [EVAL-DSTAT-1-7530] HANDOFF escalation_category=voluntary role=doctor
+2026-10-13 13:02:45,484 [INFO] [EVAL-DSTAT-1-7530] SYSTEM (escalation offer): I understand, Doctor; I can connect you with the team now, or I can schedule a callback at a time that suits you.
+2026-10-13 13:02:47,717 [INFO] [EVAL-DSTAT-1-7530] CALLER: Can we try connecting me directly to someone who has access to Alex's current status and report instead of going through a callback, please? Time is of the essence for this patient.
+2026-10-13 13:02:47,717 [INFO] [EVAL-DSTAT-1-7530] Orchestrator: B mode
+2026-10-13 13:02:48,346 [INFO] [EVAL-DSTAT-1-7530] CONFIRM llm-raw: {"decision":"now"}
+2026-10-13 13:02:49,223 [INFO] [EVAL-DSTAT-1-7530] SYSTEM (transfer): Absolutely, Doctor — I’m putting you through to the HeartBug clinical desk now, so please hold while I connect you.
+2026-10-13 13:06:36,903 [INFO] [EVAL-DSTAT-1-8886] ANI: +61478901234
+2026-10-13 13:06:38,407 [INFO] [EVAL-DSTAT-1-8886] SYSTEM: Welcome to HeartBug — may I have your full name and which clinic you’re calling from?
+2026-10-13 13:06:41,574 [INFO] [EVAL-DSTAT-1-8886] CALLER: This is Dr Robert Brown, Cardiologist at Melbourne Cardiac Clinic, calling regarding my patient Alex Thompson - can you tell me what's happening with his monitoring and if the report is available yet?
+2026-10-13 13:06:41,574 [INFO] [EVAL-DSTAT-1-8886] Orchestrator: B mode
+2026-10-13 13:06:42,335 [INFO] [EVAL-DSTAT-1-8886] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-10-13 13:06:42,337 [INFO] [EVAL-DSTAT-1-8886] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-10-13 13:06:43,122 [INFO] [EVAL-DSTAT-1-8886] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-10-13 13:06:43,122 [INFO] [EVAL-DSTAT-1-8886] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-10-13 13:06:43,159 [INFO] [EVAL-DSTAT-1-8886] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-10-13 13:06:43,187 [INFO] CACHE MISS patient:D002, query DB
+2026-10-13 13:06:43,188 [INFO] CACHE MISS patient:D002, query DB
+2026-10-13 13:06:43,220 [INFO] CACHE HIT order_by_patient:D002
+2026-10-13 13:06:44,381 [INFO] [EVAL-DSTAT-1-8886] SYSTEM: Hello Dr, you’re verified with HeartBug, and I’m here to help; I can’t confirm the monitoring status or report availability from what I have, but I can put you through to the team.
+2026-10-13 13:06:46,323 [INFO] [EVAL-DSTAT-1-8886] CALLER: Can you please check with Rachel in Monitoring who's been overseeing Alex's case, she usually updates me directly on patient progress - is Rachel available?
+2026-10-13 13:06:46,324 [INFO] [EVAL-DSTAT-1-8886] Orchestrator: B mode
+2026-10-13 13:06:48,031 [INFO] [EVAL-DSTAT-1-8886] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:06:48,032 [INFO] [EVAL-DSTAT-1-8886] HANDOFF escalation_category=voluntary role=doctor
+2026-10-13 13:06:48,770 [INFO] [EVAL-DSTAT-1-8886] SYSTEM (escalation offer): I’m not able to check Rachel’s availability directly, but I can connect you with the team now or schedule a callback for a time that suits you.
+2026-10-13 13:06:50,804 [INFO] [EVAL-DSTAT-1-8886] CALLER: Can we just transfer me through to the monitoring team straight away, please, it's urgent and I need an update on Alex Thompson's status ASAP?
+2026-10-13 13:06:50,805 [INFO] [EVAL-DSTAT-1-8886] Orchestrator: B mode
+2026-10-13 13:06:51,543 [INFO] [EVAL-DSTAT-1-8886] CONFIRM llm-raw: {"decision":"now"}
+2026-10-13 13:06:52,307 [INFO] [EVAL-DSTAT-1-8886] SYSTEM (transfer): I understand this is urgent, and I’m transferring you to the HeartBug clinical desk now, so please hold while I connect you.
+2026-10-13 13:15:11,033 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-10-13 13:15:11,034 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
+2026-10-13 13:15:11,160 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-10-13 13:15:11,938 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-10-13 13:15:11,942 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-10-13 13:15:12,477 [INFO] TRACING on → http://host.docker.internal:5001
+2026-10-13 13:16:26,443 [INFO] [EVAL-DSTAT-1-c994] ANI: +61478901234
+2026-10-13 13:16:27,789 [INFO] [EVAL-DSTAT-1-c994] SYSTEM: Welcome to HeartBug—may I have your full name and which clinic you’re calling from?
+2026-10-13 13:16:30,961 [INFO] [EVAL-DSTAT-1-c994] CALLER: Good day, my name is Dr Robert Brown, and I'm calling from the Melbourne Cardiac Clinic. I'm a cardiologist here, and I'd like some information about one of our patients, Alex Thompson.
+2026-10-13 13:16:30,961 [INFO] [EVAL-DSTAT-1-c994] Orchestrator: B mode
+2026-10-13 13:16:31,849 [INFO] [EVAL-DSTAT-1-c994] ROUTER llm-raw: {"domain":"verification","confidence":0.95,"connect_human":false}
+2026-10-13 13:16:31,850 [INFO] [EVAL-DSTAT-1-c994] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.95 connect_human=False
+2026-10-13 13:16:32,780 [INFO] [EVAL-DSTAT-1-c994] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Dr Robert Brown","clinic":"Melbourne Cardiac Clinic"},"confidence":0.98}
+2026-10-13 13:16:32,781 [INFO] [EVAL-DSTAT-1-c994] SLOTS domain=verification tool=verify_identity have={'name': 'Dr Robert Brown', 'clinic': 'Melbourne Cardiac Clinic'} missing=None
+2026-10-13 13:16:32,818 [INFO] [EVAL-DSTAT-1-c994] VERIFICATION verified=True subject_id=D002 reason=None role=doctor clinic_id=C02
+2026-10-13 13:16:32,853 [INFO] CACHE MISS patient:D002, query DB
+2026-10-13 13:16:32,854 [INFO] CACHE MISS patient:D002, query DB
+2026-10-13 13:16:32,907 [INFO] CACHE HIT order_by_patient:D002
+2026-10-13 13:16:33,722 [INFO] [EVAL-DSTAT-1-c994] SYSTEM: Hello Dr, you’re verified, and I’m happy to help with anything on the HeartBug account.
+2026-10-13 13:16:36,034 [INFO] [EVAL-DSTAT-1-c994] CALLER: Thanks for confirming that. Can you tell me if Alex is still being monitored by your system, and more importantly, whether the report from his last implantable loop recorder reading is ready?
+2026-10-13 13:16:36,035 [INFO] [EVAL-DSTAT-1-c994] Orchestrator: B mode
+2026-10-13 13:16:37,390 [INFO] [EVAL-DSTAT-1-c994] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"depends_on":[]},{"id":"s2","domain":"doctor","tool":"check_patient_status","args":{"patient_name":"Alex Thompson"},"depends_on":["s1"]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:16:37,392 [INFO] [EVAL-DSTAT-1-c994] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'doctor', 'check_patient_status')]
+2026-10-13 13:16:37,392 [INFO] [EVAL-DSTAT-1-c994] SLOTS domain=doctor tool=check_patient_status have={'patient_name': 'Alex Thompson'} missing=None
+2026-10-13 13:16:37,481 [INFO] CACHE MISS monitoring:P003, query DB
+2026-10-13 13:16:38,445 [INFO] [EVAL-DSTAT-1-c994] SYSTEM: Alex Thompson’s enrolment is completed, monitoring runs through October 11, 2026, and yes, the report is ready.
+2026-10-13 13:16:40,668 [INFO] [EVAL-DSTAT-1-c994] CALLER: That's great to hear it's all up to date - may I get a copy of the report emailed to me or available online for review at my earliest convenience?
+2026-10-13 13:16:40,668 [INFO] [EVAL-DSTAT-1-c994] Orchestrator: B mode
+2026-10-13 13:16:41,668 [INFO] [EVAL-DSTAT-1-c994] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"doctor","tool":"send_patient_report","args":{"patient_name":"Alex Thompson"},"depends_on":[]}],"confidence":0.96,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:16:41,669 [INFO] [EVAL-DSTAT-1-c994] PLAN+SELECT allowed=['patient', 'order', 'kb', 'doctor', 'booking'] → [('s1', 'doctor', 'send_patient_report')]
+2026-10-13 13:16:41,670 [INFO] [EVAL-DSTAT-1-c994] SLOTS domain=doctor tool=send_patient_report have={'patient_name': 'Alex Thompson'} missing=None
+2026-10-13 13:16:41,750 [INFO] CACHE HIT monitoring:P003
+2026-10-13 13:16:42,913 [INFO] [EVAL-DSTAT-1-c994] SYSTEM: Absolutely, Dr Brown — the report for Alex Thompson has been emailed to your registered address at robert.brown@heartbug.com.au.
+2026-10-13 13:16:45,645 [INFO] [EVAL-DSTAT-1-c994] CALLER: I'd also like to confirm that the data from his ILR is going to be sent over to our clinic's system, so we can review it on our end as well - can you arrange that for me?
+2026-10-13 13:16:45,646 [INFO] [EVAL-DSTAT-1-c994] Orchestrator: B mode
+2026-10-13 13:16:46,415 [INFO] [EVAL-DSTAT-1-c994] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:16:46,417 [INFO] [EVAL-DSTAT-1-c994] HANDOFF escalation_category=voluntary role=doctor
+2026-10-13 13:16:47,434 [INFO] [EVAL-DSTAT-1-c994] SYSTEM (escalation offer): I can put you through to the HeartBug team to help with that, Dr Brown — would you like me to connect you now, or schedule a callback for a time that suits you?
+2026-10-13 13:16:49,855 [INFO] [EVAL-DSTAT-1-c994] CALLER: Let's go ahead and connect me now, please - I'd prefer to get this sorted out as soon as possible so we can review Alex's results in our next team meeting tomorrow morning.
+2026-10-13 13:16:49,855 [INFO] [EVAL-DSTAT-1-c994] Orchestrator: B mode
+2026-10-13 13:16:50,679 [INFO] [EVAL-DSTAT-1-c994] CONFIRM llm-raw: {"decision":"now"}
+2026-10-13 13:16:51,601 [INFO] [EVAL-DSTAT-1-c994] SYSTEM (transfer): Absolutely, Dr Brown — I’m connecting you to our clinical desk now, so please hold just a moment.
+2026-10-13 13:17:19,956 [INFO] [EVAL-CROSS-1-ef4f] ANI: +61498765432
+2026-10-13 13:17:20,997 [INFO] [EVAL-CROSS-1-ef4f] SYSTEM: Welcome to HeartBug, and may I have your full name and date of birth, please?
+2026-10-13 13:17:23,735 [INFO] [EVAL-CROSS-1-ef4f] CALLER: This is Jane Doe, and my birthday is July 22nd, 1990. Now, can you tell me about order O1002 - what's that all about?
+2026-10-13 13:17:23,735 [INFO] [EVAL-CROSS-1-ef4f] Orchestrator: B mode
+2026-10-13 13:17:24,456 [INFO] [EVAL-CROSS-1-ef4f] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-10-13 13:17:24,458 [INFO] [EVAL-CROSS-1-ef4f] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-10-13 13:17:25,459 [INFO] [EVAL-CROSS-1-ef4f] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"Jane Doe","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-10-13 13:17:25,459 [INFO] [EVAL-CROSS-1-ef4f] SLOTS domain=verification tool=verify_identity have={'name': 'Jane Doe', 'dob': '1990-07-22'} missing=None
+2026-10-13 13:17:25,496 [INFO] [EVAL-CROSS-1-ef4f] VERIFICATION verified=True subject_id=P002 reason=None role=patient clinic_id=C01
+2026-10-13 13:17:25,527 [INFO] CACHE HIT patient:P002
+2026-10-13 13:17:25,528 [INFO] CACHE HIT patient:P002
+2026-10-13 13:17:25,558 [INFO] CACHE HIT order_by_patient:P002
+2026-10-13 13:17:25,559 [INFO] CACHE HIT order:O1003
+2026-10-13 13:17:25,560 [INFO] CACHE HIT order:O1004
+2026-10-13 13:17:25,560 [INFO] CACHE HIT order:O1005
+2026-10-13 13:17:26,604 [INFO] [EVAL-CROSS-1-ef4f] SYSTEM: Hi Jane, you’re all verified with HeartBug, and I’m here to help.
+2026-10-13 13:17:29,099 [INFO] [EVAL-CROSS-1-ef4f] CALLER: I know I am, that's why I'm calling - I want to check on the status of my latest shipment, which I believe is order O1002... could someone have mixed it up with my previous one?
+2026-10-13 13:17:29,100 [INFO] [EVAL-CROSS-1-ef4f] Orchestrator: B mode
+2026-10-13 13:17:30,000 [INFO] [EVAL-CROSS-1-ef4f] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"lookup_order","args":{"order_id":"O1002"},"depends_on":[]}],"confidence":0.98,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:17:30,001 [INFO] [EVAL-CROSS-1-ef4f] PLAN+SELECT allowed=['patient', 'order', 'kb', 'booking'] → [('s1', 'order', 'lookup_order')]
+2026-10-13 13:17:30,001 [INFO] [EVAL-CROSS-1-ef4f] SLOTS domain=order tool=lookup_order have={'order_id': 'O1002'} missing=None
+2026-10-13 13:17:30,032 [INFO] CACHE HIT order:O1002
+2026-10-13 13:17:31,025 [INFO] [EVAL-CROSS-1-ef4f] SYSTEM: I’m sorry, but I’m not able to find order O1002 in HeartBug, so it may have been mixed up or entered incorrectly; could you double-check the order number for me?
+2026-10-13 13:17:33,722 [INFO] [EVAL-CROSS-1-ef4f] CALLER: No, no, I'm quite sure that's my order - can't be a mistake on your part, must just be a system error... where are the printouts of all orders from our last visit to the cardiologist?
+2026-10-13 13:17:33,722 [INFO] [EVAL-CROSS-1-ef4f] Orchestrator: B mode
+2026-10-13 13:17:34,627 [INFO] [EVAL-CROSS-1-ef4f] PLAN+SELECT llm-raw: {"subtasks":[{"id":"s1","domain":"order","tool":"list_orders","args":{},"depends_on":[]}],"confidence":0.93,"connect_human":false,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:17:34,628 [INFO] [EVAL-CROSS-1-ef4f] PLAN+SELECT allowed=['patient', 'order', 'kb', 'booking'] → [('s1', 'order', 'list_orders')]
+2026-10-13 13:17:34,655 [INFO] CACHE HIT order_by_patient:P002
+2026-10-13 13:17:34,657 [INFO] CACHE HIT order:O1003
+2026-10-13 13:17:34,657 [INFO] CACHE HIT order:O1004
+2026-10-13 13:17:34,658 [INFO] CACHE HIT order:O1005
+2026-10-13 13:17:35,633 [INFO] [EVAL-CROSS-1-ef4f] SYSTEM: I can see three recent HeartBug orders: the HeartBug Monitor was delivered, the Electrode Stickers were shipped, and the Replacement Device is still processing. I don’t have the printouts here, but I can help with anything else on your HeartBug account or put you through to the team.
+2026-10-13 13:17:38,200 [INFO] [EVAL-CROSS-1-ef4f] CALLER: That's not my account, those are all wrong - I specifically remember ordering something new, and I want that order number... can you just check again, or maybe get a supervisor in here?
+2026-10-13 13:17:38,201 [INFO] [EVAL-CROSS-1-ef4f] Orchestrator: B mode
+2026-10-13 13:17:39,026 [INFO] [EVAL-CROSS-1-ef4f] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-10-13 13:17:39,027 [INFO] [EVAL-CROSS-1-ef4f] HANDOFF escalation_category=voluntary role=patient
+2026-10-13 13:17:40,034 [INFO] [EVAL-CROSS-1-ef4f] SYSTEM (escalation offer): I can put you through to the HeartBug team now, or I can schedule a callback for a time that suits you—would you like now or later?
+2026-10-13 13:17:43,054 [INFO] [EVAL-CROSS-1-ef4f] CALLER: No need for a call back, I want it sorted out now - I'd like to speak with the person in charge of orders, right away. Can they please look into this and get me the correct information on order O1002?
+2026-10-13 13:17:43,054 [INFO] [EVAL-CROSS-1-ef4f] Orchestrator: B mode
+2026-10-13 13:17:43,890 [INFO] [EVAL-CROSS-1-ef4f] CONFIRM llm-raw: {"decision":"now"}
+2026-10-13 13:17:44,645 [INFO] [EVAL-CROSS-1-ef4f] SYSTEM (transfer): I can put you through to the HeartBug patient support team now, and they’ll take a closer look at order O1002 for you—please hold.
