@@ -16,6 +16,9 @@ Run:
 
 from __future__ import annotations
 
+import os
+
+from client.outbound_api import build_outbound_router
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -37,6 +40,14 @@ app.include_router(twilio_adapter.router)
 from src.client.telephony import talkdesk_adapter
 talkdesk_adapter._host = _host
 app.include_router(talkdesk_adapter.router)
+
+# Outbound call subagent — adds /outbound/callbacks/{id}/verify|handoff|outcome,
+# which the outbound worker container calls back into. Same shared host. Mounted
+# only when OUTBOUND_API_TOKEN is set, so the app still starts without outbound.
+from src.client.outbound_api import build_outbound_router
+if os.getenv("OUTBOUND_API_TOKEN"):
+    app.include_router(build_outbound_router(_host.outbound,
+                                             api_token=os.environ["OUTBOUND_API_TOKEN"]))
 
 
 class WebhookBody(BaseModel):

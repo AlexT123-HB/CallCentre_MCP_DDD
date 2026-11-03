@@ -27,6 +27,7 @@ from src.client.router import Router
 from src.client.narration import Narrator
 from src.client.orchestrator import Orchestrator, DomainCall
 from src.client.handoff import HandoffService
+from src.client.outbound import OutboundCaller
 from src.client.providers.factory import get_provider
 from src.shared.logging_config import setup_logging
 from src.shared import tracing
@@ -56,6 +57,7 @@ class Host:
         self.narrator = Narrator(provider)
         self.orchestrator = Orchestrator(self.client)
         self.handoff = HandoffService()
+        self.outbound = OutboundCaller(self.client, self.sessions)
         self.registry = None                             # kept for gate signature compat
 
     # ── POST /webhook ─────────────────────────────────────────────────────────
@@ -142,10 +144,18 @@ class Host:
                                             transcript, self._with_note(session))
                     session["history"].append({"role": "assistant", "content": tts})
                     self.log.info(f"[{call_id}] SYSTEM (transfer): {tts}")
-                    # ← F2 SEAM: trigger the outbound call / LiveKit warm transfer here,
-                    #   passing esc["summary"] (readable label) + esc["queue"].
+                    # F2: action "transfer" → the outbound subagent calls the patient.
+                    # The reason stays in the host; the agent gets it only after the
+                    # callee passes name + dob verification.
+                    reason = session.get("reason_of_escalation") or esc.get("escalation_category")
+                    try:
+                        callback_id = self.outbound.call_now(session, reason)
+                    except Exception as e:
+                        self.log.error(f"[{call_id}] OUTBOUND call_now failed: {e}")
+                        callback_id = None
                     return {"call_id": call_id, "tts_response": tts, "action": "transfer",
-                            "queue": esc["queue"], "escalation_category": esc["escalation_category"]}
+                            "queue": esc["queue"], "escalation_category": esc["escalation_category"],
+                            "outbound_callback_id": callback_id}
                 if choice == "decline":
                     notes.record_action(session, "caller declined transfer and callback")
                     tts = self.narrator.say({"event": "handoff_declined"}, transcript,

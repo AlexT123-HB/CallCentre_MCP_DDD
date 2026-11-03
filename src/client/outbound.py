@@ -62,9 +62,11 @@ class OutboundCaller:
         )
         s = self._sessions.start(self._call_id(callback_id, token), phone)
         s["ctx"].matched_subject_id = patient_id
+        # s["outbound"] = {"callback_id": callback_id, "attempt_token": token,
+        #                  "patient_id": patient_id, "name": name, "reason": reason,
+        #                  "reservation_id": reservation, "room": None, "verified": False}
         s["outbound"] = {"callback_id": callback_id, "attempt_token": token,
-                         "patient_id": patient_id, "name": name, "reason": reason,
-                         "reservation_id": reservation, "room": None, "verified": False}
+                         "patient_id": patient_id, "name": name, "reason": reason, "room": None, "verified": False}
         self._sessions.save(s)
         room = await self._start_subagent(briefing, token)
         s["outbound"]["room"] = room
@@ -102,20 +104,19 @@ class OutboundCaller:
         return {"passed": True, "reason": o["reason"] or "your request to speak with someone",
                 "organisation": self._organisation}
 
-    async def start_handoff(self, callback_id: str, attempt_token: str) -> None:
-        s = self._attempt(callback_id, attempt_token)
-        if not s:
-            raise PermissionError("unknown or stale call")
-        o = s["outbound"]
-        if not o.get("verified"):
-            raise PermissionError("handoff requested before verification")
-        await self._staff.offer(o["reservation_id"], o["room"], {
-            "patient_id": o["patient_id"], "name": o["name"],
-            "reason": o["reason"], "verified": True})
+    # LATER: handoff to a human
+    # async def start_handoff(self, callback_id: str, attempt_token: str) -> None:
+    #     s = self._attempt(callback_id, attempt_token)
+    #     if not s:
+    #         raise PermissionError("unknown or stale call")
+    #     o = s["outbound"]
+    #     if not o.get("verified"):
+    #         raise PermissionError("handoff requested before verification")
+    #     await self._staff.offer(o["reservation_id"], o["room"], {
+    #         "patient_id": o["patient_id"], "name": o["name"],
+    #         "reason": o["reason"], "verified": True})
 
     async def finish_attempt(self, result: AttemptResult) -> None:
-        s = self._attempt(result.callback_id, result.attempt_token)
         log.info(f"[{result.callback_id}] OUTBOUND outcome: {result.outcome} "
                  f"{result.detail or ''}".rstrip())
-        if s and result.outcome is not Outcome.HANDED_OFF:
-            await self._staff.release(s["outbound"]["reservation_id"])
+        
