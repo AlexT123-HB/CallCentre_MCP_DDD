@@ -23,6 +23,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the code (in dev this is shadowed by the bind-mount; in prod it's the code)
 COPY . .
 
+# Pre-download the voice-activity model so the first call doesn't fetch it
+RUN python -m src.agents.outbound.agent download-files
+
 # MCP servers must listen on all interfaces so sibling containers can reach them.
 ENV MCP_BIND_HOST=0.0.0.0
 

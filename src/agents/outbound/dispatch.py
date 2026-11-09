@@ -19,7 +19,7 @@ BRIEFING_TTL_S = 30 * 60
 
 
 def _key(callback_id: str, attempt_token: str) -> str:
-    return cache_key("outbound_briefing", callback_id, attempt_token)
+    return cache_key("outbound_briefing", f"{callback_id}:{attempt_token}")
 
 
 def load_briefing(callback_id: str, attempt_token: str) -> Briefing | None:

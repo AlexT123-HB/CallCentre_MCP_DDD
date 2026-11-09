@@ -29,7 +29,7 @@ class CallState:
     done: asyncio.Event = field(default_factory=asyncio.Event)
     # LATER (handoff to a human): staff_joined: asyncio.Event = field(default_factory=asyncio.Event)
     _reason: str | None = None
-    _organisation: str | None = None
+    #_organisation: str | None = None
 
     # ── from the briefing (safe before verification) ──
     @property
@@ -53,21 +53,15 @@ class CallState:
         return self._briefing.voicemail_message
 
     # ── from the host's verify answer ──
-    def mark_verified(self, reason: str, organisation: str | None) -> None:
+    def mark_verified(self, reason: str) -> None:
         self.verified = True
-        self._reason, self._organisation = reason, organisation
+        self._reason = reason
 
     @property
     def reason(self) -> str:
         if not self.verified:
             raise NotVerified("reason is not available before verification")
         return self._reason or ""
-
-    @property
-    def organisation(self) -> str:
-        if not self.verified:
-            raise NotVerified("organisation is not available before verification")
-        return self._organisation or "our team"
 
     def finish(self, outcome: Outcome, detail: str | None = None) -> None:
         """First outcome wins; later ones (e.g. the hang-up that follows) are ignored."""

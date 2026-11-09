@@ -28,13 +28,26 @@ class HostClient:
         return r
 
     async def verify(self, meta: DispatchMetadata, answers: dict[str, str]) -> VerifyResult:
-        """Send the callee's name + dob; the host checks them via the verification
-        domain. On a pass the host also returns the reason for the call."""
-        r = await self._post(
-            f"/outbound/callbacks/{meta.callback_id}/verify",
-            {"attempt_token": meta.attempt_token, "answers": answers},
-        )
-        return VerifyResult.from_dict(r.json())
+        # """Send the callee's name + dob; the host checks them via the verification
+        # domain. On a pass the host also returns the reason for the call."""
+        # r = await self._post(
+        #     f"/outbound/callbacks/{meta.callback_id}/verify",
+        #     {"attempt_token": meta.attempt_token, "answers": answers},
+        # )
+        # return VerifyResult.from_dict(r.json())
+        """Send the callee's name + dob; on a pass the host also returns the reason.
+        Retried once: verifying again is harmless."""
+        last_error: Exception | None = None
+        for _ in range(2):
+            try:
+                r = await self._post(
+                    f"/outbound/callbacks/{meta.callback_id}/verify",
+                    {"attempt_token": meta.attempt_token, "answers": answers},
+                )
+                return VerifyResult.from_dict(r.json())
+            except httpx.HTTPError as e:
+                last_error = e
+        raise last_error
 
     # LATER (handoff to a human):
     # async def request_handoff(self, meta: DispatchMetadata) -> None:

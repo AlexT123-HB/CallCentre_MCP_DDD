@@ -21,6 +21,7 @@ from datetime import datetime, timezone
 from src.client.providers.interfaces import LLMProvider
 from src.shared import tracing
 
+log = logging.getLogger("heartbug")
 
 def _domain_items(candidate_domains):
     """Normalize candidate_domains to (name, description) pairs.
@@ -76,12 +77,33 @@ class OpenAIProvider(LLMProvider):
         resp = self._complete(messages=msgs,
             response_format={"type": "json_object"}, temperature=0, max_completion_tokens=40)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"[{call_id}] CONFIRM llm-raw: {raw}")
+        log.info(f"[{call_id}] CONFIRM llm-raw: {raw}")
         try:
             decision = json.loads(raw).get("decision", "unclear")
         except json.JSONDecodeError:
             decision = "unclear"
         return decision if decision in valid else "unclear"
+
+    # ── transfer reason: LLM generates a reason for the transfer ────────
+    @tracing.traced("llm.transfer_reason", tracing.LLM)
+    def transfer_reason(self, call_id: str, history: list = None) -> str:
+        """One short plain-English phrase of what the caller needs help with, from the
+        whole call. Used only when they choose to be connected now: the outbound agent
+        says it back to them after they pass verification."""
+        system = (
+            "From this HeartBug phone call, state what the caller needs help with as ONE "
+            "short plain-English phrase (e.g. \"help setting up their new heart monitor\"). "
+            "It will be said back to the caller, so no jargon, IDs or category labels. "
+            'Respond ONLY with the phrase only'
+        )
+        msgs = [{"role": "system", "content": system}]
+        for h in history[-HISTORY_WINDOW:]:
+            msgs.append(h)
+        resp = self._complete(messages=msgs, temperature=0, max_completion_tokens=40)
+        raw = (resp.choices[0].message.content or "").strip()
+        log.info(f"[{call_id}] TRANSFER REASON llm-raw: {raw}")
+        reason = raw.splitlines()[0].strip().strip('"').rstrip(".") if raw else ""
+        return reason or None
 
    # ── classification: LLM picks the domain + extracts identity slots ────────
     @tracing.traced("llm.route", tracing.LLM)
@@ -128,7 +150,7 @@ class OpenAIProvider(LLMProvider):
             max_completion_tokens=200,
         )
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"[{call_id}] ROUTER llm-raw: {raw}")
+        log.info(f"[{call_id}] ROUTER llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:
@@ -186,7 +208,7 @@ class OpenAIProvider(LLMProvider):
             messages=msgs,
             response_format={"type": "json_object"}, temperature=0)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"[{call_id}] TOOL-SELECT llm-raw: {raw}")
+        log.info(f"[{call_id}] TOOL-SELECT llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:
@@ -239,7 +261,7 @@ class OpenAIProvider(LLMProvider):
             messages=msgs,
             response_format={"type": "json_object"}, temperature=0)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"[{call_id}] PLANNER llm-raw: {raw}")
+        log.info(f"[{call_id}] PLANNER llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:
@@ -334,7 +356,7 @@ class OpenAIProvider(LLMProvider):
             messages=msgs,
             response_format={"type": "json_object"}, temperature=0)
         raw = resp.choices[0].message.content or "{}"
-        logging.getLogger("heartbug").info(f"[{call_id}] PLAN+SELECT llm-raw: {raw}")
+        log.info(f"[{call_id}] PLAN+SELECT llm-raw: {raw}")
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:

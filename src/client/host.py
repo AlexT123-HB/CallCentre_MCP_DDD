@@ -147,9 +147,14 @@ class Host:
                     # F2: action "transfer" → the outbound subagent calls the patient.
                     # The reason stays in the host; the agent gets it only after the
                     # callee passes name + dob verification.
-                    reason = session.get("reason_of_escalation") or esc.get("escalation_category")
                     try:
-                        callback_id = self.outbound.call_now(session, reason)
+                        reason = self._provider.transfer_reason(call_id, self._with_note(session))
+                    except Exception as e:
+                        self.log.error(f"[{call_id}] Error occurred while fetching transfer reason: {e}")
+                        reason = None
+                    reason = reason or esc.get("escalation_category")
+                    try:
+                        callback_id = await self.outbound.call_now(session, reason)
                     except Exception as e:
                         self.log.error(f"[{call_id}] OUTBOUND call_now failed: {e}")
                         callback_id = None

@@ -1,7 +1,8 @@
 user default on nopass ~* &* +@all
-user hostsvc on >host-secret ~session:* +@read +@write +@keyspace +@transaction +ping
+user hostsvc on >host-secret ~session:* ~outbound_briefing:* +@read +@write +@keyspace +@transaction +ping
 user patientsvc on >patient-secret ~patient:* ~monitoring:* +@read +@write +@keyspace +ping
 user ordersvc on >order-secret ~order:* ~order_by_clinic:* ~order_by_patient:* ~pending:* +@read +@write +@keyspace +ping
 user doctorsvc on >doctor-secret ~doctor:* ~clinic:* +@read +@write +@keyspace +ping
 user bookingsvc on >booking-secret ~callback:* +@read +@write +@keyspace +ping
 user verifysvc on >verify-secret +ping
+user outboundsvc on >outbound-secret ~outbound_briefing:* +@read +@write +@keyspace +ping

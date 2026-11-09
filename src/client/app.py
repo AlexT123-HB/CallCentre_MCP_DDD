@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import os
 
-from client.outbound_api import build_outbound_router
+from src.client.outbound_api import build_outbound_router
 from fastapi import FastAPI
 from pydantic import BaseModel
 

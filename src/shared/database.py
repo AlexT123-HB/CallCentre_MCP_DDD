@@ -33,7 +33,7 @@ def _days_from_now(n: int) -> str:
 PATIENTS = {
     "P001": {"patient_id": "P001", "name": "John Smith",     "dob": "1985-03-15", "phone": "+61412345678", "clinic_id": "C01", "address": "12 Wattle St, Chatswood NSW 2067"},
     "P002": {"patient_id": "P002", "name": "Jane Doe",       "dob": "1990-07-22", "phone": "+61498765432", "clinic_id": "C01", "address": "8 Ocean Ave, Bondi NSW 2026"},
-    "P003": {"patient_id": "P003", "name": "Alex Thompson",  "dob": "1990-07-22", "phone": "+61481103973", "clinic_id": "C02", "address": "45 Collins St, Melbourne VIC 3000"},
+    "P003": {"patient_id": "P003", "name": "John Smith",     "dob": "1990-07-22", "phone": "+61481103973", "clinic_id": "C02", "address": "264 Bunnerong Road, Hillsdale NSW 2036"},
     "P004": {"patient_id": "P004", "name": "Maria Garcia",   "dob": "1978-11-30", "phone": "+61423456789", "clinic_id": "C02", "address": "3 Fitzroy Rd, Carlton VIC 3053"},
     "P005": {"patient_id": "P005", "name": "David Chen",     "dob": "1965-05-08", "phone": "+61434567890", "clinic_id": "C01", "address": "27 Harbour Ln, Manly NSW 2095"},
     "P006": {"patient_id": "P006", "name": "Sarah Williams", "dob": "1992-02-17", "phone": "+61445678901", "clinic_id": "C03", "address": "5 River Tce, South Brisbane QLD 4101"},

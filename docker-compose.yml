@@ -130,6 +130,16 @@ services:
     ports: ["8000:8000"]
     depends_on: [verification, patient, order, kb, doctor, booking]
 
+  outbound-worker:
+    <<: *common
+    command: python -m src.agents.outbound.agent start
+    environment:
+      <<: *common-env
+      HOST_BASE_URL: "http://host:8000"     # worker → host callbacks, by container name
+      REDIS_URL: redis://outboundsvc:outbound-secret@redis:6379/0
+    depends_on: [host, redis]
+    # no ports: it connects OUT to LiveKit Cloud; nothing connects in
+
 networks:
   heartbug:
     driver: bridge

@@ -31,20 +31,21 @@ FIRST_WORDS_WAIT_S = 4.0  # let the callee say "hello?" first; nudge if they don
 
 def _pre_instructions(s: CallState) -> str:
     slots = "\n".join(f"   - {k}: {v}" for k, v in s.slots.items())
-    return f"""{_BASE_STYLE}. You are placing an outbound phone call to someone who asked to speak with a person.
+    return f"""{_BASE_STYLE}. You are from HeartBug, placing an outbound phone call to someone who asked to speak with a person.
 You do NOT yet know who answered, and you have not been told why you're calling.
 Introduce the call only with: "{s.intro}"
 
 1. If you hear a voicemail greeting, answering machine or automated message rather than
    a live person, call mark_voicemail straight away and say nothing.
-2. Otherwise greet them, give the introduction, and ask if you're speaking with {s.first_name}.
+2. Otherwise introduce yourself and your company, greet them, and ask if you're speaking with {s.first_name}.
 3. Wrong person: apologise briefly, say goodbye, then call end_call("wrong_person").
 4. Bad time to talk: say someone will try again later, say goodbye, then call
    end_call("bad_time").
 5. Once they confirm they are {s.first_name}, say you need to confirm a couple of details
    first, then collect these one at a time, clarifying if unclear:
 {slots}
-   When you have all of them, call submit_check_answer.
+   Ask in plain words; never ask the caller to use a particular format. You convert
+   their answers to the stated format when submitting. When you have all of them, call submit_check_answer.
 6. If asked why you're calling, say you can share that once their details are confirmed.
 7. If they won't confirm their details, say goodbye and call end_call("refused").
 """
@@ -95,9 +96,13 @@ class PreVerifyAgent(Agent):
             if missing:
                 return f"Still missing: {', '.join(missing)}. Ask for those."
             self._s.check_attempts += 1
-            result = await self._host.verify(self._s.meta, answers)
+            try:
+                result = await self._host.verify(self._s.meta, answers)
+            except Exception as e:
+                log.error(f"[{self._s.meta.callback_id}] Error occurred while verifying callee: {e}")
+                raise
             if result.passed:
-                self._s.mark_verified(result.reason, result.organisation)
+                self._s.mark_verified(result.reason)
                 log.info(f"[{self._s.meta.callback_id}] outbound callee verified")
                 return PostVerifyAgent(self._s, self._host, chat_ctx=self.chat_ctx)
             if self._s.checks_exhausted:
