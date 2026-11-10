@@ -112,14 +112,14 @@ async def entrypoint(ctx: JobContext) -> None:
     try:
         meta = DispatchMetadata.from_json(ctx.job.metadata)
     except ContractError as e:
-        log.error(f"outbound: bad dispatch metadata: {e}")   # no token → nothing to report
+        log.error(f"OUTBOUND: bad dispatch metadata: {e}")   # no token → nothing to report
         ctx.shutdown("bad metadata")
         return
 
     briefing = load_briefing(meta.callback_id, meta.attempt_token)
     if briefing is None:
         # expired or stale token: never dial without a briefing
-        log.error(f"[{meta.callback_id}] outbound: no briefing")
+        log.error(f"[{meta.callback_id}] OUTBOUND: no briefing")
         ctx.shutdown("no briefing")
         return
 
@@ -128,7 +128,7 @@ async def entrypoint(ctx: JobContext) -> None:
     try:
         await _run(ctx, state, host, briefing.to_number)
     except Exception as e:
-        log.exception(f"[{meta.callback_id}] outbound call failed")
+        log.exception(f"[{meta.callback_id}] OUTBOUND: call failed")
         state.finish(Outcome.FAILED, type(e).__name__)   # no message text: may hold PII
 
     try:
@@ -137,7 +137,7 @@ async def entrypoint(ctx: JobContext) -> None:
             outcome=state.outcome or Outcome.FAILED, started_at=started_at, ended_at=_now(),
             sip_status_code=state.sip_status_code, detail=state.detail))
     except Exception:
-        log.exception(f"[{meta.callback_id}] could not report outcome {state.outcome}")
+        log.exception(f"[{meta.callback_id}] OUTBOUND: could not report outcome {state.outcome}")
     finally:
         release_briefing(meta.callback_id, meta.attempt_token)
         await host.aclose()

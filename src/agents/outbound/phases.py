@@ -99,11 +99,11 @@ class PreVerifyAgent(Agent):
             try:
                 result = await self._host.verify(self._s.meta, answers)
             except Exception as e:
-                log.error(f"[{self._s.meta.callback_id}] Error occurred while verifying callee: {e}")
+                log.error(f"[{self._s.meta.callback_id}] OUTBOUND: Error occurred while verifying callee: {e}")
                 raise
             if result.passed:
                 self._s.mark_verified(result.reason)
-                log.info(f"[{self._s.meta.callback_id}] outbound callee verified")
+                log.info(f"[{self._s.meta.callback_id}] OUTBOUND: callee verified")
                 return PostVerifyAgent(self._s, self._host, chat_ctx=self.chat_ctx)
             if self._s.checks_exhausted:
                 return ("The details didn't match and there are no attempts left. Say you "

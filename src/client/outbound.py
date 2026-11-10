@@ -26,7 +26,7 @@ log = logging.getLogger("heartbug")
 
 CHECK_SLOTS = {
     "name": "their full name",
-    "dob": "their date of birth, submitted as YYYY-MM-DD (e.g. 1990-07-22)",
+    "dob": "their date of birth, submitted as YYYY-MM-DD (e.g. 1990-07-30)",
 }
 
 class OutboundCaller:
@@ -56,7 +56,7 @@ class OutboundCaller:
             patient_first_name=name.split()[0] if name else "there",
             check=CheckSpec(slots=dict(CHECK_SLOTS)),
             intro=os.getenv("HEARTBUG_OUTBOUND_INTRO",
-                            "Hi, this is HeartBug, calling back about the request you just made."),
+                            "Hello, this is HeartBug, calling back about the request you just made."),
         )
         s = self._sessions.start(self._call_id(callback_id, token), phone)
         s["ctx"].matched_subject_id = patient_id
