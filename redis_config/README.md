@@ -15,6 +15,8 @@ That's why this documentation lives here and not in the file itself.
 | `ordersvc` | `order:*` `order_by_*:*` `pending:*` | order server |
 | `doctorsvc` | `doctor:*` `clinic:*` | doctor server |
 | `verifysvc` | (none — verification is never cached) | verification server |
+| `bookingsvc` | `callback:*` | booking server |
+| `outboundsvc` | `outbound_briefing:*` | outbound-worker server |
 
 Verified: doctor user reading `patient:P001` → `NOPERM`; reading `doctor:D002` → OK.
 
