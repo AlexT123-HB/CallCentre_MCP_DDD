@@ -3,3 +3,174 @@
 2026-11-11 10:07:38,957 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
 2026-11-11 10:07:38,965 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
 2026-11-11 10:07:39,213 [INFO] TRACING on → http://host.docker.internal:5001
+2026-11-11 11:24:47,884 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-11-11 11:24:48,022 [INFO] CACHE MISS patient:P003, query DB
+2026-11-11 11:24:48,024 [INFO] CACHE MISS patient:P003, query DB
+2026-11-11 11:24:48,077 [INFO] [cb-typing-7340a6] OUTBOUND call started → room direct-no-room ; reason: help setting up their new heart monitor
+2026-11-11 11:24:49,441 [INFO] TRACING on → http://host.docker.internal:5001
+2026-11-11 11:24:54,282 [INFO] [cb-typing-7340a6] OUTBOUND outcome: abandoned
+2026-11-11 11:25:08,189 [INFO] [HT-CONVO-6d48] ANI: +61481103973
+2026-11-11 11:25:10,761 [INFO] [HT-CONVO-6d48] SYSTEM: Welcome to HeartBug; may I please have your full name and date of birth?
+2026-11-11 11:25:15,144 [INFO] [HT-CONVO-6d48] CALLER: John Smith
+2026-11-11 11:25:15,145 [INFO] [HT-CONVO-6d48] Orchestrator: B mode
+2026-11-11 11:25:16,431 [INFO] [HT-CONVO-6d48] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-11-11 11:25:16,432 [INFO] [HT-CONVO-6d48] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-11-11 11:25:17,570 [INFO] [HT-CONVO-6d48] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":null,"clinic":null},"confidence":0.98}
+2026-11-11 11:25:17,571 [INFO] [HT-CONVO-6d48] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith'} missing=None
+2026-11-11 11:25:17,610 [INFO] [HT-CONVO-6d48] VERIFICATION verified=False subject_id=None reason=need the date of birth role=patient clinic_id=None
+2026-11-11 11:25:18,936 [INFO] [HT-CONVO-6d48] SYSTEM: Thanks, John—could you please tell me your full date of birth, including the year?
+2026-11-11 11:25:23,843 [INFO] [HT-CONVO-6d48] CALLER: 22 July 90
+2026-11-11 11:25:23,844 [INFO] [HT-CONVO-6d48] Orchestrator: B mode
+2026-11-11 11:25:24,890 [INFO] [HT-CONVO-6d48] ROUTER llm-raw: {"domain":"verification","confidence":0.98,"connect_human":false}
+2026-11-11 11:25:24,891 [INFO] [HT-CONVO-6d48] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.98 connect_human=False
+2026-11-11 11:25:25,810 [INFO] [HT-CONVO-6d48] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1990-07-22","clinic":null},"confidence":0.98}
+2026-11-11 11:25:25,811 [INFO] [HT-CONVO-6d48] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1990-07-22'} missing=None
+2026-11-11 11:25:25,849 [INFO] [HT-CONVO-6d48] VERIFICATION verified=True subject_id=P003 reason=None role=patient clinic_id=C02
+2026-11-11 11:25:25,879 [INFO] CACHE HIT patient:P003
+2026-11-11 11:25:25,880 [INFO] CACHE HIT patient:P003
+2026-11-11 11:25:26,097 [INFO] CACHE HIT order_by_patient:P003
+2026-11-11 11:25:26,099 [INFO] CACHE HIT order:O1006
+2026-11-11 11:25:27,183 [INFO] [HT-CONVO-6d48] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account.
+2026-11-11 11:25:36,925 [INFO] [HT-CONVO-6d48] CALLER: Can someone help me with my new device?
+2026-11-11 11:25:36,925 [INFO] [HT-CONVO-6d48] Orchestrator: B mode
+2026-11-11 11:25:38,858 [INFO] [HT-CONVO-6d48] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-11-11 11:25:38,859 [INFO] [HT-CONVO-6d48] HANDOFF escalation_category=voluntary role=patient
+2026-11-11 11:25:40,074 [INFO] [HT-CONVO-6d48] SYSTEM (escalation offer): Of course — would you like me to connect you with the HeartBug team now, or would you prefer to schedule a callback for a time that suits you?
+2026-11-11 11:25:41,806 [INFO] [HT-CONVO-6d48] CALLER: now
+2026-11-11 11:25:41,806 [INFO] [HT-CONVO-6d48] Orchestrator: B mode
+2026-11-11 11:25:42,622 [INFO] [HT-CONVO-6d48] CONFIRM llm-raw: {"decision":"now"}
+2026-11-11 11:25:43,689 [INFO] [HT-CONVO-6d48] SYSTEM (transfer): Absolutely — I’m connecting you to the HeartBug patient support team now, so please hold for just a moment.
+2026-11-11 11:25:44,493 [INFO] [HT-CONVO-6d48] TRANSFER REASON llm-raw: help with their new device
+2026-11-11 11:25:44,538 [INFO] CACHE HIT patient:P003
+2026-11-11 11:25:44,539 [INFO] CACHE HIT patient:P003
+2026-11-11 11:25:44,557 [INFO] CACHE redis → redis://hostsvc:host-secret@redis:6379/0
+2026-11-11 11:25:47,683 [INFO] [cb-HT-CONVO-6d48] OUTBOUND call started → room callback-cb-HT-CONVO-6d48-0731cc ; reason: help with their new device
+2026-11-11 11:26:46,907 [INFO] [cb-HT-CONVO-6d48] OUTBOUND verify → True
+2026-11-11 11:27:08,334 [INFO] [cb-HT-CONVO-6d48] OUTBOUND outcome: briefed
+2026-11-11 11:52:43,972 [INFO] [HT-CONVO-ffde] ANI: +61481103973
+2026-11-11 11:52:45,621 [INFO] [HT-CONVO-ffde] SYSTEM: Welcome to HeartBug—may I have your full name and date of birth, please?
+2026-11-11 11:52:52,152 [INFO] [HT-CONVO-ffde] CALLER: John Smith, 22 July 90
+2026-11-11 11:52:52,153 [INFO] [HT-CONVO-ffde] Orchestrator: B mode
+2026-11-11 11:52:53,227 [INFO] [HT-CONVO-ffde] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-11-11 11:52:53,228 [INFO] [HT-CONVO-ffde] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-11-11 11:52:54,555 [INFO] [HT-CONVO-ffde] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1990-07-22","clinic":null},"confidence":0.98}
+2026-11-11 11:52:54,558 [INFO] [HT-CONVO-ffde] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1990-07-22'} missing=None
+2026-11-11 11:52:54,599 [INFO] [HT-CONVO-ffde] VERIFICATION verified=True subject_id=P003 reason=None role=patient clinic_id=C02
+2026-11-11 11:52:54,717 [INFO] CACHE HIT patient:P003
+2026-11-11 11:52:54,718 [INFO] CACHE HIT patient:P003
+2026-11-11 11:52:54,911 [INFO] CACHE HIT order_by_patient:P003
+2026-11-11 11:52:54,914 [INFO] CACHE HIT order:O1006
+2026-11-11 11:52:55,918 [INFO] [HT-CONVO-ffde] SYSTEM: Thanks, John — you’re verified, and I’m here to help with your HeartBug account.
+2026-11-11 11:53:03,981 [INFO] [HT-CONVO-ffde] CALLER: Can someone help me with my device?
+2026-11-11 11:53:03,982 [INFO] [HT-CONVO-ffde] Orchestrator: B mode
+2026-11-11 11:53:04,991 [INFO] [HT-CONVO-ffde] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-11-11 11:53:04,992 [INFO] [HT-CONVO-ffde] HANDOFF escalation_category=voluntary role=patient
+2026-11-11 11:53:06,173 [INFO] [HT-CONVO-ffde] SYSTEM (escalation offer): Of course — would you like me to connect you with the HeartBug team now, or would you prefer to schedule a callback at a time that suits you?
+2026-11-11 11:53:12,764 [INFO] [HT-CONVO-ffde] CALLER: call me now
+2026-11-11 11:53:12,764 [INFO] [HT-CONVO-ffde] Orchestrator: B mode
+2026-11-11 11:53:14,011 [INFO] [HT-CONVO-ffde] CONFIRM llm-raw: {"decision":"now"}
+2026-11-11 11:53:15,065 [INFO] [HT-CONVO-ffde] SYSTEM (transfer): I’m connecting you to the HeartBug patient support team now, so please hold for a moment.
+2026-11-11 11:53:16,167 [INFO] [HT-CONVO-ffde] TRANSFER REASON llm-raw: help with their device
+2026-11-11 11:53:16,196 [INFO] CACHE HIT patient:P003
+2026-11-11 11:53:16,197 [INFO] CACHE HIT patient:P003
+2026-11-11 11:53:18,744 [INFO] [cb-HT-CONVO-ffde] OUTBOUND call started → room callback-cb-HT-CONVO-ffde-bfa674 ; reason: help with their device
+2026-11-11 11:54:10,866 [INFO] [cb-HT-CONVO-ffde] OUTBOUND outcome: voicemail
+2026-11-11 11:55:12,697 [INFO] [HT-CONVO-54f3] ANI: +61481103973
+2026-11-11 11:55:13,984 [INFO] [HT-CONVO-54f3] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth?
+2026-11-11 11:55:28,703 [INFO] [HT-CONVO-54f3] CALLER: John Smith, 22 July 90
+2026-11-11 11:55:28,704 [INFO] [HT-CONVO-54f3] Orchestrator: B mode
+2026-11-11 11:55:29,960 [INFO] [HT-CONVO-54f3] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-11-11 11:55:29,961 [INFO] [HT-CONVO-54f3] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-11-11 11:55:30,902 [INFO] [HT-CONVO-54f3] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1990-07-22","clinic":null},"confidence":0.98}
+2026-11-11 11:55:30,903 [INFO] [HT-CONVO-54f3] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1990-07-22'} missing=None
+2026-11-11 11:55:30,935 [INFO] [HT-CONVO-54f3] VERIFICATION verified=True subject_id=P003 reason=None role=patient clinic_id=C02
+2026-11-11 11:55:30,969 [INFO] CACHE HIT patient:P003
+2026-11-11 11:55:30,970 [INFO] CACHE HIT patient:P003
+2026-11-11 11:55:31,009 [INFO] CACHE HIT order_by_patient:P003
+2026-11-11 11:55:31,012 [INFO] CACHE HIT order:O1006
+2026-11-11 11:55:31,890 [INFO] [HT-CONVO-54f3] SYSTEM: Thanks, John — you’ve been verified, and I’m here to help with your HeartBug account.
+2026-11-11 11:55:42,350 [INFO] [HT-CONVO-54f3] CALLER: Can someone help me with my device?
+2026-11-11 11:55:42,351 [INFO] [HT-CONVO-54f3] Orchestrator: B mode
+2026-11-11 11:55:43,561 [INFO] [HT-CONVO-54f3] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-11-11 11:55:43,563 [INFO] [HT-CONVO-54f3] HANDOFF escalation_category=voluntary role=patient
+2026-11-11 11:55:44,552 [INFO] [HT-CONVO-54f3] SYSTEM (escalation offer): Of course — I can connect you with the HeartBug team right now, or I can schedule a callback for a time that suits you; which would you prefer?
+2026-11-11 11:55:48,633 [INFO] [HT-CONVO-54f3] CALLER: Call me now
+2026-11-11 11:55:48,634 [INFO] [HT-CONVO-54f3] Orchestrator: B mode
+2026-11-11 11:55:49,656 [INFO] [HT-CONVO-54f3] CONFIRM llm-raw: {"decision":"now"}
+2026-11-11 11:55:50,662 [INFO] [HT-CONVO-54f3] SYSTEM (transfer): Absolutely — I’m connecting you to our patient support team now, so please hold for just a moment.
+2026-11-11 11:55:51,415 [INFO] [HT-CONVO-54f3] TRANSFER REASON llm-raw: help with their device
+2026-11-11 11:55:51,450 [INFO] CACHE HIT patient:P003
+2026-11-11 11:55:51,451 [INFO] CACHE HIT patient:P003
+2026-11-11 11:55:52,847 [INFO] [cb-HT-CONVO-54f3] OUTBOUND call started → room callback-cb-HT-CONVO-54f3-71e841 ; reason: help with their device
+2026-11-11 11:57:24,345 [INFO] CACHE redis → redis://ordersvc:order-secret@redis:6379/0
+2026-11-11 11:57:24,457 [INFO] CACHE redis → redis://bookingsvc:booking-secret@redis:6379/0
+2026-11-11 11:57:32,866 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-11-11 11:57:33,472 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-11-11 11:57:33,490 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-11-11 12:01:40,926 [WARNING] TRACING disabled (API request to http://host.docker.internal:5001/api/2.0/mlflow/experiments/get-by-name failed with exception HTTPConnectionPool(host='host.docker.internal', port=5001): Max retries exceeded with url: /api/2.0/mlflow/experiments/get-by-name?experiment_name=heartbug-callcentre (Caused by NewConnectionError("HTTPConnection(host='host.docker.internal', port=5001): Failed to establish a new connection: [Errno 101] Network is unreachable")))
+2026-11-11 12:13:19,325 [INFO] SESSIONS redis → redis://hostsvc:host-secret@redis:6379/0
+2026-11-11 12:13:19,449 [INFO] CACHE HIT patient:P003
+2026-11-11 12:13:19,453 [INFO] CACHE HIT patient:P003
+2026-11-11 12:13:19,468 [INFO] [cb-typing-d97260] OUTBOUND call started → room direct-no-room ; reason: help setting up their new heart monitor
+2026-11-11 12:13:37,600 [INFO] [cb-typing-d97260] OUTBOUND verify → True
+2026-11-11 12:13:37,604 [INFO] [cb-typing-d97260] OUTBOUND: callee verified
+2026-11-11 12:13:39,079 [INFO] [cb-typing-d97260] OUTBOUND outcome: briefed
+2026-11-11 12:17:52,423 [INFO] [HT-CONVO-7ad0] ANI: +61481103973
+2026-11-11 12:17:54,293 [INFO] [HT-CONVO-7ad0] SYSTEM: Welcome to HeartBug—could I please have your full name and date of birth?
+2026-11-11 12:18:05,077 [INFO] [HT-CONVO-7ad0] CALLER: John Smith, 22 July 1990
+2026-11-11 12:18:05,078 [INFO] [HT-CONVO-7ad0] Orchestrator: B mode
+2026-11-11 12:18:06,188 [INFO] [HT-CONVO-7ad0] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-11-11 12:18:06,189 [INFO] [HT-CONVO-7ad0] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-11-11 12:18:07,311 [INFO] [HT-CONVO-7ad0] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-11-11 12:18:07,312 [INFO] [HT-CONVO-7ad0] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1990-07-22'} missing=None
+2026-11-11 12:18:07,336 [INFO] [HT-CONVO-7ad0] VERIFICATION verified=True subject_id=P003 reason=None role=patient clinic_id=C02
+2026-11-11 12:18:07,366 [INFO] CACHE HIT patient:P003
+2026-11-11 12:18:07,366 [INFO] CACHE HIT patient:P003
+2026-11-11 12:18:07,696 [INFO] CACHE HIT order_by_patient:P003
+2026-11-11 12:18:07,698 [INFO] CACHE HIT order:O1006
+2026-11-11 12:18:08,522 [INFO] [HT-CONVO-7ad0] SYSTEM: Thanks, John — you’re all verified, and I’m here to help with your HeartBug account.
+2026-11-11 12:19:29,925 [INFO] [HT-CONVO-7ad0] CALLER: Can someone help me with my new device?
+2026-11-11 12:19:29,928 [INFO] [HT-CONVO-7ad0] Orchestrator: B mode
+2026-11-11 12:19:31,684 [INFO] [HT-CONVO-7ad0] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-11-11 12:19:31,685 [INFO] [HT-CONVO-7ad0] HANDOFF escalation_category=voluntary role=patient
+2026-11-11 12:19:32,752 [INFO] [HT-CONVO-7ad0] SYSTEM (escalation offer): Absolutely — would you like me to connect you with the team right now, or would you prefer to schedule a callback at a time that suits you?
+2026-11-11 12:31:39,403 [INFO] [HT-CONVO-7ad0] CALLER: Call me now
+2026-11-11 12:31:39,406 [INFO] [HT-CONVO-7ad0] Orchestrator: B mode
+2026-11-11 12:31:41,150 [INFO] [HT-CONVO-7ad0] CONFIRM llm-raw: {"decision":"now"}
+2026-11-11 12:31:42,058 [INFO] [HT-CONVO-7ad0] SYSTEM (transfer): Of course — I’m connecting you to our patient support team now, so please hold.
+2026-11-11 12:31:43,095 [INFO] [HT-CONVO-7ad0] TRANSFER REASON llm-raw: help with their new device
+2026-11-11 12:31:43,146 [INFO] CACHE MISS patient:P003, query DB
+2026-11-11 12:31:43,147 [INFO] CACHE MISS patient:P003, query DB
+2026-11-11 12:31:43,161 [INFO] CACHE redis → redis://hostsvc:host-secret@redis:6379/0
+2026-11-11 12:31:44,741 [INFO] [cb-HT-CONVO-7ad0] OUTBOUND call started → room callback-cb-HT-CONVO-7ad0-b65dfa ; reason: help with their new device
+2026-11-11 12:32:16,655 [INFO] [cb-HT-CONVO-7ad0] OUTBOUND outcome: voicemail
+2026-11-11 12:32:16,898 [INFO] [HT-CONVO-da41] ANI: +61481103973
+2026-11-11 12:32:17,892 [INFO] [HT-CONVO-da41] SYSTEM: Hello and welcome to HeartBug—could I have your full name and date of birth, please?
+2026-11-11 12:32:23,371 [INFO] [HT-CONVO-da41] CALLER: John Smith, 22 July 90
+2026-11-11 12:32:23,372 [INFO] [HT-CONVO-da41] Orchestrator: B mode
+2026-11-11 12:32:24,598 [INFO] [HT-CONVO-da41] ROUTER llm-raw: {"domain":"verification","confidence":0.99,"connect_human":false}
+2026-11-11 12:32:24,599 [INFO] [HT-CONVO-da41] ROUTER allowed=['verification', 'kb'] → domain=verification conf=0.99 connect_human=False
+2026-11-11 12:32:25,892 [INFO] [HT-CONVO-da41] TOOL-SELECT llm-raw: {"tool":"verify_identity","args":{"name":"John Smith","dob":"1990-07-22","clinic":null},"confidence":0.99}
+2026-11-11 12:32:25,893 [INFO] [HT-CONVO-da41] SLOTS domain=verification tool=verify_identity have={'name': 'John Smith', 'dob': '1990-07-22'} missing=None
+2026-11-11 12:32:25,936 [INFO] [HT-CONVO-da41] VERIFICATION verified=True subject_id=P003 reason=None role=patient clinic_id=C02
+2026-11-11 12:32:25,963 [INFO] CACHE HIT patient:P003
+2026-11-11 12:32:25,964 [INFO] CACHE HIT patient:P003
+2026-11-11 12:32:25,997 [INFO] CACHE HIT order_by_patient:P003
+2026-11-11 12:32:25,998 [INFO] CACHE HIT order:O1006
+2026-11-11 12:32:27,098 [INFO] [HT-CONVO-da41] SYSTEM: Thanks, John — you’re all verified, and I’m here to help with anything else on your HeartBug account.
+2026-11-11 12:32:36,944 [INFO] [HT-CONVO-da41] CALLER: Can someone help me with my new device?
+2026-11-11 12:32:36,945 [INFO] [HT-CONVO-da41] Orchestrator: B mode
+2026-11-11 12:32:37,852 [INFO] [HT-CONVO-da41] PLAN+SELECT llm-raw: {"subtasks":[],"confidence":0.98,"connect_human":true,"small_talk":false,"answer_from_context":false,"out_of_scope":false}
+2026-11-11 12:32:37,853 [INFO] [HT-CONVO-da41] HANDOFF escalation_category=voluntary role=patient
+2026-11-11 12:32:39,035 [INFO] [HT-CONVO-da41] SYSTEM (escalation offer): Of course — would you like me to connect you with the HeartBug team now, or would you prefer to schedule a callback for a time that suits you?
+2026-11-11 12:32:41,777 [INFO] [HT-CONVO-da41] CALLER: now
+2026-11-11 12:32:41,778 [INFO] [HT-CONVO-da41] Orchestrator: B mode
+2026-11-11 12:32:42,520 [INFO] [HT-CONVO-da41] CONFIRM llm-raw: {"decision":"now"}
+2026-11-11 12:32:43,445 [INFO] [HT-CONVO-da41] SYSTEM (transfer): Absolutely — I’m connecting you to the HeartBug patient support team now, so please hold for just a moment.
+2026-11-11 12:32:44,245 [INFO] [HT-CONVO-da41] TRANSFER REASON llm-raw: help with their new device
+2026-11-11 12:32:44,266 [INFO] CACHE HIT patient:P003
+2026-11-11 12:32:44,267 [INFO] CACHE HIT patient:P003
+2026-11-11 12:32:45,401 [INFO] [cb-HT-CONVO-da41] OUTBOUND call started → room callback-cb-HT-CONVO-da41-6b2e39 ; reason: help with their new device
+2026-11-11 12:33:38,760 [INFO] [cb-HT-CONVO-da41] OUTBOUND verify → False
+2026-11-11 12:34:10,623 [INFO] [cb-HT-CONVO-da41] OUTBOUND verify → True
+2026-11-11 12:34:28,066 [INFO] [cb-HT-CONVO-da41] OUTBOUND outcome: abandoned

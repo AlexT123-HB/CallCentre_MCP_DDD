@@ -58,9 +58,9 @@ business logic; the domains never contain conversation logic.
 | Session state (per call) | `src/client/session.py`, stored in Redis |
 | Working memory / call notes | `src/client/notes.py` |
 | A/B orchestration mode + faithfulness | `src/client/mode_router.py`, `src/client/faithfulness.py` |
-| Callback scheduling (the F2 scheduler) | `src/scheduler/callback_scheduler.py` |
+| Callback scheduling | `src/servers/booking` |
 | Telephony vendor adapters | `src/client/telephony/` (twilio, talkdesk) |
-| Policy rules (changeable without deploy) | `config/rules.json` |
+| Outbound calls (LiveKit+Twilio) | `src/agents/outbound` |
 
 ---
 
@@ -161,11 +161,10 @@ tool, stop — it should be a manifest change.
 ## What to read, in order
 
 1. This file.
-2. `PROJECT_SUMMARY.md` — the current state, decisions, and roadmap.
-3. `src/servers/booking/` — a complete, modern domain (read manifest → run → service).
-4. `src/client/host.py` `_turn` — the conversation pipeline.
-5. `docs/ORCHESTRATION-RULES.md` — the rules/enforcement layers.
-6. The design notes (`LANGGRAPH_HOST_MIGRATION.md`, `LIVEKIT_ESCALATION_PLAN.md`) —
+2. `src/servers/booking/` — a complete, modern domain (read manifest → run → service).
+3. `src/client/host.py` `_turn` — the conversation pipeline.
+4. `docs/ORCHESTRATION-RULES.md` — the rules/enforcement layers.
+5. The design notes (`LANGGRAPH_HOST_MIGRATION.md`, `LIVEKIT_ESCALATION_PLAN.md`) —
    where the system is heading.
 
 ---
