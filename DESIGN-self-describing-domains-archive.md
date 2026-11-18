@@ -6,7 +6,7 @@ MCP (Model Context Protocol), following Domain-Driven Design.
 
 A caller phones in → the **host** verifies them, decides which domain(s) handle the
 request, calls the matching MCP tools, and speaks one reply. Each **domain**
-(patient, order, doctor, knowledge base, verification) is an independent MCP server
+(patient, order, doctor, knowledge base, verificatio, booking) is an independent MCP server
 that describes itself via a *manifest*, so the host configures itself — adding a
 domain is a drop-in, no host edits.
 

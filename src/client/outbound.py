@@ -34,7 +34,6 @@ class OutboundCaller:
         self._client = client
         self._sessions = sessions
         self._start_subagent = start_subagent or subagent.place_call
-        #self._organisation = os.getenv("HEARTBUG_ORG_NAME", "HeartBug")
 
     # ── trigger: transfer_now ──────────────────────────────────────────────────
     async def call_now(self, session: dict, reason: str, to_number: str | None = None) -> str:

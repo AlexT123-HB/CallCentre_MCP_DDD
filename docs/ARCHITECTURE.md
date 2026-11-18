@@ -7,8 +7,8 @@
 
 ## What it is, in one paragraph
 
-HeartBug is an agentic AI support assistant for a cardiac-monitoring service. A
-caller (patient in the Bugsy app, or a physician on the clinical phone line) sends a
+HeartBug Contact Centre is an agentic AI support assistant for a cardiac-monitoring service. A
+caller (patient in the Bugsy app, or a doctor on the clinical phone line) sends a
 message; the system verifies who they are, figures out what they want, calls the
 right backend to do it, and speaks a natural reply. It's built on **MCP (Model
 Context Protocol) + Domain-Driven Design**: a central **host** orchestrates the
@@ -91,34 +91,29 @@ caller and pick up next turn.
 
 ---
 
-## The core principles (why it's built this way)
+## The core principles 
 
 Understanding these five explains most "why is it done like that?" questions:
 
 1. **Gate, not prompt.** Access control (verification, roles, per-caller scoping) is
-   enforced in **code** (`if role != "doctor"`, the gate) — never asked of the LLM in
+   enforced in **code** (`if role != "doctor"`, the gate), never asked of the LLM in
    a prompt. A prompt injection can override a sentence; it can't override an `if`.
 
-2. **Guarantee vs. policy.** A *guarantee* (never leak another patient's data, always
-   confirm before a write) lives in code and can't be bypassed. A *policy* (order
-   quantity limits, escalation thresholds) lives in `config/rules.json` and changes
-   without a deploy.
-
-3. **Declare, don't wire.** A domain describes itself in its `manifest.py` (its tools,
-   slot requirements, confirmations, narration events). The host is generic — it reads
+2. **Declare, don't wire.** A domain describes itself in its `manifest.py` (its tools,
+   slot requirements, confirmations, narration events). The host is generic, it reads
    the manifest. Adding a tool needs a manifest entry, not host changes.
 
-4. **Escalation is orchestration, not a domain.** Connecting a human is the host
-   detecting a condition and routing — it has no lifecycle/data of its own, so it
+3. **Escalation is orchestration, not a domain.** Connecting a human is the host
+   detecting a condition and routingm, it has no lifecycle/data of its own, so it
    lives in the host, not in a domain.
 
-5. **Instructions are authoritative over history.** The system's event/tool/
+4. **Instructions are authoritative over history.** The system's event/tool/
    confirmation instructions decide what happens each turn; conversation history
    informs but never overrides. (Getting this wrong caused a whole class of bugs.)
 
 ---
 
-## The domain layout (all domains look like this)
+## The domain layout 
 
 ```
 src/servers/<domain>/
@@ -140,21 +135,21 @@ simpler. To understand any domain, read its `manifest.py` first (what it does), 
 
 ---
 
-## Your first change — add a tool (the declare-don't-wire path)
+## Add a tool (the declare-don't-wire path)
 
 Say you want a `get_clinic_hours` tool in the `clinic` domain:
 
-1. **Implement it** in `src/servers/clinic/run.py` — a thin function that calls the
+1. **Implement it** in `src/servers/clinic/run.py`, a thin function that calls the
    service.
 2. **Add the logic** in `domain/service/services.py`.
 3. **Declare it** in `src/servers/clinic/manifest.py`: add to `tools`, map a narration
    event in `tool_events`, add the event text to `events`, and (if it needs args) add
    to `required_args`.
-4. **Done.** The host picks it up automatically — no host code changes. The planner
+4. **Done.** The host picks it up automatically, no host code changes. The planner
    can now select it, slot-fill its args, and narrate its result.
 
-That's the whole pattern. If you find yourself editing `host.py` to add a domain
-tool, stop — it should be a manifest change.
+That's the whole pattern. Don't change anything in `host.py` to add a domain
+tool or logic.
 
 ---
 
@@ -171,13 +166,13 @@ tool, stop — it should be a manifest change.
 
 ## Things that will confuse you (and why they're intentional)
 
-- **Two role-gate mechanisms** — domain-level (`gate.py`) for whole-domain access, and
+- **Two role-gate mechanisms**: domain-level (`gate.py`) for whole-domain access, and
   tool-level (`if role !=` in run.py) for one tool in a mixed-role domain. Both are
   code gates; they operate at different granularities.
-- **`submit_*` tools aren't in the manifest `tools` list** — they're host-invoked only
+- **`submit_*` tools aren't in the manifest `tools` list**: they're host-invoked only
   (after a confirmation "yes"), so the planner can't call them directly. This is
   deliberate: it makes "no write without confirmation" a guarantee, not a hope.
-- **The booking store is a CSV** — chosen over Redis for durability (bookings must
+- **The booking store is a CSV**: chosen over Redis for durability (bookings must
   survive restarts + be staff-readable). Same repository port; the store is swappable.
-- **Deployed code can lag the canonical zip** — the #1 source of "the fix doesn't
+- **Deployed code can lag the canonical zip**: the #1 source of "the fix doesn't
   work." Always confirm the running code matches the repo before debugging.
