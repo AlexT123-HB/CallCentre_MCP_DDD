@@ -7,12 +7,16 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
+
+# Secrets — keep only the template
 .env
-mlflow.db
+.env.*
+!.env.example
+
+# Runtime data
+mlflow.db*
 mlruns/
 logs/
 *.log
-__pycache__/
-*.pyc
-.venv/
+redisdata/
