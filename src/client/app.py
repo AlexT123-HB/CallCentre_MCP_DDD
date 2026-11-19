@@ -37,9 +37,9 @@ app.include_router(twilio_adapter.router)
 # Thin JSON data-dip endpoints the Talkdesk Studio flow calls per turn (Talkdesk
 # owns the turn-loop + STT/TTS in Studio; we just return reply text). Same shared
 # host and same shared decision logic (telephony base) as Twilio.
-from src.client.telephony import talkdesk_adapter
-talkdesk_adapter._host = _host
-app.include_router(talkdesk_adapter.router)
+# from src.client.telephony import talkdesk_adapter
+# talkdesk_adapter._host = _host
+# app.include_router(talkdesk_adapter.router)
 
 # Outbound call subagent — adds /outbound/callbacks/{id}/verify|handoff|outcome,
 # which the outbound worker container calls back into. Same shared host. Mounted

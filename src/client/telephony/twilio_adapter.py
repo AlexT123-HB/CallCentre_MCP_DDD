@@ -1,5 +1,5 @@
 """
-Twilio adapter -- renders the shared TurnOutcome into TwiML.
+Twilio adapter for inbound calls -- renders the shared TurnOutcome into TwiML.
 
 Flow: caller speaks -> Twilio STT (<Gather input="speech">) POSTs the transcript
 -> shared run_turn() decides the reply -> we render TwiML (<Say> = TTS, <Gather> =

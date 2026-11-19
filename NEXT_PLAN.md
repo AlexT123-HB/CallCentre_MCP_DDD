@@ -2,33 +2,30 @@
 
 Backlog of planned additions, to work through step by step later. Derived from a
 scorecard against a 10-layer agentic-architecture maturity model (dev.to,
-Sreeni Ramadurai, "Architecting Agentic AI Applications"). HeartBug scored as a
-solid Level 2-3 (stateful tool-calling agent) — which is where the value lives;
-we deliberately do NOT climb to Level 5 (multi-agent). These are the level-
-appropriate gaps, in priority order. Nothing here is started; each is a "consider
-next" item, not a commitment.
+Sreeni Ramadurai, "Architecting Agentic AI Applications"). Belows are the level-
+appropriate gaps, in priority order.
 
 Context that matters when picking these up:
 - Voice line → latency is the hard constraint; a hung call is dead air.
 - Clinical line → PHI/isolation burden is real; memory features stay bounded.
-- We already have: MiniLM embeddings (KB), Redis (R1-R6 caches), faithfulness
+- We already have: BAAI embeddings (KB), Redis caches, faithfulness
   loss, rules engine, MCP domain servers, subtask decomposition with depends_on.
 
 ---
 
 ## HIGH PRIORITY
 
-### 1. Semantic cache (query -> response) (done)   [Layer 6]
+### 1. Semantic cache (query -> response) (DONE)   [Layer 6]
 **What:** A cache in FRONT of the whole turn pipeline. Embed the caller's query,
 compare (cosine) against recent answered queries; on a hit above ~0.92, return the
 cached narration directly — no LLM call, no plan, no tool dispatch.
 **Why:** Highest ROI. Repeat FAQ-style questions ("does HeartBug work on planes",
 "how long does it record") hit the full pipeline every time today. A semantic cache
 skips all of it on a hit.
-**We already have the primitive:** MiniLM (all-MiniLM-L6-v2) is already loaded for
+**We already have the primitive:** BAAI/bge-large-en-v1.5 is already loaded for
 KB. Reuse it for the query embedding.
 **Design sketch:** query -> embed -> nearest cached (query, narration) -> if
-cos >= 0.92 return cached narration, else fall through to the normal turn and
+cos >= threshold return cached narration, else fall through to the normal turn and
 write (query, narration) back after. Scope the cache carefully — a KB/FAQ answer
 is safe to share; anything patient-specific (order status, verification) must NOT
 be semantically cached across callers. Start KB-only.
@@ -49,15 +46,13 @@ the independent group. Preserve per-subtask error handling (see item 3).
 ### 3. Timeouts + circuit breaker   [Layer 10]
 **What:** Bound every MCP tool call with a timeout; open a circuit breaker on a
 domain that is failing, so we stop calling a dead server and degrade gracefully.
-**Why:** Sri's open item (orchestrator single-point-of-failure). A hung MCP call
-is dead air on a phone line — the worst failure mode here.
+**Why:** Orchestrator single-point-of-failure. A hung MCP call is dead air on a phone line — the worst failure mode here.
 **Design sketch:** wrap `orchestrator.dispatch` per-subtask in a timeout; on
 timeout, return a structured "no result" for that subtask (feeds item: retry-as-
 question, already planned separately) rather than hanging the turn. Circuit
 breaker = after N consecutive failures on a domain, short-circuit to escalate.
 **Related, already-noted:** the "rephrase failed subtask as a follow-up question"
-retry logic (from an earlier Sri meeting) pairs with this — a timed-out subtask
-becomes a retry-as-question, not a bare "no information".
+retry logic pairs with this — a timed-out subtask becomes a retry-as-question, not a bare "no information".
 
 ---
 
@@ -74,11 +69,10 @@ duplicate a side effect.
 ### 5. Hybrid retrieval + rerank   [Layer 4]
 **What:** Combine dense (vector) + sparse (keyword) retrieval, then rerank.
 **Why:** Pure vector search misses exact-match terms — order references, device
-model numbers, error codes. The b77c airplane-mode investigation suggests KB
-retrieval quality is a real pain point.
+model numbers, error codes. 
 **Gate:** ONLY if KB retrieval quality is measurably failing on exact-match terms.
 Don't build speculatively — measure recall first (see item 8).
-**Design sketch:** add keyword search alongside the MiniLM vector search; merge
+**Design sketch:** add keyword search alongside the vector search; merge
 candidates; rerank (cross-encoder or a cheap scorer). Keep it off the latency
 path if possible, or cache (item 1).
 
@@ -86,7 +80,7 @@ path if possible, or cache (item 1).
 **What:** Enrich human handoffs with: context summary, recommended action,
 confidence signal, supporting evidence, risk explanation.
 **Why:** Today's escalation is barer than this. A structured packet lets a human
-decide in under a minute — matters for the clinical-desk / patient-support handoff.
+understand the context in under a minute.
 **Design sketch:** on escalate, assemble the packet from session (history summary,
 the triggering rule/reason, confidence, the tool results so far). Attach to the
 handoff event.
@@ -124,23 +118,8 @@ cache) lands, add its hit-rate too.
 
 ---
 
-## DELIBERATE NON-GOALS (do NOT build — wrong level for us)
-
-- **Multi-agent / A2A / specialist agents (Level 5).** We are single-orchestrator
-  by design. The guide's #1 named mistake is jumping to Level 5 before Level 2/3
-  is solid. Revisit ONLY if a domain needs autonomous reasoning (clinical triage
-  is the one plausible future trigger).
-- **Skills.md modular prompts.** Overkill for 5 domains.
-- **Full episodic/procedural long-term memory (Level 4/5).** Clinical-line PHI
-  isolation burden is real (the guide: LTM isolation must be enforced at the DB
-  layer, not app code). Sri's bounded TTL'd session-reuse ("timed memory") is the
-  right first step, not the full three-type LTM. Keep memory a deliberate,
-  bounded decision.
-
----
-
 ## SEQUENCING NOTE
-Suggested order when we start: 3 (timeouts — safety first, and Sri's open item)
+Suggested order when we start: 3 (timeouts — safety first)
 -> 2 (parallel — latency, low risk) -> 1 (semantic cache — highest ROI, but needs
 careful PHI scoping) -> then medium items as measurement justifies (5 gated on 8).
-Each is independent; none blocks the others hard.
+Each is independent; none blocks the others.

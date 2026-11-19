@@ -113,8 +113,13 @@ outer layers.
 | `verification/` | 3001 | Verifies the caller with **role-dependent factors**: a patient by name + DOB (+ clinic if the phone number is unrecognised); a doctor by name + clinic (doctors have no DOB), and a doctor on an unrecognised number is sent to a human. Asserted values are checked then discarded — the session is scoped to the *record's* ids, never the caller's claim. |
 | `patient/` | 3002 | Returns the verified caller's own account record (details, plan, contact). Single-tool. |
 | `order/` | 3003 | The caller's own orders — list, or look up one by number. Placing an order or clinic restock is a **preview → submit** split: the planner can only reach the preview tool (which writes nothing); the host calls the submit tool after an explicit caller confirmation. A one-pending-order limit per owner is an **atomic** `SET NX` lock in Redis, and an approval webhook releases it. Ownership re-checked server-side on every call. |
-| `doctor/` | 3005 | Doctor-as-caller: pulls a patient's report/alerts (care-relationship checked) and places clinic restocks. Patient PHI is fetched over MCP from the patient server, never cached here. |
 | `kb/` | 3004 | General product/how-to questions answered from a curated knowledge base via semantic retrieval. Reachable **before** verification (public), with per-entry sensitivity gating. |
+| `doctor/` | 3005 | Doctor-as-caller: pulls a patient's report/alerts (care-relationship checked) and places clinic restocks. Patient PHI is fetched over MCP from the patient server, never cached here. |
+| `booking/` | 3006 | Offer a scheduled callback when a human-in-a-loop is required (voluntarily from the user, 3 failures in the same task, 5 success in the same task, ...). User can request, reschedule a callback, with specific date and time. The callbacks details is recorded in `callback_handoff.csv`. |
+
+### The outbound agent
+
+
 
 ### `kb/` extras (retrieval-specific)
 

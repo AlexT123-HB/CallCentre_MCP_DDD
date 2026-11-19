@@ -11,8 +11,8 @@ Talk to the outbound agent directly — real host, real verification, no LiveKit
      the host too, so it shows in the host log as OUTBOUND outcome: ...
 
 Run from the repo root (the host container has Host, the OpenAI key and livekit-agents):
-    docker compose cp typing_direct.py host:/app/typing_direct.py
-    docker compose exec -it host python /app/typing_direct.py --patient P003
+    docker compose cp eval_outbound_typing.py host:/app/eval_outbound_typing.py
+    docker compose exec -it host python /app/eval_outbound_typing.py --patient P003
 
 Options: --reason "help setting up their new heart monitor"    --quiet (hide tool lines)
 Type what the callee says (start with "hello"). Ctrl-D to stop.
