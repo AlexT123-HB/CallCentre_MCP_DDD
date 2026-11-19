@@ -32,19 +32,22 @@ import json
 import sys
 import time
 import urllib.request
+from dotenv import load_dotenv
+
+load_dotenv()  # load .env for the demo number, etc.
 
 # ── Config ────────────────────────────────────────────────────────────────────
 # BACKEND: choose "openai" or "ollama" for the caller + judge models.
-BACKEND       = "ollama"       # "openai" | "ollama"
+BACKEND       = "openai"       # "openai" | "ollama"
 
 SYSTEM_BASE   = "http://0.0.0.0:8000"
 DEFAULT_TURNS = 6
 HTTP_TIMEOUT  = 60
 
 # OpenAI settings (used when BACKEND == "openai") — needs OPENAI_API_KEY env var
-# OPENAI_URL    = "https://api.openai.com/v1/chat/completions"
-# OPENAI_CALLER = "gpt-4o-mini"  # cheap + fast for generating caller turns
-# OPENAI_JUDGE  = "gpt-4o"       # stronger model for judging
+OPENAI_URL    = "https://api.openai.com/v1/chat/completions"
+OPENAI_CALLER = "gpt-5.4-mini"  # cheap + fast for generating caller turns
+OPENAI_JUDGE  = "gpt-5.4"       # stronger model for judging
 
 # Ollama settings (used when BACKEND == "ollama")
 OLLAMA_URL    = "http://localhost:11434/api/chat"
@@ -52,10 +55,8 @@ OLLAMA_CALLER = "llama3.1"
 OLLAMA_JUDGE  = "llama3.2"
 
 import os
-# CALLER_MODEL = OPENAI_CALLER if BACKEND == "openai" else OLLAMA_CALLER
-# JUDGE_MODEL  = OPENAI_JUDGE  if BACKEND == "openai" else OLLAMA_JUDGE
-CALLER_MODEL = OLLAMA_CALLER
-JUDGE_MODEL  = OLLAMA_JUDGE
+CALLER_MODEL = OPENAI_CALLER if BACKEND == "openai" else OLLAMA_CALLER
+JUDGE_MODEL  = OPENAI_JUDGE  if BACKEND == "openai" else OLLAMA_JUDGE
 
 import uuid
 
@@ -72,19 +73,18 @@ def _post(url: str, payload: dict, timeout: int = HTTP_TIMEOUT) -> dict:
         return json.loads(r.read())
 
 
-# def _openai_chat(model: str, messages: list, timeout: int = HTTP_TIMEOUT) -> str:
-#     key = os.environ.get("OPENAI_API_KEY")
-#     if not key:
-#         raise RuntimeError("OPENAI_API_KEY not set (export it before running)")
-#     data = json.dumps({"model": model, "messages": messages}).encode()
-#     req  = urllib.request.Request(
-#         OPENAI_URL, data=data, method="POST",
-#         headers={"Content-Type": "application/json",
-#                  "Authorization": f"Bearer {key}"})
-#     with urllib.request.urlopen(req, timeout=timeout) as r:
-#         resp = json.loads(r.read())
-#     return resp["choices"][0]["message"]["content"].strip()
-
+def _openai_chat(model: str, messages: list, timeout: int = HTTP_TIMEOUT) -> str:
+    key = os.environ.get("OPENAI_API_KEY")
+    if not key:
+        raise RuntimeError("OPENAI_API_KEY not set (export it before running)")
+    data = json.dumps({"model": model, "messages": messages}).encode()
+    req  = urllib.request.Request(
+        OPENAI_URL, data=data, method="POST",
+        headers={"Content-Type": "application/json",
+                 "Authorization": f"Bearer {key}"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        resp = json.loads(r.read())
+    return resp["choices"][0]["message"]["content"].strip()
 
 def _ollama_chat(model: str, messages: list, timeout: int = HTTP_TIMEOUT) -> str:
     resp = _post(OLLAMA_URL,
@@ -93,11 +93,11 @@ def _ollama_chat(model: str, messages: list, timeout: int = HTTP_TIMEOUT) -> str
     return resp["message"]["content"].strip()
 
 
-# def ollama_chat(model: str, messages: list, timeout: int = HTTP_TIMEOUT) -> str:
-#     """Backend-aware chat completion (name kept for call sites)."""
-#     if BACKEND == "openai":
-#         return _openai_chat(model, messages, timeout)
-#     return _ollama_chat(model, messages, timeout)
+def openai_chat(model: str, messages: list, timeout: int = HTTP_TIMEOUT) -> str:
+    """Backend-aware chat completion (name kept for call sites)."""
+    if BACKEND == "openai":
+        return _openai_chat(model, messages, timeout)
+    return _ollama_chat(model, messages, timeout)
 
 
 # ── System under test ─────────────────────────────────────────────────────────
@@ -133,7 +133,7 @@ def caller_turn(persona: str, history: list) -> str:
     # if there's no system line yet to react to, nudge it to open the call
     if not convo:
         messages.append({"role": "user", "content": "(the line connects)"})
-    return _ollama_chat(CALLER_MODEL, messages)
+    return openai_chat(CALLER_MODEL, messages)
 
 
 # ── Judge ─────────────────────────────────────────────────────────────────────
@@ -151,7 +151,7 @@ def judge(transcript_text: str, rubric: str) -> dict:
         f"TRANSCRIPT:\n{transcript_text}\n\n"
         "Return the JSON verdict now."
     )
-    raw = _ollama_chat(JUDGE_MODEL,
+    raw = openai_chat(JUDGE_MODEL,
                       [{"role": "system", "content": JUDGE_SYS},
                        {"role": "user", "content": user}])
     # tolerant parse — strip any stray markdown fences
@@ -720,11 +720,24 @@ def main():
             sys.exit(1)
 
     # quick connectivity preflight on the chosen backend
+    # if BACKEND == "ollama":            
+    #     try:
+    #         _ollama_chat(CALLER_MODEL, [{"role": "user", "content": "hi"}], timeout=120)
+    #     except Exception as e:
+    #         print(f"✗ Cannot reach your caller model {CALLER_MODEL}.\n  {e}")
+    #         print("  Fix: is ollama serve running with the model pulled?")
+    #         sys.exit(1)
+    # elif BACKEND == "openai":
+    #     try:
+    #         _openai_chat(CALLER_MODEL, [{"role": "user", "content": "hi"}], timeout=120)
+    #     except Exception as e:
+    #         print(f"✗ Cannot reach your caller model {CALLER_MODEL}.\n  {e}")
+    #         print("  Fix: is OPENAI_API_KEY set and valid?")
+    #         sys.exit(1)
     try:
-        _ollama_chat(CALLER_MODEL, [{"role": "user", "content": "hi"}], timeout=120)
+        openai_chat(CALLER_MODEL, [{"role": "user", "content": "hi"}], timeout=120)
     except Exception as e:
         print(f"✗ Cannot reach your caller model {CALLER_MODEL}.\n  {e}")
-        print("  Fix: is ollama serve running with the model pulled?")
         sys.exit(1)
     try:
         urllib.request.urlopen(f"{SYSTEM_BASE}/", timeout=5)
