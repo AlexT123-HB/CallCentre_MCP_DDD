@@ -10,6 +10,8 @@ The host is in `src/client`, and the domain services live under `src/servers`. E
 - routes turns to the right domain using the host + domain manifests
 - verifies callers through a verification domain
 - supports patient, order, doctor, and knowledge-base operations
+- schedule a callback through booking domain
+- initialize an outbound call when user requests, connect with LiveKit+Twilio to create meeting room, then verify callee and give a brief reason
 - persists session/cache state in Redis when configured
 - runs the different services together with Docker Compose
 
@@ -18,7 +20,8 @@ The host is in `src/client`, and the domain services live under `src/servers`. E
 ```text
 src/
 ├── client/      # FastAPI host + routing, planning, orchestration, narration
-├── servers/     # independent MCP domains: verification, patient, order, kb, doctor
+├── servers/     # independent MCP domains: verification, patient, order, kb, doctor, booking
+├── agents/      # subagents for services: outbound call.
 ├── shared/      # common domain manifests, security, cache, database, logging, tracing
 ├── __init__.py
 └── ...
@@ -44,35 +47,9 @@ The main domain servers in this repo are:
 - `order` — lists/lookups order status and handles order flows
 - `kb` — knowledge-base answers for general questions
 - `doctor` — doctor-facing patient status and report workflows
+- `booking` — schedules callbacks according to user's request
 
 Each domain has a `manifest.py` file that declares its endpoint, tools, events, and required arguments.
-
-## HTTP API
-
-The app starts with:
-
-```bash
-uvicorn src.client.app:app --host 0.0.0.0 --port 8000
-```
-
-Endpoints:
-
-- `POST /webhook` with body:
-  ```json
-  {"call_id": "TEST-123", "ani": "+61498765432"}
-  ```
-  Starts a call and returns the greeting/verification setup
-
-- `POST /{domain}` with body:
-  ```json
-  {"call_id": "TEST-123", "transcript": "I need my order status"}
-  ```
-  Sends one turn to the host; the path is a hint, and the host decides the actual domain
-
-- `GET /` returns a health check payload:
-  ```json
-  {"status": "ok"}
-  ```
 
 ## Docker setup
 
@@ -91,7 +68,9 @@ This brings up:
 - order service on port 3003
 - kb service on port 3004
 - doctor service on port 3005
+- booking service on port 3006
 - host on port 8000
+- outbound worker
 
 Useful commands:
 
@@ -161,7 +140,7 @@ Then send a turn:
 ```bash
 curl -X POST http://127.0.0.1:8000/verification \
   -H 'Content-Type: application/json' \
-  -d '{"call_id":"TEST-123","transcript":"Hi, my name is Alex Tran and my date of birth is 1988-01-02"}'
+  -d '{"call_id":"TEST-123","transcript":"Hi, my name is Alex Thompson and my date of birth is 1988-01-02"}'
 ```
 
 ## Repo status
